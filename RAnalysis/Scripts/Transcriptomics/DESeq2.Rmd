@@ -1,0 +1,793 @@
+---
+title: "DESeq2"
+author: "Samuel Gurr"
+date: "2023-02-13"
+output: pdf_document
+---
+
+
+## Setup: 
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      cache = TRUE)
+
+knitr::opts_knit$set(root.dir = "~/Documents/Github_repositories/Airradians_multigen_OA/RAnalysis")
+
+
+```
+
+#### Load libraries
+
+```{r load_libraries, include = TRUE}
+# load libraries - notes show the install command needed to install (pre installed)
+library(DESeq2) # note: this was previously installed with the command `BiocManager::install("DESeq2")`
+library(edgeR)
+library(goseq)
+library(dplyr)
+library(GenomicFeatures)
+library(data.table)
+library(calibrate)
+library(affycoretools) # note: this was previously installed with the BiocManager::install("affycoretools")
+library(data.table)
+library(vsn)
+# Plotting
+library(ggplot2)
+library(cowplot)
+library(pheatmap)
+library(gplots)
+library(RColorBrewer)
+library(EnhancedVolcano)  # note: this was previously installed with the command `BiocManager::install("EnhancedVolcano")`
+library(pcaExplorer) # note: this was previously installed with the command `BiocManager::install("pcaExplorer")
+library(ggpubr)
+library(stringr)
+```
+
+#### Set path
+
+```{r set the path out, include = TRUE}
+path_out = 'C:/Users/samjg/Documents/Github_repositories/Airradians_multigen_OA/RAnalysis/Output/Transcriptomics/DESeq2'
+```
+
+
+
+
+
+# LOAD DATA: choose ONE of the counts clusters (filtered raw reads or unfiltered raw reads)
+
+
+
+### Gene count data - convert to matrix - NOTE ONLY RUN ONE (FILTERED  versus UNFILTERED)
+I include both filtered and unfiltered here to compare the results. 
+DESEq2 mentions that pre-filtering is not necessary however will reduce the memory/time to run dds and rlog of the models 
+Below are both RAW counts filtered and unfiltered to run DESeq2 
+
+# FILTERED COUNTS:  3 CPM (with edgeR) and 50% of samples 
+```{r call the count matrices, include = TRUE}
+getwd()
+# gather the 3CPM filtered read matrices 
+All_filtered_counts <-
+  read.csv(file="../../Output/Transcriptomics/Filtered_counts_matrix/filtered_3cpm50perc.csv", 
+                                               sep=',', 
+                                               header=TRUE)  %>% 
+  dplyr::rename(transcript_id = X) %>% 
+  tibble::column_to_rownames(var = "transcript_id") %>% 
+  as.matrix()  
+
+F1_filtered_counts <-
+  read.csv(file="../../Output/Transcriptomics/Filtered_counts_matrix/F1_filtered_3cpm50perc.csv", 
+                                               sep=',', 
+                                               header=TRUE)  %>% 
+  dplyr::rename(transcript_id = X) %>% 
+  tibble::column_to_rownames(var = "transcript_id") %>% 
+  as.matrix() 
+
+
+F2_filtered_counts <-
+  read.csv(file="../../Output/Transcriptomics/Filtered_counts_matrix/F2_filtered_3cpm50perc.csv", 
+                                               sep=',', 
+                                               header=TRUE)   %>% 
+  dplyr::rename(transcript_id = X) %>% 
+  tibble::column_to_rownames(var = "transcript_id") %>% 
+  as.matrix() 
+                      
+           
+```
+
+
+
+### Sample metadata - Experimental treatments/groups
+```{r experiment_data, include = TRUE}
+### experiment metadata [from Count_Matrix_Stats.Filter.R]  - convert characaters to factors for DESeq2
+exp_data  <- read.csv(file="../../Data/Transcriptomics/exp.metadata.csv", sep=',', header=TRUE)
+```
+
+
+
+### Design DESeqDatasets - All - F1s - F2s
+```{r build_dds_datasets}
+# ========================================================== 
+#  FULL MODEL ==  design = ~ pCO2
+# ========================================================== #
+#####
+Exp.metadata       <- exp_data %>% 
+                      dplyr::select(c('SampleName_readmatrix', 'pCO2')) %>% 
+                      dplyr::rename(Sample.Name = SampleName_readmatrix) %>% # coondense dataset to build target matrix
+                      dplyr::filter(Sample.Name %in% colnames(All_filtered_counts))
+Exp.metadata.df    <- data.frame(Exp.metadata[,-1], row.names=Exp.metadata[,1]) # move Sample.Name column as row names  
+Exp.metadata.mtx   <- as.matrix(Exp.metadata.df, row.names="BayScallop.ID") # create matrix 
+
+# check for 'TRUE' in each - check before proceeding  design
+Exp.metadata.mtx_2 <- as.data.frame(Exp.metadata.mtx[match(colnames(All_filtered_counts),rownames(Exp.metadata.mtx)), ]) %>% dplyr::rename(pCO2 = 1)
+all(rownames(Exp.metadata.mtx_2) %in% colnames(All_filtered_counts)) # should be TRUE
+all(rownames(Exp.metadata.mtx_2) == colnames(All_filtered_counts)) # should be TRUE
+
+# build dds
+dds <- DESeqDataSetFromMatrix(countData = All_filtered_counts,
+                                      colData = Exp.metadata.mtx_2,
+                                      design = ~pCO2) # DESeq Data Set (dds) - design as ~Primary_Treatment
+
+# ========================================================== 
+#  F1s ONLY ==  design = ~ pCO2
+# ========================================================== #
+
+Exp.metadata_F1       <- exp_data %>% 
+                      dplyr::filter(Date %in% 20211027) %>% 
+                      dplyr::select(c('SampleName_readmatrix', 'pCO2')) %>% 
+                      dplyr::rename(Sample.Name = SampleName_readmatrix) %>% # coondense dataset to build target matrix
+                      dplyr::filter(Sample.Name %in% colnames(F1_filtered_counts))
+Exp.metadata_F1.df    <- data.frame(Exp.metadata_F1[,-1], row.names=Exp.metadata_F1[,1]) # move Sample.Name column as row names  
+Exp.metadata_F1.mtx   <- as.matrix(Exp.metadata_F1.df, row.names="BayScallop.ID") # create matrix 
+
+# check for 'TRUE' in each - check before proceeding  design
+Exp.metadata_F1.mtx_2 <- as.data.frame(Exp.metadata_F1.mtx[match(colnames(F1_filtered_counts),
+                                                                 rownames(Exp.metadata_F1.mtx)), ]) %>%
+                          dplyr::rename(pCO2 = 1)
+all(rownames(Exp.metadata_F1.mtx_2) %in% colnames(F1_filtered_counts)) # should be TRUE
+all(rownames(Exp.metadata_F1.mtx_2) == colnames(F1_filtered_counts)) # should be TRUE
+
+# build dds
+dds_F1 <- DESeqDataSetFromMatrix(countData = F1_filtered_counts,
+                                      colData = Exp.metadata_F1.mtx_2,
+                                      design = ~pCO2) # DESeq Data Set (dds) - design as ~Primary_Treatment
+
+# ========================================================== 
+#  F2s ONLY ==  design = ~ pCO2
+# ========================================================== #
+
+Exp.metadata_F2       <- exp_data %>% 
+                      dplyr::select(c('SampleName_readmatrix', 'pCO2')) %>% 
+                      dplyr::rename(Sample.Name = SampleName_readmatrix) %>% # coondense dataset to build target matrix
+                      dplyr::filter(Sample.Name %in% colnames(F2_filtered_counts))
+Exp.metadata_F2.df    <- data.frame(Exp.metadata_F2[,-1], row.names=Exp.metadata_F2[,1]) # move Sample.Name column as row names  
+Exp.metadata_F2.mtx   <- as.matrix(Exp.metadata_F2.df, row.names="BayScallop.ID") # create matrix 
+
+# check for 'TRUE' in each - check before proceeding  design
+Exp.metadata_F2.mtx_2 <- as.data.frame(Exp.metadata_F2.mtx[match(colnames(F2_filtered_counts),
+                                                                 rownames(Exp.metadata_F2.mtx)), ]) %>% 
+                          dplyr::rename(pCO2 = 1)
+all(rownames(Exp.metadata_F2.mtx_2) %in% colnames(F2_filtered_counts)) # should be TRUE
+all(rownames(Exp.metadata_F2.mtx_2) == colnames(F2_filtered_counts)) # should be TRUE
+
+# build dds
+dds_F2 <- DESeqDataSetFromMatrix(countData = F2_filtered_counts,
+                                      colData = Exp.metadata_F2.mtx_2,
+                                      design = ~pCO2) # DESeq Data Set (dds) - design as ~Primary_Treatment
+
+```
+
+### run DESeq model - All - F1s - F2s
+```{r, Run DESeq}
+dds.run_all <- DESeq(dds) # wait for this to complete.... ALL data not parsed by generation, not very useful
+dds.run_F1  <- DESeq(dds_F1) # data for just F1s
+dds.run_F2  <- DESeq(dds_F2) # data for just F2s
+```
+
+## Transform Exp data 
+
+* Why?
+ - the transformed data can be used to run simple PCA 
+ - identify whether samples appear as outliers sufficient for omission and rerun dds.run
+
+```{r expression data transformation}
+
+# vstExp  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+vstExp     <- vst(dds.run_all)
+vstExp_F1  <- vst(dds.run_F1)
+vstExp_F2  <- vst(dds.run_F2)
+
+# rlog  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+rlogExp     <- rlogTransformation(dds.run_all)
+rlogExp_F1  <- rlogTransformation(dds.run_F1)
+rlogExp_F2  <- rlogTransformation(dds.run_F2)
+
+# install.packages("PerformanceAnalytics")
+library("PerformanceAnalytics")
+dds.run_F2_df <- as.data.frame(assay(dds.run_F2))
+chart.Correlation(dds.run_F2_df[,c(1:4,15:19)], histogram=TRUE, pch=19)
+```
+
+
+## Run diagnostic plots
+```{r, Diagnostic plotting}
+
+# ========================================================== 
+#  F1s  
+# ==========================================================
+# VST DIAGNOSTICS ::::::::::::::
+# Histogram
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_vstExp_histogram.png", 1000, 1000, pointsize=20)# diagnostics of transformation 
+hist(assay(vstExp_F1)) # view histogram 
+dev.off() # write
+# Histogram mean sd
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_vstExp_mean_sd.png", 1000, 1000, pointsize=20)
+meanSdPlot(assay(vstExp_F1)) # shows the sd y axis (sq root of varaince in all samples) 
+# flat curve may seem like the goal, BUT may be unreasonable in cases with MANY true DEGs from experimental conditions
+dev.off() # write
+# PCA plot vst
+pcaData_vstExp_F1    <- plotPCA(vstExp_F1, intgroup = "pCO2", returnData = TRUE)
+percentVar_vstExp_F1 <- round(100 * attr(pcaData_vstExp_F1, "percentVar"))
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_vstExp_PCA.png", 1000, 1000, pointsize=20)
+ggplot(pcaData_vstExp_F1, aes(x = PC1, y = PC2, color = pCO2, label=name)) +
+  #scale_shape_manual(values = c(4, 19, 17)) +
+  #geom_text(aes(label=name),hjust=0.2, vjust=1.4, size=5) +
+  geom_point(size =3) +
+  theme_classic() +
+  stat_ellipse() +
+  #theme(text = element_text(size=15)) +
+  theme_classic() +
+  theme(text = element_text(size=15)) +
+  ggtitle("F1 PCA: vst expression data") +
+  xlab(paste0("PC1: ", percentVar_vstExp_F1[1], "% variance")) + 
+  ylab(paste0("PC2: ", percentVar_vstExp_F1[2], "% variance")) +
+  coord_fixed()
+dev.off()
+# RLOG DIAGNOSTICS ::::::::::::::
+# Histogram
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_rlogExp_histogram.png", 1000, 1000, pointsize=20)# diagnostics of transformation 
+hist(assay(rlogExp_F1)) # view histogram 
+dev.off() # write
+# Histogram mean sd
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_rlogExp_mean_sd.png", 1000, 1000, pointsize=20)
+meanSdPlot(assay(rlogExp)) # shows the sd y axis (sq root of varaince in all samples) - flat curve may seem like a goals, BUT may be unreasonable in cases with MANY true DEGs from experimental conditions
+dev.off() # write
+# PCA plot rlog
+pcaData_rlogExp_F1    <- plotPCA(rlogExp_F1, intgroup = "pCO2", returnData = TRUE)
+percentVar_rlogExp_F1  <- round(100 * attr(pcaData_rlogExp_F1, "percentVar"))
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_rlogExp_PCA.png", 1000, 1000, pointsize=20)
+ggplot(pcaData_rlogExp_F1, aes(x = PC1, y = PC2, color = pCO2, label=name)) +
+  #scale_shape_manual(values = c(4, 19, 17)) +
+  #geom_text(aes(label=name),hjust=0.2, vjust=1.4, size=5) +
+  geom_point(size =3) +
+  theme_classic() +
+  stat_ellipse() +
+  #theme(text = element_text(size=15)) +
+  theme_classic() +
+  ggtitle("F1 PCA: rlog expression data") +
+  xlab(paste0("PC1: ", percentVar_rlogExp_F1[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar_rlogExp_F1[2], "% variance")) +
+  coord_fixed()
+dev.off()
+
+
+
+# ========================================================== 
+#  F2s  
+# ==========================================================
+# VST DIAGNOSTICS ::::::::::::::
+# Histogram
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_vstExp_histogram.png", 1000, 1000, pointsize=20)# diagnostics of transformation 
+hist(assay(vstExp_F2)) # view histogram 
+dev.off() # write
+# Histogram mean sd
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_vstExp_mean_sd.png", 1000, 1000, pointsize=20)
+meanSdPlot(assay(vstExp_F2)) # shows the sd y axis (sq root of varaince in all samples) 
+# flat curve may seem like the goal, BUT may be unreasonable in cases with MANY true DEGs from experimental conditions
+dev.off() # write
+# PCA plot vst
+pcaData_vstExp_F2    <- plotPCA(vstExp_F2, intgroup = "pCO2", returnData = TRUE)
+percentVar_vstExp_F2 <- round(100 * attr(pcaData_vstExp_F2, "percentVar"))
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_vstExp_PCA.png", 1000, 1000, pointsize=20)
+ggplot(pcaData_vstExp_F2, aes(x = PC1, y = PC2, color = pCO2, label=name)) +
+  #scale_shape_manual(values = c(4, 19, 17)) +
+  #geom_text(aes(label=name),hjust=0.2, vjust=1.4, size=5) +
+  geom_point(size =3) +
+  theme_classic() +
+  stat_ellipse() +
+  #theme(text = element_text(size=15)) +
+  ggtitle("F2 PCA: vst expression data") +
+  xlab(paste0("PC1: ", percentVar_vstExp_F2[1], "% variance")) + 
+  ylab(paste0("PC2: ", percentVar_vstExp_F2[2], "% variance")) +
+  coord_fixed()
+dev.off()
+# RLOG DIAGNOSTICS ::::::::::::::
+# Histogram
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_rlogExp_histogram.png", 1000, 1000, pointsize=20)# diagnostics of transformation 
+hist(assay(rlogExp_F2)) # view histogram 
+dev.off() # write
+# Histogram mean sd
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_rlogExp_mean_sd.png", 1000, 1000, pointsize=20)
+meanSdPlot(assay(rlogExp_F2)) # shows the sd y axis (sq root of varaince in all samples) - flat curve may seem like a goals, BUT may be unreasonable in cases with MANY true DEGs from experimental conditions
+dev.off() # write
+# PCA plot rlog
+pcaData_rlogExp_F2     <- plotPCA(rlogExp_F2, intgroup = "pCO2", returnData = TRUE)
+percentVar_rlogExp_F2  <- round(100 * attr(pcaData_rlogExp_F2, "percentVar"))
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_rlogExp_PCA.png", 1000, 1000, pointsize=20)
+ggplot(pcaData_rlogExp_F2, aes(x = PC1, y = PC2, color = pCO2, label=name)) +
+  geom_point(size =3) +
+  theme_classic() +
+  stat_ellipse() +
+ # geom_text(aes(label=name),hjust=0.2, vjust=1.4, size=5) +
+ # theme(text = element_text(size=15)) +
+  ggtitle("F2 PCA: rlog expression data") +
+  xlab(paste0("PC1: ", percentVar_rlogExp_F2[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar_rlogExp_F2[2], "% variance")) +
+  coord_fixed()
+dev.off()
+
+
+```
+
+
+## DEGs - data tables
+```{r Examine DEGs how many? what are they?}
+
+# Edit the annotation file (Cvirg blasted to annotate draft genome contigs of Airradians)
+Airr_Cvirg_annotation <- read.csv(file="../../Output/Transcriptomics/Raw_counts_matrix/raw_count_matrix_WITH_ANNOTATION.csv",
+                                  sep = ',', 
+                                  header = T) %>% 
+                        dplyr::select(c('Airradians_TranscriptID',
+                                 "blastxEval_CvirgTranscriptID",
+                                 "blastxEval_CvirgProteinID",
+                                 "blastxEval_CvirgGeneID",
+                                 "blastxEval_CvirgGOterms"))
+
+
+# ========================================================== 
+#  F1s  
+# ==========================================================
+# Grab DEGs from  the 'dds.run' model
+DEGresults_F1         <- results(dds.run_F1, contrast=c("pCO2", "High", "Low"), alpha = 0.05) # FDR is the alpha 0.05
+numDEGs_pval_F1       <- data.frame(table(DEGresults_F1$pvalue<0.05))[2,2] # DEGs - NOT considering LFC - just p adj
+numDEGs_padj_F1       <- data.frame(table(DEGresults_F1$padj<0.05))[2,2] # DEGs - NOT considering LFC - just p adj
+DEGresults.ordered_F1 <- DEGresults_F1[order(DEGresults_F1$padj), ] # Order by adjusted p-value
+num.UpReg_F1          <- sum((DEGresults.ordered_F1$log2FoldChange[1:numDEGs_padj_F1] > 0) == TRUE) #  LFC >= 1
+num.DownReg_F1        <- sum((DEGresults.ordered_F1$log2FoldChange[1:numDEGs_padj_F1] < 0) == TRUE) # LFC >= 1
+total_F1              <- sum(num.DownReg_F1,num.UpReg_F1) # sum of DEGs with the criteria pdj < 0.05 + LFC>1 (< -1)
+# Write results - covert to as.data.frame for the ordered results
+resdata.F1           <- merge(as.data.frame(DEGresults.ordered_F1), 
+                                    as.data.frame(counts(dds.run_F1, normalized=TRUE)), 
+                                    by="row.names", 
+                                    sort=FALSE) ## Merge with normalized count data
+names(resdata.F1)[1] <- "Airradians_TranscriptID"
+resdata.F1.annot     <- merge(Airr_Cvirg_annotation,resdata.F1, by = 'Airradians_TranscriptID')
+resdata.F1.annot     <- resdata.F1.annot[order(resdata.F1.annot$padj), ]  # Order by adjusted p-value
+# write out annotated DESeq2 DEGs
+write.csv(resdata.F1.annot, "../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_DESeq2results_F1s.csv") # write
+# What are the Protein names of these DEGs?
+# first gather gene IDs for the DEGs (note: this is also used for the pheatmap in the transformed Exp heatmap)
+numDEGs_padj_F1 # 150 - number of DEGs (from above) - use as integer in call below
+topgenes.IDs_F1 <- head(rownames(DEGresults.ordered_F1),numDEGs_padj_F1) # call gene IDs for DEGs: pdj < 0.05 FDR < 0.05 
+length(topgenes.IDs_F1) == numDEGs_padj_F1 # must be TRUE
+# DEGs Protein IDs - lets take a look shall we! 
+DEGs_annotated_F1s <- Airr_Cvirg_annotation %>% filter(Airradians_TranscriptID %in% topgenes.IDs_F1)
+# nrow(DEGs_annotated_F1s) # 169 - all are present! 
+
+
+# ========================================================== 
+#  F2s  
+# ==========================================================
+# Grab DEGs from  the 'dds.run' model
+DEGresults_F2         <- results(dds.run_F2, contrast=c("pCO2", "High", "Low"), alpha = 0.05) # FDR is the alpha 0.05
+numDEGs_pval_F2       <- data.frame(table(DEGresults_F2$pvalue<0.05))[2,2] # DEGs - NOT considering LFC - just p adj
+numDEGs_padj_F2       <- data.frame(table(DEGresults_F2$padj<0.05))[2,2] # DEGs - NOT considering LFC - just p adj
+DEGresults.ordered_F2 <- DEGresults_F2[order(DEGresults_F2$padj), ] # Order by adjusted p-value
+num.UpReg_F2          <- sum((DEGresults.ordered_F2$log2FoldChange[1:numDEGs_padj_F2] > 0) == TRUE) #  LFC >= 1
+num.DownReg_F2        <- sum((DEGresults.ordered_F2$log2FoldChange[1:numDEGs_padj_F2] < 0) == TRUE) # LFC >= 1
+total_F2              <- sum(num.DownReg_F2,num.UpReg_F2) # sum of DEGs with the criteria pdj < 0.05 + LFC>1 (< -1)
+# Write results - covert to as.data.frame for the ordered results
+resdata.F2           <- merge(as.data.frame(DEGresults.ordered_F2), 
+                                    as.data.frame(counts(dds.run_F2, normalized=TRUE)), 
+                                    by="row.names", 
+                                    sort=FALSE) ## Merge with normalized count data
+names(resdata.F2)[1] <- "Airradians_TranscriptID"
+resdata.F2.annot     <- merge(Airr_Cvirg_annotation,resdata.F2, by = 'Airradians_TranscriptID')
+resdata.F2.annot     <- resdata.F2.annot[order(resdata.F2.annot$padj), ]  # Order by adjusted p-value
+# write out annotated DESeq2 DEGs
+write.csv(resdata.F2.annot, "../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_DESeq2results_F2s.csv") # write
+# What are the Protein names of these DEGs?
+# first gather gene IDs for the DEGs (note: this is also used for the pheatmap in the transformed Exp heatmap)
+numDEGs_padj_F2 # 4 - number of DEGs (from above) - use as integer in call below
+topgenes.IDs_F2 <- head(rownames(DEGresults.ordered_F2),numDEGs_padj_F2) # call gene IDs for DEGs: pdj < 0.05 FDR < 0.05 
+length(topgenes.IDs_F2) == numDEGs_padj_F2 # must be TRUE
+# DEGs Protein IDs - lets take a look shall we! 
+DEGs_annotated_F2s <- Airr_Cvirg_annotation %>% filter(Airradians_TranscriptID %in% topgenes.IDs_F2)
+# nrow(DEGs_annotated_F2s) # 169 - all are present! 
+
+
+```
+
+## Plot the DEG statistics
+
+```{r histogram}
+# histogram of FDR
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_FDR_hist.png", 1000, 1000, pointsize=20)
+hist(DEGresults_F1$padj, breaks=20, col="grey") # view histogram
+abline(h=c( (nrow(DEGresults_F1)*0.05), 
+            ((table(DEGresults_F1$padj < 0.1)[2]) + (nrow(DEGresults_F1)*0.1)),
+            ((table(DEGresults_F1$padj < 0.05)[2]) + (nrow(DEGresults_F1)*0.05)) ),
+                  col=c("blue", "red", "red"), lty=c(1,2,1), lwd=c(1, 3, 1)) # add line at 
+dev.off()
+
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_FDR_hist.png", 1000, 1000, pointsize=20)
+hist(DEGresults_F2$padj, breaks=20, col="grey") # view histogram
+abline(h=c( (nrow(DEGresults_F2)*0.05), 
+            ((table(DEGresults_F2$padj < 0.1)[2]) + (nrow(DEGresults_F2)*0.1)),
+            ((table(DEGresults_F2$padj < 0.05)[2]) + (nrow(DEGresults_F2)*0.05)) ),
+                  col=c("blue", "red", "red"), lty=c(1,2,1), lwd=c(1, 3, 1)) # add line at 
+dev.off()
+
+?EnhancedVolcano
+# volcano plot 
+# png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_DEGs-VolcanoPlot.png", 1000, 1000, pointsize=20)
+pdf("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_DEGs-VolcanoPlot.pdf", width = 7, height = 5)
+EnhancedVolcano(DEGresults_F1,
+                #lab = rownames(DEGresults_F2),
+                lab = NA, # no labels
+                #labSize = 4, # remove gene labels
+                x = 'log2FoldChange',
+                y = 'padj',
+                title = 'F1s: pCO2 Treatment (Low v High)',
+                subtitle = "DESeq2 - Differential expression",
+                FCcutoff = 0.5,
+                pCutoff = 0.05,
+                 ylim = c(0,5),
+                pointSize = 4.0,
+                labSize = 3,
+                colAlpha = 1,
+                legendPosition = 'right',
+                legendLabSize = 12,
+                legendIconSize = 2,
+                widthConnectors = 0.75)
+dev.off()
+
+
+# png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_DEGs-VolcanoPlot.png", 1000, 1000, pointsize=20)
+pdf("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_DEGs-VolcanoPlot.pdf", width = 7, height = 5)
+EnhancedVolcano(DEGresults_F2,
+                #lab = rownames(DEGresults_F2),
+                lab = NA, # no labels
+                #labSize = 4, # remove gene labels
+                x = 'log2FoldChange',
+                y = 'padj',
+                title = 'F2s: pCO2 Treatment (Low v High)',
+                subtitle = "DESeq2 - Differential expression",
+                FCcutoff = 0.5,
+                 ylim = c(0,5),
+                pCutoff = 0.05,
+                pointSize = 4.0,
+                colAlpha = 1,
+                legendPosition = 'right',
+                legendLabSize = 12,
+                legendIconSize = 4.0,
+                widthConnectors = 0.75)
+dev.off()
+
+# Plot dispersion 
+
+png("../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_dispersions.png", 1000, 1000, pointsize=20)
+plotDispEsts(dds.run_F1, main="dispersions")
+dev.off()
+
+png("../../Output/Transcriptomics/DESeq2/F2_juveniles/F2_dispersions.png", 1000, 1000, pointsize=20)
+plotDispEsts(dds.run_F2, main="dispersions")
+dev.off()
+
+
+```
+
+## Figures for F1 and F2 data 
+```{r, Figs}
+
+PCA_F1_vst <- ggplot(pcaData_vstExp_F1, 
+                     aes(x = PC1, 
+                         y = PC2, 
+                         color = pCO2, 
+                         label=name)) +
+                geom_point(size =4) +
+                #scale_fill_manual(c('grey50', 'white')) +
+                theme_classic() +
+                stat_ellipse() +
+                ylim(-20,20) +
+                xlim(-35,35) +
+                theme(legend.position = 'none',axis.text = element_text(size = 12)) +
+                ggtitle("F1 PCA: vst expression data") +
+                xlab(paste0("PC1: ", percentVar_vstExp_F1[1], "% variance")) + 
+                ylab(paste0("PC2: ", percentVar_vstExp_F1[2], "% variance")) +
+                coord_fixed()
+PCA_F2_vst <- ggplot(pcaData_vstExp_F2, 
+                     aes(x = PC1, 
+                         y = PC2, 
+                         color = pCO2, 
+                         label=name)) +
+                geom_point(size =4) +
+                theme_classic() +
+                stat_ellipse() +
+                ylim(-20,20) +
+                xlim(-35,35) +
+                theme(legend.position = 'none',axis.text = element_text(size = 12)) +
+                ggtitle("F2 PCA: vst expression data") +
+                xlab(paste0("PC1: ", percentVar_vstExp_F2[1], "% variance")) + 
+                ylab(paste0("PC2: ", percentVar_vstExp_F2[2], "% variance")) +
+                coord_fixed()
+
+F1_Volcano <- EnhancedVolcano(DEGresults_F1,
+                #lab = rownames(DEGresults_F2),
+                lab = NA, # no labels
+                #labSize = 4, # remove gene labels
+                x = 'log2FoldChange',
+                y = 'padj',
+                # title = 'F1s: pCO2 Treatment (Low v High)',
+                # subtitle = "DESeq2 - Differential expression",
+                titleLabSize = NA,
+                FCcutoff = 0.5,
+                pCutoff = 0.05,
+                pointSize = 2,
+                axisLabSize = 10,
+                labSize = 3,
+                colAlpha = 1,
+                legendPosition = "none",
+                # legendLabSize = 12,
+                # legendIconSize = 2,
+                widthConnectors = 0.75)
+F2_Volcano <- EnhancedVolcano(DEGresults_F2,
+                #lab = rownames(DEGresults_F2),
+                lab = NA, # no labels
+                #labSize = 4, # remove gene labels
+                x = 'log2FoldChange',
+                y = 'padj',
+                # title = 'F2s: pCO2 Treatment (Low v High)',
+                # subtitle = "DESeq2 - Differential expression",
+                # title = NA,
+                titleLabSize = NA,
+                FCcutoff = 0.5,
+                pCutoff = 0.05,
+                pointSize = 2,
+                axisLabSize = 10,
+                labSize = 3,
+                colAlpha = 1,
+                legendPosition = "none",
+                # legendLabSize = 12,
+                widthConnectors = 0.75)
+# ?EnhancedVolcano
+ggarrange(PCA_F1_vst, PCA_F2_vst, 
+          F1_Volcano, F2_Volcano,
+          nrow=2, ncol=2)
+
+pdf("../../Output/Transcriptomics/DESeq2/PCA_F1_F2_vst.pdf", width = 14, height = 5)
+ggarrange(PCA_F1_vst, PCA_F2_vst, 
+          nrow=1, ncol=2)
+dev.off()
+```
+
+## plot heatmap
+
+```{r heatmap for transformed data}
+
+# Plot pheatmap map rlog
+# setup the save pheatmap function
+save_pheatmap <- function(x, filename, width=1000, height=960) { # template for saving pheatmap outputs
+  stopifnot(!missing(x))
+  stopifnot(!missing(filename))
+  png(filename,width = width, height=height)
+  grid::grid.newpage()
+  grid::grid.draw(x$gtable)
+  dev.off()
+}
+# colors for the heatmap
+# colorblind palette
+colorBlindBlack8  <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
+                         "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+pie(rep(1, 8), col = colorBlindBlack8) # view the pie chart for colorblindness
+ann_colors = list(
+    pCO2 = c(Low="#56B4E9", High="#E69F00"))
+df_annot.col         <- as.data.frame(colData(dds.run_F1)[c("pCO2")])
+
+
+# rlogExp
+rlogExp_F1 <- rlogTransformation(dds.run_F1)
+# use topgenes.IDs from the chunk above - this calls only the pdj > 0.05 from the output results of 'dds.run'
+topgenes_rlog.counts_F1      <- assay(rlogExp_F1)[topgenes.IDs_F1,] 
+topgenes_rlog.corrected_F1   <- topgenes_rlog.counts_F1 - rowMeans(topgenes_rlog.counts_F1) # subtract from the row mean to get +/- 0 to normalize and ease the aesthetic
+df_annot.col_F1         <- as.data.frame(colData(dds.run_F1)[c("pCO2")])
+rlog.heatmap <- pheatmap(topgenes_rlog.corrected_F1, 
+                            annotation_col=df_annot.col_F1, 
+                            main = "Ambient versus Moderate (169 total DEGs)",
+                            cutree_cols = 2,
+                            cutree_rows = 2,
+                            annotation_legend = TRUE,
+                            annotation_colors = ann_colors,
+                            show_rownames = TRUE, # Boolean for gene names
+                            labels_col=df_annot.col_F1$pCO2, 
+                            angle_col = 0,
+                            fontsize = 8,
+                            legend = TRUE)
+save_pheatmap(rlog.heatmap, filename = "../../Output/Transcriptomics/DESeq2/F1_juveniles/F1_rlog_heatmap.png") #Save pheatmap
+
+
+
+# vstExp
+# use topgenes.IDs from the chunk above - this calls only the pdj > 0.05 from the output results of 'dds.run'
+vstExp_F1 <- vst(dds.run_F1)
+topgenes_vst.counts_F1      <- assay(vstExp_F1)[topgenes.IDs_F1,] 
+topgenes_vst.corrected_F1   <- topgenes_vst.counts_F1 - rowMeans(topgenes_vst.counts_F1) # subtract from the row mean to get +/- 0 to normalize and ease the aesthetic
+vst.heatmap_F1 <- pheatmap(topgenes_vst.corrected_F1, 
+                            annotation_col=df_annot.col_F1, 
+                            main = "Ambient versus Moderate (169 total DEGs)",
+                            cutree_cols = 3,
+                            cutree_rows = 2,
+                            annotation_legend = TRUE,
+                            annotation_colors = ann_colors,
+                            show_rownames = TRUE, # Boolean for gene names
+                            labels_col=df_annot.col_F1$pCO2, 
+                            angle_col = 0,
+                            fontsize = 8,
+                            legend = TRUE)
+save_pheatmap(vst.heatmap_F1, filename = "../../Output/Transcriptomics/DESeq2/F1_juveniles/vst_heatmap.png") #Save pheatmap
+
+```
+
+
+# plot all the DEGs
+```{r plot the rlogExp}
+
+# ========================================================== 
+#  F1s  
+# ==========================================================
+rlogExp_F1_df        <- as.data.frame(assay(rlogExp_F1)) %>% 
+                           tibble::rownames_to_column("Gene.ID")
+rlogExp_F1_DEGs      <- rlogExp_F1_df %>% 
+                          dplyr::filter(Gene.ID %in% topgenes.IDs_F1)
+rlogExp_F1_DEGs_melt <- reshape2::melt(rlogExp_F1_DEGs, id.vars='Gene.ID') %>% 
+                        dplyr::rename(Sample.Name = variable, # to merge with 'Exp.metadata'
+                                      rlogExp = value) # the data to get mean SE values 
+DEGs_annotated_F1    <- Airr_Cvirg_annotation %>% 
+                          dplyr::filter(Airradians_TranscriptID %in% topgenes.IDs_F1) %>% 
+                          dplyr::select(Airradians_TranscriptID,blastxEval_CvirgProteinID) %>% 
+                          dplyr::rename(Gene.ID = Airradians_TranscriptID,
+                                      Protein.ID = blastxEval_CvirgProteinID)
+
+rlogExp_F1_DEGs_annotated <- merge(DEGs_annotated_F1, rlogExp_F1_DEGs_melt, by = "Gene.ID")
+rlogExp_F1_DEGs_MASTER    <- merge(rlogExp_F1_DEGs_annotated,Exp.metadata, by = "Sample.Name")
+# library(stringr)
+rlogExp_F1_DEGs_MEAN.SE   <- rlogExp_F1_DEGs_MASTER %>% 
+                              dplyr:::group_by(Gene.ID, Protein.ID,pCO2) %>% 
+                              dplyr::summarise(mean.rlogExp    = mean(rlogExp),
+                                               sd.rlogExp     = sd(rlogExp),
+                                               n = n(),
+                                               sderror.rlogExp = sd.rlogExp/(sqrt(n))) %>% 
+                              dplyr::select(-n) %>% 
+                              dplyr::mutate(Protein_contig = paste(substr(Protein.ID,1,30),
+                                                                   str_split(Gene.ID, "\\.", simplify=T)[,3],
+                                                                   sep="_"))
+pd <- position_dodge(0.3)
+for(i in 1:length(topgenes.IDs_F1)) {
+  
+  geneID_loop  <- topgenes.IDs_F1[i]
+  
+  df_loop      <- rlogExp_F1_DEGs_MEAN.SE %>% 
+                  dplyr::filter(Gene.ID %in% geneID_loop) %>% 
+                  dplyr::mutate(Protein_contig = str_remove_all(Protein_contig,"/"))
+  
+  plot_loop    <- df_loop %>% 
+                    ggplot(aes(x=pCO2, 
+                               y=mean.rlogExp, 
+                               fill=pCO2)) +  # , colour=supp, group=supp))
+                    theme_classic() +
+                    geom_errorbar(aes(ymin=mean.rlogExp-sderror.rlogExp, 
+                                      ymax=mean.rlogExp+sderror.rlogExp), 
+                                  colour="black", 
+                                  width=.1,
+                                  position=pd) +
+                    geom_point(size = 4, 
+                               shape=21,
+                               position=pd) +            
+                    xlab("pCO2 treatment") +
+                    ylab("") +                 # note the mean was first by sample ID THEN by treatment
+                    scale_fill_manual(values=c("white",
+                                               "grey50")) +
+                    ggtitle(df_loop[1,7]) +
+                    theme(axis.text.x = element_text(size = 20),
+                          axis.text.y = element_text(size = 20),
+                          axis.ticks.length=unit(.25, "cm")) +
+                    theme(legend.position = "none")
+  
+if(df_loop[1,4]>df_loop[2,4]) { # Upregulated, high pCO2 == high expression
+  pdf(paste("../../Output/Transcriptomics/DESeq2/F1_juveniles/Plots_MeanSE/Upregulated_DEGs/",df_loop[1,7],".pdf", sep = ''), width=5, height=5)
+  print(plot_loop)
+  dev.off() 
+  } else {
+  pdf(paste("../../Output/Transcriptomics/DESeq2/F1_juveniles/Plots_MeanSE/Downregulated_DEGs/",df_loop[1,7],".pdf", sep = ''), width=5, height=5)
+  print(plot_loop)
+  dev.off()  
+  }
+}
+
+
+
+
+# ========================================================== 
+#  F2s  
+# ==========================================================
+rlogExp_F2_df        <- as.data.frame(assay(rlogExp_F2)) %>% 
+                           tibble::rownames_to_column("Gene.ID")
+rlogExp_F2_DEGs      <- rlogExp_F2_df %>% 
+                          dplyr::filter(Gene.ID %in% topgenes.IDs_F2)
+rlogExp_F2_DEGs_melt <- reshape2::melt(rlogExp_F2_DEGs, id.vars='Gene.ID') %>% 
+                        dplyr::rename(Sample.Name = variable, # to merge with 'Exp.metadata'
+                                      rlogExp = value) # the data to get mean SE values 
+DEGs_annotated_F2    <- Airr_Cvirg_annotation %>% 
+                          dplyr::filter(Airradians_TranscriptID %in% topgenes.IDs_F2) %>% 
+                          dplyr::select(Airradians_TranscriptID,blastxEval_CvirgProteinID) %>% 
+                          dplyr::rename(Gene.ID = Airradians_TranscriptID,
+                                      Protein.ID = blastxEval_CvirgProteinID)
+
+rlogExp_F2_DEGs_annotated <- merge(DEGs_annotated_F2, rlogExp_F2_DEGs_melt, by = "Gene.ID")
+rlogExp_F2_DEGs_MASTER    <- merge(rlogExp_F2_DEGs_annotated,Exp.metadata, by = "Sample.Name")
+# library(stringr)
+rlogExp_F2_DEGs_MEAN.SE   <- rlogExp_F2_DEGs_MASTER %>% 
+                              dplyr:::group_by(Gene.ID, Protein.ID,pCO2) %>% 
+                              dplyr::summarise(mean.rlogExp    = mean(rlogExp),
+                                               sd.rlogExp     = sd(rlogExp),
+                                               n = n(),
+                                               sderror.rlogExp = sd.rlogExp/(sqrt(n))) %>% 
+                              dplyr::select(-n) %>% 
+                              dplyr::mutate(Protein_contig = paste(substr(Protein.ID,1,30),
+                                                                   str_split(Gene.ID, "\\.", simplify=T)[,3],
+                                                                   sep="_"))
+pd <- position_dodge(0.3)
+for(i in 1:length(topgenes.IDs_F2)) {
+  
+  geneID_loop  <- topgenes.IDs_F2[i]
+  
+  df_loop      <- rlogExp_F2_DEGs_MEAN.SE %>% 
+                  dplyr::filter(Gene.ID %in% geneID_loop) %>% 
+                  dplyr::mutate(Protein_contig = str_remove_all(Protein_contig,"/"))
+  
+  plot_loop    <- df_loop %>% 
+                    ggplot(aes(x=pCO2, 
+                               y=mean.rlogExp, 
+                               fill=pCO2)) +  # , colour=supp, group=supp))
+                    theme_classic() +
+                    geom_errorbar(aes(ymin=mean.rlogExp-sderror.rlogExp, 
+                                      ymax=mean.rlogExp+sderror.rlogExp), 
+                                  colour="black", 
+                                  width=.1,
+                                  position=pd) +
+                    geom_point(size = 4, 
+                               shape=21,
+                               position=pd) +            
+                    xlab("pCO2 treatment") +
+                    ylab("") +                 # note the mean was first by sample ID THEN by treatment
+                    scale_fill_manual(values=c("white",
+                                               "grey50")) +
+                    ggtitle(df_loop[1,7]) +
+                    theme(axis.text.x = element_text(size = 20),
+                          axis.text.y = element_text(size = 20),
+                          axis.ticks.length=unit(.25, "cm")) +
+                    theme(legend.position = "none")
+  
+if(df_loop[1,4]>df_loop[2,4]) { # Upregulated, high pCO2 == high expression
+  pdf(paste("../../Output/Transcriptomics/DESeq2/F2_juveniles/Plots_MeanSE/Upregulated_DEGs/",df_loop[1,7],".pdf", sep = ''), width=5, height=5)
+  print(plot_loop)
+  dev.off() 
+  } else {
+  pdf(paste("../../Output/Transcriptomics/DESeq2/F2_juveniles/Plots_MeanSE/Downregulated_DEGs/",df_loop[1,7],".pdf", sep = ''), width=5, height=5)
+  print(plot_loop)
+  dev.off()  
+  }
+}
+```
+
