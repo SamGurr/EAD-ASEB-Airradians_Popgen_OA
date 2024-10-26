@@ -1,0 +1,3910 @@
+Read1 before filtering:
+total reads: 3351640
+total bases: 338515640
+Q20 bases: 326609321(96.4828%)
+Q30 bases: 310639376(91.7651%)
+
+Read1 after filtering:
+total reads: 3149768
+total bases: 316549610
+Q20 bases: 310135999(97.9739%)
+Q30 bases: 296578255(93.6909%)
+
+Filtering result:
+reads passed filter: 3149768
+reads failed due to low quality: 84715
+reads failed due to too many N: 5
+reads failed due to too short: 3539
+reads failed due to low complexity: 113613
+reads with adapter trimmed: 61727
+bases trimmed due to adapters: 2603792
+reads with polyX in 3' end: 67506
+bases trimmed in polyX tail: 1849104
+
+Duplication rate (may be overestimated since this is SE data): 37.6806%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai10_S10_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai10_S10_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai10_S10_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3365499
+total bases: 339915399
+Q20 bases: 327732068(96.4158%)
+Q30 bases: 311404939(91.6125%)
+
+Read1 after filtering:
+total reads: 3161864
+total bases: 317778815
+Q20 bases: 311156889(97.9162%)
+Q30 bases: 297265680(93.5448%)
+
+Filtering result:
+reads passed filter: 3161864
+reads failed due to low quality: 86610
+reads failed due to too many N: 10
+reads failed due to too short: 3538
+reads failed due to low complexity: 113477
+reads with adapter trimmed: 61001
+bases trimmed due to adapters: 2587953
+reads with polyX in 3' end: 67589
+bases trimmed in polyX tail: 1840424
+
+Duplication rate (may be overestimated since this is SE data): 37.8689%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai10_S10_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai10_S10_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai10_S10_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 1957545
+total bases: 197712045
+Q20 bases: 192894427(97.5633%)
+Q30 bases: 186566356(94.3627%)
+
+Read1 after filtering:
+total reads: 1849834
+total bases: 185226898
+Q20 bases: 182940733(98.7657%)
+Q30 bases: 177783830(95.9816%)
+
+Filtering result:
+reads passed filter: 1849834
+reads failed due to low quality: 38324
+reads failed due to too many N: 2
+reads failed due to too short: 5635
+reads failed due to low complexity: 63750
+reads with adapter trimmed: 31469
+bases trimmed due to adapters: 1135169
+reads with polyX in 3' end: 63061
+bases trimmed in polyX tail: 2145679
+
+Duplication rate (may be overestimated since this is SE data): 33.2741%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai11_S11_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai11_S11_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 17 seconds
+Started analysis of clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai11_S11_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 1966137
+total bases: 198579837
+Q20 bases: 193737574(97.5616%)
+Q30 bases: 187379335(94.3597%)
+
+Read1 after filtering:
+total reads: 1858851
+total bases: 186123389
+Q20 bases: 183800919(98.7522%)
+Q30 bases: 178608309(95.9623%)
+
+Filtering result:
+reads passed filter: 1858851
+reads failed due to low quality: 38081
+reads failed due to too many N: 5
+reads failed due to too short: 5423
+reads failed due to low complexity: 63777
+reads with adapter trimmed: 31266
+bases trimmed due to adapters: 1130497
+reads with polyX in 3' end: 63752
+bases trimmed in polyX tail: 2147472
+
+Duplication rate (may be overestimated since this is SE data): 33.6587%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai11_S11_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai11_S11_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 16 seconds
+Started analysis of clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai11_S11_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3612239
+total bases: 364836139
+Q20 bases: 351183337(96.2578%)
+Q30 bases: 337857200(92.6052%)
+
+Read1 after filtering:
+total reads: 3254235
+total bases: 325883759
+Q20 bases: 321550118(98.6702%)
+Q30 bases: 312200582(95.8012%)
+
+Filtering result:
+reads passed filter: 3254235
+reads failed due to low quality: 125115
+reads failed due to too many N: 5
+reads failed due to too short: 9496
+reads failed due to low complexity: 223388
+reads with adapter trimmed: 116725
+bases trimmed due to adapters: 5116057
+reads with polyX in 3' end: 122087
+bases trimmed in polyX tail: 3678175
+
+Duplication rate (may be overestimated since this is SE data): 36.1523%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai12_S12_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai12_S12_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 30 seconds
+Started analysis of clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai12_S12_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3628789
+total bases: 366507689
+Q20 bases: 352695422(96.2314%)
+Q30 bases: 339297192(92.5757%)
+
+Read1 after filtering:
+total reads: 3268580
+total bases: 327325761
+Q20 bases: 322945948(98.6619%)
+Q30 bases: 313538957(95.788%)
+
+Filtering result:
+reads passed filter: 3268580
+reads failed due to low quality: 126869
+reads failed due to too many N: 4
+reads failed due to too short: 9645
+reads failed due to low complexity: 223691
+reads with adapter trimmed: 115871
+bases trimmed due to adapters: 5103420
+reads with polyX in 3' end: 122573
+bases trimmed in polyX tail: 3695064
+
+Duplication rate (may be overestimated since this is SE data): 36.4651%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai12_S12_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai12_S12_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 31 seconds
+Started analysis of clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai12_S12_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3289435
+total bases: 332232935
+Q20 bases: 316305967(95.2061%)
+Q30 bases: 303653896(91.3979%)
+
+Read1 after filtering:
+total reads: 2830454
+total bases: 281410264
+Q20 bases: 277321584(98.5471%)
+Q30 bases: 269347945(95.7136%)
+
+Filtering result:
+reads passed filter: 2830454
+reads failed due to low quality: 136705
+reads failed due to too many N: 7
+reads failed due to too short: 10049
+reads failed due to low complexity: 312220
+reads with adapter trimmed: 154806
+bases trimmed due to adapters: 6261322
+reads with polyX in 3' end: 191094
+bases trimmed in polyX tail: 5431114
+
+Duplication rate (may be overestimated since this is SE data): 33.1372%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai13_S13_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai13_S13_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai13_S13_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3304404
+total bases: 333744804
+Q20 bases: 317659593(95.1804%)
+Q30 bases: 304919856(91.3632%)
+
+Read1 after filtering:
+total reads: 2841964
+total bases: 282515453
+Q20 bases: 278376219(98.5349%)
+Q30 bases: 270339718(95.6902%)
+
+Filtering result:
+reads passed filter: 2841964
+reads failed due to low quality: 137042
+reads failed due to too many N: 2
+reads failed due to too short: 10322
+reads failed due to low complexity: 315074
+reads with adapter trimmed: 156143
+bases trimmed due to adapters: 6325520
+reads with polyX in 3' end: 193602
+bases trimmed in polyX tail: 5502208
+
+Duplication rate (may be overestimated since this is SE data): 33.3818%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai13_S13_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai13_S13_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai13_S13_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3317078
+total bases: 335024878
+Q20 bases: 326910100(97.5779%)
+Q30 bases: 315950271(94.3065%)
+
+Read1 after filtering:
+total reads: 3158979
+total bases: 317427551
+Q20 bases: 313451404(98.7474%)
+Q30 bases: 304343300(95.878%)
+
+Filtering result:
+reads passed filter: 3158979
+reads failed due to low quality: 67688
+reads failed due to too many N: 4
+reads failed due to too short: 5104
+reads failed due to low complexity: 85303
+reads with adapter trimmed: 44818
+bases trimmed due to adapters: 1820013
+reads with polyX in 3' end: 66958
+bases trimmed in polyX tail: 2102712
+
+Duplication rate (may be overestimated since this is SE data): 40.5925%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai14_S14_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai14_S14_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai14_S14_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3341996
+total bases: 337541596
+Q20 bases: 329322367(97.565%)
+Q30 bases: 318269884(94.2906%)
+
+Read1 after filtering:
+total reads: 3182694
+total bases: 319817994
+Q20 bases: 315782177(98.7381%)
+Q30 bases: 306593091(95.8649%)
+
+Filtering result:
+reads passed filter: 3182694
+reads failed due to low quality: 68736
+reads failed due to too many N: 6
+reads failed due to too short: 5077
+reads failed due to low complexity: 85483
+reads with adapter trimmed: 44687
+bases trimmed due to adapters: 1815701
+reads with polyX in 3' end: 67585
+bases trimmed in polyX tail: 2112055
+
+Duplication rate (may be overestimated since this is SE data): 40.9275%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai14_S14_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai14_S14_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai14_S14_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3775234
+total bases: 381298634
+Q20 bases: 364693636(95.6451%)
+Q30 bases: 350492505(91.9207%)
+
+Read1 after filtering:
+total reads: 3291642
+total bases: 326679943
+Q20 bases: 321826167(98.5142%)
+Q30 bases: 312575346(95.6824%)
+
+Filtering result:
+reads passed filter: 3291642
+reads failed due to low quality: 147705
+reads failed due to too many N: 6
+reads failed due to too short: 14694
+reads failed due to low complexity: 321187
+reads with adapter trimmed: 159408
+bases trimmed due to adapters: 5918395
+reads with polyX in 3' end: 230299
+bases trimmed in polyX tail: 7011871
+
+Duplication rate (may be overestimated since this is SE data): 34.8172%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai15_S15_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai15_S15_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 31 seconds
+Started analysis of clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai15_S15_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3794365
+total bases: 383230865
+Q20 bases: 366417990(95.6129%)
+Q30 bases: 352116424(91.881%)
+
+Read1 after filtering:
+total reads: 3306564
+total bases: 328144110
+Q20 bases: 323227243(98.5016%)
+Q30 bases: 313914731(95.6637%)
+
+Filtering result:
+reads passed filter: 3306564
+reads failed due to low quality: 149017
+reads failed due to too many N: 4
+reads failed due to too short: 14914
+reads failed due to low complexity: 323866
+reads with adapter trimmed: 159909
+bases trimmed due to adapters: 5970873
+reads with polyX in 3' end: 232336
+bases trimmed in polyX tail: 7073502
+
+Duplication rate (may be overestimated since this is SE data): 35.076%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai15_S15_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai15_S15_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 31 seconds
+Started analysis of clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai15_S15_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3362679
+total bases: 339630579
+Q20 bases: 325359292(95.798%)
+Q30 bases: 312301496(91.9533%)
+
+Read1 after filtering:
+total reads: 2978978
+total bases: 296870901
+Q20 bases: 292305946(98.4623%)
+Q30 bases: 283235758(95.407%)
+
+Filtering result:
+reads passed filter: 2978978
+reads failed due to low quality: 117377
+reads failed due to too many N: 6
+reads failed due to too short: 7669
+reads failed due to low complexity: 258649
+reads with adapter trimmed: 136218
+bases trimmed due to adapters: 5194031
+reads with polyX in 3' end: 171865
+bases trimmed in polyX tail: 4733463
+
+Duplication rate (may be overestimated since this is SE data): 33.2055%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai16_S16_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai16_S16_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai16_S16_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3378855
+total bases: 341264355
+Q20 bases: 326826320(95.7693%)
+Q30 bases: 313667000(91.9132%)
+
+Read1 after filtering:
+total reads: 2993520
+total bases: 298315401
+Q20 bases: 293669570(98.4426%)
+Q30 bases: 284498189(95.3683%)
+
+Filtering result:
+reads passed filter: 2993520
+reads failed due to low quality: 118064
+reads failed due to too many N: 5
+reads failed due to too short: 7326
+reads failed due to low complexity: 259940
+reads with adapter trimmed: 135944
+bases trimmed due to adapters: 5191293
+reads with polyX in 3' end: 172347
+bases trimmed in polyX tail: 4722335
+
+Duplication rate (may be overestimated since this is SE data): 33.433%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai16_S16_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai16_S16_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai16_S16_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2430191
+total bases: 245449291
+Q20 bases: 241797543(98.5122%)
+Q30 bases: 234452691(95.5198%)
+
+Read1 after filtering:
+total reads: 2391746
+total bases: 241305551
+Q20 bases: 238498833(98.8369%)
+Q30 bases: 231661596(96.0034%)
+
+Filtering result:
+reads passed filter: 2391746
+reads failed due to low quality: 23068
+reads failed due to too many N: 5
+reads failed due to too short: 1238
+reads failed due to low complexity: 14134
+reads with adapter trimmed: 6139
+bases trimmed due to adapters: 157894
+reads with polyX in 3' end: 12479
+bases trimmed in polyX tail: 372240
+
+Duplication rate (may be overestimated since this is SE data): 45.4643%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai17_S17_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai17_S17_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai17_S17_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2445098
+total bases: 246954898
+Q20 bases: 243250396(98.4999%)
+Q30 bases: 235840137(95.4993%)
+
+Read1 after filtering:
+total reads: 2406627
+total bases: 242796801
+Q20 bases: 239937556(98.8224%)
+Q30 bases: 233034973(95.9794%)
+
+Filtering result:
+reads passed filter: 2406627
+reads failed due to low quality: 23064
+reads failed due to too many N: 1
+reads failed due to too short: 1194
+reads failed due to low complexity: 14212
+reads with adapter trimmed: 6138
+bases trimmed due to adapters: 155033
+reads with polyX in 3' end: 12771
+bases trimmed in polyX tail: 381652
+
+Duplication rate (may be overestimated since this is SE data): 45.7881%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai17_S17_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai17_S17_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai17_S17_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3664143
+total bases: 370078443
+Q20 bases: 353336518(95.4761%)
+Q30 bases: 339267934(91.6746%)
+
+Read1 after filtering:
+total reads: 3162731
+total bases: 312763756
+Q20 bases: 307862704(98.433%)
+Q30 bases: 298799637(95.5353%)
+
+Filtering result:
+reads passed filter: 3162731
+reads failed due to low quality: 140411
+reads failed due to too many N: 7
+reads failed due to too short: 20251
+reads failed due to low complexity: 340743
+reads with adapter trimmed: 170847
+bases trimmed due to adapters: 6051258
+reads with polyX in 3' end: 269540
+bases trimmed in polyX tail: 8599090
+
+Duplication rate (may be overestimated since this is SE data): 29.5635%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai18_S18_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai18_S18_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 30 seconds
+Started analysis of clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai18_S18_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3681506
+total bases: 371832106
+Q20 bases: 354924537(95.4529%)
+Q30 bases: 340767656(91.6456%)
+
+Read1 after filtering:
+total reads: 3177267
+total bases: 314225658
+Q20 bases: 309269451(98.4227%)
+Q30 bases: 300133813(95.5154%)
+
+Filtering result:
+reads passed filter: 3177267
+reads failed due to low quality: 141392
+reads failed due to too many N: 5
+reads failed due to too short: 19805
+reads failed due to low complexity: 343037
+reads with adapter trimmed: 170963
+bases trimmed due to adapters: 6069347
+reads with polyX in 3' end: 270132
+bases trimmed in polyX tail: 8565904
+
+Duplication rate (may be overestimated since this is SE data): 29.852%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai18_S18_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai18_S18_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 30 seconds
+Started analysis of clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai18_S18_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3856087
+total bases: 389464787
+Q20 bases: 372485801(95.6404%)
+Q30 bases: 357957448(91.9101%)
+
+Read1 after filtering:
+total reads: 3362157
+total bases: 333911875
+Q20 bases: 329194039(98.5871%)
+Q30 bases: 319681004(95.7381%)
+
+Filtering result:
+reads passed filter: 3362157
+reads failed due to low quality: 149979
+reads failed due to too many N: 8
+reads failed due to too short: 14862
+reads failed due to low complexity: 329081
+reads with adapter trimmed: 159271
+bases trimmed due to adapters: 6117972
+reads with polyX in 3' end: 223522
+bases trimmed in polyX tail: 6988395
+
+Duplication rate (may be overestimated since this is SE data): 32.7527%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai19_S19_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai19_S19_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 31 seconds
+Started analysis of clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai19_S19_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3866213
+total bases: 390487513
+Q20 bases: 373367148(95.6156%)
+Q30 bases: 358779540(91.8799%)
+
+Read1 after filtering:
+total reads: 3370719
+total bases: 334786426
+Q20 bases: 330012879(98.5742%)
+Q30 bases: 320439811(95.7147%)
+
+Filtering result:
+reads passed filter: 3370719
+reads failed due to low quality: 150943
+reads failed due to too many N: 7
+reads failed due to too short: 14922
+reads failed due to low complexity: 329622
+reads with adapter trimmed: 157860
+bases trimmed due to adapters: 6110380
+reads with polyX in 3' end: 224853
+bases trimmed in polyX tail: 7000928
+
+Duplication rate (may be overestimated since this is SE data): 33.0237%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai19_S19_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai19_S19_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 32 seconds
+Started analysis of clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai19_S19_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2452909
+total bases: 247743809
+Q20 bases: 241924166(97.6509%)
+Q30 bases: 233929139(94.4238%)
+
+Read1 after filtering:
+total reads: 2329918
+total bases: 233754278
+Q20 bases: 230819588(98.7445%)
+Q30 bases: 224189526(95.9082%)
+
+Filtering result:
+reads passed filter: 2329918
+reads failed due to low quality: 44834
+reads failed due to too many N: 4
+reads failed due to too short: 3626
+reads failed due to low complexity: 74527
+reads with adapter trimmed: 37190
+bases trimmed due to adapters: 1329023
+reads with polyX in 3' end: 64042
+bases trimmed in polyX tail: 1891590
+
+Duplication rate (may be overestimated since this is SE data): 37.7964%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai1_S1_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai1_S1_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai1_S1_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2461467
+total bases: 248608167
+Q20 bases: 242748311(97.6429%)
+Q30 bases: 234708938(94.4092%)
+
+Read1 after filtering:
+total reads: 2338485
+total bases: 234620038
+Q20 bases: 231652388(98.7351%)
+Q30 bases: 224974617(95.8889%)
+
+Filtering result:
+reads passed filter: 2338485
+reads failed due to low quality: 45021
+reads failed due to too many N: 2
+reads failed due to too short: 3619
+reads failed due to low complexity: 74340
+reads with adapter trimmed: 37218
+bases trimmed due to adapters: 1315342
+reads with polyX in 3' end: 64098
+bases trimmed in polyX tail: 1881703
+
+Duplication rate (may be overestimated since this is SE data): 38.0761%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai1_S1_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai1_S1_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 20 seconds
+Started analysis of clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai1_S1_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3113298
+total bases: 314443098
+Q20 bases: 303437185(96.4999%)
+Q30 bases: 292190917(92.9233%)
+
+Read1 after filtering:
+total reads: 2834366
+total bases: 283315113
+Q20 bases: 279462350(98.6401%)
+Q30 bases: 271280715(95.7523%)
+
+Filtering result:
+reads passed filter: 2834366
+reads failed due to low quality: 96247
+reads failed due to too many N: 4
+reads failed due to too short: 6944
+reads failed due to low complexity: 175737
+reads with adapter trimmed: 91928
+bases trimmed due to adapters: 3684863
+reads with polyX in 3' end: 124916
+bases trimmed in polyX tail: 3562391
+
+Duplication rate (may be overestimated since this is SE data): 34.1466%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai20_S20_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai20_S20_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai20_S20_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3118834
+total bases: 315002234
+Q20 bases: 303891076(96.4727%)
+Q30 bases: 292603468(92.8893%)
+
+Read1 after filtering:
+total reads: 2838844
+total bases: 283752126
+Q20 bases: 279862199(98.6291%)
+Q30 bases: 271645523(95.7334%)
+
+Filtering result:
+reads passed filter: 2838844
+reads failed due to low quality: 96955
+reads failed due to too many N: 5
+reads failed due to too short: 7071
+reads failed due to low complexity: 175959
+reads with adapter trimmed: 91809
+bases trimmed due to adapters: 3708521
+reads with polyX in 3' end: 126043
+bases trimmed in polyX tail: 3579385
+
+Duplication rate (may be overestimated since this is SE data): 34.3738%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai20_S20_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai20_S20_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai20_S20_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2637014
+total bases: 266338414
+Q20 bases: 258739473(97.1469%)
+Q30 bases: 249683259(93.7466%)
+
+Read1 after filtering:
+total reads: 2452426
+total bases: 244014864
+Q20 bases: 240616029(98.6071%)
+Q30 bases: 233513707(95.6965%)
+
+Filtering result:
+reads passed filter: 2452426
+reads failed due to low quality: 59524
+reads failed due to too many N: 3
+reads failed due to too short: 12918
+reads failed due to low complexity: 112143
+reads with adapter trimmed: 55865
+bases trimmed due to adapters: 1786423
+reads with polyX in 3' end: 142611
+bases trimmed in polyX tail: 4926666
+
+Duplication rate (may be overestimated since this is SE data): 34.8031%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai21_S21_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai21_S21_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 23 seconds
+Started analysis of clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai21_S21_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2642948
+total bases: 266937748
+Q20 bases: 259231066(97.1129%)
+Q30 bases: 250115667(93.6981%)
+
+Read1 after filtering:
+total reads: 2456925
+total bases: 244496399
+Q20 bases: 241040750(98.5866%)
+Q30 bases: 233889190(95.6616%)
+
+Filtering result:
+reads passed filter: 2456925
+reads failed due to low quality: 59922
+reads failed due to too many N: 5
+reads failed due to too short: 12648
+reads failed due to low complexity: 113448
+reads with adapter trimmed: 55868
+bases trimmed due to adapters: 1809558
+reads with polyX in 3' end: 142127
+bases trimmed in polyX tail: 4882510
+
+Duplication rate (may be overestimated since this is SE data): 35.0016%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai21_S21_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai21_S21_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 22 seconds
+Started analysis of clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai21_S21_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3326637
+total bases: 335990337
+Q20 bases: 322708541(96.047%)
+Q30 bases: 310417972(92.389%)
+
+Read1 after filtering:
+total reads: 2981258
+total bases: 296511560
+Q20 bases: 292135815(98.5243%)
+Q30 bases: 283512551(95.616%)
+
+Filtering result:
+reads passed filter: 2981258
+reads failed due to low quality: 117835
+reads failed due to too many N: 5
+reads failed due to too short: 11044
+reads failed due to low complexity: 216495
+reads with adapter trimmed: 114933
+bases trimmed due to adapters: 4370598
+reads with polyX in 3' end: 187109
+bases trimmed in polyX tail: 5552990
+
+Duplication rate (may be overestimated since this is SE data): 36.0316%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai22_S22_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai22_S22_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai22_S22_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3362650
+total bases: 339627650
+Q20 bases: 326138657(96.0283%)
+Q30 bases: 313697699(92.3652%)
+
+Read1 after filtering:
+total reads: 3014553
+total bases: 299863439
+Q20 bases: 295400572(98.5117%)
+Q30 bases: 286650064(95.5935%)
+
+Filtering result:
+reads passed filter: 3014553
+reads failed due to low quality: 119733
+reads failed due to too many N: 3
+reads failed due to too short: 11297
+reads failed due to low complexity: 217064
+reads with adapter trimmed: 114004
+bases trimmed due to adapters: 4348727
+reads with polyX in 3' end: 188505
+bases trimmed in polyX tail: 5590110
+
+Duplication rate (may be overestimated since this is SE data): 36.3443%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai22_S22_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai22_S22_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai22_S22_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2849459
+total bases: 287795359
+Q20 bases: 276157639(95.9563%)
+Q30 bases: 265713832(92.3274%)
+
+Read1 after filtering:
+total reads: 2533717
+total bases: 251255305
+Q20 bases: 247566293(98.5318%)
+Q30 bases: 240429155(95.6912%)
+
+Filtering result:
+reads passed filter: 2533717
+reads failed due to low quality: 108507
+reads failed due to too many N: 6
+reads failed due to too short: 12446
+reads failed due to low complexity: 194783
+reads with adapter trimmed: 101548
+bases trimmed due to adapters: 3707658
+reads with polyX in 3' end: 182902
+bases trimmed in polyX tail: 5718989
+
+Duplication rate (may be overestimated since this is SE data): 34.1637%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai23_S23_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai23_S23_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 23 seconds
+Started analysis of clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai23_S23_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2862006
+total bases: 289062606
+Q20 bases: 277325581(95.9396%)
+Q30 bases: 266808664(92.3013%)
+
+Read1 after filtering:
+total reads: 2545024
+total bases: 252370034
+Q20 bases: 248621712(98.5148%)
+Q30 bases: 241412778(95.6583%)
+
+Filtering result:
+reads passed filter: 2545024
+reads failed due to low quality: 109097
+reads failed due to too many N: 2
+reads failed due to too short: 12636
+reads failed due to low complexity: 195247
+reads with adapter trimmed: 100621
+bases trimmed due to adapters: 3676653
+reads with polyX in 3' end: 184313
+bases trimmed in polyX tail: 5756892
+
+Duplication rate (may be overestimated since this is SE data): 34.4188%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai23_S23_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai23_S23_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai23_S23_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3429622
+total bases: 346391822
+Q20 bases: 333134195(96.1727%)
+Q30 bases: 320705063(92.5845%)
+
+Read1 after filtering:
+total reads: 3086488
+total bases: 307303637
+Q20 bases: 302841670(98.548%)
+Q30 bases: 294047718(95.6864%)
+
+Filtering result:
+reads passed filter: 3086488
+reads failed due to low quality: 116616
+reads failed due to too many N: 6
+reads failed due to too short: 10223
+reads failed due to low complexity: 216289
+reads with adapter trimmed: 115091
+bases trimmed due to adapters: 4316458
+reads with polyX in 3' end: 184615
+bases trimmed in polyX tail: 5328297
+
+Duplication rate (may be overestimated since this is SE data): 37.1879%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai24_S24_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai24_S24_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai24_S24_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3446789
+total bases: 348125689
+Q20 bases: 334764206(96.1619%)
+Q30 bases: 322271282(92.5733%)
+
+Read1 after filtering:
+total reads: 3102067
+total bases: 308884767
+Q20 bases: 304376506(98.5405%)
+Q30 bases: 295518576(95.6728%)
+
+Filtering result:
+reads passed filter: 3102067
+reads failed due to low quality: 116772
+reads failed due to too many N: 2
+reads failed due to too short: 10196
+reads failed due to low complexity: 217752
+reads with adapter trimmed: 115166
+bases trimmed due to adapters: 4333126
+reads with polyX in 3' end: 185109
+bases trimmed in polyX tail: 5322499
+
+Duplication rate (may be overestimated since this is SE data): 37.4858%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai24_S24_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai24_S24_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai24_S24_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3427223
+total bases: 346149523
+Q20 bases: 331503003(95.7687%)
+Q30 bases: 318721340(92.0762%)
+
+Read1 after filtering:
+total reads: 3002186
+total bases: 297647926
+Q20 bases: 293280795(98.5328%)
+Q30 bases: 284836092(95.6956%)
+
+Filtering result:
+reads passed filter: 3002186
+reads failed due to low quality: 125488
+reads failed due to too many N: 1
+reads failed due to too short: 13207
+reads failed due to low complexity: 286341
+reads with adapter trimmed: 145725
+bases trimmed due to adapters: 5286498
+reads with polyX in 3' end: 216858
+bases trimmed in polyX tail: 6655478
+
+Duplication rate (may be overestimated since this is SE data): 37.2671%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai25_S25_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai25_S25_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai25_S25_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3436967
+total bases: 347133667
+Q20 bases: 332333572(95.7365%)
+Q30 bases: 319460713(92.0282%)
+
+Read1 after filtering:
+total reads: 3010055
+total bases: 298426224
+Q20 bases: 293996430(98.5156%)
+Q30 bases: 285469149(95.6582%)
+
+Filtering result:
+reads passed filter: 3010055
+reads failed due to low quality: 127176
+reads failed due to too many N: 4
+reads failed due to too short: 13547
+reads failed due to low complexity: 286185
+reads with adapter trimmed: 144682
+bases trimmed due to adapters: 5263059
+reads with polyX in 3' end: 218144
+bases trimmed in polyX tail: 6712964
+
+Duplication rate (may be overestimated since this is SE data): 37.5287%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai25_S25_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai25_S25_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai25_S25_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3524099
+total bases: 355933999
+Q20 bases: 342900924(96.3383%)
+Q30 bases: 329917779(92.6907%)
+
+Read1 after filtering:
+total reads: 3180781
+total bases: 316561751
+Q20 bases: 311931780(98.5374%)
+Q30 bases: 302686521(95.6169%)
+
+Filtering result:
+reads passed filter: 3180781
+reads failed due to low quality: 117520
+reads failed due to too many N: 6
+reads failed due to too short: 11230
+reads failed due to low complexity: 214562
+reads with adapter trimmed: 111859
+bases trimmed due to adapters: 4133536
+reads with polyX in 3' end: 193366
+bases trimmed in polyX tail: 5727377
+
+Duplication rate (may be overestimated since this is SE data): 36.4144%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai26_S26_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai26_S26_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 30 seconds
+Started analysis of clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai26_S26_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3554555
+total bases: 359010055
+Q20 bases: 345793127(96.3185%)
+Q30 bases: 332657344(92.6596%)
+
+Read1 after filtering:
+total reads: 3208696
+total bases: 319325807
+Q20 bases: 314598224(98.5195%)
+Q30 bases: 305220210(95.5827%)
+
+Filtering result:
+reads passed filter: 3208696
+reads failed due to low quality: 118129
+reads failed due to too many N: 9
+reads failed due to too short: 11312
+reads failed due to low complexity: 216409
+reads with adapter trimmed: 111909
+bases trimmed due to adapters: 4143416
+reads with polyX in 3' end: 195981
+bases trimmed in polyX tail: 5787244
+
+Duplication rate (may be overestimated since this is SE data): 36.7886%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai26_S26_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai26_S26_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai26_S26_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2907007
+total bases: 293607707
+Q20 bases: 285967645(97.3979%)
+Q30 bases: 276228114(94.0807%)
+
+Read1 after filtering:
+total reads: 2739819
+total bases: 273449756
+Q20 bases: 269682711(98.6224%)
+Q30 bases: 261773098(95.7299%)
+
+Filtering result:
+reads passed filter: 2739819
+reads failed due to low quality: 60565
+reads failed due to too many N: 4
+reads failed due to too short: 10996
+reads failed due to low complexity: 95623
+reads with adapter trimmed: 50753
+bases trimmed due to adapters: 1620261
+reads with polyX in 3' end: 127528
+bases trimmed in polyX tail: 4276611
+
+Duplication rate (may be overestimated since this is SE data): 35.2017%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai27_S27_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai27_S27_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai27_S27_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2914672
+total bases: 294381872
+Q20 bases: 286645235(97.3719%)
+Q30 bases: 276847851(94.0438%)
+
+Read1 after filtering:
+total reads: 2746821
+total bases: 274191747
+Q20 bases: 270360852(98.6028%)
+Q30 bases: 262396621(95.6982%)
+
+Filtering result:
+reads passed filter: 2746821
+reads failed due to low quality: 61265
+reads failed due to too many N: 5
+reads failed due to too short: 10894
+reads failed due to low complexity: 95687
+reads with adapter trimmed: 50200
+bases trimmed due to adapters: 1605742
+reads with polyX in 3' end: 126978
+bases trimmed in polyX tail: 4237402
+
+Duplication rate (may be overestimated since this is SE data): 35.5407%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai27_S27_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai27_S27_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai27_S27_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3106012
+total bases: 313707212
+Q20 bases: 307210442(97.929%)
+Q30 bases: 297324714(94.7778%)
+
+Read1 after filtering:
+total reads: 3000659
+total bases: 301437255
+Q20 bases: 297526935(98.7028%)
+Q30 bases: 288923388(95.8486%)
+
+Filtering result:
+reads passed filter: 3000659
+reads failed due to low quality: 48581
+reads failed due to too many N: 6
+reads failed due to too short: 3193
+reads failed due to low complexity: 53573
+reads with adapter trimmed: 30281
+bases trimmed due to adapters: 973340
+reads with polyX in 3' end: 69098
+bases trimmed in polyX tail: 1889993
+
+Duplication rate (may be overestimated since this is SE data): 43.4923%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai28_S28_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai28_S28_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai28_S28_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3109504
+total bases: 314059904
+Q20 bases: 307489223(97.9078%)
+Q30 bases: 297550489(94.7432%)
+
+Read1 after filtering:
+total reads: 3004021
+total bases: 301772591
+Q20 bases: 297812730(98.6878%)
+Q30 bases: 289155892(95.8191%)
+
+Filtering result:
+reads passed filter: 3004021
+reads failed due to low quality: 49107
+reads failed due to too many N: 4
+reads failed due to too short: 3030
+reads failed due to low complexity: 53342
+reads with adapter trimmed: 30232
+bases trimmed due to adapters: 968821
+reads with polyX in 3' end: 68994
+bases trimmed in polyX tail: 1876135
+
+Duplication rate (may be overestimated since this is SE data): 43.7623%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai28_S28_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai28_S28_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai28_S28_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3263308
+total bases: 329594108
+Q20 bases: 314673644(95.4731%)
+Q30 bases: 302064058(91.6473%)
+
+Read1 after filtering:
+total reads: 2849353
+total bases: 282002582
+Q20 bases: 277460101(98.3892%)
+Q30 bases: 268975768(95.3806%)
+
+Filtering result:
+reads passed filter: 2849353
+reads failed due to low quality: 136576
+reads failed due to too many N: 5
+reads failed due to too short: 17031
+reads failed due to low complexity: 260343
+reads with adapter trimmed: 132981
+bases trimmed due to adapters: 4836665
+reads with polyX in 3' end: 223889
+bases trimmed in polyX tail: 7284535
+
+Duplication rate (may be overestimated since this is SE data): 33.1102%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai29_S29_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai29_S29_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai29_S29_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3278073
+total bases: 331085373
+Q20 bases: 315991068(95.441%)
+Q30 bases: 303292119(91.6054%)
+
+Read1 after filtering:
+total reads: 2861628
+total bases: 283247082
+Q20 bases: 278630795(98.3702%)
+Q30 bases: 270068781(95.3474%)
+
+Filtering result:
+reads passed filter: 2861628
+reads failed due to low quality: 137140
+reads failed due to too many N: 1
+reads failed due to too short: 17294
+reads failed due to low complexity: 262010
+reads with adapter trimmed: 133360
+bases trimmed due to adapters: 4877036
+reads with polyX in 3' end: 225063
+bases trimmed in polyX tail: 7286481
+
+Duplication rate (may be overestimated since this is SE data): 33.2989%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai29_S29_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai29_S29_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai29_S29_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2426576
+total bases: 245084176
+Q20 bases: 239425429(97.6911%)
+Q30 bases: 230819176(94.1796%)
+
+Read1 after filtering:
+total reads: 2329704
+total bases: 234008118
+Q20 bases: 230712117(98.5915%)
+Q30 bases: 223234781(95.3962%)
+
+Filtering result:
+reads passed filter: 2329704
+reads failed due to low quality: 39198
+reads failed due to too many N: 6
+reads failed due to too short: 3805
+reads failed due to low complexity: 53863
+reads with adapter trimmed: 29493
+bases trimmed due to adapters: 1014436
+reads with polyX in 3' end: 51890
+bases trimmed in polyX tail: 1634973
+
+Duplication rate (may be overestimated since this is SE data): 35.5479%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai2_S2_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai2_S2_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai2_S2_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2451250
+total bases: 247576250
+Q20 bases: 241789313(97.6626%)
+Q30 bases: 233034488(94.1264%)
+
+Read1 after filtering:
+total reads: 2353266
+total bases: 236378343
+Q20 bases: 232996181(98.5692%)
+Q30 bases: 225376334(95.3456%)
+
+Filtering result:
+reads passed filter: 2353266
+reads failed due to low quality: 39585
+reads failed due to too many N: 2
+reads failed due to too short: 3765
+reads failed due to low complexity: 54632
+reads with adapter trimmed: 29766
+bases trimmed due to adapters: 1032888
+reads with polyX in 3' end: 52575
+bases trimmed in polyX tail: 1644504
+
+Duplication rate (may be overestimated since this is SE data): 35.9041%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai2_S2_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai2_S2_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai2_S2_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3182233
+total bases: 321405533
+Q20 bases: 311864398(97.0314%)
+Q30 bases: 300783251(93.5837%)
+
+Read1 after filtering:
+total reads: 2952619
+total bases: 293944192
+Q20 bases: 289770475(98.5801%)
+Q30 bases: 281125099(95.6389%)
+
+Filtering result:
+reads passed filter: 2952619
+reads failed due to low quality: 76183
+reads failed due to too many N: 5
+reads failed due to too short: 13140
+reads failed due to low complexity: 140286
+reads with adapter trimmed: 72363
+bases trimmed due to adapters: 2402767
+reads with polyX in 3' end: 165897
+bases trimmed in polyX tail: 5471497
+
+Duplication rate (may be overestimated since this is SE data): 36.3546%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai30_S30_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai30_S30_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai30_S30_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3188028
+total bases: 321990828
+Q20 bases: 312399563(97.0213%)
+Q30 bases: 301294117(93.5723%)
+
+Read1 after filtering:
+total reads: 2958803
+total bases: 294624328
+Q20 bases: 290402262(98.567%)
+Q30 bases: 281716836(95.619%)
+
+Filtering result:
+reads passed filter: 2958803
+reads failed due to low quality: 75848
+reads failed due to too many N: 9
+reads failed due to too short: 12660
+reads failed due to low complexity: 140708
+reads with adapter trimmed: 71387
+bases trimmed due to adapters: 2374494
+reads with polyX in 3' end: 164391
+bases trimmed in polyX tail: 5370696
+
+Duplication rate (may be overestimated since this is SE data): 36.6875%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai30_S30_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai30_S30_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai30_S30_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3211958
+total bases: 324407758
+Q20 bases: 314826617(97.0466%)
+Q30 bases: 303638856(93.5979%)
+
+Read1 after filtering:
+total reads: 2978141
+total bases: 296642710
+Q20 bases: 292397881(98.569%)
+Q30 bases: 283684857(95.6318%)
+
+Filtering result:
+reads passed filter: 2978141
+reads failed due to low quality: 77271
+reads failed due to too many N: 4
+reads failed due to too short: 14806
+reads failed due to low complexity: 141736
+reads with adapter trimmed: 67876
+bases trimmed due to adapters: 2246371
+reads with polyX in 3' end: 162753
+bases trimmed in polyX tail: 5602480
+
+Duplication rate (may be overestimated since this is SE data): 34.3939%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai31_S31_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai31_S31_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai31_S31_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3234467
+total bases: 326681167
+Q20 bases: 316999985(97.0365%)
+Q30 bases: 305726027(93.5854%)
+
+Read1 after filtering:
+total reads: 3000062
+total bases: 298845202
+Q20 bases: 294529433(98.5559%)
+Q30 bases: 285735000(95.613%)
+
+Filtering result:
+reads passed filter: 3000062
+reads failed due to low quality: 78033
+reads failed due to too many N: 1
+reads failed due to too short: 14864
+reads failed due to low complexity: 141507
+reads with adapter trimmed: 67549
+bases trimmed due to adapters: 2235764
+reads with polyX in 3' end: 163055
+bases trimmed in polyX tail: 5610253
+
+Duplication rate (may be overestimated since this is SE data): 34.7532%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai31_S31_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai31_S31_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai31_S31_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3195307
+total bases: 322726007
+Q20 bases: 314419632(97.4262%)
+Q30 bases: 303569728(94.0642%)
+
+Read1 after filtering:
+total reads: 3014760
+total bases: 300885627
+Q20 bases: 296719521(98.6154%)
+Q30 bases: 287839938(95.6642%)
+
+Filtering result:
+reads passed filter: 3014760
+reads failed due to low quality: 64961
+reads failed due to too many N: 5
+reads failed due to too short: 12114
+reads failed due to low complexity: 103467
+reads with adapter trimmed: 55760
+bases trimmed due to adapters: 1737839
+reads with polyX in 3' end: 139286
+bases trimmed in polyX tail: 4718973
+
+Duplication rate (may be overestimated since this is SE data): 36.1587%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai32_S32_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai32_S32_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai32_S32_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3194955
+total bases: 322690455
+Q20 bases: 314338441(97.4118%)
+Q30 bases: 303454844(94.039%)
+
+Read1 after filtering:
+total reads: 3014611
+total bases: 300883962
+Q20 bases: 296674128(98.6008%)
+Q30 bases: 287756014(95.6369%)
+
+Filtering result:
+reads passed filter: 3014611
+reads failed due to low quality: 65262
+reads failed due to too many N: 4
+reads failed due to too short: 12143
+reads failed due to low complexity: 102935
+reads with adapter trimmed: 54793
+bases trimmed due to adapters: 1706152
+reads with polyX in 3' end: 139279
+bases trimmed in polyX tail: 4712555
+
+Duplication rate (may be overestimated since this is SE data): 36.4495%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai32_S32_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai32_S32_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai32_S32_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2920603
+total bases: 294980903
+Q20 bases: 287634956(97.5097%)
+Q30 bases: 277953727(94.2277%)
+
+Read1 after filtering:
+total reads: 2763657
+total bases: 276253698
+Q20 bases: 272540342(98.6558%)
+Q30 bases: 264560707(95.7673%)
+
+Filtering result:
+reads passed filter: 2763657
+reads failed due to low quality: 57451
+reads failed due to too many N: 3
+reads failed due to too short: 8676
+reads failed due to low complexity: 90816
+reads with adapter trimmed: 45619
+bases trimmed due to adapters: 1496518
+reads with polyX in 3' end: 111749
+bases trimmed in polyX tail: 3658371
+
+Duplication rate (may be overestimated since this is SE data): 37.7863%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai33_S33_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai33_S33_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai33_S33_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2924561
+total bases: 295380661
+Q20 bases: 287949031(97.484%)
+Q30 bases: 278227184(94.1928%)
+
+Read1 after filtering:
+total reads: 2766579
+total bases: 276555646
+Q20 bases: 272784649(98.6364%)
+Q30 bases: 264768199(95.7378%)
+
+Filtering result:
+reads passed filter: 2766579
+reads failed due to low quality: 57774
+reads failed due to too many N: 10
+reads failed due to too short: 8758
+reads failed due to low complexity: 91440
+reads with adapter trimmed: 45392
+bases trimmed due to adapters: 1497157
+reads with polyX in 3' end: 111771
+bases trimmed in polyX tail: 3659097
+
+Duplication rate (may be overestimated since this is SE data): 38.1127%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai33_S33_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai33_S33_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai33_S33_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3122430
+total bases: 315365430
+Q20 bases: 304079481(96.4213%)
+Q30 bases: 292968600(92.8981%)
+
+Read1 after filtering:
+total reads: 2821123
+total bases: 280838716
+Q20 bases: 276837013(98.5751%)
+Q30 bases: 268818583(95.7199%)
+
+Filtering result:
+reads passed filter: 2821123
+reads failed due to low quality: 90954
+reads failed due to too many N: 6
+reads failed due to too short: 7304
+reads failed due to low complexity: 203043
+reads with adapter trimmed: 102964
+bases trimmed due to adapters: 3686604
+reads with polyX in 3' end: 169894
+bases trimmed in polyX tail: 4714635
+
+Duplication rate (may be overestimated since this is SE data): 39.0315%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai34_S34_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai34_S34_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai34_S34_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3130618
+total bases: 316192418
+Q20 bases: 304783198(96.3917%)
+Q30 bases: 293603706(92.856%)
+
+Read1 after filtering:
+total reads: 2827664
+total bases: 281465659
+Q20 bases: 277407575(98.5582%)
+Q30 bases: 269329290(95.6882%)
+
+Filtering result:
+reads passed filter: 2827664
+reads failed due to low quality: 91489
+reads failed due to too many N: 5
+reads failed due to too short: 7362
+reads failed due to low complexity: 204098
+reads with adapter trimmed: 102879
+bases trimmed due to adapters: 3692680
+reads with polyX in 3' end: 170839
+bases trimmed in polyX tail: 4752951
+
+Duplication rate (may be overestimated since this is SE data): 39.2244%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai34_S34_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai34_S34_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai34_S34_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2888074
+total bases: 291695474
+Q20 bases: 284805918(97.6381%)
+Q30 bases: 275296022(94.3779%)
+
+Read1 after filtering:
+total reads: 2749317
+total bases: 275164946
+Q20 bases: 271490854(98.6648%)
+Q30 bases: 263530363(95.7718%)
+
+Filtering result:
+reads passed filter: 2749317
+reads failed due to low quality: 53243
+reads failed due to too many N: 5
+reads failed due to too short: 7225
+reads failed due to low complexity: 78284
+reads with adapter trimmed: 41739
+bases trimmed due to adapters: 1304051
+reads with polyX in 3' end: 97551
+bases trimmed in polyX tail: 3157388
+
+Duplication rate (may be overestimated since this is SE data): 40.7267%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai35_S35_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai35_S35_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai35_S35_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2887562
+total bases: 291643762
+Q20 bases: 284692426(97.6165%)
+Q30 bases: 275154809(94.3462%)
+
+Read1 after filtering:
+total reads: 2748816
+total bases: 275107262
+Q20 bases: 271383983(98.6466%)
+Q30 bases: 263391995(95.7416%)
+
+Filtering result:
+reads passed filter: 2748816
+reads failed due to low quality: 53221
+reads failed due to too many N: 1
+reads failed due to too short: 7168
+reads failed due to low complexity: 78356
+reads with adapter trimmed: 41073
+bases trimmed due to adapters: 1293370
+reads with polyX in 3' end: 98170
+bases trimmed in polyX tail: 3167367
+
+Duplication rate (may be overestimated since this is SE data): 41.0054%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai35_S35_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai35_S35_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai35_S35_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3181402
+total bases: 321321602
+Q20 bases: 312862059(97.3673%)
+Q30 bases: 301990914(93.984%)
+
+Read1 after filtering:
+total reads: 2998323
+total bases: 299868243
+Q20 bases: 295784199(98.6381%)
+Q30 bases: 286967591(95.6979%)
+
+Filtering result:
+reads passed filter: 2998323
+reads failed due to low quality: 69028
+reads failed due to too many N: 9
+reads failed due to too short: 9970
+reads failed due to low complexity: 104072
+reads with adapter trimmed: 53510
+bases trimmed due to adapters: 1848825
+reads with polyX in 3' end: 119233
+bases trimmed in polyX tail: 3851703
+
+Duplication rate (may be overestimated since this is SE data): 36.6154%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai36_S36_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai36_S36_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai36_S36_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3198810
+total bases: 323079810
+Q20 bases: 314514341(97.3488%)
+Q30 bases: 303569504(93.9611%)
+
+Read1 after filtering:
+total reads: 3014895
+total bases: 301537313
+Q20 bases: 297388407(98.6241%)
+Q30 bases: 288499771(95.6763%)
+
+Filtering result:
+reads passed filter: 3014895
+reads failed due to low quality: 69449
+reads failed due to too many N: 7
+reads failed due to too short: 9767
+reads failed due to low complexity: 104692
+reads with adapter trimmed: 52977
+bases trimmed due to adapters: 1841593
+reads with polyX in 3' end: 119503
+bases trimmed in polyX tail: 3846595
+
+Duplication rate (may be overestimated since this is SE data): 36.917%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai36_S36_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai36_S36_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai36_S36_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3290286
+total bases: 332318886
+Q20 bases: 317539845(95.5528%)
+Q30 bases: 305107683(91.8117%)
+
+Read1 after filtering:
+total reads: 2895321
+total bases: 287522818
+Q20 bases: 283055801(98.4464%)
+Q30 bases: 274615908(95.511%)
+
+Filtering result:
+reads passed filter: 2895321
+reads failed due to low quality: 133582
+reads failed due to too many N: 7
+reads failed due to too short: 9463
+reads failed due to low complexity: 251913
+reads with adapter trimmed: 127458
+bases trimmed due to adapters: 4846230
+reads with polyX in 3' end: 195554
+bases trimmed in polyX tail: 5667127
+
+Duplication rate (may be overestimated since this is SE data): 37.184%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai38_S37_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai38_S37_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai38_S37_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3305355
+total bases: 333840855
+Q20 bases: 318957921(95.5419%)
+Q30 bases: 306468690(91.8008%)
+
+Read1 after filtering:
+total reads: 2909591
+total bases: 288941141
+Q20 bases: 284411084(98.4322%)
+Q30 bases: 275903078(95.4876%)
+
+Filtering result:
+reads passed filter: 2909591
+reads failed due to low quality: 133900
+reads failed due to too many N: 2
+reads failed due to too short: 9547
+reads failed due to low complexity: 252315
+reads with adapter trimmed: 126497
+bases trimmed due to adapters: 4808854
+reads with polyX in 3' end: 196730
+bases trimmed in polyX tail: 5695348
+
+Duplication rate (may be overestimated since this is SE data): 37.4227%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai38_S37_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai38_S37_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai38_S37_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2859890
+total bases: 288848890
+Q20 bases: 281135511(97.3296%)
+Q30 bases: 271231596(93.9009%)
+
+Read1 after filtering:
+total reads: 2691273
+total bases: 268684601
+Q20 bases: 264867895(98.5795%)
+Q30 bases: 256825581(95.5863%)
+
+Filtering result:
+reads passed filter: 2691273
+reads failed due to low quality: 61383
+reads failed due to too many N: 7
+reads failed due to too short: 9127
+reads failed due to low complexity: 98100
+reads with adapter trimmed: 49067
+bases trimmed due to adapters: 1619664
+reads with polyX in 3' end: 121907
+bases trimmed in polyX tail: 3966000
+
+Duplication rate (may be overestimated since this is SE data): 35.7296%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai39_S38_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai39_S38_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai39_S38_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2872233
+total bases: 290095533
+Q20 bases: 282281255(97.3063%)
+Q30 bases: 272299962(93.8656%)
+
+Read1 after filtering:
+total reads: 2703180
+total bases: 269883216
+Q20 bases: 266003638(98.5625%)
+Q30 bases: 257881554(95.553%)
+
+Filtering result:
+reads passed filter: 2703180
+reads failed due to low quality: 62102
+reads failed due to too many N: 6
+reads failed due to too short: 9030
+reads failed due to low complexity: 97915
+reads with adapter trimmed: 48774
+bases trimmed due to adapters: 1605135
+reads with polyX in 3' end: 122361
+bases trimmed in polyX tail: 3957196
+
+Duplication rate (may be overestimated since this is SE data): 36.0052%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai39_S38_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai39_S38_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai39_S38_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3445971
+total bases: 348043071
+Q20 bases: 334055562(95.9811%)
+Q30 bases: 321667444(92.4217%)
+
+Read1 after filtering:
+total reads: 3046026
+total bases: 302758781
+Q20 bases: 298472051(98.5841%)
+Q30 bases: 290104127(95.8202%)
+
+Filtering result:
+reads passed filter: 3046026
+reads failed due to low quality: 121379
+reads failed due to too many N: 9
+reads failed due to too short: 12442
+reads failed due to low complexity: 266115
+reads with adapter trimmed: 136874
+bases trimmed due to adapters: 5018750
+reads with polyX in 3' end: 197242
+bases trimmed in polyX tail: 5951921
+
+Duplication rate (may be overestimated since this is SE data): 32.3685%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai3_S3_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai3_S3_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai3_S3_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3460333
+total bases: 349493633
+Q20 bases: 335357793(95.9553%)
+Q30 bases: 322876154(92.384%)
+
+Read1 after filtering:
+total reads: 3058004
+total bases: 303924711
+Q20 bases: 299575862(98.5691%)
+Q30 bases: 291130322(95.7903%)
+
+Filtering result:
+reads passed filter: 3058004
+reads failed due to low quality: 122078
+reads failed due to too many N: 4
+reads failed due to too short: 12346
+reads failed due to low complexity: 267901
+reads with adapter trimmed: 136658
+bases trimmed due to adapters: 5018155
+reads with polyX in 3' end: 198451
+bases trimmed in polyX tail: 5973284
+
+Duplication rate (may be overestimated since this is SE data): 32.642%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai3_S3_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai3_S3_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Approx 100% complete for clean.Ai3_S3_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3052925
+total bases: 308345425
+Q20 bases: 300139290(97.3387%)
+Q30 bases: 290024288(94.0582%)
+
+Read1 after filtering:
+total reads: 2866489
+total bases: 285869290
+Q20 bases: 281991841(98.6436%)
+Q30 bases: 273832002(95.7892%)
+
+Filtering result:
+reads passed filter: 2866489
+reads failed due to low quality: 64176
+reads failed due to too many N: 5
+reads failed due to too short: 10924
+reads failed due to low complexity: 111331
+reads with adapter trimmed: 56757
+bases trimmed due to adapters: 1792880
+reads with polyX in 3' end: 141253
+bases trimmed in polyX tail: 4654988
+
+Duplication rate (may be overestimated since this is SE data): 35.4703%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai40_S39_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai40_S39_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai40_S39_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3061341
+total bases: 309195441
+Q20 bases: 300919579(97.3234%)
+Q30 bases: 290745638(94.033%)
+
+Read1 after filtering:
+total reads: 2874833
+total bases: 286705667
+Q20 bases: 282766157(98.6259%)
+Q30 bases: 274543522(95.758%)
+
+Filtering result:
+reads passed filter: 2874833
+reads failed due to low quality: 64013
+reads failed due to too many N: 5
+reads failed due to too short: 10860
+reads failed due to low complexity: 111630
+reads with adapter trimmed: 56549
+bases trimmed due to adapters: 1801341
+reads with polyX in 3' end: 141386
+bases trimmed in polyX tail: 4659114
+
+Duplication rate (may be overestimated since this is SE data): 35.7456%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai40_S39_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai40_S39_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai40_S39_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2876607
+total bases: 290537307
+Q20 bases: 283179103(97.4674%)
+Q30 bases: 273366080(94.0898%)
+
+Read1 after filtering:
+total reads: 2727847
+total bases: 274201815
+Q20 bases: 270704809(98.7247%)
+Q30 bases: 262668286(95.7938%)
+
+Filtering result:
+reads passed filter: 2727847
+reads failed due to low quality: 64872
+reads failed due to too many N: 5
+reads failed due to too short: 4268
+reads failed due to low complexity: 79615
+reads with adapter trimmed: 42222
+bases trimmed due to adapters: 1799126
+reads with polyX in 3' end: 56859
+bases trimmed in polyX tail: 1712484
+
+Duplication rate (may be overestimated since this is SE data): 38.6567%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai4_S4_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai4_S4_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai4_S4_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2884253
+total bases: 291309553
+Q20 bases: 283879137(97.4493%)
+Q30 bases: 274010994(94.0618%)
+
+Read1 after filtering:
+total reads: 2735718
+total bases: 274986522
+Q20 bases: 271433866(98.7081%)
+Q30 bases: 263331410(95.7616%)
+
+Filtering result:
+reads passed filter: 2735718
+reads failed due to low quality: 64998
+reads failed due to too many N: 5
+reads failed due to too short: 4177
+reads failed due to low complexity: 79355
+reads with adapter trimmed: 41444
+bases trimmed due to adapters: 1783843
+reads with polyX in 3' end: 57319
+bases trimmed in polyX tail: 1710961
+
+Duplication rate (may be overestimated since this is SE data): 38.9531%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai4_S4_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai4_S4_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai4_S4_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3258234
+total bases: 329081634
+Q20 bases: 314469108(95.5596%)
+Q30 bases: 302242808(91.8443%)
+
+Read1 after filtering:
+total reads: 2848473
+total bases: 283800809
+Q20 bases: 279732716(98.5666%)
+Q30 bases: 271747957(95.7531%)
+
+Filtering result:
+reads passed filter: 2848473
+reads failed due to low quality: 128808
+reads failed due to too many N: 5
+reads failed due to too short: 9042
+reads failed due to low complexity: 271906
+reads with adapter trimmed: 140728
+bases trimmed due to adapters: 5631330
+reads with polyX in 3' end: 155527
+bases trimmed in polyX tail: 4559353
+
+Duplication rate (may be overestimated since this is SE data): 37.1343%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai5_S5_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai5_S5_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai5_S5_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3265007
+total bases: 329765707
+Q20 bases: 315016268(95.5273%)
+Q30 bases: 302721315(91.7989%)
+
+Read1 after filtering:
+total reads: 2853510
+total bases: 284302383
+Q20 bases: 280195340(98.5554%)
+Q30 bases: 272158302(95.7285%)
+
+Filtering result:
+reads passed filter: 2853510
+reads failed due to low quality: 129490
+reads failed due to too many N: 6
+reads failed due to too short: 9103
+reads failed due to low complexity: 272898
+reads with adapter trimmed: 140813
+bases trimmed due to adapters: 5673522
+reads with polyX in 3' end: 155994
+bases trimmed in polyX tail: 4567334
+
+Duplication rate (may be overestimated since this is SE data): 37.3988%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai5_S5_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai5_S5_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai5_S5_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3004617
+total bases: 303466317
+Q20 bases: 295547033(97.3904%)
+Q30 bases: 285584077(94.1073%)
+
+Read1 after filtering:
+total reads: 2820639
+total bases: 282047418
+Q20 bases: 278404085(98.7083%)
+Q30 bases: 270447557(95.8873%)
+
+Filtering result:
+reads passed filter: 2820639
+reads failed due to low quality: 63316
+reads failed due to too many N: 6
+reads failed due to too short: 8961
+reads failed due to low complexity: 111695
+reads with adapter trimmed: 56730
+bases trimmed due to adapters: 1952524
+reads with polyX in 3' end: 114931
+bases trimmed in polyX tail: 3694107
+
+Duplication rate (may be overestimated since this is SE data): 33.8119%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai6_S6_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai6_S6_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai6_S6_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3025846
+total bases: 305610446
+Q20 bases: 297623328(97.3865%)
+Q30 bases: 287565621(94.0955%)
+
+Read1 after filtering:
+total reads: 2842193
+total bases: 284212007
+Q20 bases: 280497513(98.6931%)
+Q30 bases: 272428677(95.854%)
+
+Filtering result:
+reads passed filter: 2842193
+reads failed due to low quality: 63099
+reads failed due to too many N: 4
+reads failed due to too short: 8882
+reads failed due to low complexity: 111668
+reads with adapter trimmed: 56302
+bases trimmed due to adapters: 1926623
+reads with polyX in 3' end: 115699
+bases trimmed in polyX tail: 3700720
+
+Duplication rate (may be overestimated since this is SE data): 34.1687%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai6_S6_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai6_S6_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai6_S6_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3386049
+total bases: 341990949
+Q20 bases: 328371158(96.0175%)
+Q30 bases: 315915312(92.3753%)
+
+Read1 after filtering:
+total reads: 3001848
+total bases: 298913598
+Q20 bases: 294618505(98.5631%)
+Q30 bases: 286103049(95.7143%)
+
+Filtering result:
+reads passed filter: 3001848
+reads failed due to low quality: 112628
+reads failed due to too many N: 4
+reads failed due to too short: 10597
+reads failed due to low complexity: 260972
+reads with adapter trimmed: 133484
+bases trimmed due to adapters: 4998767
+reads with polyX in 3' end: 177437
+bases trimmed in polyX tail: 5230661
+
+Duplication rate (may be overestimated since this is SE data): 35.2312%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai7_S7_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai7_S7_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai7_S7_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3396399
+total bases: 343036299
+Q20 bases: 329331538(96.0049%)
+Q30 bases: 316821931(92.3581%)
+
+Read1 after filtering:
+total reads: 3012049
+total bases: 299932118
+Q20 bases: 295584135(98.5503%)
+Q30 bases: 287006136(95.6904%)
+
+Filtering result:
+reads passed filter: 3012049
+reads failed due to low quality: 112229
+reads failed due to too many N: 1
+reads failed due to too short: 10696
+reads failed due to low complexity: 261424
+reads with adapter trimmed: 133133
+bases trimmed due to adapters: 5003428
+reads with polyX in 3' end: 178918
+bases trimmed in polyX tail: 5236696
+
+Duplication rate (may be overestimated since this is SE data): 35.5258%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai7_S7_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai7_S7_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai7_S7_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2952284
+total bases: 298180684
+Q20 bases: 290351581(97.3744%)
+Q30 bases: 280767452(94.1602%)
+
+Read1 after filtering:
+total reads: 2778646
+total bases: 278042143
+Q20 bases: 274564325(98.7492%)
+Q30 bases: 266870272(95.982%)
+
+Filtering result:
+reads passed filter: 2778646
+reads failed due to low quality: 60727
+reads failed due to too many N: 6
+reads failed due to too short: 8400
+reads failed due to low complexity: 104505
+reads with adapter trimmed: 54908
+bases trimmed due to adapters: 1978226
+reads with polyX in 3' end: 108249
+bases trimmed in polyX tail: 3400186
+
+Duplication rate (may be overestimated since this is SE data): 34.6394%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai8_S8_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai8_S8_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai8_S8_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2955698
+total bases: 298525498
+Q20 bases: 290631265(97.3556%)
+Q30 bases: 281006218(94.1314%)
+
+Read1 after filtering:
+total reads: 2781689
+total bases: 278363575
+Q20 bases: 274851641(98.7384%)
+Q30 bases: 267117558(95.96%)
+
+Filtering result:
+reads passed filter: 2781689
+reads failed due to low quality: 60951
+reads failed due to too many N: 3
+reads failed due to too short: 8146
+reads failed due to low complexity: 104909
+reads with adapter trimmed: 54862
+bases trimmed due to adapters: 1998457
+reads with polyX in 3' end: 108305
+bases trimmed in polyX tail: 3368861
+
+Duplication rate (may be overestimated since this is SE data): 34.8673%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai8_S8_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai8_S8_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai8_S8_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3305118
+total bases: 333816918
+Q20 bases: 326088067(97.6847%)
+Q30 bases: 315511089(94.5162%)
+
+Read1 after filtering:
+total reads: 3136323
+total bases: 314395626
+Q20 bases: 310548211(98.7763%)
+Q30 bases: 301837757(96.0057%)
+
+Filtering result:
+reads passed filter: 3136323
+reads failed due to low quality: 59209
+reads failed due to too many N: 9
+reads failed due to too short: 6441
+reads failed due to low complexity: 103136
+reads with adapter trimmed: 51725
+bases trimmed due to adapters: 1783186
+reads with polyX in 3' end: 95074
+bases trimmed in polyX tail: 2963953
+
+Duplication rate (may be overestimated since this is SE data): 39.553%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai9_S9_L001_R1_001.fastq.gz --out1 ./clean/clean.Ai9_S9_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 5% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 10% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 15% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 20% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 25% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 30% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 35% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 40% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 45% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 50% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 55% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 60% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 65% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 70% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 75% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 80% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 85% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 90% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Approx 95% complete for clean.Ai9_S9_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3315928
+total bases: 334908728
+Q20 bases: 327053389(97.6545%)
+Q30 bases: 316401993(94.4741%)
+
+Read1 after filtering:
+total reads: 3145161
+total bases: 315277596
+Q20 bases: 311382579(98.7646%)
+Q30 bases: 302620849(95.9855%)
+
+Filtering result:
+reads passed filter: 3145161
+reads failed due to low quality: 60195
+reads failed due to too many N: 1
+reads failed due to too short: 6380
+reads failed due to low complexity: 104191
+reads with adapter trimmed: 52024
+bases trimmed due to adapters: 1814588
+reads with polyX in 3' end: 95358
+bases trimmed in polyX tail: 2961344
+
+Duplication rate (may be overestimated since this is SE data): 39.8336%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai9_S9_L002_R1_001.fastq.gz --out1 ./clean/clean.Ai9_S9_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --trim_poly_x 6 -q 30 -y -Y 50 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 5% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 10% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 15% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 20% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 25% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 30% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 35% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 40% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 45% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 50% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 55% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 60% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 65% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 70% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 75% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 80% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 85% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 90% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+Approx 95% complete for clean.Ai9_S9_L002_R1_001.fastq.gz
+
+  /// MultiQC 🔍 | v1.12
+
+|           multiqc | Search path : /home/sgurr/Airradians_F1s_TagSeq/output/fastp_multiQC/clean
+|            fastqc | Found 78 reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : clean/multiqc_report.html
+|           multiqc | Data        : clean/multiqc_data
+|           multiqc | MultiQC complete

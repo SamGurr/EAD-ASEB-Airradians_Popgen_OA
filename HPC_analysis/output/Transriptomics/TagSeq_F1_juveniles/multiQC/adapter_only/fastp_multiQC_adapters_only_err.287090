@@ -1,0 +1,3676 @@
+Read1 before filtering:
+total reads: 3351640
+total bases: 338515640
+Q20 bases: 326609321(96.4828%)
+Q30 bases: 310639376(91.7651%)
+
+Read1 after filtering:
+total reads: 3315629
+total bases: 332266140
+Q20 bases: 323338944(97.3132%)
+Q30 bases: 308389400(92.814%)
+
+Filtering result:
+reads passed filter: 3315629
+reads failed due to low quality: 35997
+reads failed due to too many N: 5
+reads failed due to too short: 9
+reads with adapter trimmed: 61727
+bases trimmed due to adapters: 2603792
+
+Duplication rate (may be overestimated since this is SE data): 37.6806%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai10_S10_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai10_S10_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai10_S10_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3365499
+total bases: 339915399
+Q20 bases: 327732068(96.4158%)
+Q30 bases: 311404939(91.6125%)
+
+Read1 after filtering:
+total reads: 3329112
+total bases: 333643334
+Q20 bases: 324459545(97.2474%)
+Q30 bases: 309149416(92.6587%)
+
+Filtering result:
+reads passed filter: 3329112
+reads failed due to low quality: 36363
+reads failed due to too many N: 10
+reads failed due to too short: 14
+reads with adapter trimmed: 61001
+bases trimmed due to adapters: 2587953
+
+Duplication rate (may be overestimated since this is SE data): 37.8689%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai10_S10_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai10_S10_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai10_S10_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 1957545
+total bases: 197712045
+Q20 bases: 192894427(97.5633%)
+Q30 bases: 186566356(94.3627%)
+
+Read1 after filtering:
+total reads: 1944981
+total bases: 195302186
+Q20 bases: 191585120(98.0968%)
+Q30 bases: 185660294(95.0631%)
+
+Filtering result:
+reads passed filter: 1944981
+reads failed due to low quality: 12554
+reads failed due to too many N: 2
+reads failed due to too short: 8
+reads with adapter trimmed: 31469
+bases trimmed due to adapters: 1135169
+
+Duplication rate (may be overestimated since this is SE data): 33.2741%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai11_S11_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai11_S11_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 16 seconds
+Started analysis of adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai11_S11_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 1966137
+total bases: 198579837
+Q20 bases: 193737574(97.5616%)
+Q30 bases: 187379335(94.3597%)
+
+Read1 after filtering:
+total reads: 1953813
+total bases: 196199248
+Q20 bases: 192446066(98.0871%)
+Q30 bases: 186485304(95.0489%)
+
+Filtering result:
+reads passed filter: 1953813
+reads failed due to low quality: 12314
+reads failed due to too many N: 5
+reads failed due to too short: 5
+reads with adapter trimmed: 31266
+bases trimmed due to adapters: 1130497
+
+Duplication rate (may be overestimated since this is SE data): 33.6587%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai11_S11_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai11_S11_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 16 seconds
+Started analysis of adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai11_S11_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3612239
+total bases: 364836139
+Q20 bases: 351183337(96.2578%)
+Q30 bases: 337857200(92.6052%)
+
+Read1 after filtering:
+total reads: 3556651
+total bases: 354092162
+Q20 bases: 345344360(97.5295%)
+Q30 bases: 333820685(94.2751%)
+
+Filtering result:
+reads passed filter: 3556651
+reads failed due to low quality: 55558
+reads failed due to too many N: 6
+reads failed due to too short: 24
+reads with adapter trimmed: 116725
+bases trimmed due to adapters: 5116057
+
+Duplication rate (may be overestimated since this is SE data): 36.1523%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai12_S12_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai12_S12_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai12_S12_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3628789
+total bases: 366507689
+Q20 bases: 352695422(96.2314%)
+Q30 bases: 339297192(92.5757%)
+
+Read1 after filtering:
+total reads: 3572285
+total bases: 355683647
+Q20 bases: 346831351(97.5112%)
+Q30 bases: 335233461(94.2505%)
+
+Filtering result:
+reads passed filter: 3572285
+reads failed due to low quality: 56484
+reads failed due to too many N: 5
+reads failed due to too short: 15
+reads with adapter trimmed: 115871
+bases trimmed due to adapters: 5103420
+
+Duplication rate (may be overestimated since this is SE data): 36.4651%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai12_S12_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai12_S12_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai12_S12_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3289435
+total bases: 332232935
+Q20 bases: 316305967(95.2061%)
+Q30 bases: 303653896(91.3979%)
+
+Read1 after filtering:
+total reads: 3225214
+total bases: 319471646
+Q20 bases: 309575991(96.9025%)
+Q30 bases: 299014713(93.5966%)
+
+Filtering result:
+reads passed filter: 3225214
+reads failed due to low quality: 64189
+reads failed due to too many N: 7
+reads failed due to too short: 25
+reads with adapter trimmed: 154806
+bases trimmed due to adapters: 6261322
+
+Duplication rate (may be overestimated since this is SE data): 33.1372%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai13_S13_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai13_S13_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai13_S13_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3304404
+total bases: 333744804
+Q20 bases: 317659593(95.1804%)
+Q30 bases: 304919856(91.3632%)
+
+Read1 after filtering:
+total reads: 3240098
+total bases: 320910317
+Q20 bases: 310907429(96.883%)
+Q30 bases: 300261011(93.5654%)
+
+Filtering result:
+reads passed filter: 3240098
+reads failed due to low quality: 64279
+reads failed due to too many N: 2
+reads failed due to too short: 25
+reads with adapter trimmed: 156143
+bases trimmed due to adapters: 6325520
+
+Duplication rate (may be overestimated since this is SE data): 33.3818%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai13_S13_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai13_S13_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai13_S13_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3317078
+total bases: 335024878
+Q20 bases: 326910100(97.5779%)
+Q30 bases: 315950271(94.3065%)
+
+Read1 after filtering:
+total reads: 3292596
+total bases: 330721112
+Q20 bases: 324681216(98.1737%)
+Q30 bases: 314394952(95.0635%)
+
+Filtering result:
+reads passed filter: 3292596
+reads failed due to low quality: 24468
+reads failed due to too many N: 5
+reads failed due to too short: 9
+reads with adapter trimmed: 44818
+bases trimmed due to adapters: 1820013
+
+Duplication rate (may be overestimated since this is SE data): 40.5925%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai14_S14_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai14_S14_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai14_S14_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3341996
+total bases: 337541596
+Q20 bases: 329322367(97.565%)
+Q30 bases: 318269884(94.2906%)
+
+Read1 after filtering:
+total reads: 3316814
+total bases: 333173434
+Q20 bases: 327063286(98.1661%)
+Q30 bases: 316689330(95.0524%)
+
+Filtering result:
+reads passed filter: 3316814
+reads failed due to low quality: 25159
+reads failed due to too many N: 6
+reads failed due to too short: 17
+reads with adapter trimmed: 44687
+bases trimmed due to adapters: 1815701
+
+Duplication rate (may be overestimated since this is SE data): 40.9275%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai14_S14_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai14_S14_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai14_S14_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3775234
+total bases: 381298634
+Q20 bases: 364693636(95.6451%)
+Q30 bases: 350492505(91.9207%)
+
+Read1 after filtering:
+total reads: 3718260
+total bases: 369605279
+Q20 bases: 358325329(96.9481%)
+Q30 bases: 346137236(93.6505%)
+
+Filtering result:
+reads passed filter: 3718260
+reads failed due to low quality: 56954
+reads failed due to too many N: 6
+reads failed due to too short: 14
+reads with adapter trimmed: 159408
+bases trimmed due to adapters: 5918395
+
+Duplication rate (may be overestimated since this is SE data): 34.8172%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai15_S15_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai15_S15_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 30 seconds
+Started analysis of adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai15_S15_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3794365
+total bases: 383230865
+Q20 bases: 366417990(95.6129%)
+Q30 bases: 352116424(91.881%)
+
+Read1 after filtering:
+total reads: 3736492
+total bases: 371394121
+Q20 bases: 359987438(96.9287%)
+Q30 bases: 347713605(93.6239%)
+
+Filtering result:
+reads passed filter: 3736492
+reads failed due to low quality: 57853
+reads failed due to too many N: 4
+reads failed due to too short: 16
+reads with adapter trimmed: 159909
+bases trimmed due to adapters: 5970873
+
+Duplication rate (may be overestimated since this is SE data): 35.076%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai15_S15_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai15_S15_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 31 seconds
+Started analysis of adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai15_S15_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3362679
+total bases: 339630579
+Q20 bases: 325359292(95.798%)
+Q30 bases: 312301496(91.9533%)
+
+Read1 after filtering:
+total reads: 3311131
+total bases: 329204958
+Q20 bases: 319895211(97.1721%)
+Q30 bases: 308555215(93.7274%)
+
+Filtering result:
+reads passed filter: 3311131
+reads failed due to low quality: 51526
+reads failed due to too many N: 6
+reads failed due to too short: 16
+reads with adapter trimmed: 136218
+bases trimmed due to adapters: 5194031
+
+Duplication rate (may be overestimated since this is SE data): 33.2055%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai16_S16_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai16_S16_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai16_S16_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3378855
+total bases: 341264355
+Q20 bases: 326826320(95.7693%)
+Q30 bases: 313667000(91.9132%)
+
+Read1 after filtering:
+total reads: 3326912
+total bases: 330799218
+Q20 bases: 321352444(97.1443%)
+Q30 bases: 309902764(93.683%)
+
+Filtering result:
+reads passed filter: 3326912
+reads failed due to low quality: 51924
+reads failed due to too many N: 5
+reads failed due to too short: 14
+reads with adapter trimmed: 135944
+bases trimmed due to adapters: 5191293
+
+Duplication rate (may be overestimated since this is SE data): 33.433%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai16_S16_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai16_S16_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai16_S16_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2430191
+total bases: 245449291
+Q20 bases: 241797543(98.5122%)
+Q30 bases: 234452691(95.5198%)
+
+Read1 after filtering:
+total reads: 2426917
+total bases: 244957246
+Q20 bases: 241534776(98.6028%)
+Q30 bases: 234262350(95.634%)
+
+Filtering result:
+reads passed filter: 2426917
+reads failed due to low quality: 3264
+reads failed due to too many N: 5
+reads failed due to too short: 5
+reads with adapter trimmed: 6139
+bases trimmed due to adapters: 157894
+
+Duplication rate (may be overestimated since this is SE data): 45.4643%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai17_S17_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai17_S17_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 20 seconds
+Started analysis of adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai17_S17_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2445098
+total bases: 246954898
+Q20 bases: 243250396(98.4999%)
+Q30 bases: 235840137(95.4993%)
+
+Read1 after filtering:
+total reads: 2441887
+total bases: 246471781
+Q20 bases: 242993524(98.5888%)
+Q30 bases: 235653945(95.6109%)
+
+Filtering result:
+reads passed filter: 2441887
+reads failed due to low quality: 3207
+reads failed due to too many N: 1
+reads failed due to too short: 3
+reads with adapter trimmed: 6138
+bases trimmed due to adapters: 155033
+
+Duplication rate (may be overestimated since this is SE data): 45.7881%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai17_S17_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai17_S17_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 19 seconds
+Started analysis of adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai17_S17_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3664143
+total bases: 370078443
+Q20 bases: 353336518(95.4761%)
+Q30 bases: 339267934(91.6746%)
+
+Read1 after filtering:
+total reads: 3614068
+total bases: 358950838
+Q20 bases: 347336280(96.7643%)
+Q30 bases: 335171834(93.3754%)
+
+Filtering result:
+reads passed filter: 3614068
+reads failed due to low quality: 50054
+reads failed due to too many N: 7
+reads failed due to too short: 14
+reads with adapter trimmed: 170847
+bases trimmed due to adapters: 6051258
+
+Duplication rate (may be overestimated since this is SE data): 29.5635%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai18_S18_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai18_S18_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 29 seconds
+Started analysis of adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai18_S18_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3681506
+total bases: 371832106
+Q20 bases: 354924537(95.4529%)
+Q30 bases: 340767656(91.6456%)
+
+Read1 after filtering:
+total reads: 3630889
+total bases: 360633980
+Q20 bases: 348905747(96.7479%)
+Q30 bases: 336653648(93.3505%)
+
+Filtering result:
+reads passed filter: 3630889
+reads failed due to low quality: 50602
+reads failed due to too many N: 5
+reads failed due to too short: 10
+reads with adapter trimmed: 170963
+bases trimmed due to adapters: 6069347
+
+Duplication rate (may be overestimated since this is SE data): 29.852%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai18_S18_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai18_S18_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 30 seconds
+Started analysis of adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai18_S18_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3856087
+total bases: 389464787
+Q20 bases: 372485801(95.6404%)
+Q30 bases: 357957448(91.9101%)
+
+Read1 after filtering:
+total reads: 3793426
+total bases: 376963319
+Q20 bases: 365802496(97.0393%)
+Q30 bases: 353311328(93.7257%)
+
+Filtering result:
+reads passed filter: 3793426
+reads failed due to low quality: 62630
+reads failed due to too many N: 9
+reads failed due to too short: 22
+reads with adapter trimmed: 159271
+bases trimmed due to adapters: 6117972
+
+Duplication rate (may be overestimated since this is SE data): 32.7527%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai19_S19_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai19_S19_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 31 seconds
+Started analysis of adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai19_S19_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3866213
+total bases: 390487513
+Q20 bases: 373367148(95.6156%)
+Q30 bases: 358779540(91.8799%)
+
+Read1 after filtering:
+total reads: 3802367
+total bases: 377874492
+Q20 bases: 366642406(97.0276%)
+Q30 bases: 354090896(93.706%)
+
+Filtering result:
+reads passed filter: 3802367
+reads failed due to low quality: 63820
+reads failed due to too many N: 7
+reads failed due to too short: 19
+reads with adapter trimmed: 157860
+bases trimmed due to adapters: 6110380
+
+Duplication rate (may be overestimated since this is SE data): 33.0237%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai19_S19_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai19_S19_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 32 seconds
+Started analysis of adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai19_S19_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2452909
+total bases: 247743809
+Q20 bases: 241924166(97.6509%)
+Q30 bases: 233929139(94.4238%)
+
+Read1 after filtering:
+total reads: 2439097
+total bases: 245014849
+Q20 bases: 240437808(98.1319%)
+Q30 bases: 232904455(95.0573%)
+
+Filtering result:
+reads passed filter: 2439097
+reads failed due to low quality: 13800
+reads failed due to too many N: 4
+reads failed due to too short: 8
+reads with adapter trimmed: 37190
+bases trimmed due to adapters: 1329023
+
+Duplication rate (may be overestimated since this is SE data): 37.7964%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai1_S1_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai1_S1_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 20 seconds
+Started analysis of adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai1_S1_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2461467
+total bases: 248608167
+Q20 bases: 242748311(97.6429%)
+Q30 bases: 234708938(94.4092%)
+
+Read1 after filtering:
+total reads: 2447562
+total bases: 245883142
+Q20 bases: 241266818(98.1226%)
+Q30 bases: 233685144(95.0391%)
+
+Filtering result:
+reads passed filter: 2447562
+reads failed due to low quality: 13897
+reads failed due to too many N: 3
+reads failed due to too short: 5
+reads with adapter trimmed: 37218
+bases trimmed due to adapters: 1315342
+
+Duplication rate (may be overestimated since this is SE data): 38.0761%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai1_S1_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai1_S1_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 20 seconds
+Started analysis of adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai1_S1_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3113298
+total bases: 314443098
+Q20 bases: 303437185(96.4999%)
+Q30 bases: 292190917(92.9233%)
+
+Read1 after filtering:
+total reads: 3073039
+total bases: 306681576
+Q20 bases: 299269985(97.5833%)
+Q30 bases: 289312700(94.3365%)
+
+Filtering result:
+reads passed filter: 3073039
+reads failed due to low quality: 40241
+reads failed due to too many N: 4
+reads failed due to too short: 14
+reads with adapter trimmed: 91928
+bases trimmed due to adapters: 3684863
+
+Duplication rate (may be overestimated since this is SE data): 34.1466%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai20_S20_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai20_S20_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai20_S20_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3118834
+total bases: 315002234
+Q20 bases: 303891076(96.4727%)
+Q30 bases: 292603468(92.8893%)
+
+Read1 after filtering:
+total reads: 3077879
+total bases: 307146331
+Q20 bases: 299686893(97.5714%)
+Q30 bases: 289695893(94.3185%)
+
+Filtering result:
+reads passed filter: 3077879
+reads failed due to low quality: 40934
+reads failed due to too many N: 5
+reads failed due to too short: 16
+reads with adapter trimmed: 91809
+bases trimmed due to adapters: 3708521
+
+Duplication rate (may be overestimated since this is SE data): 34.3738%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai20_S20_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai20_S20_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai20_S20_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2637014
+total bases: 266338414
+Q20 bases: 258739473(97.1469%)
+Q30 bases: 249683259(93.7466%)
+
+Read1 after filtering:
+total reads: 2620752
+total bases: 262898285
+Q20 bases: 256878753(97.7103%)
+Q30 bases: 248399313(94.4849%)
+
+Filtering result:
+reads passed filter: 2620752
+reads failed due to low quality: 16256
+reads failed due to too many N: 3
+reads failed due to too short: 3
+reads with adapter trimmed: 55865
+bases trimmed due to adapters: 1786423
+
+Duplication rate (may be overestimated since this is SE data): 34.8031%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai21_S21_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai21_S21_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai21_S21_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2642948
+total bases: 266937748
+Q20 bases: 259231066(97.1129%)
+Q30 bases: 250115667(93.6981%)
+
+Read1 after filtering:
+total reads: 2626543
+total bases: 263460437
+Q20 bases: 257355348(97.6827%)
+Q30 bases: 248819951(94.443%)
+
+Filtering result:
+reads passed filter: 2626543
+reads failed due to low quality: 16397
+reads failed due to too many N: 5
+reads failed due to too short: 3
+reads with adapter trimmed: 55868
+bases trimmed due to adapters: 1809558
+
+Duplication rate (may be overestimated since this is SE data): 35.0016%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai21_S21_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai21_S21_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 21 seconds
+Started analysis of adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai21_S21_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3326637
+total bases: 335990337
+Q20 bases: 322708541(96.047%)
+Q30 bases: 310417972(92.389%)
+
+Read1 after filtering:
+total reads: 3279159
+total bases: 326811413
+Q20 bases: 317863742(97.2621%)
+Q30 bases: 307058768(93.956%)
+
+Filtering result:
+reads passed filter: 3279159
+reads failed due to low quality: 47453
+reads failed due to too many N: 5
+reads failed due to too short: 20
+reads with adapter trimmed: 114933
+bases trimmed due to adapters: 4370598
+
+Duplication rate (may be overestimated since this is SE data): 36.0316%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai22_S22_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai22_S22_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai22_S22_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3362650
+total bases: 339627650
+Q20 bases: 326138657(96.0283%)
+Q30 bases: 313697699(92.3652%)
+
+Read1 after filtering:
+total reads: 3314183
+total bases: 330371068
+Q20 bases: 321268987(97.2449%)
+Q30 bases: 310311718(93.9282%)
+
+Filtering result:
+reads passed filter: 3314183
+reads failed due to low quality: 48453
+reads failed due to too many N: 3
+reads failed due to too short: 11
+reads with adapter trimmed: 114004
+bases trimmed due to adapters: 4348727
+
+Duplication rate (may be overestimated since this is SE data): 36.3443%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai22_S22_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai22_S22_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai22_S22_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2849459
+total bases: 287795359
+Q20 bases: 276157639(95.9563%)
+Q30 bases: 265713832(92.3274%)
+
+Read1 after filtering:
+total reads: 2806307
+total bases: 279718552
+Q20 bases: 271821324(97.1767%)
+Q30 bases: 262713907(93.9208%)
+
+Filtering result:
+reads passed filter: 2806307
+reads failed due to low quality: 43139
+reads failed due to too many N: 6
+reads failed due to too short: 7
+reads with adapter trimmed: 101548
+bases trimmed due to adapters: 3707658
+
+Duplication rate (may be overestimated since this is SE data): 34.1637%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai23_S23_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai23_S23_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 23 seconds
+Started analysis of adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai23_S23_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2862006
+total bases: 289062606
+Q20 bases: 277325581(95.9396%)
+Q30 bases: 266808664(92.3013%)
+
+Read1 after filtering:
+total reads: 2818952
+total bases: 281028492
+Q20 bases: 273019483(97.1501%)
+Q30 bases: 263824543(93.8782%)
+
+Filtering result:
+reads passed filter: 2818952
+reads failed due to low quality: 43039
+reads failed due to too many N: 3
+reads failed due to too short: 12
+reads with adapter trimmed: 100621
+bases trimmed due to adapters: 3676653
+
+Duplication rate (may be overestimated since this is SE data): 34.4188%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai23_S23_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai23_S23_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 23 seconds
+Started analysis of adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai23_S23_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3429622
+total bases: 346391822
+Q20 bases: 333134195(96.1727%)
+Q30 bases: 320705063(92.5845%)
+
+Read1 after filtering:
+total reads: 3383619
+total bases: 337401562
+Q20 bases: 328387938(97.3285%)
+Q30 bases: 317398559(94.0715%)
+
+Filtering result:
+reads passed filter: 3383619
+reads failed due to low quality: 45989
+reads failed due to too many N: 6
+reads failed due to too short: 8
+reads with adapter trimmed: 115091
+bases trimmed due to adapters: 4316458
+
+Duplication rate (may be overestimated since this is SE data): 37.1879%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai24_S24_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai24_S24_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai24_S24_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3446789
+total bases: 348125689
+Q20 bases: 334764206(96.1619%)
+Q30 bases: 322271282(92.5733%)
+
+Read1 after filtering:
+total reads: 3400395
+total bases: 339081763
+Q20 bases: 330002581(97.3224%)
+Q30 bases: 318948900(94.0625%)
+
+Filtering result:
+reads passed filter: 3400395
+reads failed due to low quality: 46379
+reads failed due to too many N: 2
+reads failed due to too short: 13
+reads with adapter trimmed: 115166
+bases trimmed due to adapters: 4333126
+
+Duplication rate (may be overestimated since this is SE data): 37.4858%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai24_S24_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai24_S24_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai24_S24_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3427223
+total bases: 346149523
+Q20 bases: 331503003(95.7687%)
+Q30 bases: 318721340(92.0762%)
+
+Read1 after filtering:
+total reads: 3382120
+total bases: 336296949
+Q20 bases: 326149602(96.9826%)
+Q30 bases: 315038968(93.6788%)
+
+Filtering result:
+reads passed filter: 3382120
+reads failed due to low quality: 45092
+reads failed due to too many N: 1
+reads failed due to too short: 10
+reads with adapter trimmed: 145725
+bases trimmed due to adapters: 5286498
+
+Duplication rate (may be overestimated since this is SE data): 37.2671%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai25_S25_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai25_S25_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai25_S25_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3436967
+total bases: 347133667
+Q20 bases: 332333572(95.7365%)
+Q30 bases: 319460713(92.0282%)
+
+Read1 after filtering:
+total reads: 3390850
+total bases: 337201473
+Q20 bases: 326953202(96.9608%)
+Q30 bases: 315749315(93.6382%)
+
+Filtering result:
+reads passed filter: 3390850
+reads failed due to low quality: 46099
+reads failed due to too many N: 4
+reads failed due to too short: 14
+reads with adapter trimmed: 144682
+bases trimmed due to adapters: 5263059
+
+Duplication rate (may be overestimated since this is SE data): 37.5287%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai25_S25_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai25_S25_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai25_S25_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3524099
+total bases: 355933999
+Q20 bases: 342900924(96.3383%)
+Q30 bases: 329917779(92.6907%)
+
+Read1 after filtering:
+total reads: 3484940
+total bases: 347836684
+Q20 bases: 338401719(97.2875%)
+Q30 bases: 326803019(93.953%)
+
+Filtering result:
+reads passed filter: 3484940
+reads failed due to low quality: 39138
+reads failed due to too many N: 6
+reads failed due to too short: 15
+reads with adapter trimmed: 111859
+bases trimmed due to adapters: 4133536
+
+Duplication rate (may be overestimated since this is SE data): 36.4144%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai26_S26_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai26_S26_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai26_S26_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3554555
+total bases: 359010055
+Q20 bases: 345793127(96.3185%)
+Q30 bases: 332657344(92.6596%)
+
+Read1 after filtering:
+total reads: 3515041
+total bases: 350866861
+Q20 bases: 341280541(97.2678%)
+Q30 bases: 329530121(93.9189%)
+
+Filtering result:
+reads passed filter: 3515041
+reads failed due to low quality: 39494
+reads failed due to too many N: 9
+reads failed due to too short: 11
+reads with adapter trimmed: 111909
+bases trimmed due to adapters: 4143416
+
+Duplication rate (may be overestimated since this is SE data): 36.7886%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai26_S26_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai26_S26_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai26_S26_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2907007
+total bases: 293607707
+Q20 bases: 285967645(97.3979%)
+Q30 bases: 276228114(94.0807%)
+
+Read1 after filtering:
+total reads: 2891349
+total bases: 290397800
+Q20 bases: 284202003(97.8664%)
+Q30 bases: 275004055(94.6991%)
+
+Filtering result:
+reads passed filter: 2891349
+reads failed due to low quality: 15647
+reads failed due to too many N: 5
+reads failed due to too short: 6
+reads with adapter trimmed: 50753
+bases trimmed due to adapters: 1620261
+
+Duplication rate (may be overestimated since this is SE data): 35.2017%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai27_S27_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai27_S27_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai27_S27_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2914672
+total bases: 294381872
+Q20 bases: 286645235(97.3719%)
+Q30 bases: 276847851(94.0438%)
+
+Read1 after filtering:
+total reads: 2898751
+total bases: 291159982
+Q20 bases: 284877247(97.8422%)
+Q30 bases: 275619568(94.6626%)
+
+Filtering result:
+reads passed filter: 2898751
+reads failed due to low quality: 15907
+reads failed due to too many N: 5
+reads failed due to too short: 9
+reads with adapter trimmed: 50200
+bases trimmed due to adapters: 1605742
+
+Duplication rate (may be overestimated since this is SE data): 35.5407%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai27_S27_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai27_S27_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai27_S27_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3106012
+total bases: 313707212
+Q20 bases: 307210442(97.929%)
+Q30 bases: 297324714(94.7778%)
+
+Read1 after filtering:
+total reads: 3093832
+total bases: 311498653
+Q20 bases: 306003142(98.2358%)
+Q30 bases: 296478985(95.1783%)
+
+Filtering result:
+reads passed filter: 3093832
+reads failed due to low quality: 12160
+reads failed due to too many N: 6
+reads failed due to too short: 14
+reads with adapter trimmed: 30281
+bases trimmed due to adapters: 973340
+
+Duplication rate (may be overestimated since this is SE data): 43.4923%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai28_S28_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai28_S28_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai28_S28_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3109504
+total bases: 314059904
+Q20 bases: 307489223(97.9078%)
+Q30 bases: 297550489(94.7432%)
+
+Read1 after filtering:
+total reads: 3097186
+total bases: 311841322
+Q20 bases: 306278997(98.2163%)
+Q30 bases: 296700714(95.1448%)
+
+Filtering result:
+reads passed filter: 3097186
+reads failed due to low quality: 12311
+reads failed due to too many N: 4
+reads failed due to too short: 3
+reads with adapter trimmed: 30232
+bases trimmed due to adapters: 968821
+
+Duplication rate (may be overestimated since this is SE data): 43.7623%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai28_S28_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai28_S28_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai28_S28_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3263308
+total bases: 329594108
+Q20 bases: 314673644(95.4731%)
+Q30 bases: 302064058(91.6473%)
+
+Read1 after filtering:
+total reads: 3209594
+total bases: 319314635
+Q20 bases: 309248884(96.8477%)
+Q30 bases: 298271011(93.4098%)
+
+Filtering result:
+reads passed filter: 3209594
+reads failed due to low quality: 53704
+reads failed due to too many N: 5
+reads failed due to too short: 5
+reads with adapter trimmed: 132981
+bases trimmed due to adapters: 4836665
+
+Duplication rate (may be overestimated since this is SE data): 33.1102%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai29_S29_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai29_S29_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai29_S29_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3278073
+total bases: 331085373
+Q20 bases: 315991068(95.441%)
+Q30 bases: 303292119(91.6054%)
+
+Read1 after filtering:
+total reads: 3223794
+total bases: 320709271
+Q20 bases: 310525000(96.8245%)
+Q30 bases: 299464653(93.3757%)
+
+Filtering result:
+reads passed filter: 3223794
+reads failed due to low quality: 54265
+reads failed due to too many N: 1
+reads failed due to too short: 13
+reads with adapter trimmed: 133360
+bases trimmed due to adapters: 4877036
+
+Duplication rate (may be overestimated since this is SE data): 33.2989%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai29_S29_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai29_S29_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai29_S29_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2426576
+total bases: 245084176
+Q20 bases: 239425429(97.6911%)
+Q30 bases: 230819176(94.1796%)
+
+Read1 after filtering:
+total reads: 2416043
+total bases: 242998419
+Q20 bases: 238314354(98.0724%)
+Q30 bases: 230046182(94.6698%)
+
+Filtering result:
+reads passed filter: 2416043
+reads failed due to low quality: 10524
+reads failed due to too many N: 6
+reads failed due to too short: 3
+reads with adapter trimmed: 29493
+bases trimmed due to adapters: 1014436
+
+Duplication rate (may be overestimated since this is SE data): 35.5479%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai2_S2_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai2_S2_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 20 seconds
+Started analysis of adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai2_S2_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2451250
+total bases: 247576250
+Q20 bases: 241789313(97.6626%)
+Q30 bases: 233034488(94.1264%)
+
+Read1 after filtering:
+total reads: 2440198
+total bases: 245420430
+Q20 bases: 240641558(98.0528%)
+Q30 bases: 232232568(94.6264%)
+
+Filtering result:
+reads passed filter: 2440198
+reads failed due to low quality: 11045
+reads failed due to too many N: 2
+reads failed due to too short: 5
+reads with adapter trimmed: 29766
+bases trimmed due to adapters: 1032888
+
+Duplication rate (may be overestimated since this is SE data): 35.9041%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai2_S2_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai2_S2_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 20 seconds
+Started analysis of adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai2_S2_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3182233
+total bases: 321405533
+Q20 bases: 311864398(97.0314%)
+Q30 bases: 300783251(93.5837%)
+
+Read1 after filtering:
+total reads: 3159641
+total bases: 316690345
+Q20 bases: 309327086(97.6749%)
+Q30 bases: 299029471(94.4233%)
+
+Filtering result:
+reads passed filter: 3159641
+reads failed due to low quality: 22582
+reads failed due to too many N: 5
+reads failed due to too short: 5
+reads with adapter trimmed: 72363
+bases trimmed due to adapters: 2402767
+
+Duplication rate (may be overestimated since this is SE data): 36.3546%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai30_S30_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai30_S30_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai30_S30_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3188028
+total bases: 321990828
+Q20 bases: 312399563(97.0213%)
+Q30 bases: 301294117(93.5723%)
+
+Read1 after filtering:
+total reads: 3165398
+total bases: 317300667
+Q20 bases: 309878565(97.6609%)
+Q30 bases: 299546624(94.4047%)
+
+Filtering result:
+reads passed filter: 3165398
+reads failed due to low quality: 22613
+reads failed due to too many N: 9
+reads failed due to too short: 8
+reads with adapter trimmed: 71387
+bases trimmed due to adapters: 2374494
+
+Duplication rate (may be overestimated since this is SE data): 36.6875%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai30_S30_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai30_S30_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai30_S30_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3211958
+total bases: 324407758
+Q20 bases: 314826617(97.0466%)
+Q30 bases: 303638856(93.5979%)
+
+Read1 after filtering:
+total reads: 3190195
+total bases: 319952428
+Q20 bases: 312396575(97.6384%)
+Q30 bases: 301958167(94.376%)
+
+Filtering result:
+reads passed filter: 3190195
+reads failed due to low quality: 21751
+reads failed due to too many N: 4
+reads failed due to too short: 8
+reads with adapter trimmed: 67876
+bases trimmed due to adapters: 2246371
+
+Duplication rate (may be overestimated since this is SE data): 34.3939%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai31_S31_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai31_S31_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai31_S31_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3234467
+total bases: 326681167
+Q20 bases: 316999985(97.0365%)
+Q30 bases: 305726027(93.5854%)
+
+Read1 after filtering:
+total reads: 3212680
+total bases: 322234658
+Q20 bases: 314577748(97.6238%)
+Q30 bases: 304045538(94.3553%)
+
+Filtering result:
+reads passed filter: 3212680
+reads failed due to low quality: 21780
+reads failed due to too many N: 1
+reads failed due to too short: 6
+reads with adapter trimmed: 67549
+bases trimmed due to adapters: 2235764
+
+Duplication rate (may be overestimated since this is SE data): 34.7532%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai31_S31_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai31_S31_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai31_S31_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3195307
+total bases: 322726007
+Q20 bases: 314419632(97.4262%)
+Q30 bases: 303569728(94.0642%)
+
+Read1 after filtering:
+total reads: 3178359
+total bases: 319267130
+Q20 bases: 312532125(97.8905%)
+Q30 bases: 302263819(94.6743%)
+
+Filtering result:
+reads passed filter: 3178359
+reads failed due to low quality: 16934
+reads failed due to too many N: 5
+reads failed due to too short: 9
+reads with adapter trimmed: 55760
+bases trimmed due to adapters: 1737839
+
+Duplication rate (may be overestimated since this is SE data): 36.1587%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai32_S32_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai32_S32_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai32_S32_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3194955
+total bases: 322690455
+Q20 bases: 314338441(97.4118%)
+Q30 bases: 303454844(94.039%)
+
+Read1 after filtering:
+total reads: 3178024
+total bases: 319265600
+Q20 bases: 312473245(97.8725%)
+Q30 bases: 302162074(94.6429%)
+
+Filtering result:
+reads passed filter: 3178024
+reads failed due to low quality: 16924
+reads failed due to too many N: 4
+reads failed due to too short: 3
+reads with adapter trimmed: 54793
+bases trimmed due to adapters: 1706152
+
+Duplication rate (may be overestimated since this is SE data): 36.4495%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai32_S32_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai32_S32_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai32_S32_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2920603
+total bases: 294980903
+Q20 bases: 287634956(97.5097%)
+Q30 bases: 277953727(94.2277%)
+
+Read1 after filtering:
+total reads: 2904654
+total bases: 291866508
+Q20 bases: 285933899(97.9674%)
+Q30 bases: 276771360(94.8281%)
+
+Filtering result:
+reads passed filter: 2904654
+reads failed due to low quality: 15937
+reads failed due to too many N: 3
+reads failed due to too short: 9
+reads with adapter trimmed: 45619
+bases trimmed due to adapters: 1496518
+
+Duplication rate (may be overestimated since this is SE data): 37.7863%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai33_S33_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai33_S33_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai33_S33_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2924561
+total bases: 295380661
+Q20 bases: 287949031(97.484%)
+Q30 bases: 278227184(94.1928%)
+
+Read1 after filtering:
+total reads: 2908181
+total bases: 292223061
+Q20 bases: 286228211(97.9485%)
+Q30 bases: 277027931(94.8002%)
+
+Filtering result:
+reads passed filter: 2908181
+reads failed due to low quality: 16366
+reads failed due to too many N: 10
+reads failed due to too short: 4
+reads with adapter trimmed: 45392
+bases trimmed due to adapters: 1497157
+
+Duplication rate (may be overestimated since this is SE data): 38.1127%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai33_S33_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai33_S33_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai33_S33_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3122430
+total bases: 315365430
+Q20 bases: 304079481(96.4213%)
+Q30 bases: 292968600(92.8981%)
+
+Read1 after filtering:
+total reads: 3090462
+total bases: 308441794
+Q20 bases: 300323722(97.368%)
+Q30 bases: 290360736(94.1379%)
+
+Filtering result:
+reads passed filter: 3090462
+reads failed due to low quality: 31951
+reads failed due to too many N: 6
+reads failed due to too short: 11
+reads with adapter trimmed: 102964
+bases trimmed due to adapters: 3686604
+
+Duplication rate (may be overestimated since this is SE data): 39.0315%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai34_S34_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai34_S34_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai34_S34_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3130618
+total bases: 316192418
+Q20 bases: 304783198(96.3917%)
+Q30 bases: 293603706(92.856%)
+
+Read1 after filtering:
+total reads: 3097912
+total bases: 309187317
+Q20 bases: 300992618(97.3496%)
+Q30 bases: 290963923(94.106%)
+
+Filtering result:
+reads passed filter: 3097912
+reads failed due to low quality: 32678
+reads failed due to too many N: 5
+reads failed due to too short: 23
+reads with adapter trimmed: 102879
+bases trimmed due to adapters: 3692680
+
+Duplication rate (may be overestimated since this is SE data): 39.2244%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai34_S34_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai34_S34_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai34_S34_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2888074
+total bases: 291695474
+Q20 bases: 284805918(97.6381%)
+Q30 bases: 275296022(94.3779%)
+
+Read1 after filtering:
+total reads: 2874707
+total bases: 289036331
+Q20 bases: 283342884(98.0302%)
+Q30 bases: 274275477(94.8931%)
+
+Filtering result:
+reads passed filter: 2874707
+reads failed due to low quality: 13352
+reads failed due to too many N: 5
+reads failed due to too short: 10
+reads with adapter trimmed: 41739
+bases trimmed due to adapters: 1304051
+
+Duplication rate (may be overestimated since this is SE data): 40.7267%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai35_S35_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai35_S35_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 23 seconds
+Started analysis of adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai35_S35_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2887562
+total bases: 291643762
+Q20 bases: 284692426(97.6165%)
+Q30 bases: 275154809(94.3462%)
+
+Read1 after filtering:
+total reads: 2874050
+total bases: 288980394
+Q20 bases: 283231741(98.0107%)
+Q30 bases: 274132804(94.8621%)
+
+Filtering result:
+reads passed filter: 2874050
+reads failed due to low quality: 13503
+reads failed due to too many N: 1
+reads failed due to too short: 8
+reads with adapter trimmed: 41073
+bases trimmed due to adapters: 1293370
+
+Duplication rate (may be overestimated since this is SE data): 41.0054%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai35_S35_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai35_S35_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai35_S35_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3181402
+total bases: 321321602
+Q20 bases: 312862059(97.3673%)
+Q30 bases: 301990914(93.984%)
+
+Read1 after filtering:
+total reads: 3162899
+total bases: 317596278
+Q20 bases: 310803394(97.8612%)
+Q30 bases: 300545885(94.6314%)
+
+Filtering result:
+reads passed filter: 3162899
+reads failed due to low quality: 18482
+reads failed due to too many N: 9
+reads failed due to too short: 12
+reads with adapter trimmed: 53510
+bases trimmed due to adapters: 1848825
+
+Duplication rate (may be overestimated since this is SE data): 36.6154%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai36_S36_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai36_S36_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai36_S36_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3198810
+total bases: 323079810
+Q20 bases: 314514341(97.3488%)
+Q30 bases: 303569504(93.9611%)
+
+Read1 after filtering:
+total reads: 3180037
+total bases: 319334716
+Q20 bases: 312450691(97.8443%)
+Q30 bases: 302116852(94.6082%)
+
+Filtering result:
+reads passed filter: 3180037
+reads failed due to low quality: 18751
+reads failed due to too many N: 7
+reads failed due to too short: 15
+reads with adapter trimmed: 52977
+bases trimmed due to adapters: 1841593
+
+Duplication rate (may be overestimated since this is SE data): 36.917%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai36_S36_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai36_S36_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai36_S36_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3290286
+total bases: 332318886
+Q20 bases: 317539845(95.5528%)
+Q30 bases: 305107683(91.8117%)
+
+Read1 after filtering:
+total reads: 3233337
+total bases: 321708285
+Q20 bases: 312002568(96.9831%)
+Q30 bases: 301223224(93.6324%)
+
+Filtering result:
+reads passed filter: 3233337
+reads failed due to low quality: 56929
+reads failed due to too many N: 8
+reads failed due to too short: 12
+reads with adapter trimmed: 127458
+bases trimmed due to adapters: 4846230
+
+Duplication rate (may be overestimated since this is SE data): 37.184%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai38_S37_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai38_S37_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai38_S37_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3305355
+total bases: 333840855
+Q20 bases: 318957921(95.5419%)
+Q30 bases: 306468690(91.8008%)
+
+Read1 after filtering:
+total reads: 3248191
+total bases: 323245028
+Q20 bases: 313442495(96.9675%)
+Q30 bases: 302589969(93.6101%)
+
+Filtering result:
+reads passed filter: 3248191
+reads failed due to low quality: 57149
+reads failed due to too many N: 3
+reads failed due to too short: 12
+reads with adapter trimmed: 126497
+bases trimmed due to adapters: 4808854
+
+Duplication rate (may be overestimated since this is SE data): 37.4227%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai38_S37_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai38_S37_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai38_S37_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2859890
+total bases: 288848890
+Q20 bases: 281135511(97.3296%)
+Q30 bases: 271231596(93.9009%)
+
+Read1 after filtering:
+total reads: 2843488
+total bases: 285566156
+Q20 bases: 279316805(97.8116%)
+Q30 bases: 269974051(94.5399%)
+
+Filtering result:
+reads passed filter: 2843488
+reads failed due to low quality: 16386
+reads failed due to too many N: 7
+reads failed due to too short: 9
+reads with adapter trimmed: 49067
+bases trimmed due to adapters: 1619664
+
+Duplication rate (may be overestimated since this is SE data): 35.7296%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai39_S38_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai39_S38_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai39_S38_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2872233
+total bases: 290095533
+Q20 bases: 282281255(97.3063%)
+Q30 bases: 272299962(93.8656%)
+
+Read1 after filtering:
+total reads: 2855346
+total bases: 286778098
+Q20 bases: 280448909(97.793%)
+Q30 bases: 271026891(94.5075%)
+
+Filtering result:
+reads passed filter: 2855346
+reads failed due to low quality: 16875
+reads failed due to too many N: 6
+reads failed due to too short: 6
+reads with adapter trimmed: 48774
+bases trimmed due to adapters: 1605135
+
+Duplication rate (may be overestimated since this is SE data): 36.0052%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai39_S38_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai39_S38_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai39_S38_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3445971
+total bases: 348043071
+Q20 bases: 334055562(95.9811%)
+Q30 bases: 321667444(92.4217%)
+
+Read1 after filtering:
+total reads: 3396843
+total bases: 338049144
+Q20 bases: 328706642(97.2363%)
+Q30 bases: 317998592(94.0687%)
+
+Filtering result:
+reads passed filter: 3396843
+reads failed due to low quality: 49098
+reads failed due to too many N: 9
+reads failed due to too short: 21
+reads with adapter trimmed: 136874
+bases trimmed due to adapters: 5018750
+
+Duplication rate (may be overestimated since this is SE data): 32.3685%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai3_S3_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai3_S3_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai3_S3_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3460333
+total bases: 349493633
+Q20 bases: 335357793(95.9553%)
+Q30 bases: 322876154(92.384%)
+
+Read1 after filtering:
+total reads: 3410602
+total bases: 339438210
+Q20 bases: 329988944(97.2162%)
+Q30 bases: 319186986(94.0339%)
+
+Filtering result:
+reads passed filter: 3410602
+reads failed due to low quality: 49711
+reads failed due to too many N: 5
+reads failed due to too short: 15
+reads with adapter trimmed: 136658
+bases trimmed due to adapters: 5018155
+
+Duplication rate (may be overestimated since this is SE data): 32.642%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai3_S3_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai3_S3_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai3_S3_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3052925
+total bases: 308345425
+Q20 bases: 300139290(97.3387%)
+Q30 bases: 290024288(94.0582%)
+
+Read1 after filtering:
+total reads: 3034574
+total bases: 304690937
+Q20 bases: 298169003(97.8595%)
+Q30 bases: 288650748(94.7356%)
+
+Filtering result:
+reads passed filter: 3034574
+reads failed due to low quality: 18341
+reads failed due to too many N: 6
+reads failed due to too short: 4
+reads with adapter trimmed: 56757
+bases trimmed due to adapters: 1792880
+
+Duplication rate (may be overestimated since this is SE data): 35.4703%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai40_S39_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai40_S39_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai40_S39_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3061341
+total bases: 309195441
+Q20 bases: 300919579(97.3234%)
+Q30 bases: 290745638(94.033%)
+
+Read1 after filtering:
+total reads: 3043044
+total bases: 305539273
+Q20 bases: 298951666(97.8439%)
+Q30 bases: 289373097(94.709%)
+
+Filtering result:
+reads passed filter: 3043044
+reads failed due to low quality: 18289
+reads failed due to too many N: 5
+reads failed due to too short: 3
+reads with adapter trimmed: 56549
+bases trimmed due to adapters: 1801341
+
+Duplication rate (may be overestimated since this is SE data): 35.7456%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai40_S39_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai40_S39_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 25 seconds
+Started analysis of adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai40_S39_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2876607
+total bases: 290537307
+Q20 bases: 283179103(97.4674%)
+Q30 bases: 273366080(94.0898%)
+
+Read1 after filtering:
+total reads: 2852005
+total bases: 286245137
+Q20 bases: 280869343(98.122%)
+Q30 bases: 271756486(94.9384%)
+
+Filtering result:
+reads passed filter: 2852005
+reads failed due to low quality: 24592
+reads failed due to too many N: 5
+reads failed due to too short: 5
+reads with adapter trimmed: 42222
+bases trimmed due to adapters: 1799126
+
+Duplication rate (may be overestimated since this is SE data): 38.6567%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai4_S4_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai4_S4_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 23 seconds
+Started analysis of adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Approx 100% complete for adapter_trim.Ai4_S4_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2884253
+total bases: 291309553
+Q20 bases: 283879137(97.4493%)
+Q30 bases: 274010994(94.0618%)
+
+Read1 after filtering:
+total reads: 2859541
+total bases: 287022961
+Q20 bases: 281579283(98.1034%)
+Q30 bases: 272403908(94.9067%)
+
+Filtering result:
+reads passed filter: 2859541
+reads failed due to low quality: 24698
+reads failed due to too many N: 5
+reads failed due to too short: 9
+reads with adapter trimmed: 41444
+bases trimmed due to adapters: 1783843
+
+Duplication rate (may be overestimated since this is SE data): 38.9531%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai4_S4_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai4_S4_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai4_S4_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3258234
+total bases: 329081634
+Q20 bases: 314469108(95.5596%)
+Q30 bases: 302242808(91.8443%)
+
+Read1 after filtering:
+total reads: 3199050
+total bases: 317460651
+Q20 bases: 308217815(97.0885%)
+Q30 bases: 297909207(93.8413%)
+
+Filtering result:
+reads passed filter: 3199050
+reads failed due to low quality: 59151
+reads failed due to too many N: 6
+reads failed due to too short: 27
+reads with adapter trimmed: 140728
+bases trimmed due to adapters: 5631330
+
+Duplication rate (may be overestimated since this is SE data): 37.1343%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai5_S5_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai5_S5_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai5_S5_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3265007
+total bases: 329765707
+Q20 bases: 315016268(95.5273%)
+Q30 bases: 302721315(91.7989%)
+
+Read1 after filtering:
+total reads: 3205210
+total bases: 318039744
+Q20 bases: 308726319(97.0716%)
+Q30 bases: 298354958(93.8106%)
+
+Filtering result:
+reads passed filter: 3205210
+reads failed due to low quality: 59766
+reads failed due to too many N: 6
+reads failed due to too short: 25
+reads with adapter trimmed: 140813
+bases trimmed due to adapters: 5673522
+
+Duplication rate (may be overestimated since this is SE data): 37.3988%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai5_S5_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai5_S5_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai5_S5_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3004617
+total bases: 303466317
+Q20 bases: 295547033(97.3904%)
+Q30 bases: 285584077(94.1073%)
+
+Read1 after filtering:
+total reads: 2984857
+total bases: 299509310
+Q20 bases: 293386328(97.9557%)
+Q30 bases: 284100543(94.8553%)
+
+Filtering result:
+reads passed filter: 2984857
+reads failed due to low quality: 19742
+reads failed due to too many N: 7
+reads failed due to too short: 11
+reads with adapter trimmed: 56730
+bases trimmed due to adapters: 1952524
+
+Duplication rate (may be overestimated since this is SE data): 33.8119%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai6_S6_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai6_S6_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai6_S6_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3025846
+total bases: 305610446
+Q20 bases: 297623328(97.3865%)
+Q30 bases: 287565621(94.0955%)
+
+Read1 after filtering:
+total reads: 3006092
+total bases: 301680362
+Q20 bases: 295481380(97.9452%)
+Q30 bases: 286090967(94.8325%)
+
+Filtering result:
+reads passed filter: 3006092
+reads failed due to low quality: 19744
+reads failed due to too many N: 4
+reads failed due to too short: 6
+reads with adapter trimmed: 56302
+bases trimmed due to adapters: 1926623
+
+Duplication rate (may be overestimated since this is SE data): 34.1687%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai6_S6_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai6_S6_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai6_S6_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3386049
+total bases: 341990949
+Q20 bases: 328371158(96.0175%)
+Q30 bases: 315915312(92.3753%)
+
+Read1 after filtering:
+total reads: 3340507
+total bases: 332378972
+Q20 bases: 323192983(97.2363%)
+Q30 bases: 312386129(93.9849%)
+
+Filtering result:
+reads passed filter: 3340507
+reads failed due to low quality: 45528
+reads failed due to too many N: 4
+reads failed due to too short: 10
+reads with adapter trimmed: 133484
+bases trimmed due to adapters: 4998767
+
+Duplication rate (may be overestimated since this is SE data): 35.2312%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai7_S7_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai7_S7_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai7_S7_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3396399
+total bases: 343036299
+Q20 bases: 329331538(96.0049%)
+Q30 bases: 316821931(92.3581%)
+
+Read1 after filtering:
+total reads: 3350858
+total bases: 333419203
+Q20 bases: 324161695(97.2235%)
+Q30 bases: 313292599(93.9636%)
+
+Filtering result:
+reads passed filter: 3350858
+reads failed due to low quality: 45521
+reads failed due to too many N: 1
+reads failed due to too short: 19
+reads with adapter trimmed: 133133
+bases trimmed due to adapters: 5003428
+
+Duplication rate (may be overestimated since this is SE data): 35.5258%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai7_S7_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai7_S7_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 28 seconds
+Started analysis of adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai7_S7_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2952284
+total bases: 298180684
+Q20 bases: 290351581(97.3744%)
+Q30 bases: 280767452(94.1602%)
+
+Read1 after filtering:
+total reads: 2928863
+total bases: 293828438
+Q20 bases: 288109915(98.0538%)
+Q30 bases: 279233694(95.0329%)
+
+Filtering result:
+reads passed filter: 2928863
+reads failed due to low quality: 23402
+reads failed due to too many N: 6
+reads failed due to too short: 13
+reads with adapter trimmed: 54908
+bases trimmed due to adapters: 1978226
+
+Duplication rate (may be overestimated since this is SE data): 34.6394%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai8_S8_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai8_S8_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai8_S8_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 2955698
+total bases: 298525498
+Q20 bases: 290631265(97.3556%)
+Q30 bases: 281006218(94.1314%)
+
+Read1 after filtering:
+total reads: 2932256
+total bases: 294151304
+Q20 bases: 288387984(98.0407%)
+Q30 bases: 279472000(95.0096%)
+
+Filtering result:
+reads passed filter: 2932256
+reads failed due to low quality: 23429
+reads failed due to too many N: 3
+reads failed due to too short: 10
+reads with adapter trimmed: 54862
+bases trimmed due to adapters: 1998457
+
+Duplication rate (may be overestimated since this is SE data): 34.8673%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai8_S8_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai8_S8_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 24 seconds
+Started analysis of adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai8_S8_L002_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3305118
+total bases: 333816918
+Q20 bases: 326088067(97.6847%)
+Q30 bases: 315511089(94.5162%)
+
+Read1 after filtering:
+total reads: 3288025
+total bases: 330299462
+Q20 bases: 324146741(98.1372%)
+Q30 bases: 314183642(95.1208%)
+
+Filtering result:
+reads passed filter: 3288025
+reads failed due to low quality: 17076
+reads failed due to too many N: 9
+reads failed due to too short: 8
+reads with adapter trimmed: 51725
+bases trimmed due to adapters: 1783186
+
+Duplication rate (may be overestimated since this is SE data): 39.553%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai9_S9_L001_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai9_S9_L001_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 26 seconds
+Started analysis of adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai9_S9_L001_R1_001.fastq.gz
+Read1 before filtering:
+total reads: 3315928
+total bases: 334908728
+Q20 bases: 327053389(97.6545%)
+Q30 bases: 316401993(94.4741%)
+
+Read1 after filtering:
+total reads: 3298363
+total bases: 331312121
+Q20 bases: 325077877(98.1183%)
+Q30 bases: 315051711(95.0921%)
+
+Filtering result:
+reads passed filter: 3298363
+reads failed due to low quality: 17552
+reads failed due to too many N: 2
+reads failed due to too short: 11
+reads with adapter trimmed: 52024
+bases trimmed due to adapters: 1814588
+
+Duplication rate (may be overestimated since this is SE data): 39.8336%
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp --in1 Ai9_S9_L002_R1_001.fastq.gz --out1 ./adapter_trim/adapter_trim.Ai9_S9_L002_R1_001.fastq.gz --adapter_sequence=AGATCGGAAGAGCACACGTCTGAACTCCAGTCA 
+fastp v0.23.2, time used: 27 seconds
+Started analysis of adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 5% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 10% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 15% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 20% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 25% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 30% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 35% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 40% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 45% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 50% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 55% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 60% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 65% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 70% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 75% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 80% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 85% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 90% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+Approx 95% complete for adapter_trim.Ai9_S9_L002_R1_001.fastq.gz
+
+  /// MultiQC 🔍 | v1.12
+
+|           multiqc | Search path : /home/sgurr/Airradians_F1s_TagSeq/output/fastp_multiQC/adapter_trim
+|            fastqc | Found 78 reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : adapter_trim/multiqc_report.html
+|           multiqc | Data        : adapter_trim/multiqc_data
+|           multiqc | MultiQC complete
