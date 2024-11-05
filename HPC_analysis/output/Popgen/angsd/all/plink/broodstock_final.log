@@ -1,0 +1,35 @@
+PLINK v1.90b6.23 64-bit (28 May 2021)
+Options in effect:
+  --allow-extra-chr
+  --double-id
+  --make-bed
+  --mind 0.8
+  --out ./broodstock_final
+  --pca
+  --vcf ../final_vcf/broodstock_final.vcf.gz
+
+Hostname: himem04.cluster
+Working directory: /home/sgurr/Airradians_lcWGS/snakemake_pipeline/angsd/output/everyone/vcf/final_plink
+Start time: Mon Nov  4 21:51:04 2024
+
+Random number seed: 1730785864
+1546362 MB RAM detected; reserving 773181 MB for main workspace.
+--vcf: ./broodstock_final-temporary.bed + ./broodstock_final-temporary.bim +
+./broodstock_final-temporary.fam written.
+3897 variants loaded from .bim file.
+101 people (0 males, 0 females, 101 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to ./broodstock_final.nosex .
+0 people removed due to missing genotype data (--mind).
+Using up to 23 threads (change this with --threads).
+Before main variant filters, 101 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.824115.
+3897 variants and 101 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to ./broodstock_final.eigenval and
+./broodstock_final.eigenvec .
+--make-bed to ./broodstock_final.bed + ./broodstock_final.bim +
+./broodstock_final.fam ... done.
+
+End time: Mon Nov  4 21:51:04 2024
