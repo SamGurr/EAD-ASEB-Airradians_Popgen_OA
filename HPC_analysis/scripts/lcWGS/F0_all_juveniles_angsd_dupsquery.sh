@@ -1,27 +1,22 @@
 #!/bin/bash
-#SBATCH --job-name="F1J_angsd_run_dupsquery"
+#SBATCH --job-name="angsdF0alljuv"
 #SBATCH -t 500:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mem=160GB
+#SBATCH --mem=180GB
+#SBATCH -c 20
 #SBATCH -p medmem
 #SBATCH --mail-user=samuel.gurr@noaa.gov
-#SBATCH --output=./Airradians_lcWGS/snakemake_pipeline/angsd/output/F1_Juveniles/query_dups/"%x_out.%j"
-#SBATCH --error=./Airradians_lcWGS/snakemake_pipeline/angsd/output/F1_Juveniles/query_dups/"%x_err.%j"
+#SBATCH --output=./Airradians_lcWGS/snakemake_pipeline/angsd/output/F0_all_juveniles/"%x_out.%j"
+#SBATCH --error=./Airradians_lcWGS/snakemake_pipeline/angsd/output/F0_all_juveniles/"%x_err.%j"
 
 # Set-up
-
 
 # output dir
 mkdir -p angsd/output
 
-
 ## load module
-module load bio/angsd/0.933
-module load bio/samtools/1.15.1
-
-## loop vars by treatment (for loop #2)
-#TREATMENT_ALL=('LOWpCO2' 'MODpCO2' 'HIGHpCO2') # a list of the common str on file names and outputs in the for loop below
-
+module load bio/angsd/0.940
+module load bio/samtools/1.19
 
 ## dir shortcuts
 DATDIR=~/Airradians_lcWGS/snakemake_pipeline/angsd/data # Path to generation and life stage bam files
@@ -55,32 +50,27 @@ MINMAF=0.05 # Minimum minor allele frequency filter
 # objective to input a strata / metadta to identify treatments associated with ids downstream..
 
 
-mkdir -p $OUTDIR/F1_Juveniles # make director for ansd output files
-mkdir -p $OUTDIR/F1_Juveniles/query_dups
-mkdir -p $OUTDIR/F1_Juveniles/coord_dups
-
+mkdir -p $OUTDIR/all_juveniles # make director for ansd output files
 
 # nav to dir
-cd $DATDIR/F1_Juveniles/merged_bams/query_dups_removed # NAV TO THE REMOVED DUPLICATES BY QUERYNAME!
-# ls ./*.bam | sort | uniq > ./merged_bamlist.txt # create a list of all bam files in merged_bams
+cd $DATDIR/Master_query_dups_removed # NAV TO THE REMOVED DUPLICATES BY QUERYNAME!
+#ls *.bam | sort | uniq > ./merged_bamlist.txt # create a list of all bam files in merged_bams
 
-
-# Query dups removed MODERATE pCO2
 # cal number of indiv
-nIND_MOD=$(wc -l $DATDIR/F1_Juveniles/merged_bams/query_dups_removed/MODpCO2_bamlist.txt | awk '{print $1}') # call and count lines of the bamlist with delimiter id
-minIND_MOD=$(echo "(${nIND_MOD} * 0.95)" | bc) # min individual is 90% of the total count
-minINDRd_MOD=$(printf "%.0f" ${minIND_MOD}) # round that
+nIND=$(wc -l $DATDIR/Master_query_dups_removed/F0_all_juveniles_bamlist.txt | awk '{print $1}') # call and count lines of the bamlist with delimiter id
+minIND=$(echo "(${nIND} * 0.95)" | bc) # min individual is 90% of the total count
+minINDRd=$(printf "%.0f" ${minIND}) # round that
 
 # set min and max depth for minuum of 5X and max of 20X coerage per loci to acoid potential bias arising from seq errors and recommendations in O'Leary (etal 2018)
-MINDP_MOD=$(echo "(${minINDRd_MOD} * 5)" | bc) # min coverage of 5X accoutning for the minimum num of individuals for genotype calls as 90% and assuming per indiv per loci
-MAXDP_MOD=$(echo "(${minINDRd_MOD} * 20)" | bc) # max coverage of 20X accounting for the minimum num of individual for genotype calls as 90% and assuming per indiv per loci
+MINDP=$(echo "(${minINDRd} * 5)" | bc) # min coverage of 5X accoutning for the minimum num of individuals for genotype calls as 90% and assuming per indiv per loci
+MAXDP=$(echo "(${minINDRd} * 20)" | bc) # max coverage of 20X accounting for the minimum num of individual for genotype calls as 90% and assuming per indiv per loci
 
 # call unique outbase
-OUTBASE_MOD='F1Juveniles_pH75_doMaf'$DOMAF'_minMaf'$MINMAF'_majorminor'$DOMAJORMINOR'_minind'$minINDRd_MOD'_minD5x'$MINDP_MOD'_maxD20x'$MAXDP_MOD'minDind'$SETMINDEPTHIND'_maxDind'$SETMAXDEPTHIND'_minq'$MINQ'_minmapQ' # Build base name of output fil$
+OUTBASE='F0_all_juveniles_doMaf'$DOMAF'_minMaf'$MINMAF'_majorminor'$DOMAJORMINOR'_minind'$minINDRd'_minD5x'$MINDP'_maxD20x'$MAXDP'minDind'$SETMINDEPTHIND'_maxDind'$SETMAXDEPTHIND'_minq'$MINQ'_minmapQ' # Build base name of output files
 
 # run angsd
-angsd -b $DATDIR/F1_Juveniles/merged_bams/query_dups_removed/MODpCO2_bamlist.txt \
-    -ref $REFDIR/Argopecten_irradians_irradians_genome.fasta \
+angsd -b $DATDIR/Master_query_dups_removed/F0_all_juveniles_bamlist.txt \
+    -ref $REFDIR/GCA_041381155.1_Ai_NY_genomic.fna \
     -GL $GENOLIKE \
     -doGlf $DOGLF \
     -doMaf $DOMAF \
@@ -91,24 +81,25 @@ angsd -b $DATDIR/F1_Juveniles/merged_bams/query_dups_removed/MODpCO2_bamlist.txt
     -dumpCounts $DUMPCOUNTS \
     -doDepth $DODEPTH \
     -maxDepth $MAXDEPTH \
-    -setMinDepth $MINDP_MOD \
-    -setMaxDepth $MAXDP_MOD \
+    -setMinDepth $MINDP \
+    -setMaxDepth $MAXDP \
     -setMaxDepthInd $SETMAXDEPTHIND \
     -setMinDepthInd $SETMINDEPTHIND \
     -doIBS 1 \
     -makematrix 1 \
     -doCov 1 \
-    -minInd $minINDRd_MOD \
+    -minInd $minINDRd \
     -dobcf 1 \
     --ignore-RG 0 \
     -minQ $MINQ \
     -minMapQ $MINMAPQ \
     -minMaf $MINMAF \
     -SNP_pval 1e-6 \
-    -P -20 \
+    -P 20 \
     -remove_bads 1 \
     -only_proper_pairs 1 \
     -uniqueOnly 1 \
     -C 50 \
-    -out $OUTDIR/F1_Juveniles/query_dups/$OUTBASE_MOD \
-    >& $OUTDIR/F1_Juveniles/query_dups/$OUTBASE_MOD'.log';
+    -out $OUTDIR/F0_all_juveniles/$OUTBASE \
+    >& $OUTDIR/F0_all_juveniles/$OUTBASE'.log';
+#done

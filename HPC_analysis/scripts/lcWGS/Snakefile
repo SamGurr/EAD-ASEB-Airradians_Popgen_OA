@@ -1,4 +1,6 @@
 # input your common thread(s) here
+#subfolders={'F1_Broodstock', 'F1_Juveniles', 'F2_Juveniles', 'F2_Broodstock', 'F3_Juveniles'} # omitted F0_Broodstock bcus this was already run when I made this change
+subfolders={'F1_Juveniles', 'F2_Juveniles', 'F3_Juveniles'} # omitted F0_Broodstock bcus this was already run when I made this change
 
 # ALL: one rule to rule them all..
 # Important!: to run this entire make of snake, the input to 'all' should be equivalent to the **final** filename at the end of the pipe
@@ -20,11 +22,12 @@ rule all:
         # merge_bams - self explanatory.. use samtools here to merge seq lanes by ID (R1 and R2 to a master bam)
         "angsd/data/merge_complete",
         # sortbams_removedups - use picard to SortSam by queryname and then remove duplicates - the output file here is used for SNP calling (finally!)
-        "angsd/data/sortbams_removedups"
-	    # generate_bamlists - angsd required a list of bam files to call, generate these lists here
-        #"angsd/data/bamlists_generated"
-	    # run angsd for F0 - based on base counts, no prior
-	    #"angsd/output/F0_angsd",
+        #"angsd/data/sortbams_removedups",
+        expand("angsd/data/{generation}/sortremovedups_complete", generation=subfolders),
+	# generate_bamlists - angsd required a list of bam files to call, generate these lists here
+        "angsd/data/bamlists_generated"
+	# run angsd for F0 - based on base counts, no prior
+	#"angsd/output/F0_angsd",
         # run angsd 
         #"angsd/output/All_angsd"
 # RAW QC: load the reads, initial symbolic directory, etc.
@@ -209,9 +212,10 @@ rule map_SortSam:
         mkdir -p hisat2/Airradians_ref
         
         # index the ref genome for mapping - hashed out below becasue we already did this and repeated wth duplicate marking
-        source $PYTHONENV/activate  # activate python virtual envriomment to call python and run hisat2-build
-        hisat2-build -f $REFDIR/Argopecten_irradians_irradians_genome.fasta hisat2/Airradians_ref/Airradians_ref
-        deactivate # exit python virtual envrionment
+        #source $PYTHONENV/activate  # activate python virtual envriomment to call python and run hisat2-build
+        #hisat2-build -f $REFDIR/Argopecten_irradians_irradians_genome.fasta hisat2/Airradians_ref/Airradians_ref # previous reference, outdated!
+        #hisat2-build -f $REFDIR/GCA_041381155.1_Ai_NY_genomic.fna hisat2/Airradians_ref/Airradians_ref
+        #deactivate # exit python virtual envrionment - NOTE: deactivate causes the job to cancel out, I just hashed this out after building the reference index and it runs fine..
         
         #echo "Referece genome indexed." $(date) # checkpoint output 
 
@@ -278,7 +282,11 @@ rule bams_linked:
         # three files in April that had 0 data! omit these , duplicated in July 
         #rm ./hisat2/April2023/adapter_trim.F1-B2-pH8* ./hisat2/April2023/adapter_trim.F1-B22-pH75* ./hisat2/April2023/adapter_trim.F1-B30-pH75* # SEEMS TEY WERE ALREADY OMITTED? 
         ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/April2023/*trim.F1-B*sorted.bam  ./angsd/data/F1_Broodstock/ 
-        ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/July2023/*trim.F1-B*sorted.bam  ./angsd/data/F1_Broodstock/ #  2_ph8 + 30 and 22 ph 7.5
+        rm ./angsd/data/F1_Broodstock/*F1-B22-pH75* # omit bad samplesymb dir from April 2023, ID 22 pH 75
+        rm ./angsd/data/F1_Broodstock/*F1-B2-pH8* # omit bad samplesymb dir from April 2023, ID 2 pH 8
+        rm ./angsd/data/F1_Broodstock/*F1-B30-pH75* # omit bad samplesymb dir from April 2023, ID  30 pH 75
+
+        ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/July2023/*trim.F1-B*sorted.bam  ./angsd/data/F1_Broodstock/ # new 2_ph8 + 30 and 22 ph 7.5
 
         ## F2_Broodstock 
         ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/Nov2023/*trim.F2-B*sorted.bam  ./angsd/data/F2_Broodstock/         
@@ -293,7 +301,7 @@ rule bams_linked:
         ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/July2023/*trim.F2-J*sorted.bam ./angsd/data/F2_Juveniles/
 
         ## F3_Juveniles 
-        #ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/Nov2023/*trim.F3-J*sorted.bam  ./angsd/data/F3_Juveniles/
+        ln -s ~/Airradians_lcWGS/snakemake_pipeline/hisat2/Nov2023/*trim.F3-J*sorted.bam  ./angsd/data/F3_Juveniles/
 
         echo 'BAMS symbolic dirs in angsd/data' $(date) # checkpoint output 
         
@@ -329,7 +337,7 @@ rule merge_bams:
         F2_Juveniles='F2_Juveniles' # string, equal to foldername containing symb linked bam files
         F3_Juveniles='F3_Juveniles' # string, equal to foldername containing symb linked bam files
         #IDS='F0_Broodstock F1_Broodstock F1_Juveniles F2_Juveniles F2_Broodstock F3_Juveniles' # loop strings
-        IDS='F0_Broodstock F1_Broodstock F1_Juveniles F2_Broodstock F2_Juveniles' # loop strings
+        IDS='F2_Juveniles F2_Broodstock F3_Juveniles' # loop strings
         #IDS='F2_Juveniles'
         
 
@@ -339,7 +347,7 @@ rule merge_bams:
             # print the filename BEFORE '_R1...gz" and "_R2...gz" as string for next loop
             ls angsd/data/${{i}}/*R1_001*.bam | awk -F  '[_./]' '{{print $5"_"$6"."$7}}' | sort | uniq > angsd/data/${{i}}/ID;
             for m in `cat angsd/data/${{i}}/ID`; do
-            #for m in `cat angsd/data/${{i}}/ID_diffs`; do # I used grep to make an ID _diffs manually bcus the job quit unexpectedly 
+            #for m in `cat angsd/data/${{i}}/ID_diffs`; do # I used grep to make an ID _diffs manually bcus the job quite unexpectedly 
             samtools merge angsd/data/${{i}}/merged_bams/${{m}}\.bam angsd/data/${{i}}/${{m}}\_R1* angsd/data/${{i}}/${{m}}\_R2*;
             done;
             done
@@ -348,6 +356,45 @@ rule merge_bams:
         
         touch angsd/data/merge_complete
         
+        """
+# A more efficient version, within wildcard 'generation' assigned using expand in the next rule
+# a new sort bames remove/mark duplicates and sort by coord for angsd
+rule sortbams_removedups_effic:
+    input:
+        # insert here
+        "angsd/data/merge_complete"
+    output:
+        # insert here
+        "angsd/data/{generation}/sortremovedups_complete"
+    shell:
+        """
+        echo 'start' $(date) # checkpoint output
+
+        # load libraries
+        module load bio/samtools/1.11
+        module load bio/picard/2.23.9
+
+        ls angsd/data/{wildcards.generation}/merged_bams/*.bam | awk -F  '[_./]' '{{print $7"_"$8"."$9}}' | sort | uniq > angsd/data/{wildcards.generation}/merged_bams/ID;
+
+        mkdir -p angsd/data/{wildcards.generation}/merged_bams/query_dups_removed
+        mkdir -p angsd/data/{wildcards.generation}/merged_bams/query_dups_removed/stats # make directory to input the summary text files from marking duplicates and removing them
+ 
+        for filename in `cat angsd/data/{wildcards.generation}/merged_bams/ID`; do
+            # sort by queryname
+            java -jar $PICARD SortSam I=angsd/data/{wildcards.generation}/merged_bams/${{filename}}.bam O=angsd/data/{wildcards.generation}/merged_bams/${{filename}}_querysorted.bam SORT_ORDER=queryname
+            # call and omit duplicates - queryname sorted, then re sort by coord and delete the previous
+            java -jar $PICARD MarkDuplicates I=angsd/data/{wildcards.generation}/merged_bams/${{filename}}_querysorted.bam O=angsd/data/{wildcards.generation}/merged_bams/query_dups_removed/${{filename}}_querydupsrem.bam M=angsd/data/{wildcards.generation}/merged_bams/query_dups_removed/stats/${{filename}}.txt ASSUME_SORT_ORDER=queryname REMOVE_DUPLICATES=true 
+            java -jar $PICARD SortSam I=angsd/data/{wildcards.generation}/merged_bams/query_dups_removed/${{filename}}_querydupsrem.bam O=angsd/data/{wildcards.generation}/merged_bams/query_dups_removed/${{filename}}.bam SORT_ORDER=coordinate
+            rm angsd/data/{wildcards.generation}/merged_bams/query_dups_removed/${{filename}}_querydupsrem.bam
+            # delete the sorted files w/o removed duplicates
+            rm angsd/data/{wildcards.generation}/merged_bams/${{filename}}_querysorted.bam # remove the query sorted bam file - now all we have left is 'final' with removed duplicates!
+            rm angsd/data/{wildcards.generation}/merged_bams/${{filename}}.bam # remove themerged file fromthe previous chunk to save disc space
+        done;
+
+        echo 'end' $(date) # checkpoint output
+
+        touch angsd/data/{wildcards.generation}/sortremovedups_complete
+
         """
 
 # SamSort queryname and Picard to remove duplicates
@@ -368,7 +415,7 @@ rule sortbams_removedups:
         # setup
         ## load modules, requires hisat2 and samtools
         module load bio/samtools/1.11
-         module load bio/picard/2.23.9
+        module load bio/picard/2.23.9
 
         ## loop vars by generation and life stage - NOTE - one more lane of sequencing to finalize!
         F0_Broodstock='F0_Broodstock' # string, equal to foldername containing symb linked bam files
@@ -377,34 +424,35 @@ rule sortbams_removedups:
         F1_Juveniles='F1_Juveniles' # string, equal to foldername containing symb linked bam files
         F2_Juveniles='F2_Juveniles' # string, equal to foldername containing symb linked bam files
         F3_Juveniles='F3_Juveniles' # string, equal to foldername containing symb linked bam files
-        #IDS='F0_Broodstock F1_Broodstock F1_Juveniles F2_Juveniles F2_Broodstock F3_Juveniles' # loop strings
+        IDS='F0_Broodstock F1_Broodstock F1_Juveniles F2_Juveniles F2_Broodstock F3_Juveniles' # loop strings
         #IDS='F0_Broodstock' # loop strings
-        IDS='F1_Broodstock F1_Juveniles F2_Broodstock'
+        #IDS='F1_Broodstock F1_Juveniles F2_Broodstock' # completed!
+        #IDS='F2_Juveniles F3_Juveniles'
 
-
+        # to refer to generation (from subfolers), use {wildcards.generation} with a single bracket 
         # for loop mutliqc by sequence run
         for i in ${{IDS[@]}}; do # loopty loop, note {{}} calls as a 'string'
             # print the filename BEFORE '_R1...gz" and "_R2...gz" as string for next loop
             ls angsd/data/${{i}}/merged_bams/*.bam | awk -F  '[_./]' '{{print $7"_"$8"."$9}}' | sort | uniq > angsd/data/${{i}}/merged_bams/ID;
-            mkdir -p angsd/data/${{i}}/merged_bams/coord_dups_removed
+            #mkdir -p angsd/data/${{i}}/merged_bams/coord_dups_removed
             mkdir -p angsd/data/${{i}}/merged_bams/query_dups_removed
-            mkdir -p angsd/data/${{i}}/merged_bams/coord_dups_removed/stats
+            #mkdir -p angsd/data/${{i}}/merged_bams/coord_dups_removed/stats
             mkdir -p angsd/data/${{i}}/merged_bams/query_dups_removed/stats # make directory to input the summary text files from marking duplicates and removing them
             for filename in `cat angsd/data/${{i}}/merged_bams/ID`; do
                 # sort by coord
-                java -jar $PICARD SortSam I=angsd/data/${{i}}/merged_bams/${{filename}}.bam O=angsd/data/${{i}}/merged_bams/${{filename}}_coordsorted.bam SORT_ORDER=coordinate
+                #java -jar $PICARD SortSam I=angsd/data/${{i}}/merged_bams/${{filename}}.bam O=angsd/data/${{i}}/merged_bams/${{filename}}_coordsorted.bam SORT_ORDER=coordinate
                 # sort by queryname
                 java -jar $PICARD SortSam I=angsd/data/${{i}}/merged_bams/${{filename}}.bam O=angsd/data/${{i}}/merged_bams/${{filename}}_querysorted.bam SORT_ORDER=queryname
                 # delete the original merge file
                 #rm angsd/data/${{i}}/merged_bams/${{filename}}.bam
                 # call and omit duplicates - coordinate sorted
-                java -jar $PICARD MarkDuplicates I=angsd/data/${{i}}/merged_bams/${{filename}}_coordsorted.bam O=angsd/data/${{i}}/merged_bams/coord_dups_removed/${{filename}}.bam M=angsd/data/${{i}}/merged_bams/coord_dups_removed/stats/${{filename}}.txt  ASSUME_SORT_ORDER=coordinate REMOVE_DUPLICATES=true
+                #java -jar $PICARD MarkDuplicates I=angsd/data/${{i}}/merged_bams/${{filename}}_coordsorted.bam O=angsd/data/${{i}}/merged_bams/coord_dups_removed/${{filename}}.bam M=angsd/data/${{i}}/merged_bams/coord_dups_removed/stats/${{filename}}.txt  ASSUME_SORT_ORDER=coordinate REMOVE_DUPLICATES=true
                 # call and omit duplicates - queryname sorted, then re sort by coord and delete the previous
                 java -jar $PICARD MarkDuplicates I=angsd/data/${{i}}/merged_bams/${{filename}}_querysorted.bam O=angsd/data/${{i}}/merged_bams/query_dups_removed/${{filename}}_querydupsrem.bam M=angsd/data/${{i}}/merged_bams/query_dups_removed/stats/${{filename}}.txt ASSUME_SORT_ORDER=queryname REMOVE_DUPLICATES=true
                 java -jar $PICARD SortSam I=angsd/data/${{i}}/merged_bams/query_dups_removed/${{filename}}_querydupsrem.bam O=angsd/data/${{i}}/merged_bams/query_dups_removed/${{filename}}.bam SORT_ORDER=coordinate
                 rm angsd/data/${{i}}/merged_bams/query_dups_removed/${{filename}}_querydupsrem.bam
                 # delete the sorted files w/o removed duplicates             
-                rm angsd/data/${{i}}/merged_bams/${{filename}}_coordsorted.bam # remove the coord sorted bam file - now we have left is 'fina' with removed duplicates! 
+                #rm angsd/data/${{i}}/merged_bams/${{filename}}_coordsorted.bam # remove the coord sorted bam file - now we have left is 'fina' with removed duplicates! 
                 rm angsd/data/${{i}}/merged_bams/${{filename}}_querysorted.bam # remove the query sorted bam file - now all we have left is 'final' with removed duplicates!
                 done;
             done
@@ -418,7 +466,8 @@ rule sortbams_removedups:
 # Generate txt list bam files to call SNPs
 rule generate_bamlists: 
     input: 
-        "angsd/data/sortbams_removedups"
+        #"angsd/data/sortbams_removedups" # OLD JOB INPUT 
+        expand("angsd/data/{generation}/sortremovedups_complete", generation=subfolders)
     output:
         "angsd/data/bamlists_generated"
     shell:
@@ -428,7 +477,13 @@ rule generate_bamlists:
 
         ## dir shortcuts
         DATDIR=~/Airradians_lcWGS/snakemake_pipeline/angsd/data # Path to generation and life stage bam files
-
+        
+        ## make dir for bamlists
+        mkdir -p $DATDIR/bamlists
+        mkdir -p $DATDIR/bamlists/all_juveniles
+        mkdir -p $DATDIR/bamlists/all_juveniles_and_F0
+        mkdir -p $DATADIR/bamlists/parentage_F0B_F1J
+        
         # FOR LOOPS
         IDS=('F0_Broodstock' 'F1_Broodstock' 'F1_Juveniles' 'F2_Juveniles' 'F2_Broodstock' 'F3_Juveniles') # loop strings
         #IDS=('F0_Broodstock' 'F1_Broodstock' 'F1_Juveniles' 'F2_Juveniles' 'F2_Broodstock') # loop strings
@@ -436,32 +491,32 @@ rule generate_bamlists:
          
         ## (1) for loop i - call bam lists (merged and dup removed!) for all data and within pCO2 treatment, store in the data folder
         for i in ${{IDS[@]}}; do  # update to include F2 brood and F3 juv once we have them
-            LOOPDIR=~$DATDIR/${{i}}/merged_bams/duplicates_removed
+            LOOPDIR=$DATDIR/${{i}}/merged_bams/query_dups_removed
             if [ "${{i}}" == "F1_Broodstock" ]; then
-                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
+                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
                 awk '!/DUP/' $LOOPDIR/merged_bamlist.txt > $LOOPDIR/merged_bamlist2.txt # omit duplicate in list, name 2
                 rm $LOOPDIR/merged_bamlist.txt # remove the previous list
                 mv $LOOPDIR/merged_bamlist2.txt $DATDIR/${{i}}/merged_bams/merged_bamlist.txt # rename 2 to original
-                ls $LOOPDIR/*pH8.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/LOWpCO2_bamlist.txt
-                ls $LOOPDIR/*pH75.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/MODpCO2_bamlist.txt
+                ls $LOOPDIR/*pH8.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/LOWpCO2_bamlist.txt
+                ls $LOOPDIR/*pH75.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/MODpCO2_bamlist.txt
             elif [ "${{i}}" == "F1_Juveniles" ]; then
-                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
+                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
                 awk '!/dup/' $LOOPDIR/merged_bamlist.txt > $LOOPDIR/merged_bamlist2.txt # omit duplicate in list, name 2
                 rm $LOOPDIR/merged_bamlist.txt # remove the previous list
                 mv $LOOPDIR/merged_bamlist2.txt $LOOPDIR/merged_bamlist.txt # rename 2 to original
                 #ls $LOOPDIR/*pH8.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/LOWpCO2merged_bamlist.txt
-                ls $LOOPDIR/*pH8.bam $LOOPDIR/*trim.1*.bam $LOOPDIR/*trim.3.bam $LOOPDIR/*trim.4.bam $LOOPDIR/*trim.5.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/LOWpCO2_bamlist.txt
-                ls $LOOPDIR/*pH75.bam $LOOPDIR/*trim.2*.bam $LOOPDIR/*trim.3*.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/MODpCO2_bamlist.txt
+                ls $LOOPDIR/*pH8.bam $LOOPDIR/*trim.1*.bam $LOOPDIR/*trim.3.bam $LOOPDIR/*trim.4.bam $LOOPDIR/*trim.5.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/LOWpCO2_bamlist.txt
+                ls $LOOPDIR/*pH75.bam $LOOPDIR/*trim.2*.bam $LOOPDIR/*trim.3*.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/MODpCO2_bamlist.txt
                 awk '!/adapter_trim.3.bam|dup/' $LOOPDIR/MODpCO2_bamlist.txt > $LOOPDIR/MODpCO2_bamlist2.txt # omit 3 as a pH8, and follow same step to omit the dup sample
                 rm $LOOPDIR/MODpCO2_bamlist.txt
                 mv $LOOPDIR/MODpCO2_bamlist2.txt $LOOPDIR/MODpCO2_bamlist.txt
             elif [ "${{i}}" == "F2_Juveniles" ] || [ "${{i}}" == "F2_Broodstock" ] || [ "${{i}}" == "F3_Juveniles" ]; then
-                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
-                ls $LOOPDIR/*pH8.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/LOWpCO2merged_bamlist.txt
-                ls $LOOPDIR/*pH75.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/MODpCO2merged_bamlist.txt
-                ls $LOOPDIR/*pH7.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/HIGHpCO2merged_bamlist.txt
+                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
+                ls $LOOPDIR/*pH8.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/LOWpCO2merged_bamlist.txt
+                ls $LOOPDIR/*pH75.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/MODpCO2merged_bamlist.txt
+                ls $LOOPDIR/*pH7.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/HIGHpCO2merged_bamlist.txt
             else # just F0_Broodstock since there were no cohort / treatment
-                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $10}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
+                ls $LOOPDIR/*.bam | awk -F '[/]' '{{print $11}}' | sort | uniq > $LOOPDIR/merged_bamlist.txt
             fi;
         done
 
@@ -478,6 +533,7 @@ rule generate_bamlists:
         #ln -s $DATDIR/F3_Juveniles/merged_bams/*.bam ./angsd/data/all_merged_bams
         #rm $DATDIR/all_merged_bams/*DUP*  $DATDIR/all_merged_bams/*dup* # omit the duplicate files sent as sanity check
         #ls $DATDIR/all_merged_bams/*.bam | awk -F '[/]' '{{print $9}}' | sort | uniq > $DATDIR/all_merged_bams/merged_bamlist.txt
+        
 
         echo 'end' $(date) # checkpoint output
 

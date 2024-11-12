@@ -23,7 +23,7 @@ library(pcadapt)
 library(adegenet)
 library(pegas)
 # install.packages('vcf2ploidy')
-library(vcf2ploidy) # https://github.com/dandewaters/VCF2Ploidy # use interactive shiny script to covert to colony
+# library(vcf2ploidy) # https://github.com/dandewaters/VCF2Ploidy # use interactive shiny script to covert to colony
 # library(stackr) # devtools::install_github("thierrygosselin/stackr")
 library(sequoia)
 library(qqman)
@@ -34,53 +34,25 @@ library(tidyr)
 # library(ldsep) # need a Seqinfo object  Airradians not registered in package
 # library(updog) # need a Seqinfo object  Airradians not registered in package
 # library(VariantAnnotation) # need a Seqinfo object  Airradians not registered in package
+library(RcppCNPy)
+library(ggfortify)
+library(tidyverse)
+library(ggrepel)
 ```
 
-
-## About parentage analysis 
-
-the choice of the package will depend on the specifc reesarch questions and the nature of the study species
-
-**Sequoia**
-
-a comprehensive R package for muligenerational pedigree reconstruction
-emplpys a fast heuristic hill-climbing algorithm to explore the liklihood surface
-using SNP data and input sinply the birthyear of your genotyped individuals
-
-key features include: 
-
-* parentage assignment 
-* sibship clustering
-* grandparent assignment 
-* andles any proportion of genotyped parents
-* accounts for genotyping errors 
-* does not require predefined lists of candidate parents 
-
-
-### Now lets load the total dataset of Juveniles 
-
-* At this time (F3 still running), this includes the pH8 andpH75 data for F1s and F2s Juveniles 
-
- * I rand genotyping with SNP separately before converting the bcf (from angsd) for each of the four datasets and merging them. 
- 
 
 ## load files
 
 * vcf.gz files 
 
-  - merged: contains all SNPs, using ```bcftools merge``` those that overlap between files and those that did not 
-    *NOTE*: merge contains those that intersect and those that did not, however note that when there are >2 input files
-    the intersection can be partial 
-    
-    
-  - intersect: contains only SNPs *shared* amoung **all** *input vscf files* using bcftools isec -n=<#input>
-  
   
 ```{r load vcf and bed files}
 
 getwd()
 path = "output/Popgen/angsd/all/"
-# path = "output/lcWGS/angsd/Merge_Intercept/F0Broodstock_F1Juveniles/"
+
+
+# Call the file with all samples - filtered using vcftools on SEDNA (check out the readme for what was done)
 all.vcf    <- read.vcfR(paste0(path,"vcf/all_final.vcf.gz"))
 all.bed    <- read.pcadapt(paste0(path,"plink/all_final.bed"), type = "bed") # 3897 variants
 all.strata <- read.csv(paste0(path,"strata/all_final_listIDs.csv"), sep =',', header=FALSE) %>% 
@@ -101,13 +73,32 @@ all.strata <- read.csv(paste0(path,"strata/all_final_listIDs.csv"), sep =',', he
                                 dplyr::mutate(Gen_Treatment = 
                                                 dplyr::case_when(Gen == "F0" ~ "F0",
                                                                  Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Treatment)))
+# pcangsd outputs .cov file 
+all_cov_quad <- as.matrix(read.table(paste0(path, "all_final_pcangsd.cov"), header = F))
 
 
-
-
+# all broodstock 
 broodstock.vcf    <- read.vcfR(paste0(path,"vcf/broodstock_final.vcf.gz"))
 broodstock.bed    <- read.pcadapt(paste0(path,"plink/broodstock_final.bed"), type = "bed") # 3897 variants
-broodstock.strata <- read.csv(paste0(path,"strata/broodstock_listIDs.csv"), sep =',', header=FALSE) %>% 
+broodstock.strata <- read.csv(paste0(path,"strata/broodstock_listIDs.csv"), sep =',', header=FALSE)  %>% 
+                                dplyr::rename(Individual = V1) %>% 
+                                dplyr::mutate(Individual = gsub('*./','',Individual),
+                                      Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
+                                                             grepl("F1", Individual) ~ "F1",
+                                                             grepl("F2", Individual) ~ "F2",
+                                                             grepl("F3", Individual) ~ "F3",
+                                                             TRUE ~ "F1"),
+                                      Treatment = dplyr::case_when(
+                                        grepl("F0", Individual) ~ "none",
+                                        grepl("pH7\\.",Individual) ~ "High",
+                                        grepl("pH75\\.",Individual) ~ "Moderate",
+                                        grepl("pH8\\.",Individual) ~ "Low")) %>% 
+                                dplyr::mutate(Gen_Treatment = 
+                                                dplyr::case_when(Gen == "F0" ~ "F0",
+                                                                 Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Treatment)))                            
+# pcangsd outputs .cov file 
+broodstock_cov_quad <- as.matrix(read.table(paste0(path, "broodstock_final_pcangsd.cov"), header = F))
+  
 ``` 
 
 
@@ -116,8 +107,14 @@ broodstock.strata <- read.csv(paste0(path,"strata/broodstock_listIDs.csv"), sep 
 * Why / What does this do?
 
 ```{r tidy the vcf file}
-# Tidy the VCF
+# Tidy the VCFs
+
+# all samples
 all_tidy <- all.vcf %>%
+  vcfR2tidy(verbose = FALSE)
+
+# only broodstock
+broodstock_tidy <- broodstock.vcf %>%
   vcfR2tidy(verbose = FALSE)
 ```
 
@@ -142,10 +139,10 @@ all_genlight <- all.vcf %>%
 # Keep only loci mapped to chromosomes:
 # only chromosome accession IDs
 loc_chrom_tbl <- tibble(locus = all_genlight@loc.names) %>%
-  extract(locus, "chrom", "CM0(\\d+)", remove = FALSE) %>%
-  extract(locus, "pos", "_(\\d+)", remove = FALSE) %>%
-  mutate(chrom = as.integer(chrom),
-         pos = as.integer(pos)) 
+                    extract(locus, "chrom", "CM0(\\d+)", remove = FALSE) %>%
+                    extract(locus, "pos", "_(\\d+)", remove = FALSE) %>%
+                    mutate(chrom = as.integer(chrom),
+                           pos = as.integer(pos)) 
 loc_chrom_tbl <- dplyr::filter(loc_chrom_tbl, !grepl("JAYEEO",locus)) %>% 
                  dplyr::mutate(chrom_num = 
                              case_when(chrom %in% 84264 ~ 1,
@@ -172,17 +169,17 @@ chrom_loci <- loc_chrom_tbl %>%
                 pull(locus)
 
 chroms <- loc_chrom_tbl %>%
-  filter(chrom_num < 20) %>%
-  mutate(chrom_name = substr(locus,1,10)) %>% 
-  pull(chrom_name) %>%
-  unique()
+                filter(chrom_num < 20) %>%
+                mutate(chrom_name = substr(locus,1,10)) %>% 
+                pull(chrom_name) %>%
+                unique()
 
 # other contigs starting with accession delimiter JAYEE
 loc_othercontigs_tbl <- tibble(locus = all_genlight@loc.names) %>%
-  extract(locus, "othercontigs", "JAYEEO(\\d+)", remove = FALSE) %>%
-  extract(locus, "pos", "_(\\d+)", remove = FALSE) %>%
-  mutate(othercontigs = as.integer(othercontigs),
-         pos = as.integer(pos))
+                            extract(locus, "othercontigs", "JAYEEO(\\d+)", remove = FALSE) %>%
+                            extract(locus, "pos", "_(\\d+)", remove = FALSE) %>%
+                            mutate(othercontigs = as.integer(othercontigs),
+                                   pos = as.integer(pos))
 loc_othercontigs_tbl <- dplyr::filter(loc_othercontigs_tbl, !grepl("CM0",locus))
 nrow(loc_othercontigs_tbl) # 767 total SNP calls
 
@@ -192,25 +189,94 @@ nrow(loc_othercontigs_tbl) # 767 total SNP calls
 ```{r}
 # Create the genotype matrix
 all_gl_mat <- all_genlight %>%
-  as.matrix()
+                    as.matrix()
 
 gl_chrom <- all_genlight[,chrom_loci]
 
 ```
 
 
+## plot PCAngsd cov data
 
-* strata - metadata
+* protocol and script from https://github.com/aersoares81/PCAngsd-PCA-Plots-in-R?tab=readme-ov-file
 
-  - note, this must be in the same order at which files were analyzed with angsd , these are the columns in the vcf file 
-  you can get this information using ```bcftools query -l``` call, thats what I did to output the strata.csv file, this raw 
-  file is then changes to a dataframe below with custom calls based on the raw input bam names.. tedious yet one and done!
-  
-  - can call subsets of this strata for the files with just F0brood and pH75 and F0 brood and pH , okay? okay.
-  
+```{r plot PCAngsd cov data}
+
+# Now it will perform the PCA
+all_run.pca        <- eigen(all_cov_quad)
+
+broodstock_run.pca <- eigen(broodstock_cov_quad)
+
+# Here is the information from your population: location and name of the samples
+all_samplemat     <- as.matrix(all.strata)
+all_sampleheaders <- c("sample_id", "Gen", "Treatment", "Gen_Treatment")
+colnames(all_samplemat) <- all_sampleheaders
+
+broodstock_samplemat     <- as.matrix(broodstock.strata)
+broodstock_sampleheaders <- c("sample_id", "Gen", "Treatment", "Gen_Treatment")
+colnames(broodstock_samplemat) <- broodstock_sampleheaders
 
 
-```{r}
+# Extract the eigenvectors and turn them into a dataframe for plotting
+all_eigenvectors = all_run.pca$vectors #extract eigenvectors 
+
+broodstock_eigenvectors = broodstock_run.pca$vectors #extract eigenvectors 
+
+
+# Combining the information from the populations/samples
+all_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(all_eigenvectors)))
+
+broodstock_pca.vectors = as_tibble(cbind(broodstock_samplemat, data.frame(broodstock_eigenvectors)))
+
+# You can edit this too
+legend_title <- "Gen"
+
+# This will create a "simple" PCA plot. It will have a legend with the location of the samples next to it.
+# Adjust the title, of course.
+# Please notice that I commented the RColorBrewer.
+# Uncomment and use the palette your like the most if you want to change the colors.
+# Don't forget to uncomment the library in in the beginning of the script too.
+all_simple.pca = ggplot(data = all_pca.vectors, 
+                        aes(x=X1, y=X2, 
+                        color = Treatment, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    geom_point(size=4) + 
+                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic")) #+ scale_color_brewer(palette="Set1")
+plot(all_simple.pca)
+
+broodstock_simple.pca = ggplot(data = broodstock_pca.vectors, 
+                               aes(x=X1, y=X2, 
+                               color = Treatment, 
+                               shape = Gen, 
+                               label = sample_id)) + 
+                    geom_point(size=4) + 
+                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    # I'm making the title in italics because it's usubroodstocky the name of a species
+                    theme(plot.title = element_text(face = "italic")) #+ scale_color_brewer(palette="Set1")
+plot(broodstock_simple.pca)
+
+# This will create another PCA plot.
+# In this version, every point (or as many as possible) will have the sample ID assigned to it.
+# It's neat if you want to see where exactly each sample is placed.
+labeled.pca = ggplot(data = pca.vectors, aes(x=X1, y=X2, colour = Gen, label = sample_id)) + 
+  geom_point() + labs(title="Title goes here", x="PC1",y="PC2") + 
+  # I'm making the title in italics because it's usually the name of a species
+  theme(plot.title = element_text(face = "italic")) + 
+  geom_label_repel(show.legend = FALSE) #+ scale_color_brewer(palette="Set1")
+plot(labeled.pca)
+
+# This will output a PDF file with your plot, adjust the size and dpi to your liking.
+#It will be created in your basedir.
+ggsave(filename = paste0(basedir, "simple_pca_plot.pdf"), 
+  plot = simple.pca, width = 28, height = 24, units = "cm", dpi = 600) 
+
+# This will output a PDF with plot that has all the labels.
+# It will be created in your basedir.
+ggsave(filename = paste0(basedir, "labeled_pca_plot.pdf"), 
+  plot = labeled.pca, width = 28, height = 24, units = "cm", dpi = 600)
 
 ```
 
@@ -227,12 +293,29 @@ gl_chrom <- all_genlight[,chrom_loci]
 ```
 
 
-# Pedigree with SEQUOIA
-## build genlight 
+## About parentage analysis 
+
+the choice of the package will depend on the specifc reesarch questions and the nature of the study species
+
+**Sequoia**
+
+a comprehensive R package for muligenerational pedigree reconstruction
+emplpys a fast heuristic hill-climbing algorithm to explore the liklihood surface
+using SNP data and input sinply the birthyear of your genotyped individuals
+
+key features include: 
+
+* parentage assignment 
+* sibship clustering
+* grandparent assignment 
+* andles any proportion of genotyped parents
+* accounts for genotyping errors 
+* does not require predefined lists of candidate parents 
+
 
 * use adegent - genlight is a dataframe compatible with adegenet based on genome-wide SNP data
 
-```{r squois mock data}
+```{r sequoia mock data}
 
 data(Ped_HSg5, LH_HSg5)
 # Simulate some genotype data to use for this try-out.
@@ -322,7 +405,7 @@ when working with whole genome data we need to perform SNP thinning to acocutn f
   as a bar (many) or pair of points close/touching on the same Y-axis plane
 
 
-```{r screeplot, Intersect F0 broodstock F1 juveniles}
+```{r screeplot}
 
 # INTERSECT DATA :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ## data: F0B_F1JALL_intersect.bed
@@ -332,7 +415,6 @@ all.diagnostic      <- pcadapt(all.bed, K = 20)
 ggpubr::ggarrange(
   plot(all.diagnostic, option = "screeplot"),
   plot(all.diagnostic, option = "manhattan"))
-  plot(F0B_F1JuvAll_intersect.res, option = "manhattan")
 
 all.res             <- pcadapt(all.bed, K = 6)
 ggpubr::ggarrange(
@@ -373,7 +455,7 @@ clump4me <- function(data, LD.thr, LD.K, LD.minMaf, outputfilename) {
         outputfilename      <- data.frame()  # start dataframe 
         loop.table          <- data.frame(matrix(nrow = 1, ncol = 5)) # create dataframe, columns for the number of sampling days
         colnames(loop.table)<-c('output_PC1', 'input_MinMaf', 'input_Window', 'input_Threshold', 'input_NumPCAs') # names for comuns in the for loop
-        LD.window_loop      <- seq(50,1000, by=50) # run the loop for CPM from 1 - 10 (counts per million) 
+        LD.window_loop      <- seq(100,50100, by=1000) # run the loop for CPM from 1 - 10 (counts per million) 
         LD.window_loop      <- data.frame(LD.window_loop)
         
         
