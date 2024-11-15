@@ -1,10 +1,139 @@
-# sign into a node
-ssh himem04
+x## scripts here: 
+https://github.com/chollenbeck/king_scallop_popgen_2022/tree/main/R
 
-# load 
-module load bio/pcangsd
 
-# source activate as guided when loading 
+# check the mean depth for each site and each indiv
+vcftools --vcf <vcf input file> -- site-mean-depth --out mean_depth.txt
+# Common that a depth thredshol uses about 1x to be considered acceptable  - should report the mean depth for all the samples as well
+# export the depth output file to the github repo to gather these data in R
+ 
+# Filter genotypes with depth < 10 and genotype quality < 20
+system("vcftools --gzvcf raw_snps.vcf.gz --out out.1 --minDP 10 --minGQ 20 --recode --recode-INFO-all")
 
-# call pcangd.py to create .cov files 
-pcangsd.py -plink all_final -e 2 -threads 64 -o ./pcangsd/all_final_pcangsd
+# Filter out sites that were made monomorphic by the previous filter
+system("vcftools --vcf out.1.recode.vcf --maf 0.001 --out out.2 --recode --recode-INFO-all")
+
+# Remove sites with more than 50% missing data
+# 70% removed 18, 50% removed 19 and 20% removed 19
+# thing of "we are allowing a max missingess of XX %" therefore the smaller the number the more strict
+system("vcftools --vcf out.2.recode.vcf --out out.3 --max-missing 0.5 --recode --recode-INFO-all")
+
+# Produce a file with missingness per individual
+system("vcftools --vcf out.3.recode.vcf --out out.3 --missing-indv")
+
+# In R sessio - diagnose which bam files (samples) have more than 70% missing data adn omit them
+# Load the data for the missingness file
+out_3_imiss <- read_tsv("out.3.imiss")
+
+# First get a list of all of the duplicate individuals so that these can be saved from filtering in this step
+# All of the duplicates have a 'b' at the end of the individual name
+
+dups_a <- str_subset(out_3_imiss$INDV, "b$") # NOTHING OUTPUT FROM THIS 
+dups_b <- gsub(pattern = "b", replacement = "", x = dups_a) # NOTHING OUTPUT FROMTHIS SO NONEED TO USE IN NEXT STEPS
+dups <- c(dups_a, dups_b)
+
+# Plot a quick histogram of the data
+qplot(out_3_imiss$F_MISS)
+
+# Select individuals with more than 70% missing data
+miss_70 <- filter(out_3_imiss, F_MISS > 0.7, ! INDV %in% dups) %>%
+            select(INDV)
+
+# Write the individuals to remove to a file
+write_delim(miss_70, "remove.3.inds", col_names = FALSE)
+
+# navigate back into the bash sessionwith vcftools, create out.4 as the vcf witht he individuals removed
+# NOTE THERE WERE 18 INDIIDUALS WITH >50% MISSINGNESS! 
+# Remove individuals with >70% missing data
+system("vcftools --vcf out.3.recode.vcf --out out.4 --remove remove.3.inds --recode --recode-INFO-all")
+
+
+# note that the mean depth filter  of sites > 300 didnot omit any sites
+# continue with the script at whichthe authors are at out.8
+# though I am unsure what they are doing here, then using a less conservative missingness cutoff of 75% followed with cuting the vcf  and then 
+# cutting again for individuals with more than 40% missing data 
+# then they remove based on relatedness
+
+# Read in the site depth file
+site_depth_4 <- read_tsv("out.4.ldepth") %>%
+                  mutate(MEAN_DEPTH = SUM_DEPTH / 394)
+
+# Plot a histogram of the mean site depth per individual
+qplot(site_depth_4$MEAN_DEPTH)
+
+# Filter out loci with a mean site depth > 300
+mean_site_depth_4 <- mean(site_depth_4$MEAN_DEPTH) # 16.8
+to_keep_4 <- filter(site_depth_4, MEAN_DEPTH < 300)
+mean_site_depth_4_filt <- mean(to_keep_4$MEAN_DEPTH) # 16.8 - there were non > 300
+
+# Plot the distribution again
+qplot(to_keep_4$MEAN_DEPTH)
+
+# Make a list of the sites to filter
+to_filter_4 <- filter(site_depth_4, MEAN_DEPTH >= 300) %>%
+                  select(CHROM, POS)
+
+# Write the sites to remove to a file
+write_delim(to_filter_4, "remove.4.sites", col_names = FALSE) # did not output, I saw there was non to omit
+
+# Remove the sites with VCFtools # DID NOT RUN NO NEED TO BECAUSE THERE WERE NO SITES > 300 DEPTH FROM THE r CHECK
+#system("vcftools --vcf out.7.vcf --out out.8 --exclude-positions remove.7.sites --recode --recode-INFO-all")
+
+# Remove sites with more than 75% missing data # WE RAN THIS!
+system("vcftools --vcf out.4.recode.vcf --out out.5 --max-missing 0.75 --recode --recode-INFO-all")
+# OUTPUT: After filtering, kept 3640 out of a possible 3897 Sites
+# OUTPUT: After filtering, kept 394 out of 394 Individuals
+
+
+# Calculate individual missingness - this is done again since the pool of sites is lower - NO INDIVS REMOVED, CONTINUE
+system("vcftools --vcf out.5.recode.vcf --out out.5 --missing-indv") # this creates imiss and .kig fles, does not overwrite the 5.recode
+#OUTPUT:After filtering, kept 394 out of 394 Individuals
+#OUTPUT:Outputting Individual Missingness
+#OUTPUT: After filtering, kept 3640 out of a possible 3640 Sites
+       
+
+# Load the data in Rstudio 
+# open the out.5.imiss file in R
+# note the read_tsv is in the package readr
+out_5_imiss <- read_tsv("out.5.imiss") %>%
+                  extract(INDV, "pop", "(\\w+)_", remove = FALSE)
+
+out_5_imiss %>% count(pop)
+
+# Plot a quick histogram of the data
+ggplot(out_5_imiss, aes(x = F_MISS, fill = pop)) + geom_histogram()
+# from the plot we see that 60% is the target filter for omission
+# Select individuals with more than 40% missing data
+miss_60 <- filter(out_5_imiss, F_MISS > 0.60) %>%  select(INDV)
+
+# Write the individuals to remove to a file
+write_delim(miss_60, "remove.5.inds", col_names = FALSE)
+
+# Remove the individuals with more than 60% missing genotype
+system("vcftools --vcf out.5.recode.vcf --out out.6 --remove remove.5.inds --recode --recode-INFO-all")
+# now at 391 indivuals from 394! 
+
+# Check for duplicate individuals using relatedness - THIS YES WE SHOULD CHECK IT
+system("vcftools --vcf out.6.recode.vcf --relatedness --out out.6")
+# OUTPUT: After filtering, kept 391 out of 391 Individuals
+
+# Load the data for the out.6.recode.vcf file
+out_6_relate <- read_tsv("out.6.relatedness")
+
+# Check for abnormally high relatedness
+relatives <- filter(out_6_relate, INDV1 != INDV2) %>% 
+              filter(RELATEDNESS_AJK > 0.7)
+# there were no relatived following this criteria of > 0.7 on this scale!
+
+# 3list the sample IDs in the final vcf file after the omissions
+vcf-query -l out.6.recode.vcf > out.6.listIDs.csv
+
+# # sanity check using cat <listIDs' | wc -l
+
+# convert to .gz and rename to
+bcftools sort our.6.recode.vcf  -Oz -o all_final.vcf.gz
+
+# the outfile coded as #4 is the final
+# we ran missingness of 50% to remove individuals. 50% omitted 19 individuals. I ran missingess of 70 and 20 as sanity checks
+# 20 being the more conservative (we only allow 20% missingess) and it removed the same individuals as 50, so we proceeded with 50 (though the same as 20) 
+# next 

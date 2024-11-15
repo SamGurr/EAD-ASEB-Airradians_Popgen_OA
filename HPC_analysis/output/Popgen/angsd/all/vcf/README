@@ -1,0 +1,28 @@
+# the all_final file is the gzipped output #6
+
+# subset the all)final for just broodstock 
+# use the broodstock names based on common delimiter to truncate the full name list
+# note the force samples needs to occur to skip those in the -S list that are not present in the 
+# all vcf file, remember sampels were omitted due to missigness as several stages, there are several not here
+ bcftools view -S ../final_strata/broodstock_listIDs.csv all_final.vcf.gz --force-samples > broodstock_final.vcf.gz
+
+# Index bcf files
+
+# understand the contig ID name and number (order) in the vcf file
+# note that this should be the same as the reference genome file
+# but further depends on whether or not a SNP was called in that contig
+bcftools index -s all_final.vcf.gz | cut -f 1 | grep "CM0" > ./all_final_chrom_split/allcontigs.txt
+nano allcontigs.text # open it up to view the contig IDs in your vcf file
+cat allcontigs.txt | wc -l # 111
+#note there are 111 total contigs called, that means a mere 95 contigs for "JAYE" (of the thousands of them!) contiained SNPs
+
+# here we foud the first 16 are the chromosome IDs - forutunately we know there are 16 chromosomes in the genome the last many are 'JAYE' the other unmapped contigs
+bcftools index -s all_final.vcf.gz | cut -f 1 | grep "CM0" > ./all_final_chrom_split/chromosomecontigs.txt
+# split by chromosome (grep "CM0)" as the first 16 lines
+cat ./all_final_chrom_split/chromosomecontigs.txt | wc -l
+# note that to run this you must first now which lines are the chromosome IDs, here we know ther first 16 uique
+# vars in the test .vcf.gz are the chroosome ID contigs, so we use a for loop 1..16
+# now loop through the 16 lines using sed to output the correct row number in chromosomecontigs.txt file and read that region in the total vcf file to subset vcf files
+for C in {1..16}; do sed -n ${C}p ./all_final_chrom_split/chromosomecontigs.txt | while read C; do bcftools view all_final.vcf.gz --regions ${C} -o ./all_final_chrom_split/chrom_${C}.vcf.gz -Oz; done; done
+# split by the last contigs ("JAYE")
+
