@@ -1,0 +1,35 @@
+PLINK v1.90b6.23 64-bit (28 May 2021)
+Options in effect:
+  --allow-extra-chr
+  --double-id
+  --make-bed
+  --mind 0.8
+  --out ./chrom_CM084274.1
+  --pca
+  --vcf ../../../final_vcf/all_final_chrom_split/chrom_CM084274.1.vcf.gz
+
+Hostname: node29.cluster
+Working directory: /home/sgurr/Airradians_lcWGS/snakemake_pipeline/angsd/output/everyone/vcf/final_plink/all_final_chrom_split/chrom11
+Start time: Thu Nov 14 21:23:03 2024
+
+Random number seed: 1731648183
+191868 MB RAM detected; reserving 95934 MB for main workspace.
+--vcf: ./chrom_CM084274.1-temporary.bed + ./chrom_CM084274.1-temporary.bim +
+./chrom_CM084274.1-temporary.fam written.
+227 variants loaded from .bim file.
+391 people (0 males, 0 females, 391 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to ./chrom_CM084274.1.nosex .
+0 people removed due to missing genotype data (--mind).
+Using up to 19 threads (change this with --threads).
+Before main variant filters, 391 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.857296.
+227 variants and 391 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to ./chrom_CM084274.1.eigenval and
+./chrom_CM084274.1.eigenvec .
+--make-bed to ./chrom_CM084274.1.bed + ./chrom_CM084274.1.bim +
+./chrom_CM084274.1.fam ... done.
+
+End time: Thu Nov 14 21:23:03 2024

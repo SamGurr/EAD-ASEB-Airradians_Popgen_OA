@@ -1,0 +1,5 @@
+# use plink to convert vcf to bed, bbim, and fam files
+module load bio/plink/1.90b6.23
+plink --vcf <input dir to vcf file>/<filename>.vcf --double-id --allow-extra-chr --set-mising-var-ids @:# --mind 0.8 --make-bed --pca --out <output dir>/<header for all output filenames>
+
+

@@ -1,0 +1,36 @@
+PLINK v1.90b6.23 64-bit (28 May 2021)
+Options in effect:
+  --allow-extra-chr
+  --double-id
+  --make-bed
+  --mind 0.8
+  --out ./F0B_allJuveniles_final
+  --pca
+  --vcf ../final_vcf/F0B_allJuveniles_final.vcf.gz
+
+Hostname: node29.cluster
+Working directory: /home/sgurr/Airradians_lcWGS/snakemake_pipeline/angsd/output/everyone/vcf/final_plink
+Start time: Thu Nov 14 21:32:01 2024
+
+Random number seed: 1731648721
+191868 MB RAM detected; reserving 95934 MB for main workspace.
+--vcf: ./F0B_allJuveniles_final-temporary.bed +
+./F0B_allJuveniles_final-temporary.bim + ./F0B_allJuveniles_final-temporary.fam
+written.
+3640 variants loaded from .bim file.
+317 people (0 males, 0 females, 317 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to ./F0B_allJuveniles_final.nosex .
+0 people removed due to missing genotype data (--mind).
+Using up to 19 threads (change this with --threads).
+Before main variant filters, 317 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.861891.
+3640 variants and 317 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to ./F0B_allJuveniles_final.eigenval and
+./F0B_allJuveniles_final.eigenvec .
+--make-bed to ./F0B_allJuveniles_final.bed + ./F0B_allJuveniles_final.bim +
+./F0B_allJuveniles_final.fam ... done.
+
+End time: Thu Nov 14 21:32:01 2024

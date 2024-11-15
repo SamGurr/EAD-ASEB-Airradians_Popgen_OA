@@ -1,0 +1,10 @@
+# sign into a node
+ssh himem04
+
+# load 
+module load bio/pcangsd
+
+# source activate as guided when loading 
+
+# call pcangd.py to create .cov files 
+pcangsd.py -plink all_final -e 2 -threads 64 -o ./pcangsd/all_final_pcangsd

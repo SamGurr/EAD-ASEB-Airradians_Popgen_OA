@@ -1,0 +1,33 @@
+PLINK v1.90b6.23 64-bit (28 May 2021)
+Options in effect:
+  --allow-extra-chr
+  --double-id
+  --make-bed
+  --mind 0.8
+  --out ./all_final
+  --pca
+  --vcf ../final_vcf/all_final.vcf.gz
+
+Hostname: node29.cluster
+Working directory: /home/sgurr/Airradians_lcWGS/snakemake_pipeline/angsd/output/everyone/vcf/final_plink
+Start time: Thu Nov 14 21:28:51 2024
+
+Random number seed: 1731648531
+191868 MB RAM detected; reserving 95934 MB for main workspace.
+--vcf: ./all_final-temporary.bed + ./all_final-temporary.bim +
+./all_final-temporary.fam written.
+3640 variants loaded from .bim file.
+391 people (0 males, 0 females, 391 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to ./all_final.nosex .
+0 people removed due to missing genotype data (--mind).
+Using up to 19 threads (change this with --threads).
+Before main variant filters, 391 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.854523.
+3640 variants and 391 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to ./all_final.eigenval and ./all_final.eigenvec .
+--make-bed to ./all_final.bed + ./all_final.bim + ./all_final.fam ... done.
+
+End time: Thu Nov 14 21:28:51 2024
