@@ -1,0 +1,12 @@
+vcf-query -l ../out.4.recode.vcf > ./out.4.listIDs.csv
+
+same as..
+
+# all IDs csv strata fromt eh all vcf.gz file
+vcf-query -l ../final_vcf/all_final.vcf.gz > all_final_listIDs.csv
+
+# broodstock .csv file using grep to call from the all list
+cat all_final_listIDs.csv | grep '.-B' > broodstock_listIDs.csv
+
+# F0 broodstock and all juveniles .csv file using grep to call from the all list 
+cat all_final_listIDs.csv | grep '|.-B0/|F1J/|F2J/|F3J/|' > F0B_allJuveniles_listIDs.csv

@@ -46,7 +46,7 @@ library(ggrepel)
 * vcf.gz files 
 
   
-```{r load vcf and bed files}
+```{r load vcf and bed files: all samples and broodstock only}
 
 getwd()
 path = "output/Popgen/angsd/all/"
@@ -57,7 +57,9 @@ all.vcf    <- read.vcfR(paste0(path,"vcf/all_final.vcf.gz"))
 all.bed    <- read.pcadapt(paste0(path,"plink/all_final.bed"), type = "bed") # 3897 variants
 all.strata <- read.csv(paste0(path,"strata/all_final_listIDs.csv"), sep =',', header=FALSE) %>% 
                                 dplyr::rename(Individual = V1) %>% 
-                                dplyr::mutate(Individual = gsub('*./','',Individual),
+                                dplyr::mutate(
+                                      Individual = gsub('*./','',Individual),
+                                      Type = dplyr::case_when(grepl("-B", Individual) ~ "broodstock", TRUE ~ 'juvenile'),
                                       Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
                                                              grepl("F1", Individual) ~ "F1",
                                                              grepl("F2", Individual) ~ "F2",
@@ -73,9 +75,49 @@ all.strata <- read.csv(paste0(path,"strata/all_final_listIDs.csv"), sep =',', he
                                 dplyr::mutate(Gen_Treatment = 
                                                 dplyr::case_when(Gen == "F0" ~ "F0",
                                                                  Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Treatment)))
-# pcangsd outputs .cov file 
-all_cov_quad <- as.matrix(read.table(paste0(path, "all_final_pcangsd.cov"), header = F))
+all.vcf
 
+# pcangsd outputs .cov file 
+all_cov_quad <- as.matrix(read.table(paste0(path, "plink/pcangsd/all_final.cov"), header = F))
+
+```
+
+```{r load vcf and bed files: all samples chromosome split}
+
+getwd()
+path = "output/Popgen/angsd/all/"
+
+
+# Call the file with all samples - filtered using vcftools on SEDNA (check out the readme for what was done)
+chrom1.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084264.1.vcf.gz"))
+chrom1.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom1/chrom_CM084264.1.bed"), type = "bed") # 3897 variants
+
+chrom2.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom2.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom2/chrom_CM084265.1.bed"), type = "bed") # 3897 variants
+
+chrom3.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom3.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom3/chrom_CM084266.1.bed"), type = "bed") # 3897 variants
+
+chrom4.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom4.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom4/chrom_CM084267.1.bed"), type = "bed") # 3897 variants
+
+chrom5.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom5.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom5/chrom_CM084268.1.bed"), type = "bed") # 3897 variants
+
+
+# pcangsd outputs .cov file 
+chrom1_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom1/pcangsd/chrom1_pcangsd.cov"), header = F))
+chrom2_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom2/pcangsd/chrom2_pcangsd.cov"), header = F))
+chrom3_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom3/pcangsd/chrom3_pcangsd.cov"), header = F))
+chrom4_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom4/pcangsd/chrom4_pcangsd.cov"), header = F))
+chrom5_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom5/pcangsd/chrom5_pcangsd.cov"), header = F))
+
+```
+
+```{r load vcf and bed files: broodstock only}
+
+getwd()
+path = "output/Popgen/angsd/all/"
 
 # all broodstock 
 broodstock.vcf    <- read.vcfR(paste0(path,"vcf/broodstock_final.vcf.gz"))
@@ -97,7 +139,7 @@ broodstock.strata <- read.csv(paste0(path,"strata/broodstock_listIDs.csv"), sep 
                                                 dplyr::case_when(Gen == "F0" ~ "F0",
                                                                  Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Treatment)))                            
 # pcangsd outputs .cov file 
-broodstock_cov_quad <- as.matrix(read.table(paste0(path, "broodstock_final_pcangsd.cov"), header = F))
+broodstock_cov_quad <- as.matrix(read.table(paste0(path, "plink/pcangsd/broodstock_final.cov"), header = F))
   
 ``` 
 
@@ -205,12 +247,15 @@ gl_chrom <- all_genlight[,chrom_loci]
 # Now it will perform the PCA
 all_run.pca        <- eigen(all_cov_quad)
 
+chrom1_run.pca        <- eigen(chrom1_cov_quad)
+
 broodstock_run.pca <- eigen(broodstock_cov_quad)
 
 # Here is the information from your population: location and name of the samples
 all_samplemat     <- as.matrix(all.strata)
-all_sampleheaders <- c("sample_id", "Gen", "Treatment", "Gen_Treatment")
+all_sampleheaders <- c("sample_id", "Type", "Gen", "Treatment", "Gen_Treatment")
 colnames(all_samplemat) <- all_sampleheaders
+
 
 broodstock_samplemat     <- as.matrix(broodstock.strata)
 broodstock_sampleheaders <- c("sample_id", "Gen", "Treatment", "Gen_Treatment")
@@ -220,11 +265,15 @@ colnames(broodstock_samplemat) <- broodstock_sampleheaders
 # Extract the eigenvectors and turn them into a dataframe for plotting
 all_eigenvectors = all_run.pca$vectors #extract eigenvectors 
 
+chrom1_eigenvectors = chrom1_run.pca$vectors #extract eigenvectors 
+
 broodstock_eigenvectors = broodstock_run.pca$vectors #extract eigenvectors 
 
 
 # Combining the information from the populations/samples
 all_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(all_eigenvectors)))
+
+chrom1_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom1_eigenvectors)))
 
 broodstock_pca.vectors = as_tibble(cbind(broodstock_samplemat, data.frame(broodstock_eigenvectors)))
 
@@ -246,6 +295,18 @@ all_simple.pca = ggplot(data = all_pca.vectors,
                     # I'm making the title in italics because it's usually the name of a species
                     theme(plot.title = element_text(face = "italic")) #+ scale_color_brewer(palette="Set1")
 plot(all_simple.pca)
+
+
+chrom1_simple.pca = ggplot(data = (chrom1_pca.vectors %>% filter(Type %in% 'juvenile')), 
+                        aes(x=X1, y=X2, 
+                        color = Treatment, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    geom_point(size=4) + 
+                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic")) #+ scale_color_brewer(palette="Set1")
+plot(chrom1_simple.pca)
 
 broodstock_simple.pca = ggplot(data = broodstock_pca.vectors, 
                                aes(x=X1, y=X2, 
