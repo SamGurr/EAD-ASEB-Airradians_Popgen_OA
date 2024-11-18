@@ -479,6 +479,10 @@ dev.off()
 
 
 
+
+
+
+
 # Broodstock plots
 chromMaster_broodstockLow.pca = ggplot(data = (chromMaster_pca.vector %>% 
                                                  filter(Type %in% 'broodstock') %>% 
@@ -487,12 +491,15 @@ chromMaster_broodstockLow.pca = ggplot(data = (chromMaster_pca.vector %>%
                         color = Gen, 
                         shape = Gen, 
                         label = sample_id)) + 
+                    scale_shape_manual(values = c(19, 19, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3 
                     geom_point(size=2) + 
-                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    labs(title="Broodstock: Low OA", x="PC1",y="PC2") + 
                     theme_bw() +
                     # I'm making the title in italics because it's usually the name of a species
                     theme(plot.title = element_text(face = "italic"))  +
-                    scale_color_brewer(palette="Set1") +
                     facet_wrap(~chrom_num)
 plot(chromMaster_broodstockLow.pca)
 
@@ -503,13 +510,16 @@ chromMaster_broodstockModerate.pca = ggplot(data = (chromMaster_pca.vector %>%
                         aes(x=X1, y=X2, 
                         color = Gen, 
                         shape = Gen, 
-                        label = sample_id)) + 
+                        label = sample_id))  + 
+                    scale_shape_manual(values = c(19, 19, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3 
                     geom_point(size=2) + 
-                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    labs(title="Broodstock: Moderate OA", x="PC1",y="PC2") + 
                     theme_bw() +
                     # I'm making the title in italics because it's usually the name of a species
                     theme(plot.title = element_text(face = "italic"))  +
-                    scale_color_brewer(palette="Set1") +
                     facet_wrap(~chrom_num)
 plot(chromMaster_broodstockModerate.pca)
 
@@ -520,26 +530,68 @@ chromMaster_broodstockHigh.pca = ggplot(data = (chromMaster_pca.vector %>%
                         aes(x=X1, y=X2, 
                         color = Gen, 
                         shape = Gen, 
-                        label = sample_id)) + 
+                        label = sample_id))  + 
+                    scale_shape_manual(values = c(19, 19, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3 
                     geom_point(size=2) + 
-                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    labs(title="Broodstock: High OA", x="PC1",y="PC2") + 
                     theme_bw() +
                     # I'm making the title in italics because it's usually the name of a species
                     theme(plot.title = element_text(face = "italic"))  +
-                    scale_color_brewer(palette="Set1") +
                     facet_wrap(~chrom_num)
 plot(chromMaster_broodstockHigh.pca)
 
-broodstock_simple.pca = ggplot(data = broodstock_pca.vectors, 
-                               aes(x=X1, y=X2, 
-                               color = Treatment, 
-                               shape = Gen, 
-                               label = sample_id)) + 
-                    geom_point(size=4) + 
-                    labs(title="Title goes here", x="PC1",y="PC2") + 
-                    # I'm making the title in italics because it's usubroodstocky the name of a species
-                    theme(plot.title = element_text(face = "italic")) #+ scale_color_brewer(palette="Set1")
-plot(broodstock_simple.pca)
+
+
+
+
+
+chromMaster_broodstockF0F1.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                                 filter(Type %in% 'broodstock') %>% 
+                                                 filter(Gen %in% c('F0','F1'))), 
+                        aes(x=X1, y=X2, 
+                        color = Treatment, 
+                        shape = Gen, 
+                        label = sample_id))  + 
+                    scale_shape_manual(values = c(1, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3 
+                    geom_point(size=2) + 
+                    labs(title="F0 & F1: All OA", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    stat_ellipse() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic"))  +
+                    facet_wrap(~chrom_num)
+plot(chromMaster_broodstockF0F1.pca)
+
+
+chromMaster_broodstockF0BF3J.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                                 mutate(Gen_Type = paste0(Gen, "_", Type)) %>% 
+                                                 filter(Gen_Type %in% c('F0_broodstock', 'F3_juvenile'))),
+                        aes(x=X1, y=X2, 
+                        color = Treatment, 
+                        shape = Gen, 
+                        label = sample_id))  + 
+                    scale_shape_manual(values = c(1, 19)) +
+                    scale_color_manual(values = c('black',
+                                                  'grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3 
+                    geom_point(size=2) + 
+                    labs(title="F0 Broodstock & F3 Juveniles: All OA", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    stat_ellipse() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic"))  +
+                    facet_wrap(~chrom_num)
+plot(chromMaster_broodstockF0BF3J.pca)
+
+
+
 
 # This will create another PCA plot.
 # In this version, every point (or as many as possible) will have the sample ID assigned to it.
