@@ -9,8 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 # SET WORKING DIRECTORY 
 
-#knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/Airradians_multigen_OA/HPC_analysis") # Sam's
-knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
+#knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
 
 ```
 
@@ -95,14 +95,48 @@ chrom1.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom1/ch
 chrom2.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
 chrom2.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom2/chrom_CM084265.1.bed"), type = "bed") # 3897 variants
 
-chrom3.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom3.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084266.1.vcf.gz"))
 chrom3.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom3/chrom_CM084266.1.bed"), type = "bed") # 3897 variants
 
-chrom4.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom4.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084267.1.vcf.gz"))
 chrom4.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom4/chrom_CM084267.1.bed"), type = "bed") # 3897 variants
 
-chrom5.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom5.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084268.1.vcf.gz"))
 chrom5.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom5/chrom_CM084268.1.bed"), type = "bed") # 3897 variants
+
+chrom6.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084269.1.vcf.gz"))
+chrom6.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom6/chrom_CM084269.1.bed"), type = "bed") # 3897 variants
+
+chrom7.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084270.1.vcf.gz"))
+chrom7.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom7/chrom_CM084270.1.bed"), type = "bed") # 3897 variants
+
+chrom8.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084271.1.vcf.gz"))
+chrom8.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom8/chrom_CM084271.1.bed"), type = "bed") # 3897 variants
+
+chrom9.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084272.1.vcf.gz"))
+chrom9.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom9/chrom_CM084272.1.bed"), type = "bed") # 3897 variants
+
+chrom10.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084273.1.vcf.gz"))
+chrom10.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom10/chrom_CM084273.1.bed"), type = "bed") # 3897 variants
+
+chrom11.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084274.1.vcf.gz"))
+chrom11.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom11/chrom_CM084274.1.bed"), type = "bed") # 3897 variants
+
+chrom12.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084275.1.vcf.gz"))
+chrom12.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom12/chrom_CM084275.1.bed"), type = "bed") # 3897 variants
+
+chrom13.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084276.1.vcf.gz"))
+chrom13.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom13/chrom_CM084276.1.bed"), type = "bed") # 3897 variants
+
+chrom14.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084277.1.vcf.gz"))
+chrom14.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom14/chrom_CM084277.1.bed"), type = "bed") # 3897 variants
+
+chrom15.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084278.1.vcf.gz"))
+chrom15.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom15/chrom_CM084278.1.bed"), type = "bed") # 3897 variants
+
+chrom16.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084279.1.vcf.gz"))
+chrom16.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom16/chrom_CM084279.1.bed"), type = "bed") # 3897 variants
+
 
 
 # pcangsd outputs .cov file 
@@ -111,6 +145,17 @@ chrom2_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_spli
 chrom3_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom3/pcangsd/chrom3_pcangsd.cov"), header = F))
 chrom4_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom4/pcangsd/chrom4_pcangsd.cov"), header = F))
 chrom5_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom5/pcangsd/chrom5_pcangsd.cov"), header = F))
+chrom6_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom6/pcangsd/chrom6_pcangsd.cov"), header = F))
+chrom7_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom7/pcangsd/chrom7_pcangsd.cov"), header = F))
+chrom8_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom8/pcangsd/chrom8_pcangsd.cov"), header = F))
+chrom9_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom9/pcangsd/chrom9_pcangsd.cov"), header = F))
+chrom10_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom10/pcangsd/chrom10_pcangsd.cov"), header = F))
+chrom11_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom11/pcangsd/chrom11_pcangsd.cov"), header = F))
+chrom12_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom12/pcangsd/chrom12_pcangsd.cov"), header = F))
+chrom13_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom13/pcangsd/chrom13_pcangsd.cov"), header = F))
+chrom14_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom14/pcangsd/chrom14_pcangsd.cov"), header = F))
+chrom15_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom15/pcangsd/chrom15_pcangsd.cov"), header = F))
+chrom16_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom16/pcangsd/chrom16_pcangsdls.cov"), header = F))
 
 ```
 
@@ -245,13 +290,33 @@ gl_chrom <- all_genlight[,chrom_loci]
 ```{r plot PCAngsd cov data}
 
 # Now it will perform the PCA
+
+# all data 
 all_run.pca        <- eigen(all_cov_quad)
 
-chrom1_run.pca        <- eigen(chrom1_cov_quad)
+#chromosomes split data for all individuals
+chrom1_run.pca         <- eigen(chrom1_cov_quad)
+chrom2_run.pca         <- eigen(chrom2_cov_quad)
+chrom3_run.pca         <- eigen(chrom3_cov_quad)
+chrom4_run.pca         <- eigen(chrom4_cov_quad)
+chrom5_run.pca         <- eigen(chrom5_cov_quad)
+chrom6_run.pca         <- eigen(chrom6_cov_quad)
+chrom7_run.pca         <- eigen(chrom7_cov_quad)
+chrom8_run.pca         <- eigen(chrom8_cov_quad)
+chrom9_run.pca         <- eigen(chrom9_cov_quad)
+chrom10_run.pca        <- eigen(chrom10_cov_quad)
+chrom11_run.pca        <- eigen(chrom11_cov_quad)
+chrom12_run.pca        <- eigen(chrom12_cov_quad)
+chrom13_run.pca        <- eigen(chrom13_cov_quad)
+chrom14_run.pca        <- eigen(chrom14_cov_quad)
+chrom15_run.pca        <- eigen(chrom15_cov_quad)
+chrom16_run.pca        <- eigen(chrom16_cov_quad)
 
+# broodstock data 
 broodstock_run.pca <- eigen(broodstock_cov_quad)
 
 # Here is the information from your population: location and name of the samples
+# note you can use the all samples strata for the chromosome split - its the same number of individuals 
 all_samplemat     <- as.matrix(all.strata)
 all_sampleheaders <- c("sample_id", "Type", "Gen", "Treatment", "Gen_Treatment")
 colnames(all_samplemat) <- all_sampleheaders
@@ -265,15 +330,51 @@ colnames(broodstock_samplemat) <- broodstock_sampleheaders
 # Extract the eigenvectors and turn them into a dataframe for plotting
 all_eigenvectors = all_run.pca$vectors #extract eigenvectors 
 
-chrom1_eigenvectors = chrom1_run.pca$vectors #extract eigenvectors 
+chrom1_eigenvectors  = chrom1_run.pca$vectors #extract eigenvectors 
+chrom2_eigenvectors  = chrom2_run.pca$vectors #extract eigenvectors 
+chrom3_eigenvectors  = chrom3_run.pca$vectors #extract eigenvectors 
+chrom4_eigenvectors  = chrom4_run.pca$vectors #extract eigenvectors 
+chrom5_eigenvectors  = chrom5_run.pca$vectors #extract eigenvectors 
+chrom6_eigenvectors  = chrom6_run.pca$vectors #extract eigenvectors 
+chrom7_eigenvectors  = chrom7_run.pca$vectors #extract eigenvectors 
+chrom8_eigenvectors  = chrom8_run.pca$vectors #extract eigenvectors 
+chrom9_eigenvectors  = chrom9_run.pca$vectors #extract eigenvectors 
+chrom10_eigenvectors = chrom10_run.pca$vectors #extract eigenvectors 
+chrom11_eigenvectors = chrom11_run.pca$vectors #extract eigenvectors 
+chrom12_eigenvectors = chrom12_run.pca$vectors #extract eigenvectors 
+chrom13_eigenvectors = chrom13_run.pca$vectors #extract eigenvectors 
+chrom14_eigenvectors = chrom14_run.pca$vectors #extract eigenvectors 
+chrom15_eigenvectors = chrom15_run.pca$vectors #extract eigenvectors 
+chrom16_eigenvectors = chrom16_run.pca$vectors #extract eigenvectors 
 
 broodstock_eigenvectors = broodstock_run.pca$vectors #extract eigenvectors 
-
 
 # Combining the information from the populations/samples
 all_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(all_eigenvectors)))
 
-chrom1_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom1_eigenvectors)))
+chrom1_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom1_eigenvectors))) %>% dplyr::mutate(chrom_num = 1)
+chrom2_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom2_eigenvectors))) %>% dplyr::mutate(chrom_num = 2)
+chrom3_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom3_eigenvectors))) %>% dplyr::mutate(chrom_num = 3)
+chrom4_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom4_eigenvectors))) %>% dplyr::mutate(chrom_num = 4)
+chrom5_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom5_eigenvectors))) %>% dplyr::mutate(chrom_num = 5)
+chrom6_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom6_eigenvectors))) %>% dplyr::mutate(chrom_num = 6)
+chrom7_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom7_eigenvectors))) %>% dplyr::mutate(chrom_num = 7)
+chrom8_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom8_eigenvectors))) %>% dplyr::mutate(chrom_num = 8)
+chrom9_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom9_eigenvectors))) %>% dplyr::mutate(chrom_num = 9)
+chrom10_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom10_eigenvectors))) %>% dplyr::mutate(chrom_num = 10)
+chrom11_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom11_eigenvectors))) %>% dplyr::mutate(chrom_num = 11)
+chrom12_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom12_eigenvectors))) %>% dplyr::mutate(chrom_num = 12)
+chrom13_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom13_eigenvectors))) %>% dplyr::mutate(chrom_num = 13)
+chrom14_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom14_eigenvectors))) %>% dplyr::mutate(chrom_num = 14)
+chrom15_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom15_eigenvectors))) %>% dplyr::mutate(chrom_num = 15)
+chrom16_pca.vectors = as_tibble(cbind(all_samplemat, data.frame(chrom16_eigenvectors))) %>% dplyr::mutate(chrom_num = 16)
+
+chromMaster_pca.vector <- rbind(chrom1_pca.vectors,chrom2_pca.vectors,chrom3_pca.vectors,chrom4_pca.vectors,
+                                chrom5_pca.vectors, chrom6_pca.vectors,chrom7_pca.vectors, chrom8_pca.vectors,
+                                chrom9_pca.vectors, #chrom10_pca.vectors, 
+                                chrom11_pca.vectors, chrom12_pca.vectors,
+                                chrom13_pca.vectors, #chrom14_pca.vectors,
+                                chrom15_pca.vectors, chrom16_pca.vectors)
 
 broodstock_pca.vectors = as_tibble(cbind(broodstock_samplemat, data.frame(broodstock_eigenvectors)))
 
@@ -297,16 +398,137 @@ all_simple.pca = ggplot(data = all_pca.vectors,
 plot(all_simple.pca)
 
 
-chrom1_simple.pca = ggplot(data = (chrom1_pca.vectors %>% filter(Type %in% 'juvenile')), 
+
+
+
+
+chromMaster_juvenilesLow.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                            filter(Type %in% 'juvenile') %>% 
+                                            filter(Treatment %in% c('none','Low'))), 
                         aes(x=X1, y=X2, 
-                        color = Treatment, 
+                        color = Gen, 
                         shape = Gen, 
                         label = sample_id)) + 
-                    geom_point(size=4) + 
-                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    scale_shape_manual(values = c(19, 19, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3
+                    geom_point(size=2) + 
+                    stat_ellipse() +
+                    labs(title="Juveniles: Low OA", x="PC1",y="PC2") + 
+                    theme_bw() +
                     # I'm making the title in italics because it's usually the name of a species
-                    theme(plot.title = element_text(face = "italic")) #+ scale_color_brewer(palette="Set1")
-plot(chrom1_simple.pca)
+                    theme(plot.title = element_text(face = "italic")) +#+ scale_color_brewer(palette="Set1")
+                    facet_wrap(~chrom_num)
+plot(chromMaster_juvenilesLow.pca)
+
+chromMaster_juvenilesModerate.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                            filter(Type %in% 'juvenile') %>% 
+                                            filter(Treatment %in% c('none','Moderate'))), 
+                        aes(x=X1, y=X2, 
+                        color = Gen, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    scale_shape_manual(values = c(19, 19, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3
+                    geom_point(size=2) + 
+                    stat_ellipse() + 
+                    labs(title="Juveniles: Moderate OA", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic")) +#+ scale_color_brewer(palette="Set1")
+                    facet_wrap(~chrom_num)
+plot(chromMaster_juvenilesModerate.pca)
+
+chromMaster_juvenilesHigh.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                            filter(Type %in% 'juvenile') %>% 
+                                            filter(Treatment %in% c('none','High'))), 
+                        aes(x=X1, y=X2, 
+                        color = Gen, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    scale_shape_manual(values = c(19, 19, 19)) +
+                    scale_color_manual(values = c('grey70', # 1 open point, F1
+                                                  'grey40', # 19 solid point, F2
+                                                  'black')) + # 19 solid point, F3
+                    geom_point(size=2) + 
+                    stat_ellipse() +
+                    labs(title="Juveniles: High OA", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic")) +#+ scale_color_brewer(palette="Set1")
+                    facet_wrap(~chrom_num)
+plot(chromMaster_juvenilesHigh.pca)
+
+
+# output plots
+pdf("../RAnalysis/Output/Popgen/PCA_chromsplit_juveniles_LowOA.pdf", width = 8, height = 8)
+plot(chromMaster_juvenilesLow.pca)
+dev.off()
+
+pdf("../RAnalysis/Output/Popgen/PCA_chromsplit_juveniles_ModerateOA.pdf", width = 8, height = 8)
+plot(chromMaster_juvenilesModerate.pca)
+dev.off()
+
+pdf("../RAnalysis/Output/Popgen/PCA_chromsplit_juveniles_HighOA.pdf", width = 8, height = 8)
+plot(chromMaster_juvenilesHigh.pca)
+dev.off()
+
+
+
+
+# Broodstock plots
+chromMaster_broodstockLow.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                                 filter(Type %in% 'broodstock') %>% 
+                                                 filter(Treatment %in% c('none','Low'))), 
+                        aes(x=X1, y=X2, 
+                        color = Gen, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    geom_point(size=2) + 
+                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic"))  +
+                    scale_color_brewer(palette="Set1") +
+                    facet_wrap(~chrom_num)
+plot(chromMaster_broodstockLow.pca)
+
+
+chromMaster_broodstockModerate.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                                 filter(Type %in% 'broodstock') %>% 
+                                                 filter(Treatment %in% c('none','Moderate'))), 
+                        aes(x=X1, y=X2, 
+                        color = Gen, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    geom_point(size=2) + 
+                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic"))  +
+                    scale_color_brewer(palette="Set1") +
+                    facet_wrap(~chrom_num)
+plot(chromMaster_broodstockModerate.pca)
+
+
+chromMaster_broodstockHigh.pca = ggplot(data = (chromMaster_pca.vector %>% 
+                                                 filter(Type %in% 'broodstock') %>% 
+                                                 filter(Treatment %in% c('none','High'))), 
+                        aes(x=X1, y=X2, 
+                        color = Gen, 
+                        shape = Gen, 
+                        label = sample_id)) + 
+                    geom_point(size=2) + 
+                    labs(title="Title goes here", x="PC1",y="PC2") + 
+                    theme_bw() +
+                    # I'm making the title in italics because it's usually the name of a species
+                    theme(plot.title = element_text(face = "italic"))  +
+                    scale_color_brewer(palette="Set1") +
+                    facet_wrap(~chrom_num)
+plot(chromMaster_broodstockHigh.pca)
 
 broodstock_simple.pca = ggplot(data = broodstock_pca.vectors, 
                                aes(x=X1, y=X2, 
