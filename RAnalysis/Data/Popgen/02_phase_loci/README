@@ -1,0 +1,20 @@
+# In R I used the script 02_phase_loci in my github repo to produce the vcf.gz files for each pop
+# 'pop' is by univariable Generation_Type_Treatment as F0-F3, broodstock or juveniles, and Low Moderate or High OA 
+# imported the vcf.gz files by 'pop' into sedna using scp
+ls *.gz > infile
+sed 's/\..*$//g' infile > infile2 # omit .vcf.gz
+mv infile2 infil # rename
+
+# run for loop iterating eachline to phase with beagle and bcftools
+module load bio/beagle/5.2
+module load bio/bcftools/
+
+# loop throguh infile and phase using beagle
+cat infile | while read i; do java -Xmx2g -jar /opt/bioinformatics/bio/beagle/beagle-5.2/beagle.28Jun21.220.jar gt=$i.vcf.gz out=$i.phased; done
+
+# use bcftools to index all the outiles
+cat infile | while read i; do bcftools index $i.phased.vcf.gz; done
+
+# merge as out.7 
+# rememer out.6 was from the previous pipeline for missingness of indiv and genotyping 
+bcftools merge *phased.vcf.gz > out.7.phased.vcf.gz

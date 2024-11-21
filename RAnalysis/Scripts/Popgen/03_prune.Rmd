@@ -1,0 +1,70 @@
+---
+title: "03_prune"
+output: html_document
+date: "2024-11-21"
+---
+
+# Prune loci 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# SET WORKING DIRECTORY 
+#knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/RAnalysis/") # Sam's
+
+```
+
+```{r libraries, include=FALSE}
+library(tidyverse)
+library(bigsnpr)
+```
+
+
+```{r}
+
+# Get the created filename
+bedfile <- here::here("RAnalysis", "Data", "Popgen",  "03_prune", "out.7.bed")
+
+# Read the bedfile and store the data in temp dir
+rds <- snp_readBed(bedfile, backingfile = tempfile())
+
+# Load the data from the backing file
+dat <- snp_attach(rds)
+G <- dat$genotypes
+
+#big_counts(dat$genotypes, ind.col = 1:10)
+unique(dat$map$chromosome) # only the 16 chromosome good!
+length(unique(dat$map$chromosome)) == 16 # sanity check yay!
+
+chrom_vec <- tibble(chrom.name = dat$map$chromosome) %>%
+                  dplyr::mutate(chrom = 
+                                      as.integer(case_when(chrom.name %in% 'CM084264.1' ~ 1,
+                                                           chrom.name %in% 'CM084265.1' ~ 2,
+                                                           chrom.name %in% 'CM084266.1' ~ 3,
+                                                           chrom.name %in% 'CM084267.1' ~ 4,
+                                                           chrom.name %in% 'CM084268.1' ~ 5,
+                                                           chrom.name %in% 'CM084269.1' ~ 6,
+                                                           chrom.name %in% 'CM084270.1' ~ 7,
+                                                           chrom.name %in% 'CM084271.1' ~ 8,
+                                                           chrom.name %in% 'CM084272.1' ~ 9,
+                                                           chrom.name %in% 'CM084273.1' ~ 10,
+                                                           chrom.name %in% 'CM084274.1' ~ 11,
+                                                           chrom.name %in% 'CM084275.1' ~ 12,
+                                                           chrom.name %in% 'CM084276.1' ~ 13,
+                                                           chrom.name %in% 'CM084277.1' ~ 14,
+                                                           chrom.name %in% 'CM084278.1' ~ 15,
+                                                           chrom.name %in% 'CM084279.1' ~ 16)
+                                                 )
+                               ) %>% 
+  pull(chrom)
+
+
+# Run the SVD
+thinned_snps <- snp_autoSVD(dat$genotypes, infos.chr = chrom_vec, infos.pos = dat$map$physical.pos, roll.size = 5, int.min.size = 10)
+
+#thin_set <- attr(thinned_snps, "subset")
+
+# Write the thinned SNP set to a file
+write_rds(thinned_snps, here::here("RAnalysis", "Data", "Popgen",  "03_prune", "pruned_snps.rds"))
+
+```

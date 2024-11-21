@@ -1,0 +1,8 @@
+# symbol line out.7.phased from 02_phase folder and input here
+ln -s ../02_phase_loci/out.7.phased.vcf.gz ./
+
+# load plink 
+module load bio/plink/1.90b6.23
+
+# use plink to create a bed file for out.7.phased.vcf.gz
+plink2 --vcf ./out.7.phased.vcf.gz --make-bed --out ./out.7 --allow-extra-chr
