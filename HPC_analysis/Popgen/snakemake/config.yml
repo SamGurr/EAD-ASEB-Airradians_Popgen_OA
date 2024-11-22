@@ -1,0 +1,21 @@
+# cluster_config.yml - cluster configuration
+__default__: 
+    time: 10:00:00 
+    nodes: 1 
+    ntasks-per-node: 1 
+    mem: 60GB 
+# can modify here for customized err and out
+trim:  
+    ntasks-per-node: 9
+    mem: 100GB
+map_SortSam: 
+    ntasks-per-node: 9
+    mem: 80GB
+merge_bams:
+    mem: 90GB
+    time: 300:00:00
+    cores: 20
+#SNPcalls: # specify the chunk for angsd, known major and minor allele
+#    ntasks-per-node: 10 # tasks per node 
+#    mem: 100GB # memory call
+#    time: 3000:00:00
