@@ -1,0 +1,16 @@
+# cluster_config.yml - cluster configuration
+__default__: 
+    time: 10:00:00 
+    nodes: 1 
+    ntasks-per-node: 1 
+    mem: 80GB 
+# can modify here for customized err and out
+trim_adapters:  
+    ntasks-per-node: 9
+    mem: 80GB
+trim_clean:
+    ntasks-per-node: 9
+    mem: 80GB
+map: 
+    ntasks-per-node: 12
+    mem: 80GB

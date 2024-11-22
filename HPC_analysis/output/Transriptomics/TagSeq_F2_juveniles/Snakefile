@@ -1,0 +1,350 @@
+# input your common thread(s) here
+
+# ALL: one rule to rule them all..
+# Important!: to run this entire make of snake, the input to 'all' should be equivalent to the **final** filename at the end of the pipe
+# Note: if you want to run a partial pipeline you can add an input for 'all' here that is equivalent to the output of a specific chunk (e.g. mapping)
+rule all:
+    # remember - 4 spaces via python syntax!
+    input:
+        # -remember - 8 spaces via pyton syntax! DO NOT LEAVE EMPTY LINES FOR INPUT OR OUTPUT
+        # RAW QC - check for upload succes via md5checksum
+        "rawQC",
+        # trim 'adapters only' - currently by (i) adapter fasta and (ii) by quality score
+        "fastp_just_adapters",
+        # trim 'clean' - including additional complexity calls to omit poly-A tails (TagSeq)
+        "fastp_clean_n_pristine",
+        # map clean reads to the current GenBank genome
+        "hisat2_bamified",
+	# stringtie2 
+	"stringtie2_done",
+	# prep.py to output gene abundnace matrix
+	"complete"
+# Initiate symbolic dirs to raw data - run raw QC - output multiQC report
+rule rawQC:
+    #input:
+        # insert here
+    output:
+        # insert here
+        "rawQC"
+        #"md5checksum_complete"
+    shell:
+        """
+        echo 'start' $(date)
+        
+        # RAW QC
+
+        # load modules 
+        module load bio/fastp/0.23.2
+        module load bio/fastqc/0.11.9 
+
+        # make dirs
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/raw # make directory for trimmed fastq files and multiqc report 
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/output
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/rawqc
+
+        # call dirs
+        BASEDIR=~/Airradians_F2Juveniles_TagSeq
+        RAWSEQ=~/../../../share/nefsc/mcfarland_sequecenes/TagSeq_F2Juvenile_scallops_RTLGurr7206
+        DATDIR=~/Airradians_F2Juveniles_TagSeq/raw
+        PYTHONENV=~/python_venv/bin
+        OUTDIR=~/Airradians_F2Juveniles_TagSeq/output/rawqc
+
+        # nav to dir for symbolic links 
+        cd $DATDIR
+
+        # symbolically link clean reads to fastp_multiQC dir
+        ln -s $RAWSEQ/*.fastq.gz  ./ # call backward from the directory to the share folder, input symbolic links to 'raw' folder as $DATDIR
+
+        # make an array of sequences to trim
+        array=($(ls $DATDIR/*.fastq.gz))  # call the folder will all symbolically linked .fastq.gz files (without the SA* folder included)
+
+        # fastqc loop of raw reads - output fastqc files to raw folder 
+        for i in ${{array[@]}}; do
+            fastqc ${{i}} --outdir $OUTDIR;
+        done 
+
+        echo "QC of raw reads complete." $(date)
+
+        # activate python
+        source $PYTHONENV/activate # from the current directory, activates the bin of installed python packages, including multiqc
+
+        # mutliqc compiling all contents within the output folder 
+        multiqc $OUTDIR -o $OUTDIR #Compile MultiQC report from FastQC files - output .html in current directory ( multiQC html report)
+
+        # exit python virtual envrionment
+        #deactivate
+
+        # out file
+        touch $BASEDIR/rawQC
+
+        echo 'end' $(date)
+        """
+# trim just adapters + phred 30 - output mutliqc report
+rule trim_adapters:
+    input:
+        "rawQC"
+    output:
+        "fastp_just_adapters"
+    shell:
+        """
+        echo 'start' $(date)
+
+	# Trim using fastp (adapters + phred only)
+
+	# load modules needed
+	module load bio/fastp/0.23.2
+	module load bio/fastqc/0.11.9
+
+	# make dirs
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/trim
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/trim/adapters_only
+
+	# call dirs
+	BASEDIR=~/Airradians_F2Juveniles_TagSeq
+	DATDIR=~/Airradians_F2Juveniles_TagSeq/raw
+	PYTHONENV=~/python_venv/bin
+	OUTDIR=~/Airradians_F2Juveniles_TagSeq/output/trim/adapters_only
+
+        # nav to data dir
+	cd $DATDIR
+
+	# Make an array of sequences to trim
+	array=($(ls *.fastq.gz))  # call symbolically linked .fastq files
+
+	# fastp loop; trim the Read 1 TruSeq adapter sequence; trim poly x default 10 (to trim polyA)
+	for i in ${{array[@]}}; do
+            fastp --in1 ${{i}} --out1  $OUTDIR/adapters.${{i}} --adapter_fasta $BASEDIR/adapters.fasta -q 30 # trim phred score
+            fastqc  $OUTDIR/adapters.${{i}} --outdir $OUTDIR # calls the  files output by fastp in previous line and output into the same folder
+	done;
+
+	echo "Read trimming of adapters complete." $(date)
+
+	# activate python
+	#source $PYTHONENV/activate # from the current directory, activates the bin of installed python packages, including multic
+
+	# navigate to all the outdir files 
+	cd $OUTDIR
+
+	# mutliqc compiling all contents within the output folder 
+	multiqc $OUTDIR -o $OUTDIR #Compile MultiQC report from FastQC files - output .html in current directory ( multiQC html report)
+
+        # exit python virtual envrionment
+        #deactivate
+
+	echo "Clean MultiQC report generated." $(date)
+
+        # out file
+	touch $BASEDIR/fastp_just_adapters
+    
+        echo 'end' $(date)
+        """
+# trim just adapters + phred 30 - output mutliqc report
+rule trim_clean:
+    input:
+        "fastp_just_adapters"
+    output:
+        "fastp_clean_n_pristine"
+    shell:
+        """
+        echo 'start' $(date)
+
+	# Trim using fastp (adapters + phred + poly-A tail)
+
+	# load modules needed
+	module load bio/fastp/0.23.2
+	module load bio/fastqc/0.11.9
+
+	# make dirs
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/trim
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/trim/clean
+
+	# call dirs
+	BASEDIR=~/Airradians_F2Juveniles_TagSeq
+	DATDIR=~/Airradians_F2Juveniles_TagSeq/raw
+	PYTHONENV=~/python_venv/bin
+	OUTDIR=~/Airradians_F2Juveniles_TagSeq/output/trim/clean
+
+	# nav to data dir
+	cd $DATDIR	
+
+	# Make an array of sequences to trim
+	array=($(ls *.fastq.gz))  # call the folder will all symbolically linked .fastq.gz files
+
+	# fastp loop; trim the Read 1 TruSeq adapter sequence; trim poly x default 10 (to trim polyA)
+	for i in ${{array[@]}}; do
+	    fastp --in1 ${{i}} --out1  $OUTDIR/clean.${{i}} --adapter_fasta $BASEDIR/adapters.fasta --trim_poly_x 6 -q 30 -y -Y 50 # trim poly to remove poly A tail, -q to trim phred score, -y -Y 50 for seq complexity (default 30)
+	    fastqc $OUTDIR/clean.${{i}} --outdir $OUTDIR # calls the  files output by fastp in previous line and output into the same folder
+	done
+
+	echo "Read trimming of adapters complete." $(date)
+
+	# activate python
+	source $PYTHONENV/activate # from the current directory, activates the bin of installed python packages, including multiqc
+
+	# navigate to all the outdir files 
+	cd $OUTDIR
+
+	# autliqc compiling all contents within the output folder 
+	multiqc $OUTDIR -o $OUTDIR #Compile MultiQC report from FastQC files - output .html in current directory ( multiQC html report)
+
+        # exit python virtual envrionment
+        #deactivate
+
+	echo "Clean MultiQC report generated." $(date)
+
+        # out file
+	touch $BASEDIR/fastp_clean_n_prisitine
+
+        echo 'end' $(date)
+        """
+# map clean reads from 'trim_clean' to the current reference genome using hisat2
+rule map:
+    input:
+        "fastp_clean_n_pristine"
+    output:
+        "hisat2_bamified"
+    shell:
+        """
+        echo 'start' $(date)
+
+	# make dirs
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/hisat2/
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/hisat2/Airradians_map
+
+	# call dirs
+	BASEDIR=~/Airradians_F2Juveniles_TagSeq
+	REFDIR=~/refs # the reference folder 
+	PYTHONENV=~/python_venv/bin # python enrnvrionment
+	DATDIR=~/Airradians_F2Juveniles_TagSeq/output/trim/clean # directory of trimmed and filtered fastq.gz files
+	OUTDIR=~/Airradians_F2Juveniles_TagSeq/output/hisat2/Airradians_map
+
+	# load modules, requires hisat2 and samtools
+	module load bio/hisat2/2.2.1
+	module load bio/samtools/1.11
+
+	# symbolically link clean reads to hisat2 dir
+	ln -s $DATDIR/*.fastq.gz $OUTDIR/ # call the .fastq.gz output from fastp trim - make symb link to output/hisat2
+
+	#echo "Symbolic directories successfully linked"
+
+	# activate python for hisat2-build
+	source $PYTHONENV/activate  # activate python virtual envriomment to call python and run hisat2-build
+
+	#echo "Python virtual env activated"
+
+	# index the reference genome for Panopea generosa output index to working directory
+	#hisat2-build -f $REFDIR/Argopecten_irradians_irradians_genome.fasta $OUTDIR/Airradians_ref # old reference genome
+        #hisat2-build -f $REFDIR/GCF_041381155.1_Ai_NY_cds_from_genomic.fna $OUTDIR/Airradians_ref 
+        hisat2-build -f $REFDIR/GCF_041381155.1_Ai_NY_genomic.fna $OUTDIR/Airradians_ref
+
+	#echo "Referece genome indexed. Starting alingment" $(date)
+
+	# exit python virtual envrionment
+	#deactivate
+
+	# nav to out dir
+	cd $OUTDIR
+
+	# This script exports alignments as bam files
+	# sorts the bam file because Stringtie takes a sorted file for input (--dta)
+	# removes the sam file because it is no longer needed
+	array=($(ls ./clean*.fastq.gz)) # call the symbolically linked sequences - make an array to align
+	for i in ${{array[@]}}; do
+	    hisat2 -p 8 --dta -x $OUTDIR/Airradians_ref -U ${{i}} -S ${{i}}.sam
+	    samtools sort -@ 8 -o ${{i}}.bam ${{i}}.sam
+	    echo "${{i}} bam-ified!"
+	    rm ${{i}}.sam
+	done
+
+        # out file 
+	touch $BASEDIR/hisat2_bamified
+
+        echo 'end' $(date)
+        """
+rule stringtie2:
+    input:
+        "hisat2_bamified"
+    output:
+        "stringtie2_done"
+    shell:
+        """
+        echo 'start' $(date)
+
+        # make dirs
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/stringtie2
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/stringtie2/Airradians
+
+        # call dirs
+        BASEDIR=~/Airradians_F2Juveniles_TagSeq # base directory
+        REFDIR=~/refs
+        DATDIR=~/Airradians_F2Juveniles_TagSeq/output/hisat2/Airradians_map # directory of mapped bam files from hisat2
+        OUTDIR=~/Airradians_F2Juveniles_TagSeq/output/stringtie2/
+
+        # load modules, requires stringtie2
+        module load bio/stringtie/2.2.0
+
+        array=($(ls ${{DATDIR}}/*.bam)) #Make an array of sequences to assemble
+
+        # awk example: file name clean.C9-larva-22_S77.bam - use awk to get sample name w/o .bam using . as delimiter
+        # run strnigtie on the array and output to the stringtie2 directory
+        for i in ${{array[@]}}; do #Running with the -e option to compare output to exclude novel genes. Also output a file with the gene abundances
+            sample_name=`echo ${{i}}| awk -F [..] '{{print $2}}'`
+            #stringtie -p 8 -e -B -G $REFDIR/Argopecten_irradians_irradians.gff -A $OUTDIR/${{sample_name}}.gene_abund.tab -o $OUTDIR/${{sample_name}}.gtf ${{i}} # old reference            
+            stringtie -p 8 -e -B -G $REFDIR/GCF_041381155.1_Ai_NY_genomic.gff -A $OUTDIR/${{sample_name}}.gene_abund.tab -o $OUTDIR/${{sample_name}}.gtf ${{i}}
+        done
+        
+        #out file
+        touch $BASEDIR/stringtie2_done
+ 
+        echo "StringTie assembly COMPLETE, starting assembly analysis" $(date)
+        """
+rule abundance_matrix:
+    input:
+        "stringtie2_done"
+    output:
+        "complete"
+    shell:
+        """
+        # make dirs
+	mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/stringtie2/Airradians/merged
+        mkdir -p ~/Airradians_F2Juveniles_TagSeq/output/count_matrix
+
+        # load packages
+        module load bio/stringtie/2.2.0
+        module load bio/gffcompare/0.12.6
+
+	# call command names
+	BASEDIR=~/Airradians_F2Juveniles_TagSeq # base directory
+	REFDIR=~/refs # direcrory with ref genome data
+	DATDIR=~/Airradians_F2Juveniles_TagSeq/output/stringtie2/ # outdir of the gtf stringtie2 files in stringtie2.sh
+	OUTDIR=~/Airradians_F2Juveniles_TagSeq/output/count_matrix # output of prepde.py
+	SCRIPTS=~/Airradians_F2Juveniles_TagSeq/scripts
+
+	cd $DATDIR # to strngtie2 gtf outputs in previous chunk
+
+	# gtf_list.txt and listGTF.txt
+	ls *.gtf > gtf_list.txt # list the .gtf files in output/stringtie2/Airradians
+
+	# run stringtie merge
+	#stringtie --merge -p 8 $REFDIR/GCF_041381155.1_Ai_NY_genomic.gff -o Airradians_merged.gtf gtf_list.txt  # merge GTFs in the $DATDIR directory 
+	#echo "Stringtie merge complete" $(date)
+
+	# run gff compaure to report accuracy of alignment to reference
+	#gffcompare -r $REFDIR/Argopecten_irradians_irradians.gff  -G -o $DATDIR/merged $DATDIR/Airradians_merged.gtf #Compute the accuracy and pre$
+	#echo "GFFcompare complete, Starting gene count matrix assembly..." $(date)
+
+
+	# list gtf files to call in preppy
+	for filename in ${{DATDIR}}/*.gtf; # call the merged files output in stringtie above
+            do echo $(basename -- $filename) $filename;
+            done > $DATDIR/listGTF.txt # full root to each .gtf file in output/stringtie2 - call in prepDE.py as -i
+
+	# prepDE.py to assemble count matrix for R
+	# python is an alias for python_venv/bin/python (requires virtual envrionment installation on sedna)
+	python2 $SCRIPTS/prepDE.py3 -g  $OUTDIR/Airradians_gene_count_matrix.csv -t  $OUTDIR/Airradians_transcript_count_matrix.csv -i  $DATDIR/listGTF.txt #Compile the gene count matrix
+	echo "Gene count matrix compiled." $(date)
+
+        # out file
+	touch $BASEDIR/complete
+        """
