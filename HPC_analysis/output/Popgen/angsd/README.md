@@ -52,7 +52,7 @@ vcftools --vcf raw_snps.vcf.gz -- site-mean-depth --out mean_depth.txt
 
 ## Step 1: Filter by depth & quality
 
-* **objective**: use ```--minDP``` and ```--minGQ``` in ```vcftools`` to filter genotypes with depth < 10 and genotype quality < 20, respectively
+* **objective**: use ```--minDP``` and ```--minGQ``` in ```vcftools``` to filter genotypes with depth < 10 and genotype quality < 20, respectively
 
 *..in R*
 ```
@@ -68,7 +68,7 @@ vcftools --gzvcf raw_snps.vcf.gz --out out.1 --minDP 10 --minGQ 20 --recode --re
 
 ## Step 2: Filter monomorphic sites
 
-* **objective**: use ```--maf``` in ```vcftools`` to filter out sites that were made monomorphic by the previous filter
+* **objective**: use ```--maf``` in ```vcftools``` to filter out sites that were made monomorphic by the previous filter
 
 *..in R*
 ```
@@ -85,7 +85,7 @@ vcftools --vcf out.1.recode.vcf --maf 0.001 --out out.2 --recode --recode-INFO-a
 
 ## Step 3: Identify individuals with missing data 
 
-* **objective**: use ```--max-missing``` in ```vcftools`` to remove individuals with more than 50% missing data
+* **objective**: use ```--max-missing``` in ```vcftools``` to remove individuals with more than 50% missing data
 
 * think of % missingness as, "we are allowing a max missingess of XX %" therefore the smaller the number the more strict
 
@@ -102,7 +102,7 @@ vcftools --vcf out.2.recode.vcf --out out.3 --max-missing 0.5 --recode --recode-
 ```
 
 
-* **objective**: use ```--missing-indv``` in ```vcftools`` to output an imiss file
+* **objective**: use ```--missing-indv``` in ```vcftools``` to output an imiss file
 
 *..in R*
 ```
@@ -152,7 +152,7 @@ write_delim(miss_70, "remove.3.inds", col_names = FALSE) # write the indivualds 
 
 ## Step 4: Filter individuals with missing data
 
-* **objective**: use ```--remove``` in ```vcftools`` to remove individuals with >70% missing data
+* **objective**: use ```--remove``` in ```vcftools``` to remove individuals with >70% missing data
 
 * navigate back into the bash sessionwith vcftools, create out.4 as the vcf witht he individuals removed; 
 **note**, 18 individuals were removed
@@ -215,7 +215,7 @@ vcftools --vcf out.4.vcf --out out.5 --exclude-positions remove.4.sites --recode
 
 ## Step 5: Investigate sites with missing data
 
-* **objective**: use ```--max-missing``` in ```vcftools`` to remove sites with more than 75% missing data
+* **objective**: use ```--max-missing``` in ```vcftools``` to remove sites with more than 75% missing data
 
 *..in R*
 ```
@@ -238,7 +238,7 @@ vcftools --vcf out.4.recode.vcf --out out.5 --max-missing 0.75 --recode --recode
 
 ## Step 5.2: Build file in R to omit based on missingness 
 
-* **objective**: use ```--missing-indv``` in ```vcftools`` to calculate individual missingness - this is done again since the pool of sites is lower
+* **objective**: use ```--missing-indv``` in ```vcftools``` to calculate individual missingness - this is done again since the pool of sites is lower
 
 * **note** -  this creates imiss and .kig files, does not overwrite the 5.recode
 
@@ -284,7 +284,7 @@ write_delim(miss_60, "remove.5.inds", col_names = FALSE) # write out
 
 ## Step 6: Filter individuals with missing data
 
-* **objective**: use ```--remove``` in ```vcftools`` to remove the individuals with more than 60% missing genotype
+* **objective**: use ```--remove``` in ```vcftools``` to remove the individuals with more than 60% missing genotype
 
 *..in R*
 ```
@@ -304,7 +304,7 @@ vcftools --vcf out.5.recode.vcf --out out.6 --remove remove.5.inds --recode --re
 
 ## Step 6.2: Check for duplicates and relatedness filter
 
-* **objective**: use ```--relatedness``` in ```vcftools`` to check for duplicate individuals using relatedness
+* **objective**: use ```--relatedness``` in ```vcftools``` to check for duplicate individuals using relatedness
 
 
 *..in R*
