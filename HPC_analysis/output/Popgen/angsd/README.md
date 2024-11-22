@@ -271,15 +271,6 @@ out_5_imiss <- read_tsv("out.5.imiss") %>%
                   extract(INDV, "pop", "(\\w+)_", remove = FALSE)
 
 out_5_imiss %>% count(pop)
-```
-
-# Load the data in Rstudio 
-# open the out.5.imiss file in R
-# note the read_tsv is in the package readr
-out_5_imiss <- read_tsv("out.5.imiss") %>%
-                  extract(INDV, "pop", "(\\w+)_", remove = FALSE)
-
-out_5_imiss %>% count(pop)
 
 ggplot(out_5_imiss, aes(x = F_MISS, fill = pop)) + geom_histogram() #Plot a quick histogram of the data from the plot we see that 60% is the target filter for omission
 
