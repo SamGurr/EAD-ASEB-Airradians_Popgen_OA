@@ -62,7 +62,19 @@ chrom_vec <- tibble(chrom.name = dat$map$chromosome) %>%
 # Run the SVD
 thinned_snps <- snp_autoSVD(dat$genotypes, infos.chr = chrom_vec, infos.pos = dat$map$physical.pos, roll.size = 5, int.min.size = 10)
 
-#thin_set <- attr(thinned_snps, "subset")
+# Discarding 0 variant with MAC < 10 or MAF < 0.02.
+# 
+# Phase of clumping (on MAF) at r^2 > 0.2.. keep 2797 variants.
+# 
+# Iteration 1:
+# Computing SVD..
+# 0 outlier variant detected..
+# 
+# Converged!
+  
+thin_set <- attr(thinned_snps, "subset")
+length(thin_set) == nrow(thinned_snps$v) # the thinned subset is the same as thinned snps, meaning none removed
+# therefore just about the thinned_snps
 
 # Write the thinned SNP set to a file
 write_rds(thinned_snps, here::here("RAnalysis", "Data", "Popgen",  "03_prune", "pruned_snps.rds"))
