@@ -1,0 +1,271 @@
+---
+title: "Outlier detection"
+author: "Samuel Gurr"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# SET WORKING DIRECTORY 
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+#knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+
+```
+
+* load libraries
+```{r, include=FALSE}
+library(tidyverse)
+library(adegenet)
+library(vcfR)
+library(bigsnpr)
+library(hierfstat)
+library(qvalue)
+library(radiator)
+# source("bin/functions.R")
+
+# CONDA_PATH <- Sys.getenv("CONDA_PATH")
+# CONDA_ENV <- "scalpop"
+
+# Set some useful options 
+# knitr::opts_chunk$set()
+
+```
+
+# Run Bayescan
+
+First import the unphased SNP data:
+
+```{r}
+
+# Source the custom write_bscan() function
+source(here::here(getwd(),"RAnalysis", "Scripts", "bin", "write_bayescan.R"))
+
+# Read in the filtered SNP VCF file (non-phased) to a genind object
+gen <- read.vcfR(here::here(getwd(),"RAnalysis", "Data", "Popgen", "03_prune", "out.7.phased.vcf.gz"), verbose = FALSE) %>%
+        vcfR2genind()
+
+# Assign populations to the genind
+popnames <- tibble(id = indNames(gen)) %>%
+   dplyr::mutate(Individual = gsub('*./','',id),
+                         Type = dplyr::case_when(grepl("-B", Individual) ~ "broodstock", TRUE ~ 'juvenile'),
+                         Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
+                                                             grepl("F1", Individual) ~ "F1",
+                                                             grepl("F2", Individual) ~ "F2",
+                                                             grepl("F3", Individual) ~ "F3",
+                                                             TRUE ~ "F1"),
+                         Treatment = dplyr::case_when(
+                                        grepl("F0", Individual) ~ "none",
+                                        grepl("pH7\\.",Individual) ~ "High",
+                                        grepl(c("pH75\\.|.201.|.203.|.204.|.251.|.253.|.254.|.301.|.303.|.304.|.351.|.352.|.353.|.354."), 
+                                              Individual) ~ "Moderate",
+                                        grepl(c("pH8|.101.|.103.|.104.|.153.|.154.|.155.|.3.|.4.|.5."), 
+                                              Individual) ~  "Low")) %>% 
+   dplyr::mutate(pop = dplyr::case_when(Gen == "F0" ~ "F0",
+                                        Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Type,'_',Treatment))) %>% 
+   pull(pop)
+
+pop(gen) <- popnames
+```
+
+Now set up Bayescan:
+
+```{r}
+# bscan_input_path <- here::here("data", "derived", "snp_bayescan_17.txt")
+# write_bscan(genind = gen, file = bscan_input_path)
+
+bscan_input_path <- here::here(getwd(),"RAnalysis", "Data", "Popgen", "snp_bayescan_7.txt") # opath to output this "snp_bayescan_7.txt"
+write_bscan(genind = gen, file = bscan_input_path) # outputs "snp_bayescan_7.txt" in this line runnnign write_bscan
+
+?run_bayescan
+# Run BayeScan for both files
+bayescan_bin <- here::here("C:/Users/samjg/Documents/Bioinformatics/bin/bayescan_distributed_2.01/binaries/BayeScan2.0_linux64bits")
+bayescan_out <- here::here(getwd(),"RAnalysis", "Data", "Popgen")
+
+
+# Run bayescan: This is commented out because it takes a long time to run
+library(parallel)
+?parallel
+library(help = "parallel")
+
+snp_job <- parallel::mcparallel(system(glue::glue("{bayescan_bin} {bscan_input_path} -od {bayescan_out} -threads 5 -pr_odds 100 -o pmax")), silent = TRUE)
+
+
+run_bayescan(
+  data = {bscan_input_path},
+  n = 5000,
+  thin = 10,
+  nbp = 20,
+  pilot = 5000,
+  burn = 50000,
+  pr_odds = 10, # indicates that the neutral model is 10 times more likely than the model with selection
+  subsample = NULL,
+  iteration.subsample = 1,
+  parallel.core = parallel::detectCores() - 1,
+  bayescan.path = {bayescan_bin}
+)
+
+
+# Read in the Bayescan output for the snps
+bay_tbl <- read_table2(here::here("data", "raw", "pmax_17_fst.txt"),
+                       skip = 1,
+                       col_names = c("index", "prob", "log10_po", "bay_qval", "bay_alpha", "fst", "extra"),
+                       col_types = cols(
+                                        index = col_double(),
+                                        prob = col_double(),
+                                        log10_po = col_double(),
+                                        bay_qval = col_double(),
+                                        bay_alpha = col_double(),
+                                        fst = col_double(),
+                                        extra = col_logical()
+                        )) %>%
+  select(-extra) %>%
+  mutate(locus = locNames(gen)) %>%
+  extract(locus, c("chrom", "pos"), "HiC_scaffold_(\\d+)_arrow_ctg1_(\\d+)", remove = FALSE) %>%
+  mutate(bay_outlier = bay_qval < 0.05,
+         bay_directional = bay_qval < 0.05 & bay_alpha > 0,
+         bay_balancing = bay_qval < 0.05 & bay_alpha < 0,
+         pos = as.integer(pos),
+         chrom = as.integer(chrom))
+
+bay_tbl %>%
+  count(bay_outlier)
+```
+
+# Run pcadapt
+
+```{r}
+# Read in the bedfile and the set of pruned SNPs
+# bedfile <- here::here("data", "derived", "out.17.bed")
+# thin_set <- read_rds(here::here("data", "derived", "pruned_snps.rds"))
+bedfile <- here::here(getwd(),"RAnalysis", "Data", "Popgen", "03_prune", "out.7.bed")
+thin_set <- read_rds(here::here(getwd(),"RAnalysis", "Data", "Popgen", "03_prune", "pruned_snps.rds"))
+
+# Read the bedfile and store the data in temp dir
+rds <- snp_readBed(bedfile, backingfile = tempfile())
+
+# Load the data from the backing file
+dat <- snp_attach(rds)
+G <- dat$genotypes
+```
+
+This runs pcadapt using the best practices outlined in @lotterhos_effect_2019:
+
+```{r}
+pcad_res <- snp_pcadapt(G, U.row = thin_set$u[,1:10])
+#str(pcad_res)
+
+gc <- snp_gc(pcad_res)
+pvalues <- predict(gc, log10 = FALSE)
+
+pcadapt_out_tbl <- dat$map %>%
+  dplyr::mutate(chrom =  as.integer(case_when(chromosome %in% 'CM084264.1' ~ 1,
+                                                           chromosome %in% 'CM084265.1' ~ 2,
+                                                           chromosome %in% 'CM084266.1' ~ 3,
+                                                           chromosome %in% 'CM084267.1' ~ 4,
+                                                           chromosome %in% 'CM084268.1' ~ 5,
+                                                           chromosome %in% 'CM084269.1' ~ 6,
+                                                           chromosome %in% 'CM084270.1' ~ 7,
+                                                           chromosome %in% 'CM084271.1' ~ 8,
+                                                           chromosome %in% 'CM084272.1' ~ 9,
+                                                           chromosome %in% 'CM084273.1' ~ 10,
+                                                           chromosome %in% 'CM084274.1' ~ 11,
+                                                           chromosome %in% 'CM084275.1' ~ 12,
+                                                           chromosome %in% 'CM084276.1' ~ 13,
+                                                           chromosome %in% 'CM084277.1' ~ 14,
+                                                           chromosome %in% 'CM084278.1' ~ 15,
+                                                           chromosome %in% 'CM084279.1' ~ 16)
+                                                 )) %>% 
+  # extract(chromosome, "chrom", "HiC_scaffold_(\\d+)_") %>%
+  mutate(chrom = as.integer(chrom)) %>%
+  mutate(pca_log_10_pval = -log10(pvalues)) %>%
+  mutate(pca_qval = qvalue(pvalues)$qvalues) %>%
+  mutate(pca_outlier = if_else(pca_qval < 0.05, TRUE, FALSE))
+
+```
+
+# Combine and visualize results
+
+```{r}
+out_tbl <- bay_tbl %>%
+  left_join(pcadapt_out_tbl, by = c("chrom", "pos" = "physical.pos")) %>%
+  select(locus, chrom, pos, bay_prob = prob, bay_qval, bay_alpha, bay_fst = fst, bay_outlier, bay_directional, bay_balancing, allele1, allele2, pca_log_10_pval, pca_qval, pca_outlier) %>%
+  mutate(bay_pca_outlier = if_else(bay_outlier == TRUE & pca_outlier == TRUE, TRUE, FALSE),
+         any_outlier = if_else(bay_outlier == TRUE | pca_outlier == TRUE, TRUE, FALSE))
+
+out_tbl
+
+write_rds(out_tbl, here::here("data", "derived", "genome_scan_results.rds"))
+#out_tbl <- read_rds(here::here("data", "derived", "genome_scan_results.rds"))
+
+```
+
+A summary table of the results:
+
+```{r}
+out_tbl %>%
+  count(bay_outlier, pca_outlier) %>%
+  knitr::kable()
+```
+
+Calculate basic stats for visualizing results:
+
+```{r}
+# Calculate basic stats for each population
+gen_stats <- gen %>%
+  genind2hierfstat() %>%
+  basic.stats() %>%
+  .$perloc %>%
+  rownames_to_column("locus") %>%
+  as_tibble() %>%
+  extract(locus, c("chrom", "pos"), "HiC_scaffold_(\\d+)_arrow_ctg1_(\\d+)", remove = FALSE) %>%
+  mutate(chrom = as.integer(chrom), pos = as.integer(pos)) %>%
+  select(locus, chrom, pos, ho = Ho, he = Hs, global_fst = Fst)
+
+
+# Add this to the outlier tibble
+comb_tbl <- out_tbl %>%
+  left_join(gen_stats, by = c("locus", "chrom", "pos"))
+  
+```
+
+## Pcadapt outliers
+
+```{r}
+ggplot(comb_tbl, aes(x = pos, y = global_fst, color = pca_outlier)) +
+  geom_point() +
+  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  facet_wrap(~chrom) +
+  theme_minimal()
+
+```
+
+
+## Bayescan outliers
+
+```{r}
+ggplot(comb_tbl, aes(x = pos, y = global_fst, color = bay_outlier)) +
+  geom_point() +
+  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  facet_wrap(~chrom) +
+  theme_minimal()
+
+```
+
+## In both sets combined
+
+```{r}
+ggplot(comb_tbl, aes(x = pos, y = global_fst, color = any_outlier)) +
+  geom_point() +
+  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  facet_wrap(~chrom) +
+  theme_minimal()
+```
+
+## Fst vs Heterozygosity
+
+```{r}
+ggplot(comb_tbl, aes(x = ho, y = global_fst, color = any_outlier)) +
+  geom_point() +
+  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  theme_minimal()
+```
