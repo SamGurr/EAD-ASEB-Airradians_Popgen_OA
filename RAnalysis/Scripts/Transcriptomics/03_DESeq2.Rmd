@@ -554,7 +554,7 @@ PCA_F1_vst <- ggplot(pcaData_vstExp_F1,
                 #scale_fill_manual(c('grey50', 'white')) +
                 theme_classic() +
                 stat_ellipse() +
-                ylim(-20,20) +
+                ylim(-30,30) +
                 xlim(-35,35) +
                 theme(legend.position = 'none',axis.text = element_text(size = 12)) +
                 ggtitle("F1 PCA: vst expression data") +
@@ -569,7 +569,7 @@ PCA_F2_vst <- ggplot(pcaData_vstExp_F2,
                 geom_point(size =4) +
                 theme_classic() +
                 stat_ellipse() +
-                ylim(-20,20) +
+                ylim(-30,30) +
                 xlim(-35,35) +
                 theme(legend.position = 'none',axis.text = element_text(size = 12)) +
                 ggtitle("F2 PCA: vst expression data") +
@@ -620,9 +620,10 @@ ggarrange(PCA_F1_vst, PCA_F2_vst,
           F1_Volcano, F2_Volcano,
           nrow=2, ncol=2)
 
-pdf("../../Output/Transcriptomics/DESeq2/PCA_F1_F2_vst.pdf", width = 14, height = 5)
+pdf("RAnalysis/Output/Transcriptomics/DESeq2/PCA_Volcano_F1_F2_vst.pdf", width = 8, height = 10)
 ggarrange(PCA_F1_vst, PCA_F2_vst, 
-          nrow=1, ncol=2)
+          F1_Volcano, F2_Volcano,
+          nrow=2, ncol=2)
 dev.off()
 ```
 
