@@ -1,0 +1,286 @@
+---
+title: "05_parentage"
+author: "Samuel Gurr"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# SET WORKING DIRECTORY 
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+#knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+
+```
+
+-   load libraries
+
+```{r, include=FALSE}
+library(tidyverse)
+library(sequoia)
+```
+
+# Parentage
+
+
+```{r read master vcf file}
+?create.chromR
+
+
+vcf <- read.vcfR(here::here(getwd(),
+                            "RAnalysis", 
+                            "Data", 
+                            "Popgen", 
+                            "03_prune", 
+                            "out.7.phased.vcf.gz"), verbose = FALSE)
+
+
+dna        <- ape::read.dna("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_Ai_NY_genomic.fna", format = "fasta")
+dna_chroms <- (dna)[1:16]
+names(dna_chroms) <- c('CM084264.1', 'CM084265.1', 'CM084266.1', 'CM084267.1',
+                       'CM084268.1', 'CM084269.1', 'CM084270.1', 'CM084271.1', 
+                       'CM084272.1', 'CM084273.1', 'CM084274.1', 'CM084275.1', 
+                       'CM084276.1', 'CM084277.1', 'CM084278.1', 'CM084279.1')
+
+# gff <- read.table("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff", sep="\t", quote="")
+gff <- ape::read.gff("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff") %>% 
+            dplyr::filter(type %in% 'exon') %>%  # to mimix the example 
+            dplyr::filter(!grepl("NW_",seqid)) %>% 
+            dplyr::mutate(attributes = paste0('NAME=',(gsub('.*;product=', '', attributes))),
+                          seqid = case_when(seqid %in% 'NC_091134.1' ~ 'CM084264.1',
+                                            seqid %in% 'NC_091135.1' ~ 'CM084265.1',
+                                            seqid %in% 'NC_091136.1' ~ 'CM084266.1',
+                                            seqid %in% 'NC_091137.1' ~ 'CM084267.1',
+                                            seqid %in% 'NC_091138.1' ~ 'CM084268.1',
+                                            seqid %in% 'NC_091139.1' ~ 'CM084269.1',
+                                            seqid %in% 'NC_091140.1' ~ 'CM084270.1',
+                                            seqid %in% 'NC_091141.1' ~ 'CM084271.1',
+                                            seqid %in% 'NC_091142.1' ~ 'CM084272.1',
+                                            seqid %in% 'NC_091143.1' ~ 'CM084273.1',
+                                            seqid %in% 'NC_091144.1' ~ 'CM084274.1',
+                                            seqid %in% 'NC_091145.1' ~ 'CM084275.1',
+                                            seqid %in% 'NC_091146.1' ~ 'CM084276.1',
+                                            seqid %in% 'NC_091147.1' ~ 'CM084277.1',
+                                            seqid %in% 'NC_091148.1' ~ 'CM084278.1',
+                                            seqid %in% 'NC_091149.1' ~ 'CM084279.1')) 
+unique(gff$seqid) # good, the 16 chromosomes
+
+chrom <- create.chromR(name="chr_1", vcf=vcf, seq=dna_chroms, ann=gff, verbose=FALSE)
+chrom@vcf
+# mock data for create.chromR
+data(vcfR_example)
+dna
+vcf@gt
+gff
+chrom <- create.chromR('sc50', seq=dna, vcf=vcf, ann=gff)
+head(chrom)
+chrom
+plot(chrom)
+
+chrom <- masker(chrom, min_QUAL = 1, min_DP = 300, max_DP = 700, min_MQ = 59, max_MQ = 61)
+chrom <- proc.chromR(chrom, win.size=1000)
+
+plot(chrom)
+chromoqc(chrom)
+
+```
+
+
+```{r subset F0 nad F1 Juv}
+vcf # 391 samples, 2,947 variants
+
+# F0 are 1:26
+# F1 juveniles are 63:139
+colnames(vcf@gt)
+
+# subset for F10 and F1 juveniles
+vcf_F0B.F1J <- vcf[,c(1:26,63:139)]
+colnames(vcf_F0B.F1J@gt)
+
+```
+
+
+```{r create genind of subset}
+# genind
+vcf_F0B.F1J.gen <- vcf_F0B.F1J %>% vcfR2genind()
+```
+
+```{r format genind to as.matrix}
+F0B.F1J_matrix <- as.matrix(vcf_F0B.F1J.gen)
+rownames(F0B.F1J_matrix)
+
+?MakeAgePrior 
+?GetMaybeRel
+
+GetMaybeRel(
+  GenoM = F0B.F1J_matrix,
+  SeqList = NULL,
+  Pedigree = NULL,
+  LifeHistData = NULL, # we can add this
+  AgePrior = NULL,
+  Module = "ped",
+  #ParSib = "sib",
+  MaxPairs = 7 * nrow(F0B.F1J_matrix)
+)
+
+```
+
+
+First import the unphased SNP data and pop metadata
+
+```{r}
+
+# Read in the filtered SNP VCF file (non-phased) to a genind object
+gen <- read.vcfR(here::here(getwd(),
+                            "RAnalysis", 
+                            "Data", 
+                            "Popgen", 
+                            "03_prune", 
+                            "out.7.phased.vcf.gz"), verbose = FALSE) %>%
+        vcfR2genind()
+
+indNames(gen) <- case_when(
+  
+  grepl("F0-B", indNames(gen)) ~ "F0",
+  
+  grepl("F1-B.*pH8", indNames(gen))  ~ "F1_broodstock_Low",
+  grepl("F1-B.*pH75", indNames(gen)) ~ "F1_broodstock_Moderate",
+  
+  grepl("F2-B.*pH8", indNames(gen))  ~ "F2_broodstock_Low",
+  grepl("F2-B.*pH75", indNames(gen)) ~ "F2_broodstock_Moderate",
+  grepl("F2-B.*pH7.", indNames(gen)) ~ "F2_broodstock_High",
+
+  grepl("F1-J.*pH8", indNames(gen)) ~ "F1_juvenile_Low",
+  grepl(c("[.]101[.]|[.]103[.]|[.]104[.]|[.]153[.]|[.]154[.]|[.]155[.]|[.]53[.]|[.]54[.]|[.]55[.]|[.]3[.]|[.]4[.]|[.]5[.]"), indNames(gen)) ~ "F1_juvenile_Low",
+  grepl("F1-J.*pH75", indNames(gen)) ~ "F1_juvenile_Moderate",
+  grepl("[.]201[.]|[.]203[.]|[.]204[.]|[.]251[.]|[.]253[.]|[.]254[.]|[.]301[.]|[.]303[.]|[.]304[.]|[.]351[.]|[.]352[.]|[.]353[.]|[.]354[.]", indNames(gen)) ~ "F1_juvenile_Moderate",
+  
+  grepl("F2-J.*pH8", indNames(gen))  ~ "F2_juvenile_Low",
+  grepl("F2-J.*pH75", indNames(gen)) ~ "F2_juvenile_Moderate",
+  grepl("F2-J.*pH7.", indNames(gen)) ~ "F2_juvenile_High",
+
+  grepl("F3-J.*pH8", indNames(gen))  ~ "F3_juvenile_Low",
+  grepl("F3-J.*pH75", indNames(gen)) ~ "F3_juvenile_Moderate",
+  grepl("F3-J.*pH7.", indNames(gen)) ~ "F3_juvenile_High"
+)
+
+# Assign populations to the genind
+popnames <- tibble(id = indNames(gen)) %>%
+   dplyr::mutate(Individual = gsub('*./','',id),
+                         Type = dplyr::case_when(grepl("-B", Individual) ~ "broodstock", TRUE ~ 'juvenile'),
+                         Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
+                                                             grepl("F1", Individual) ~ "F1",
+                                                             grepl("F2", Individual) ~ "F2",
+                                                             grepl("F3", Individual) ~ "F3",
+                                                             TRUE ~ "F1"),
+                         Treatment = dplyr::case_when(
+                                        grepl("F0", Individual) ~ "none",
+                                        grepl("pH7\\.",Individual) ~ "High",
+                                        grepl(c("pH75\\.|.201.|.203.|.204.|.251.|.253.|.254.|.301.|.303.|.304.|.351.|.352.|.353.|.354."), 
+                                              Individual) ~ "Moderate",
+                                        grepl(c("pH8|.101.|.103.|.104.|.153.|.154.|.155.|.3.|.4.|.5."), 
+                                              Individual) ~  "Low")) %>% 
+   dplyr::mutate(pop = dplyr::case_when(Gen == "F0" ~ "F0",
+                                        Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Type,'_',Treatment))) %>% 
+   pull(pop)
+
+pop(gen) <- indNames(gen)
+
+indNames(gen) == popnames$pop
+
+```
+
+# **Sequoia**
+
+[link here](https://jiscah.github.io/reference/figures/flowchart.svg)
+
+a comprehensive R package for muligenerational pedigree reconstruction emplpys a fast heuristic hill-climbing algorithm to explore the liklihood surface using SNP data and input sinply the birthyear of your genotyped individuals
+
+key features include:
+
+-   parentage assignment
+-   sibship clustering
+-   grandparent assignment
+-   andles any proportion of genotyped parents
+-   accounts for genotyping errors
+-   does not require predefined lists of candidate parents
+
+## (1) Run GetMaybeRel
+
+-   **Objective** Identify pairs of individuals likely to be related, but not assigned as such in the provided pedigree.
+
+    -   I think this is most suitable for our objective, to assign parent pairs
+
+```{r learn about the call in sequoia}
+?GetMaybeRel
+```
+
+-   'GenoM' = numeric matrix with genotype data: One row per individual, one column per SNP, coded as 0, 1, 2, missing values as a negative number or NA. You can reformat data with GenoConvert, or use other packages to get it into a genlight object and then use as.matrix.
+
+```{r format genind to as.matrix}
+gen_matrix <- as.matrix(gen)
+```
+
+
+* first test, subset for F0 and F1
+
+```{r truncate matrix for just F0 and F1 juvenile}
+nrow(gen_matrix) # 391
+
+gen_matrix_F0F1 <- gen_matrix[,]
+
+rownames(gen_matrix) <- "F0"
+
+
+nrow(gen_matrix_F0F1)              
+```
+
+-   'SeqList'
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
