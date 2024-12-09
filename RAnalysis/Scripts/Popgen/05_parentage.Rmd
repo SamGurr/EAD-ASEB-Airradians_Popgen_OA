@@ -11,21 +11,31 @@ knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EA
 
 ```
 
--   load libraries
+## load libraries
 
 ```{r, include=FALSE}
 library(tidyverse)
 library(sequoia)
+library(vcfR)
 ```
 
-# Parentage
+### load parentage csv files
 
+```{r read parentage csv files}
+F1.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F1_parentage.csv"), sep = ',', head = T)
+
+F2.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F2_parentage.csv"), sep = ',', head = T)
+
+F3.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F3_parentage.csv"), sep = ',', head = T)
+```
+
+## load vcf files
+
+-   master 'All' vcf file, meaning all individuals sequenced for the experiment
 
 ```{r read master vcf file}
-?create.chromR
 
-
-vcf <- read.vcfR(here::here(getwd(),
+All.vcf <- vcfR::read.vcfR(here::here(getwd(),
                             "RAnalysis", 
                             "Data", 
                             "Popgen", 
@@ -33,12 +43,343 @@ vcf <- read.vcfR(here::here(getwd(),
                             "out.7.phased.vcf.gz"), verbose = FALSE)
 
 
-dna        <- ape::read.dna("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_Ai_NY_genomic.fna", format = "fasta")
+# edit sample ids fown to generation-ID-treatment nu omitting adaptertrim and.bam
+# now that column 1 All.vcf@gt is 'FORMAT' and must remain 
+# edit_ids_df <- str_match(colnames(All.vcf@gt[,2:ncol(All.vcf@gt)]), "adapter_trim[.]\\s*(.*?)\\s*[.]bam")[,2]
+# 
+# colnames(All.vcf@gt[,2:ncol(All.vcf@gt)]) <- edit_ids_df[,1]
+# View(All.vcf@gt)
+
+```
+
+## How to subset the All.vcf for target variants, samples, chromosomes, etc.
+
+-   Subset by chromosome(s):
+
+```         
+chrom_of_interest <- c("chr1", "chr2", "chr3")
+vcf_subset <- vcf[vcf@fix[, "CHROM"] %in% chrom_of_interest, ]
+```
+
+-   Subset by variants (rows)
+
+```         
+vcf_subset <- vcf[1:1000, ]  # Select first 1000 variants
+```
+
+-   Subset by samples (columns)
+
+```         
+vcf_subset <- vcf[, 1:10]  # Select first 10 samples (including FORMAT column)
+```
+
+## Subset the vcf file
+
+### Preliminary (simple) test, F0 and F1 offspring
+
+-   F0 broodstock and F1 offspring: Remember that our experiment ran fir three generations! Here is a best foot forward to test the sequoia pipeline with just parents and offspring. Keep in mind that we do not have grandparents in this trial (requiring F2 offspring!)
+
+```{r view the All.vcf}
+All.vcf # 391 samples, 2,947 variants
+```
+
+```{r F0 broodstock and F1 offspring - first simple parent/offspring test of sequoia pipeline}
+# view cl names to know what to subset by 
+colnames(All.vcf@gt)
+# F0 are 2:26
+colnames(All.vcf@gt[,2:26])
+# F1 juveniles are 63:139
+colnames(All.vcf@gt[,63:139])
+
+# subset for F0 and F1 juveniles and retain column 1 'Format' 
+F0BF1J.vcf <- All.vcf[,c(1:26,63:139)] 
+# view stats
+F0BF1J.vcf # now 102 samples!
+```
+
+### Grandparents test, F0 and F1 + F2 offspring
+
+-   second test we will try adding F2 offspring in t
+
+```{r F0 broodstock and F1 + F2 offspring - parent and grandparent test of sequoia pipeline}
+# view cl names to know what to subset by 
+colnames(All.vcf@gt)
+# F0 are 2:26
+colnames(All.vcf@gt[,2:26])
+# F1 juveniles are 63:139
+colnames(All.vcf@gt[,63:139])
+# F2 juveniles are 178:250
+colnames(All.vcf@gt[,178:250])
+
+# subset for F0 and F1 juveniles and retain column 1 'Format' 
+F0BF1F2J.vcf <- All.vcf[,c(1:26,63:139,178:250)] 
+# view stats
+F0BF1F2J.vcf # now 175 samples!
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r create genind}
+All.gen      <- All.vcf %>% vcfR2genind()
+F0BF1J.gen   <- F0BF1J.vcf %>% vcfR2genind()
+F0BF1F2J.gen <- F0BF1F2J.vcf %>% vcfR2genind()
+```
+
+```{r convert genind to matrices}
+All.matrix      <- as.matrix(All.gen)
+F0BF1J.matrix   <- as.matrix(F0BF1J.gen)
+F0BF1F2J.matrix <- as.matrix(F0BF1F2J.gen)
+```
+
+# **Sequoia**
+
+[link here](https://jiscah.github.io/reference/figures/flowchart.svg)
+
+a comprehensive R package for muligenerational pedigree reconstruction emplpys a fast heuristic hill-climbing algorithm to explore the liklihood surface using SNP data and input sinply the birthyear of your genotyped individuals
+
+key features include:
+
+-   parentage assignment
+-   sibship clustering
+-   grandparent assignment
+-   andles any proportion of genotyped parents
+-   accounts for genotyping errors
+-   does not require predefined lists of candidate parents
+
+```{r read about the package!}
+?sequoia # the head package,
+```
+
+## Format SNP data (vcf file above) for sequoia
+
+-   check whether current format is correct with '**CheckGeno**'
+
+    -   GenoM = genotype matrix
+    -   quite = suppress messages (T/F)
+    -   Plot = display the plots of SnpStats (T/F)
+    -   Return= reutrn the cleaned genotype matrix using 'GenoM' or use 'excl' to return a list of excluded SNPs and individuals
+    -   Stric =
+
+```{r check format compatibility of vcf file}
+?CheckGeno # about this call
+
+# cleaned genotype matrix using GenoM
+# Genotype matrix looks OK! There are  391  individuals and  5894  SNPs.
+GenoM.checked <- CheckGeno(All.matrix, Return="GenoM")
+GenoM.checked <- CheckGeno(
+                            GenoM = All.vcf_matrix,
+                            quiet = TRUE, # print messages please
+                            Plot  = FALSE,  # get the plots
+                            Return = "GenoM",
+                            Strict = TRUE
+                          )
+
+# list of excluded SNPs and individuals using excl
+Excl <- CheckGeno(
+                  GenoM = All.vcf_matrix,
+                  # quiet = FALSE, # print messages please
+                  # Plot  = TRUE,  # get the plots
+                  Return = "excl"
+                  # Strict = TRUE
+                )
+names(Excl)
+```
+
+## Execute calls within `sequoia`
+
+## `CalcPairLL`
+
+```{r read about pairwise relationship liklihoods}
+?CalcPairLL #pairwise relationship liklihoods
+```
+
+pairwise relationship likelihoods
+
+**Objectve**: for each specified pair of individuals calculate the log 10-liklihood of being PO, FS, HS, GP, FA, HA, U
+
+-   PO - parent - offspring
+-   FS - full siblings
+-   HS - half siblings
+-   GP - grandparent
+-   FA - full avuncular
+-   HA - Half avuncular and other 3rd degree relationships
+-   U - Unrelated
+-   2nd - ybclear which type of 2nd degree rel (HS, GP, or FA)
+-   ?? - Unclear which type of 1st, 2nd or 3rd degree relatives
+
+### Preliminary (simple) test, F0 and F1 offspring
+
+Data:
+
+-   Loci: F0BF1J.vcf, F0BF1J.gen, F0BF1J.matrix
+
+-   Parentage: F1_Parentage
+
+```{r CalcPairLL F0 broodstock and F1 offspring}
+
+#  PREPARE NECESSARY INPUTS! 
+
+# Pairs - dataframe with columns ID1 and ID2 containing all possible combinations 
+F0BF1J.ListIDs    <- colnames(F0BF1J.vcf@gt[,2:length(colnames(F0BF1J.vcf@gt))])
+F0BF1J.Pairs_raw  <- data.frame(F0BF1J.listIDs) %>% 
+                        dplyr::rename(ID1 = F0BF1J.listIDs) %>% # rename
+                        dplyr::mutate(ID2 = ID1) %>% # duplicate
+                        tidyr::expand(ID1, ID2) # get all possible ocmbinations 
+F0BF1J.Pairs      <- F0BF1J.Pairs_raw[F0BF1J.Pairs_raw$ID1 != F0BF1J.Pairs_raw$ID2,]
+
+# GenoM
+F0BF1J.matrix # for GenoM
+
+# Pedigree
+F0BF1J.IDs   <- as.data.frame(table(F0BF1J.ListIDs, dnn = list("id"))) %>% select(id)
+F0B.Pedigree <- pivot_wider(
+                              data = (F1.Parentage %>% 
+                                      select(vcf_ID_raw, Ped) %>%  # call data
+                                      rename(id = vcf_ID_raw)),
+                              values_from = Ped,
+                              names_from = Ped) %>% # widen it with pivot
+                   dplyr::filter_at(.vars = vars(Both, Dam, Sire), # omit rows that are NA for all!
+                                   .vars_predicate = any_vars(!is.na(.))) %>% 
+                   dplyr::mutate(sire = case_when(Both %in% 'Both' ~ 1,
+                                                  Sire %in% 'Sire' ~ 1,
+                                                  Dam  %in% 'Dam'  ~ 0),
+                                 dam =  case_when(Both %in% 'Both' ~ 1,
+                                                  Dam  %in% 'Dam'  ~ 1,
+                                                  Sire == 1 ~ 0)) %>% 
+                   dplyr::select(!c('Both', 'Sire', 'Dam', 'NA'))
+                                 
+F0BF1J.Pedigree <- merge(F0B.Pedigree, F0BF1J.IDs, all= T)
+PedPolish(F0BF1J.Pedigree)# check
+
+# LifeHistDate
+
+LifeHistData_scallop <- 
+
+#AgePrior
+AgePrior_scallop <- 
+  
+
+
+#  RUN IT!
+CalcPairLL(
+            Pairs = F0BF1J.Pairs,
+            GenoM = F0BF1J.matrix,
+            Pedigree = F0BF1J.Pedigree,
+            LifeHistData = NULL, # working on it
+            AgePrior = TRUE, # working on it
+            SeqList = NULL,
+            Complex = "full",
+            Herm = "A", # "A" (distinguish between dam and sire role, default if at least 1 individual with sex=4), or "B" (no distinction between dam and sire role).
+            Err = 1e-04,
+            ErrFlavour = "version2.9",
+            Tassign = 0.5,
+            Tfilter = -2,
+            quiet = FALSE,
+            Plot = TRUE
+)
+```
+
+-   fubd kujet rekatuve pairs '**GetMaybeRel**'
+
+```{r read about pairwise relationship liklihoods}
+?GetMaybeRel #pairwise relationship liklihoods
+```
+
+## Load and edit datasets to run *GetMaybeRel* in `sequoia`
+
+```{r read parentage csv files}
+
+F1.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F1_parentage.csv"), 
+                         sep = ',', 
+                         head = T)
+
+F2.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F2_parentage.csv"), 
+                         sep = ',', 
+                         head = T)
+
+F3.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F3_parentage.csv"), 
+                         sep = ',', 
+                         head = T)
+```
+
+-   'F1.Parentage.vcf' subset F0+F1 offspring
+
+```{r subset 'F1.Parentage.vcf'}
+vcf # 391 samples, 2,947 variants
+
+# F0 are 2:26
+colnames(All.vcf@gt[,2:26])
+# F1 juveniles are 63:139
+colnames(All.vcf@gt[,63:139])
+
+# subset for F10 and F1 juveniles
+# retaincolumn 1 'Format' 
+F1.Parentage.vcf <- vcf[,c(1:26,63:139)]
+
+```
+
+-   'F2.Parentage.vcf' subset F1+F2 offspring
+
+```{r subset 'F2.Parentage.vcf'}
+vcf # 391 samples, 2,947 variants
+colnames(All.vcf@gt)
+
+# F1 broodstock are 27:62
+colnames(All.vcf@gt[,27:62])
+# F2 juveniles are 178:250
+colnames(All.vcf@gt[178:250])
+
+# subset for F10 and F1 juveniles
+# retaincolumn 1 'Format' 
+F2.Parentage.vcf <- vcf[,c(1,27:62,178:250)]
+
+```
+
+-   'F3.Parentage.vcf' subset F0+F1 offspring
+
+```{r subset 'F3.Parentage.vcf'}
+vcf # 391 samples, 2,947 variants
+colnames(All.vcf@gt)
+
+
+# F1 broodstock are 140:176
+colnames(All.vcf@gt[,140:176])
+# F2 juveniles are 251:392
+colnames(All.vcf@gt[251:392])
+
+# subset for F10 and F1 juveniles
+# retaincolumn 1 'Format' 
+F3.Parentage.vcf <- vcf[,c(1,140:176,251:392)]
+
+```
+
+**dna**
+
+-   read refernce genome, rename chromosome accession ids to match
+
+```{r read ref genome and rename chromose accesion ids}
+
+dna        <- ape::read.dna("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_Ai_NY_genomic.fna", 
+                            format = "fasta")
 dna_chroms <- (dna)[1:16]
 names(dna_chroms) <- c('CM084264.1', 'CM084265.1', 'CM084266.1', 'CM084267.1',
                        'CM084268.1', 'CM084269.1', 'CM084270.1', 'CM084271.1', 
                        'CM084272.1', 'CM084273.1', 'CM084274.1', 'CM084275.1', 
                        'CM084276.1', 'CM084277.1', 'CM084278.1', 'CM084279.1')
+
+```
+
+**gff**
+
+-   read refernce gene function file (gff), rename chromosome accession ids to match
+
+```{r read reference gff file and rename accession ids to match}
 
 # gff <- read.table("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff", sep="\t", quote="")
 gff <- ape::read.gff("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff") %>% 
@@ -63,7 +404,15 @@ gff <- ape::read.gff("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GC
                                             seqid %in% 'NC_091149.1' ~ 'CM084279.1')) 
 unique(gff$seqid) # good, the 16 chromosomes
 
-chrom <- create.chromR(name="chr_1", vcf=vcf, seq=dna_chroms, ann=gff, verbose=FALSE)
+```
+
+```{r}
+
+
+
+All.vcf@meta[11]
+
+chrom <- create.chromR(name="CM084265.1", vcf=All.vcf, seq=dna_chroms, ann=gff, verbose=FALSE)
 chrom@vcf
 # mock data for create.chromR
 data(vcfR_example)
@@ -82,21 +431,6 @@ plot(chrom)
 chromoqc(chrom)
 
 ```
-
-
-```{r subset F0 nad F1 Juv}
-vcf # 391 samples, 2,947 variants
-
-# F0 are 1:26
-# F1 juveniles are 63:139
-colnames(vcf@gt)
-
-# subset for F10 and F1 juveniles
-vcf_F0B.F1J <- vcf[,c(1:26,63:139)]
-colnames(vcf_F0B.F1J@gt)
-
-```
-
 
 ```{r create genind of subset}
 # genind
@@ -122,7 +456,6 @@ GetMaybeRel(
 )
 
 ```
-
 
 First import the unphased SNP data and pop metadata
 
@@ -219,8 +552,7 @@ key features include:
 gen_matrix <- as.matrix(gen)
 ```
 
-
-* first test, subset for F0 and F1
+-   first test, subset for F0 and F1
 
 ```{r truncate matrix for just F0 and F1 juvenile}
 nrow(gen_matrix) # 391
