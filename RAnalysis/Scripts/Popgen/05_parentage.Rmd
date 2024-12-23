@@ -536,7 +536,7 @@ based on the number of SNPs and number of iterations.
 
 ```{r pedigree function 'BootPed'}
 
-BootPed <- function(GenoM, LifeHistData, n.SNPs, n.bootstrap) {
+BootPed <- function(GenoM, LifeHistData, threshold.LLR, min.LLR, n.SNPs, n.bootstrap) {
   
   pedigree.raw           <- data.frame(matrix(ncol = 7)) # create dataframe to save cumunalitively during for loop
   colnames(pedigree.raw) <- c('id', 'loci', 'n.loci', 'dam', 'LLRdam', 'sire' , 'LLRsire') # names for comuns in the for loop
@@ -548,6 +548,7 @@ BootPed <- function(GenoM, LifeHistData, n.SNPs, n.bootstrap) {
                     bootstrap_GenoM <- GenoM[,randomSNPs]
                     SNP_IDs            <- paste0(colnames(bootstrap_GenoM), collapse=", ")
                     # run seqquoia for these 50 SNPs
+                    
                     bootstrap.sequoia <- sequoia(
                                                 GenoM = bootstrap_GenoM,
                                                 LifeHistData = LifeHistData, 
@@ -556,9 +557,9 @@ BootPed <- function(GenoM, LifeHistData, n.SNPs, n.bootstrap) {
                                                 Module = "par", 
                                                 Err = 1e-04,
                                                 # threshold for log 10 likelihood (LLR) between a proposed relationship versus unrelated
-                                                Tfilter = -2, 
+                                                Tfilter = threshold.LLR, 
                                                 # minimum LLR required for acceptance of proposed relationship relative to the next most likely
-                                                Tassign = 0.2,
+                                                Tassign = min.LLR,
                                                 # MaxSibshipSize = 100,
                                                 # breeding system complexity
                                                 Complex = "full",
@@ -604,7 +605,7 @@ pedigree.summary <- pedigree.merge.dams.sires %>%
 # truncates the 'raw' file above for just a single id per row, as that with the GREATEST absLLRtotal
 pedigree.final    <- pedigree.summary %>% 
                             group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
-                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essentiall, highest LLR total
+                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
                             dplyr::select(id, dam, sire, absLLRtotal, Fertilization_pairs, loci) # select the target columns for next sequoia run
  
 # Now we want to ensure we have pedigree results for all target offspring 
@@ -626,7 +627,7 @@ if ( length(unique(pedigree.raw$id)) < offspring.n) {# TRUE = not enough bootstr
                  nrow(pedigree.final %>% filter(Fertilization_pairs %in% 'TRUE')),
                  "/",
                  nrow(pedigree.final),
-                 "true fertilized pairs"))
+                 " true fertilized pairs"))
   
     print(paste0("Edit the n.SNP or n.bootstrap call for better pedigree"))
     
@@ -653,6 +654,13 @@ return(list(raw     = pedigree.raw,
 ```
  
 ## BootPed Run
+
+**Important notes about inputs**
+
+* **n.SNP:** It's important to note that while fewer loci may result in more pedigree assignments, the accuracy of these assignments may be compromised. For optimal results, it is recommended to use a sufficient number of high-quality, independent SNPs to balance between assignment rate and accuracy 
+  - (a) Reduced stringency: With fewer loci, the likelihood thresholds for assigning relationships become less stringent, allowing more potential relationships to be considered 
+  - (b) Increased false positives: A smaller number of loci may lead to an increased rate of false-positive assignments, as there is less genetic information to discriminate between true and spurious relationships 
+  - (c) Overestimation of relatedness: Fewer loci can result in overestimation of relatedness, particularly for more distant relationships like cousins or grandparent-grandchild pairs
 
 * first sanity check that the matrix == life history data, edit if necessary 
 ```{r BootPed prep}
@@ -710,6 +718,8 @@ sort(rownames(F1BF2O_MOD.GenoM_final)) == sort(F1BF2O_MOD.LifeHistData$ID)
 inputs:
   - GenoM = F0BF1O.GenoM_final
   - LifeHistData = F0BF1O.LifeHistData
+  - threshold.LLR = -2
+  - min.LLR = 0.1
   - n.SNP = 50
   - n.bootstrap = 100
 
@@ -721,10 +731,12 @@ output:
 
 # F0 AND F1 OFFPSRING ALL   ::::::::::::::::::::::::::::::::::::::::::
 F0BF1O.sequoia <- BootPed(
-                         F0BF1O.GenoM_final, 
-                         F0BF1O.LifeHistData,
-                         50,
-                         100
+                         F0BF1O.GenoM_final, # GenoM
+                         F0BF1O.LifeHistData, # LifeHistData
+                         -2,# threshold.LLR
+                         0.1,# min.LLR
+                         50, # n.SNP
+                         100 # n.bootstrap
                         )
 
 # data files
@@ -768,10 +780,12 @@ output:
 
 # low
 F1BF2O_LOW.sequoia <- BootPed(
-                              F1BF2O_LOW.GenoM_final, 
-                              F1BF2O_LOW.LifeHistData,
-                              30,
-                              100
+                              F1BF2O_LOW.GenoM_final, # GenoM
+                              F1BF2O_LOW.LifeHistData, # LifeHistData
+                              -2,# threshold.LLR
+                              0.1,# min.LLR
+                              50, # n.SNP
+                              50 # n.bootstrap
                               )
 # run on 12/21/2024
 # [1] "Predigree summary: 27/46 offspring with pedigree assignment; 12/27true fertilized pairs"
@@ -800,10 +814,11 @@ write.csv(F1BF2O_LOW.pedigree.final, "RAnalysis/Output/Popgen/parentage_sequoia/
 # moderate
 F1BF2O_MOD.sequoia <- BootPed(
                               F1BF2O_MOD.GenoM_final, 
-                              F1BF2O_MOD.LifeHistData,
-                              30,
-                              100
-                              )
+                              F1BF2O_MOD.LifeHistData, # LifeHistData
+                              -2,# threshold.LLR
+                              0.1,# min.LLR
+                              50, # n.SNP
+                              1)# n.bootstrap
 # run on 12/21/2024
 # [1] "Predigree summary: 46/46 offspring with pedigree assignment; 21/47 TRUE fertilized pairs"
 # [1] "Proceed, all offspring have at least 1 pedigree assignment"
@@ -832,10 +847,11 @@ write.csv(F1BF2O_MOD.pedigree.final, "RAnalysis/Output/Popgen/parentage_sequoia/
 # high
 F1BF2O_HIGH.sequoia <- BootPed(
                               F1BF2O_HIGH.GenoM_final, 
-                              F1BF2O_HIGH.LifeHistData,
-                              30,
-                              200
-                              )
+                              F1BF2O_HIGH.LifeHistData,# LifeHistData
+                              -2,# threshold.LLR
+                              0.1,# min.LLR
+                              50, # n.SNP
+                              1)# n.bootstrap
 # run on 12/21/2024
 # [1] "Predigree summary: 33/33 offspring with pedigree assignment; 18/33 TRUE fertilized pairs"
 # [1] "Proceed, all offspring have at least 1 pedigree assignment"
@@ -879,26 +895,97 @@ output:
 # F2 AND F3 OFFPSRING (treatment specific)   :::::::::::::::::::::::::
 
 # low
-BootPed(
-        F2BF3O_LOW.GenoM_final, 
-        F2BF3O_LOW.LifeHistData,
-        50,
-        100
-        )
+F2BF3O_LOW.sequoia <- BootPed(
+                              F2BF3O_LOW.GenoM_final, 
+                              F2BF3O_LOW.LifeHistData,# LifeHistData
+                              -2,# threshold.LLR
+                              0.1,# min.LLR
+                              50, # n.SNP
+                              10)# n.bootstrap
+# run on 12/21/2024
+# [1] "Predigree summary: 27/46 offspring with pedigree assignment; 12/27true fertilized pairs"
+# [1] "Edit the n.SNP or n.bootstrap call for better pedigree"
+
+# data files
+F2BF3O_LOW.pedigree.raw       <- as.data.frame(F2BF3O_LOW.sequoia$raw)
+rownames(F2BF3O_LOW.pedigree.raw) <- NULL # renomve rownames
+
+F2BF3O_LOW.pedigree.summary   <- as.data.frame(F2BF3O_LOW.sequoia$summary)
+rownames(F2BF3O_LOW.pedigree.summary) <- NULL # renomve rownames
+F2BF3O_LOW.pedigree.summary <- apply(F2BF3O_LOW.pedigree.summary,2,as.character) # need to do this to output the list of batches!
+
+F2BF3O_LOW.pedigree.final     <- as.data.frame(F2BF3O_LOW.sequoia$final)
+rownames(F2BF3O_LOW.pedigree.final) <- NULL # renomve rownames
+
+# output
+write.csv(F2BF3O_LOW.pedigree.raw, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/Low/F2BF3O_Low_raw.csv")
+write.csv(F2BF3O_LOW.pedigree.summary, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/Low/F2BF3O_Low_summary.csv")
+write.csv(F2BF3O_LOW.pedigree.final, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/Low/F2BF3O_Low_final.csv")
+
+
+
+
+
 # moderate
-BootPed(
-        F2BF3O_MOD.GenoM_final, 
-        F2BF3O_MOD.LifeHistData,
-        50,
-        100
-        )
+F2BF3O_MOD.sequoia <- BootPed(
+                              F2BF3O_MOD.GenoM_final, 
+                              F2BF3O_MOD.LifeHistData,# LifeHistData
+                              -2,# threshold.LLR
+                              0.1,# min.LLR
+                              50, # n.SNP
+                              5)# n.bootstrap
+# run on 12/21/2024
+# [1] "Predigree summary: 46/46 offspring with pedigree assignment; 21/47 TRUE fertilized pairs"
+# [1] "Proceed, all offspring have at least 1 pedigree assignment"
+
+# data files
+F2BF3O_MOD.pedigree.raw       <- as.data.frame(F2BF3O_MOD.sequoia$raw)
+rownames(F2BF3O_MOD.pedigree.raw) <- NULL # renomve rownames
+
+F2BF3O_MOD.pedigree.summary   <- as.data.frame(F2BF3O_MOD.sequoia$summary)
+rownames(F2BF3O_MOD.pedigree.summary) <- NULL # renomve rownames
+F2BF3O_MOD.pedigree.summary <- apply(F2BF3O_MOD.pedigree.summary,2,as.character) # need to do this to output the list of batches!
+
+F2BF3O_MOD.pedigree.final     <- as.data.frame(F2BF3O_MOD.sequoia$final)
+rownames(F2BF3O_MOD.pedigree.final) <- NULL # renomve rownames
+
+# output
+write.csv(F2BF3O_MOD.pedigree.raw, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/Moderate/F2BF3O_Mod_raw.csv")
+write.csv(F2BF3O_MOD.pedigree.summary, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/Moderate/F2BF3O_Mod_summary.csv")
+write.csv(F2BF3O_MOD.pedigree.final, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/Moderate/F2BF3O_Mod_final.csv")
+
+
+
+
+
+
 # high
-BootPed(
-        F2BF3O_HIGH.GenoM_final, 
-        F2BF3O_HIGH.LifeHistData,
-        50,
-        100
-        )
+F2BF3O_HIGH.sequoia <- BootPed(
+                              F2BF3O_HIGH.GenoM_final, 
+                              F2BF3O_HIGH.LifeHistData,# LifeHistData
+                              -2,# threshold.LLR
+                              0.1,# min.LLR
+                              50, # n.SNP
+                              50)# n.bootstrap
+# run on 12/21/2024
+# [1] "Predigree summary: 33/33 offspring with pedigree assignment; 18/33 TRUE fertilized pairs"
+# [1] "Proceed, all offspring have at least 1 pedigree assignment"
+
+# data files
+F2BF3O_HIGH.pedigree.raw       <- as.data.frame(F2BF3O_HIGH.sequoia$raw)
+rownames(F2BF3O_HIGH.pedigree.raw) <- NULL # renomve rownames
+
+F2BF3O_HIGH.pedigree.summary   <- as.data.frame(F2BF3O_HIGH.sequoia$summary)
+rownames(F2BF3O_HIGH.pedigree.summary) <- NULL # renomve rownames
+F2BF3O_HIGH.pedigree.summary <- apply(F2BF3O_HIGH.pedigree.summary,2,as.character) # need to do this to output the list of batches!
+
+F2BF3O_HIGH.pedigree.final     <- as.data.frame(F2BF3O_HIGH.sequoia$final)
+rownames(F2BF3O_HIGH.pedigree.final) <- NULL # renomve rownames
+
+# output
+write.csv(F2BF3O_HIGH.pedigree.raw, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/High/F2BF3O_High_raw.csv")
+write.csv(F2BF3O_HIGH.pedigree.summary, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/High/F2BF3O_High_summary.csv")
+write.csv(F2BF3O_HIGH.pedigree.final, "RAnalysis/Output/Popgen/parentage_sequoia/F2BF3O/High/F2BF3O_High_final.csv")
 ```
 
 ## `CalcPairLL`
