@@ -9,7 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 # SET WORKING DIRECTORY 
 
-knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
+# knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+
 #knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/HPC_analysis/") # Sam's
 
 ```
@@ -49,13 +51,13 @@ library(ggrepel)
 ```{r load vcf and bed files: all samples and broodstock only}
 
 getwd()
-path = "output/Popgen/angsd/all/"
-
+path = "RAnalysis/Data/Popgen/03_prune/"
+path2 = "HPC_analysis/Popgen/angsd/"
 
 # Call the file with all samples - filtered using vcftools on SEDNA (check out the readme for what was done)
-all.vcf    <- read.vcfR(paste0(path,"vcf/all_final.vcf.gz"))
-all.bed    <- read.pcadapt(paste0(path,"plink/all_final.bed"), type = "bed") # 3897 variants
-all.strata <- read.csv(paste0(path,"strata/all_final_listIDs.csv"), sep =',', header=FALSE) %>% 
+all.vcf    <- read.vcfR(paste0(path,"out.7.phased.vcf.gz"))
+all.bed    <- read.pcadapt(paste0(path,"out.7.bed"), type = "bed") # 3897 variants
+all.strata <- read.csv(paste0(path2,"strata/all_final_listIDs.csv"), sep =',', header=FALSE) %>% 
                                 dplyr::rename(Individual = V1) %>% 
                                 dplyr::mutate(
                                       Individual = gsub('*./','',Individual),
@@ -75,87 +77,131 @@ all.strata <- read.csv(paste0(path,"strata/all_final_listIDs.csv"), sep =',', he
                                 dplyr::mutate(Gen_Treatment = 
                                                 dplyr::case_when(Gen == "F0" ~ "F0",
                                                                  Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Treatment)))
-all.vcf
+
 
 # pcangsd outputs .cov file 
-all_cov_quad <- as.matrix(read.table(paste0(path, "plink/pcangsd/all_final.cov"), header = F))
+all_cov_quad <- as.matrix(read.table(paste0(path2, "plink/pcangsd/all_final.cov"), header = F))
 
 ```
 
+
+
+## How to subset the All.vcf for target variants, samples, chromosomes, etc.
+
+-   Subset by chromosome(s):
+
+```         
+chrom_of_interest <- c("chr1", "chr2", "chr3")
+vcf_subset <- vcf[vcf@fix[, "CHROM"] %in% chrom_of_interest, ]
+```
+
+-   Subset by variants (rows)
+
+```         
+vcf_subset <- vcf[1:1000, ]  # Select first 1000 variants
+```
+
+-   Subset by samples (columns)
+
+```         
+vcf_subset <- vcf[, 1:10]  # Select first 10 samples (including FORMAT column)
+```
+
+
+```{r split the vcf to chromosomes}
+
+chrom1.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084264.1', ]
+chrom2.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084265.1', ]
+chrom3.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084266.1', ]
+chrom4.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084267.1', ]
+chrom5.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084268.1', ]
+chrom6.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084269.1', ]
+chrom7.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084270.1', ]
+chrom8.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084271.1', ]
+chrom9.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084272.1', ]
+chrom10.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084273.1', ]
+chrom11.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084274.1', ]
+chrom12.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084275.1', ]
+chrom13.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084276.1', ]
+chrom14.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084277.1', ]
+chrom15.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084278.1', ]
+chrom16.vcf <- all.vcf[all.vcf@fix[, "CHROM"] %in% 'CM084279.1', ]
+
+```
+chrom_of_interest <- c("chr1", "chr2", "chr3")
+vcf_subset <- vcf[vcf@fix[, "CHROM"] %in% chrom_of_interest, ]
+
+
 ```{r load vcf and bed files: all samples chromosome split}
 
-getwd()
-path = "output/Popgen/angsd/all/"
-
-
 # Call the file with all samples - filtered using vcftools on SEDNA (check out the readme for what was done)
-chrom1.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084264.1.vcf.gz"))
-chrom1.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom1/chrom_CM084264.1.bed"), type = "bed") # 3897 variants
+chrom1.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084264.1.vcf.gz"))
+chrom1.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom1/chrom_CM084264.1.bed"), type = "bed") # 3897 variants
 
-chrom2.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
-chrom2.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom2/chrom_CM084265.1.bed"), type = "bed") # 3897 variants
+chrom2.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084265.1.vcf.gz"))
+chrom2.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom2/chrom_CM084265.1.bed"), type = "bed") # 3897 variants
 
-chrom3.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084266.1.vcf.gz"))
-chrom3.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom3/chrom_CM084266.1.bed"), type = "bed") # 3897 variants
+chrom3.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084266.1.vcf.gz"))
+chrom3.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom3/chrom_CM084266.1.bed"), type = "bed") # 3897 variants
 
-chrom4.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084267.1.vcf.gz"))
-chrom4.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom4/chrom_CM084267.1.bed"), type = "bed") # 3897 variants
+chrom4.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084267.1.vcf.gz"))
+chrom4.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom4/chrom_CM084267.1.bed"), type = "bed") # 3897 variants
 
-chrom5.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084268.1.vcf.gz"))
-chrom5.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom5/chrom_CM084268.1.bed"), type = "bed") # 3897 variants
+chrom5.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084268.1.vcf.gz"))
+chrom5.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom5/chrom_CM084268.1.bed"), type = "bed") # 3897 variants
 
-chrom6.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084269.1.vcf.gz"))
-chrom6.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom6/chrom_CM084269.1.bed"), type = "bed") # 3897 variants
+chrom6.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084269.1.vcf.gz"))
+chrom6.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom6/chrom_CM084269.1.bed"), type = "bed") # 3897 variants
 
-chrom7.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084270.1.vcf.gz"))
-chrom7.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom7/chrom_CM084270.1.bed"), type = "bed") # 3897 variants
+chrom7.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084270.1.vcf.gz"))
+chrom7.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom7/chrom_CM084270.1.bed"), type = "bed") # 3897 variants
 
-chrom8.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084271.1.vcf.gz"))
-chrom8.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom8/chrom_CM084271.1.bed"), type = "bed") # 3897 variants
+chrom8.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084271.1.vcf.gz"))
+chrom8.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom8/chrom_CM084271.1.bed"), type = "bed") # 3897 variants
 
-chrom9.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084272.1.vcf.gz"))
-chrom9.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom9/chrom_CM084272.1.bed"), type = "bed") # 3897 variants
+chrom9.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084272.1.vcf.gz"))
+chrom9.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom9/chrom_CM084272.1.bed"), type = "bed") # 3897 variants
 
-chrom10.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084273.1.vcf.gz"))
-chrom10.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom10/chrom_CM084273.1.bed"), type = "bed") # 3897 variants
+chrom10.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084273.1.vcf.gz"))
+chrom10.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom10/chrom_CM084273.1.bed"), type = "bed") # 3897 variants
 
-chrom11.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084274.1.vcf.gz"))
-chrom11.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom11/chrom_CM084274.1.bed"), type = "bed") # 3897 variants
+chrom11.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084274.1.vcf.gz"))
+chrom11.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom11/chrom_CM084274.1.bed"), type = "bed") # 3897 variants
 
-chrom12.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084275.1.vcf.gz"))
-chrom12.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom12/chrom_CM084275.1.bed"), type = "bed") # 3897 variants
+chrom12.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084275.1.vcf.gz"))
+chrom12.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom12/chrom_CM084275.1.bed"), type = "bed") # 3897 variants
 
-chrom13.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084276.1.vcf.gz"))
-chrom13.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom13/chrom_CM084276.1.bed"), type = "bed") # 3897 variants
+chrom13.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084276.1.vcf.gz"))
+chrom13.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom13/chrom_CM084276.1.bed"), type = "bed") # 3897 variants
 
-chrom14.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084277.1.vcf.gz"))
-chrom14.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom14/chrom_CM084277.1.bed"), type = "bed") # 3897 variants
+chrom14.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084277.1.vcf.gz"))
+chrom14.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom14/chrom_CM084277.1.bed"), type = "bed") # 3897 variants
 
-chrom15.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084278.1.vcf.gz"))
-chrom15.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom15/chrom_CM084278.1.bed"), type = "bed") # 3897 variants
+chrom15.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084278.1.vcf.gz"))
+chrom15.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom15/chrom_CM084278.1.bed"), type = "bed") # 3897 variants
 
-chrom16.vcf    <- read.vcfR(paste0(path,"vcf/all_final_chrom_split/chrom_CM084279.1.vcf.gz"))
-chrom16.bed    <- read.pcadapt(paste0(path,"plink/all_final_chrom_split/chrom16/chrom_CM084279.1.bed"), type = "bed") # 3897 variants
+chrom16.vcf    <- read.vcfR(paste0(path2,"vcf/all_final_chrom_split/chrom_CM084279.1.vcf.gz"))
+chrom16.bed    <- read.pcadapt(paste0(path2,"plink/all_final_chrom_split/chrom16/chrom_CM084279.1.bed"), type = "bed") # 3897 variants
 
 
 
 # pcangsd outputs .cov file 
-chrom1_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom1/pcangsd/chrom1_pcangsd.cov"), header = F))
-chrom2_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom2/pcangsd/chrom2_pcangsd.cov"), header = F))
-chrom3_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom3/pcangsd/chrom3_pcangsd.cov"), header = F))
-chrom4_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom4/pcangsd/chrom4_pcangsd.cov"), header = F))
-chrom5_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom5/pcangsd/chrom5_pcangsd.cov"), header = F))
-chrom6_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom6/pcangsd/chrom6_pcangsd.cov"), header = F))
-chrom7_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom7/pcangsd/chrom7_pcangsd.cov"), header = F))
-chrom8_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom8/pcangsd/chrom8_pcangsd.cov"), header = F))
-chrom9_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom9/pcangsd/chrom9_pcangsd.cov"), header = F))
-chrom10_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom10/pcangsd/chrom10_pcangsd.cov"), header = F))
-chrom11_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom11/pcangsd/chrom11_pcangsd.cov"), header = F))
-chrom12_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom12/pcangsd/chrom12_pcangsd.cov"), header = F))
-chrom13_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom13/pcangsd/chrom13_pcangsd.cov"), header = F))
-chrom14_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom14/pcangsd/chrom14_pcangsd.cov"), header = F))
-chrom15_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom15/pcangsd/chrom15_pcangsd.cov"), header = F))
-chrom16_cov_quad <- as.matrix(read.table(paste0(path, "plink/all_final_chrom_split/chrom16/pcangsd/chrom16_pcangsdls.cov"), header = F))
+chrom1_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom1/pcangsd/chrom1_pcangsd.cov"), header = F))
+chrom2_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom2/pcangsd/chrom2_pcangsd.cov"), header = F))
+chrom3_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom3/pcangsd/chrom3_pcangsd.cov"), header = F))
+chrom4_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom4/pcangsd/chrom4_pcangsd.cov"), header = F))
+chrom5_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom5/pcangsd/chrom5_pcangsd.cov"), header = F))
+chrom6_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom6/pcangsd/chrom6_pcangsd.cov"), header = F))
+chrom7_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom7/pcangsd/chrom7_pcangsd.cov"), header = F))
+chrom8_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom8/pcangsd/chrom8_pcangsd.cov"), header = F))
+chrom9_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom9/pcangsd/chrom9_pcangsd.cov"), header = F))
+chrom10_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom10/pcangsd/chrom10_pcangsd.cov"), header = F))
+chrom11_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom11/pcangsd/chrom11_pcangsd.cov"), header = F))
+chrom12_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom12/pcangsd/chrom12_pcangsd.cov"), header = F))
+chrom13_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom13/pcangsd/chrom13_pcangsd.cov"), header = F))
+chrom14_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom14/pcangsd/chrom14_pcangsd.cov"), header = F))
+chrom15_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom15/pcangsd/chrom15_pcangsd.cov"), header = F))
+chrom16_cov_quad <- as.matrix(read.table(paste0(path2, "plink/all_final_chrom_split/chrom16/pcangsd/chrom16_pcangsdls.cov"), header = F))
 
 ```
 
@@ -249,7 +295,7 @@ loc_chrom_tbl <- dplyr::filter(loc_chrom_tbl, !grepl("JAYEEO",locus)) %>%
                                        chrom %in% 84278 ~ 15,
                                        chrom %in% 84279 ~ 16
                                        ))
-nrow(loc_chrom_tbl) # 3130 total SNP calls
+nrow(loc_chrom_tbl) # 2947 total SNP calls
 
 chrom_loci <- loc_chrom_tbl %>%
                 filter(chrom_num < 20) %>%

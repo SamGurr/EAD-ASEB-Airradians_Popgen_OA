@@ -1,0 +1,186 @@
+---
+title: "DEG coordinates"
+author: "Samuel Gurr"
+date: "September, 6, 2023"
+output: html_document
+---
+
+## Setup: 
+
+```{r setup, include=TRUE}
+
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/RAnalysis")
+
+```
+
+### Load libraries:
+
+```{r load_libraries, include = TRUE}
+# load libraries - notes show the install command needed to install (pre installed)
+library(tidyverse)
+library(ape)
+library(plotgardener) # BiocManager::install("plotgardener")
+BiocManager::install("rnaseqGene")
+```
+
+### Set path:
+
+```{r set the path out, include = TRUE}
+path_out = 'C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/RAnalysis/Output/Transcriptomics/DESeq2'
+```
+
+### Load data:
+
+```{r load gff, include = TRUE}
+
+## gff file
+Airradians_gff <- read.gff("../../../Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff") %>% 
+                    dplyr::filter(type %in% c('region','mRNA')) %>%
+                    dplyr::mutate(transcript_id = 
+                                    case_when(type %in% 'mRNA' ~
+                                                            gsub('.*ID=',
+                                                                 '',
+                                                                 (gsub(';Parent.*','',attributes))
+                                                                 ),
+                                              TRUE ~ NA)) %>% 
+                    dplyr::select(!c(score, strand, phase)) %>% 
+                    dplyr::mutate(chromosome = case_when(seqid %in% 'NC_091134.1' ~ 'CM084264.1',
+                                            seqid %in% 'NC_091135.1' ~ 'CM084265.1',
+                                            seqid %in% 'NC_091136.1' ~ 'CM084266.1',
+                                            seqid %in% 'NC_091137.1' ~ 'CM084267.1',
+                                            seqid %in% 'NC_091138.1' ~ 'CM084268.1',
+                                            seqid %in% 'NC_091139.1' ~ 'CM084269.1',
+                                            seqid %in% 'NC_091140.1' ~ 'CM084270.1',
+                                            seqid %in% 'NC_091141.1' ~ 'CM084271.1',
+                                            seqid %in% 'NC_091142.1' ~ 'CM084272.1',
+                                            seqid %in% 'NC_091143.1' ~ 'CM084273.1',
+                                            seqid %in% 'NC_091144.1' ~ 'CM084274.1',
+                                            seqid %in% 'NC_091145.1' ~ 'CM084275.1',
+                                            seqid %in% 'NC_091146.1' ~ 'CM084276.1',
+                                            seqid %in% 'NC_091147.1' ~ 'CM084277.1',
+                                            seqid %in% 'NC_091148.1' ~ 'CM084278.1',
+                                            seqid %in% 'NC_091149.1' ~ 'CM084279.1'),
+                                  chromosome_num =   case_when(
+                                            chromosome %in% 'CM084264.1' ~ 1,
+                                            chromosome %in% 'CM084265.1' ~ 2,
+                                            chromosome %in% 'CM084266.1' ~ 3,
+                                            chromosome %in% 'CM084267.1' ~ 4,
+                                            chromosome %in% 'CM084268.1' ~ 5,
+                                            chromosome %in% 'CM084269.1' ~ 6,
+                                            chromosome %in% 'CM084270.1' ~ 7,
+                                            chromosome %in% 'CM084271.1' ~ 8,
+                                            chromosome %in% 'CM084272.1' ~ 9,
+                                            chromosome %in% 'CM084273.1' ~ 10,
+                                            chromosome %in% 'CM084274.1' ~ 11,
+                                            chromosome %in% 'CM084275.1' ~ 12,
+                                            chromosome %in% 'CM084276.1' ~ 13,
+                                            chromosome %in% 'CM084277.1' ~ 14,
+                                            chromosome %in% 'CM084278.1' ~ 15,
+                                            chromosome %in% 'CM084279.1' ~ 16)) %>% 
+                  dplyr::select(transcript_id, chromosome, chromosome_num, start, end, type)
+
+
+
+Airradians_chrom_bpcumul <- Airradians_gff %>%  
+                                    dplyr::select(chromosome, chromosome_num, start, end, type) %>%  
+                                    dplyr::filter(type %in% 'region') %>% 
+                                    na.omit() %>% 
+                                    dplyr::mutate(bp_cumulative = cumsum(end) ) %>% 
+                                    dplyr::select(chromosome_num, bp_cumulative)
+
+
+Airradians_gff_bpcumul <- merge(Airradians_chrom_bpcumul, Airradians_gff)
+```
+
+### Load DESEq2 results for F1 nad F2:
+
+```{r load DESeq2 results DEGs}
+
+# load the F1 DEGs
+F1_DESeq2_results  <- read.csv(file="Output/Transcriptomics/DESeq2/F1_juveniles/F1_DESeq2results_F1s.csv", header=T) %>% 
+                        dplyr::select(Airradians_TranscriptID, padj,log2FoldChange) %>% 
+                        dplyr::rename(transcript_id = Airradians_TranscriptID) %>% 
+                        dplyr::filter(padj < 0.05) %>% 
+                        dplyr::mutate(direction = 
+                                        case_when(log2FoldChange > 0 ~ 'up',
+                                                  log2FoldChange < 0 ~ 'down')
+                                      )
+nrow(F1_DESeq2_results) # 133
+
+
+# load the F2 DEGs
+F2_DESeq2_results  <- read.csv(file="Output/Transcriptomics/DESeq2/F2_juveniles/F2_DESeq2results_F2s.csv", header=T) %>% 
+                        dplyr::select(Airradians_TranscriptID, padj,log2FoldChange) %>% 
+                        dplyr::rename(transcript_id = Airradians_TranscriptID) %>% 
+                        dplyr::filter(padj < 0.05) %>% 
+                        dplyr::mutate(direction = 
+                                        case_when(log2FoldChange > 0 ~ 'up',
+                                                  log2FoldChange < 0 ~ 'down')
+                                      )
+nrow(F2_DESeq2_results) # 21
+
+```
+### Merge the gff annotation of chromosome number start and end with the DEGs
+```{r merge and save csv}
+
+F1_DESeq2_results_coordinates <- merge(Airradians_gff_bpcumul, F1_DESeq2_results, by = 'transcript_id') %>% dplyr::mutate(Gen = 'F1')
+F2_DESeq2_results_coordinates <- merge(Airradians_gff_bpcumul, F2_DESeq2_results, by = 'transcript_id') %>% dplyr::mutate(Gen = 'F2')
+
+# write csv files out
+write.csv(F1_DESeq2_results_coordinates, "Output/Transcriptomics/DESeq2/F1_juveniles/F1_DESeq2results_coordinates.csv")
+write.csv(F2_DESeq2_results_coordinates, "Output/Transcriptomics/DESeq2/F2_juveniles/F2_DESeq2results_coordinates.csv")
+```
+
+```{r}
+
+axis_set$chromosome_num
+axis_set <- F1_DESeq2_results_coordinates |>
+  group_by(chromosome_num) |>
+  summarize(center = mean(bp_cumulative))
+
+ylim <- F1_DESeq2_results_coordinates |>
+  filter(log2FoldChange == min(log2FoldChange)) |>
+  mutate(ylim = abs(floor(log2FoldChange)) + 2) |>
+  pull(ylim)
+
+All_DEGs <- rbind(F1_DESeq2_results_coordinates,
+                  F2_DESeq2_results_coordinates)
+manhplot <- ggplot(All_DEGs, 
+                   aes(
+                    x = (start + bp_cumulative), y = as.numeric(log2FoldChange),
+                    color = as_factor(chromosome_num), shape = Gen, size = log10(padj)
+                  )) +
+                    # geom_hline(
+                    #   yintercept = log2FoldChange, color = "grey40",
+                    #   linetype = "dashed"
+                    # ) +
+                    geom_point(alpha = 0.75) +
+                    scale_x_continuous(
+                      label = axis_set$chromosome_num,
+                      breaks = axis_set$center
+                    ) +
+                    scale_color_manual(values = rep(
+                    c("#276FBF", "#183059"),
+                    unique(length(axis_set$chromosome_num))
+                    )) + 
+                    theme_bw() +
+                    facet_wrap(~Gen)# +
+                    # scale_y_continuous(expand = c(0, 0), limits = c(0, ylim)) +
+                    # scale_color_manual(values = rep(
+                    #   c("#276FBF", "#183059"),
+                    #   unique(length(axis_set$chr))
+                    # )) +
+                    # scale_size_continuous(range = c(0.5, 3)) +
+                    # labs(
+                    #   x = NULL,
+                    #   y = "-log<sub>10</sub>(p)"
+                    # ) +
+                    # theme_minimal() +
+                    # theme(
+                    #   legend.position = "none",
+                    #   panel.grid.major.x = element_blank(),
+                    #   panel.grid.minor.x = element_blank(),
+                    #   axis.title.y = element_markdown(),
+                    #   axis.text.x = element_text(angle = 60, size = 8, vjust = 0.5)
+                    # )
+```

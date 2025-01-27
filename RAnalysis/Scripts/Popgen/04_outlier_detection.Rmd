@@ -41,22 +41,25 @@ First import the unphased SNP data:
 source(here::here(getwd(),"RAnalysis", "Scripts", "bin", "write_bayescan.R"))
 
 # Read in the filtered SNP VCF file (non-phased) to a genind object
-gen <- read.vcfR(here::here(getwd(),"RAnalysis", "Data", "Popgen", "03_prune", "out.7.phased.vcf.gz"), verbose = FALSE) %>%
-        vcfR2genind()
+gen <- read.vcfR(here::here(getwd(),"RAnalysis", 
+                            "Data", 
+                            "Popgen", 
+                            "03_prune", 
+                            "out.7.phased.vcf.gz"), verbose = FALSE) %>%  vcfR2genind()
 
 # Assign populations to the genind
 popnames <- tibble(id = indNames(gen)) %>%
-   dplyr::mutate(Individual = gsub('*./','',id),
-                         Type = dplyr::case_when(grepl("-B", Individual) ~ "broodstock", TRUE ~ 'juvenile'),
-                         Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
+                dplyr::mutate(Individual = gsub('*./','',id),
+                              Type = dplyr::case_when(grepl("-B", Individual) ~ "broodstock", TRUE ~ 'juvenile'),
+                              Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
                                                              grepl("F1", Individual) ~ "F1",
                                                              grepl("F2", Individual) ~ "F2",
                                                              grepl("F3", Individual) ~ "F3",
                                                              TRUE ~ "F1"),
-                         Treatment = dplyr::case_when(
+                              Treatment = dplyr::case_when(
                                         grepl("F0", Individual) ~ "none",
                                         grepl("pH7\\.",Individual) ~ "High",
-                                        grepl(c("pH75\\.|.201.|.203.|.204.|.251.|.253.|.254.|.301.|.303.|.304.|.351.|.352.|.353.|.354."), 
+ grepl(c("pH75\\.|.201.|.203.|.204.|.251.|.253.|.254.|.301.|.303.|.304.|.351.|.352.|.353.|.354."), 
                                               Individual) ~ "Moderate",
                                         grepl(c("pH8|.101.|.103.|.104.|.153.|.154.|.155.|.3.|.4.|.5."), 
                                               Individual) ~  "Low")) %>% 
@@ -87,7 +90,12 @@ library(parallel)
 ?parallel
 library(help = "parallel")
 
-snp_job <- parallel::mcparallel(system(glue::glue("{bayescan_bin} {bscan_input_path} -od {bayescan_out} -threads 5 -pr_odds 100 -o pmax")), silent = TRUE)
+snp_job <- parallel::mcparallel(system(glue::glue("{bayescan_bin} 
+                                                  {bscan_input_path} -od 
+                                                  {bayescan_out} 
+                                                  -threads 5 
+                                                  -pr_odds 100 
+                                                  -o pmax")), silent = TRUE)
 
 
 run_bayescan(
@@ -145,7 +153,7 @@ rds <- snp_readBed(bedfile, backingfile = tempfile())
 
 # Load the data from the backing file
 dat <- snp_attach(rds)
-G <- dat$genotypes
+G   <- dat$genotypes
 ```
 
 This runs pcadapt using the best practices outlined in @lotterhos_effect_2019:
@@ -154,7 +162,7 @@ This runs pcadapt using the best practices outlined in @lotterhos_effect_2019:
 pcad_res <- snp_pcadapt(G, U.row = thin_set$u[,1:10])
 #str(pcad_res)
 
-gc <- snp_gc(pcad_res)
+gc      <- snp_gc(pcad_res)
 pvalues <- predict(gc, log10 = FALSE)
 
 pcadapt_out_tbl <- dat$map %>%
@@ -217,14 +225,24 @@ gen_stats <- gen %>%
   .$perloc %>%
   rownames_to_column("locus") %>%
   as_tibble() %>%
-  extract(locus, c("chrom", "pos"), "HiC_scaffold_(\\d+)_arrow_ctg1_(\\d+)", remove = FALSE) %>%
-  mutate(chrom = as.integer(chrom), pos = as.integer(pos)) %>%
-  select(locus, chrom, pos, ho = Ho, he = Hs, global_fst = Fst)
+  separate(locus, into = c("chrom", "pos"), sep = "_(?=[^_]+$)") %>% 
+  # extract(locus, c("chrom", "chrom"), "HiC_scaffold_(\\d+)_arrow_ctg1_(\\d+)", remove = FALSE) %>%
+  # mutate(chrom = as.integer(chrom), pos = as.integer(pos)) %>%
+  select(chrom, pos, ho = Ho, he = Hs, global_fst = Fst)
 
 
 # Add this to the outlier tibble
-comb_tbl <- out_tbl %>%
-  left_join(gen_stats, by = c("locus", "chrom", "pos"))
+
+pcadapt_out_tbl %>% select(!chrom) %>% rename(pos = physical.pos, chrom = chromosome)
+comb_tbl <- 
+  # out_tbl %>% Note to Sam you are actually supposed to run this with out_tbl!
+  pcadapt_out_tbl %>% 
+  select(!chrom) %>% 
+  rename(pos = physical.pos, chrom = chromosome) %>% 
+  mutate(across("chrom", ~str_replace_all(., "\\.", "_"))) %>% 
+  mutate(pos = as.character(pos)) %>% 
+  # left_join(gen_stats, by = c("locus", "chrom", "pos"))
+  left_join(gen_stats, by = c("chrom", "pos"))
   
 ```
 
@@ -236,16 +254,17 @@ ggplot(comb_tbl, aes(x = pos, y = global_fst, color = pca_outlier)) +
   scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
   facet_wrap(~chrom) +
   theme_minimal()
-
+?cmh_palette
 ```
 
 
 ## Bayescan outliers
 
 ```{r}
-ggplot(comb_tbl, aes(x = pos, y = global_fst, color = bay_outlier)) +
+# ggplot(comb_tbl, aes(x = pos, y = global_fst, color = bay_outlier)) +
+ggplot(comb_tbl, aes(x = pos, y = global_fst, color = pca_outlier)) +
   geom_point() +
-  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  # scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
   facet_wrap(~chrom) +
   theme_minimal()
 
@@ -254,9 +273,10 @@ ggplot(comb_tbl, aes(x = pos, y = global_fst, color = bay_outlier)) +
 ## In both sets combined
 
 ```{r}
-ggplot(comb_tbl, aes(x = pos, y = global_fst, color = any_outlier)) +
+# ggplot(comb_tbl, aes(x = pos, y = global_fst, color = any_outlier)) +
+ggplot(comb_tbl, aes(x = pos, y = global_fst, color = pca_outlier)) +
   geom_point() +
-  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  # scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
   facet_wrap(~chrom) +
   theme_minimal()
 ```
@@ -264,8 +284,9 @@ ggplot(comb_tbl, aes(x = pos, y = global_fst, color = any_outlier)) +
 ## Fst vs Heterozygosity
 
 ```{r}
-ggplot(comb_tbl, aes(x = ho, y = global_fst, color = any_outlier)) +
+# ggplot(comb_tbl, aes(x = ho, y = global_fst, color = any_outlier)) +
+ggplot(comb_tbl, aes(x = ho, y = global_fst, color = pca_outlier)) +
   geom_point() +
-  scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
+  # scale_color_manual(values = c(cmh_palette[1], cmh_palette[3])) +
   theme_minimal()
 ```
