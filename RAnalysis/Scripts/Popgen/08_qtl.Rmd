@@ -1,0 +1,34 @@
+---
+title: "08_qtl"
+author: "Samuel Gurr"
+date: "2025-01-29"
+output: html_document
+---
+
+## Objective: 
+
+* to determine loci under selection and their heritability across generations - one method being QTL (quantitative trait locus) using packages such as lme4qtl. To run this analysis (scripts downstream from here) will will use the covariance matrix based on the relatedness (kinship) of our scallops. **In this script** will load the kinship matrix and vcf files to run qtl at each locus
+
+### set working directory
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# SET WORKING DIRECTORY 
+#knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+```
+
+
+### load libraries
+
+```{r, include=FALSE}
+library(tidyverse)
+library(lme4qtl)
+library(devtools)
+devtools::install_github("variani/lme4qtl")
+```
+# wrtie the kinship matrix
+write.csv(F0BF1O.kinship,
+          paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_kinship.csv"),
+          row.names=FALSE)
+```

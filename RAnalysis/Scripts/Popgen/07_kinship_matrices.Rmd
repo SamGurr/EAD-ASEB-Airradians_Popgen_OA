@@ -20,8 +20,8 @@ author: "Samuel Gurr"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # SET WORKING DIRECTORY 
-knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
-#knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+#knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
 ```
 
 ### load libraries
@@ -33,32 +33,44 @@ library(ribd) #install.packages('ribd')
 library(sequoia)
 ```
 
-### load pedigree output from  ```sequoia``` & lifehistory data
+### load pedigree output from  ```sequoia``` 
 
 * load the pedigree
-* subset All.LifeHistData.2 based on ids in the pedigree
 
-```{r load output pedigrees and subset lifehistory data}
+```{r load output pedigrees}
 
 # pedigree :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-F0BF1O.pedigree <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F0BF1O/F0BF1O_final.csv") %>% 
+F1O.pedigree <- read.csv("RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_final.csv") %>% 
                       select(id, dam, sire) 
 
-F1BF2O.pedigree.low  <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Low/F1BF2O_Low_final.csv") %>% 
+F1BF2O.pedigree.low  <- read.csv("RAnalysis/Output/Popgen/pedigree/F1BF2O/Low/F1BF2O_Low_final.csv") %>% 
                                 select(id, dam, sire) 
-F1BF2O.pedigree.mod  <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Moderate/F1BF2O_Mod_final.csv") %>% 
+F1BF2O.pedigree.mod  <- read.csv("RAnalysis/Output/Popgen/pedigree/F1BF2O/Moderate/F1BF2O_Mod_final.csv") %>% 
                                 select(id, dam, sire) 
-F1BF2O.pedigree.high <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/High/F1BF2O_High_final.csv") %>% 
+F1BF2O.pedigree.high <- read.csv("RAnalysis/Output/Popgen/pedigree/F1BF2O/High/F1BF2O_High_final.csv") %>% 
                                 select(id, dam, sire) 
 
 # have not run these yet!
-# F2BF3O.pedigree.low  <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Low/F2BF3O_Low_final.csv") %>% 
+# F2BF3O.pedigree.low  <- read.csv("RAnalysis/Output/Popgen/pedigree/F2BF3O/Low/F2BF3O_Low_final.csv") %>% 
 #                                 select(id, dam, sire) 
-# F2BF3O.pedigree.mod  <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Moderate/F2BF3O_Mod_final.csv") %>% 
+# F2BF3O.pedigree.mod  <- read.csv("RAnalysis/Output/Popgen/pedigree/F2BF3O/Moderate/F2BF3O_Mod_final.csv") %>% 
 #                                 select(id, dam, sire) 
-# F2BF3O.pedigree.high <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/High/F2BF3O_High_final.csv") %>% 
+# F2BF3O.pedigree.high <- read.csv("RAnalysis/Output/Popgen/pedigree/F2BF3O/High/F2BF3O_High_final.csv") %>% 
 #                                 select(id, dam, sire) 
 
+
+
+```
+
+### load life history data and subset as appropriate for pedigrees
+
+* load the vcf file to otpain all IDs
+* assign birthyear and year last based on F0, F1, F2, and F3 in the id names
+* load the parentage data of the F1 F2 and F3 offspring, these contain the broodstock "assignments" 
+  * **note** assignmetns as female if only egg and male if only sperm, given unknown for hermaphorditic contributions to batch fertilizations, this may be inappropriate for these data and solely assign all animals as unknown for consistancy 
+* subset All.LifeHistData.2 based on ids in the pedigree
+
+```{r lifehistory data subset for pedigrees above}
 # LifeHistData :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # call th vcf file with all ids for the project 
@@ -100,13 +112,13 @@ patterns <- c("F0", "F1", "F2","F3") # a few IDs do not have a 'F' delimiter for
 All.LifeHistData.1 <- as.data.frame(matrix(NA, 
                                              ncol = 6, 
                                              nrow = length(All.ListIDs))) %>% 
-                          rename(id=V1,
+                          dplyr::rename(id=V1,
                                  sex=V2, # make this 4, hermaphordite
                                  BirthYear=V3,
                                  BY.min=V4,# only need if BirthYear is missing, NA
                                  BY.max=V5,# only need if BirthYear is missing, NA
                                  YearLast=V6) %>% 
-                          mutate(id = All.ListIDs,
+                          dplyr::mutate(id = All.ListIDs,
                                  sex = 4,
                                  BirthYear = case_when(
                                    grepl("F0", id) ~ 1,
@@ -127,6 +139,18 @@ All.LifeHistData.1 <- as.data.frame(matrix(NA,
 # 2. SEX  :::::::::::::::::::::::::::
 # * note that we have controlled spawns where we used eggs and or sperm of the spawners and recorded this information 
 # * although scallops are hermaphrodites (noted as '4' for all offspring!) we can mark the broodstock as dams sires or both
+
+F1.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F1_parentage.csv"), sep = ',', head = T) %>% 
+                  dplyr::mutate(Gen = "F0",
+                                Treatment = NA) # added just to match F2 and F3.Parentage and rbind a master below
+
+F2.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F2_parentage.csv"), sep = ',', head = T) %>% 
+                  dplyr::mutate(Gen = "F1",
+                                Batch_5 = NA) # added just to match F1.Parentage and rbind a master below
+
+F3.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F3_parentage.csv"), sep = ',', head = T) %>% 
+                  dplyr::mutate(Gen = "F2",
+                                Batch_5 = NA) # added just to match F1.Parentage and rbind a master below
 
 # first, run a sanity check before binding all the parentage datafiles
 nrow( 
@@ -176,11 +200,11 @@ All.LifeHistData.2   <-  merge(
                                                                  grepl("F3", id) ~ 5)
                                  )
 
-
+# subset lifeshitory datasets apprrporate to the pedigree data 
 F0BF1O.LifeHistData <- rbind(All.LifeHistData.2 %>% 
-                            filter(id %in% unique(c(F1O_pedigree$id, 
-                                                  F1O_pedigree$dam, 
-                                                  F1O_pedigree$sire))))
+                            filter(id %in% unique(c(F0BF1O.pedigree$id, 
+                                                  F0BF1O.pedigree$dam, 
+                                                  F0BF1O.pedigree$sire))))
 
 F1BF2O.low.LifeHistData <- rbind(All.LifeHistData.2 %>% 
                             filter(id %in% unique(c(F1BF2O.pedigree.low$id, 
@@ -224,7 +248,7 @@ F1.Parentage <- read.csv(
                         sep = ',', 
                         head = T) 
 
-F0.Broodstock_pedigree <- F1.Parentage %>% 
+F0B.pedigree <- F1.Parentage %>% 
                         dplyr::select(vcf_ID_raw,Ped) %>% 
                         dplyr::rename(id = vcf_ID_raw) %>% 
                         dplyr::mutate(sire = NA,
@@ -233,933 +257,89 @@ F0.Broodstock_pedigree <- F1.Parentage %>%
                                       #                 Ped %in% 'Dam' ~ 1,
                                       #                 Ped %in% 'Sire' ~ 2)) %>% 
                         dplyr::select(!Ped)
-
-# F2.Parentage <- read.csv(
-#                         paste0(
-#                         getwd(),
-#                         "/RAnalysis/Data/Popgen/Parentages/F2_parentage.csv"), 
-#                         sep = ',', 
-#                         head = T)
-# F2.Parentage_ped <- F2.Parentage %>% 
-#                   dplyr::select(vcf_ID_raw,Ped) %>% 
-#                   dplyr::rename(id = vcf_ID_raw) %>% 
-#                   dplyr::mutate(dadid = NA,
-#                                 momid = NA,
-#                                 sex = case_when(Ped %in% c('Both', 'Sire') ~ 2,
-#                                                 TRUE ~ 1)) %>% 
-#                   dplyr::select(!Ped)
-# 
-# F3.Parentage <- read.csv(
-#                         paste0(
-#                         getwd(),
-#                         "/RAnalysis/Data/Popgen/Parentages/F3_parentage.csv"), 
-#                         sep = ',', 
-#                         head = T)
-# F3.Parentage_ped <- F3.Parentage %>% 
-#                   dplyr::select(vcf_ID_raw,Ped) %>% 
-#                   dplyr::rename(id = vcf_ID_raw) %>% 
-#                   dplyr::mutate(dadid = NA,
-#                                 momid = NA,
-#                                 sex = case_when(Ped %in% c('Both', 'Sire') ~ 2,
-#                                                 TRUE ~ 1)) %>% 
-#                   dplyr::select(!Ped)
 ```
 
-### attempt sequoia::CalcRPed wrapper of kinship2
+### pedigree and kinship matrix: attempt sequoia::CalcRPed wrapper of kinship2
 
 * **Note** as described at the top of the script, this will throw an error if there is an pedigree as dam and sire for different individuals (does not like hermaphrodites!)
 
 ```{r kinship2 will not work}
-
 CalcRped(F0BF1O.pedigree, OUT = "DF") # Error message: Id not male, but is a father
 CalcRped(F1BF2O.pedigree.low, OUT = "DF") # Error message: Id not male, but is a father adapter_trim.F1-B8-pH8.bam
 CalcRped(F1BF2O.pedigree.mod, OUT = "DF") # ran successfully because there was not a case of hermaphrodite pedigree
 CalcRped(F1BF2O.pedigree.high, OUT = "DF") # Id not male, but is a father: adapter_trim.F1-B8-pH8.bam
-
 ```
 
+### pedigree and kinship matrix: use pedtools and ribd 
 
-```{r ribd}
+```{r about ribd}
 ?ribd
 # Founders are allowed to be inbred, which enables construction of any given kappa coefficients, as described in Vigeland (2020). In addition to the standard coefficients, 'ribd' also computes a range of lesser-known coefficients, including generalised kinship coefficients, multi-person coefficients and two-locus coefficients
+```
 
-# pedigree construction using either pedtools or kinship2
-?pedtools::ped
-x <- rbind(F0.Broodstock_pedigree,F0BF1O.pedigree) %>% dplyr::mutate(sex = 0)
-F0BF1O.ped <- ped(id  = (x  %>% arrange(id))$id,
-                  fid = (x  %>% arrange(id))$dam,
-                  mid = (x  %>% arrange(id))$sire,
-                  sex = (x  %>% arrange(id))$sex
-                    )
+* reformat the pedigree
+```{r F0 broodstock and F1 offspring pedtools::ped}
+# bind the F0 pedigree (all unknown) with the known F1 offpsring pedigree (from sequoia)
+# and merge with the lifehistory data to obtain sex
+# sex == 4 was assigned for all offspring, whereas 1 or 2 was assigned for parents that solely contributed sperm and egg
+# pedtools::ped only recognizes sex 0,1, and 2 where 0 is unknown
+F0BF1O.pedigree <- merge(
+                          rbind(F1O.pedigree,F0B.pedigree), # bind F1 offspring and F0 broodstokc pedigree
+                          (F0BF1O.LifeHistData %>% select(id, sex)), # merge with lifehistory to get sex
+                        by = 'id'
+                        ) %>% 
+                    #dplyr::mutate(sex == 0) # try this as well, just assign all as unknown since they are hermaphrodites
+                    dplyr::mutate(sex =  # format sex so that all occurances of '4' are ow 0 for pedtools
+                                    case_when(sex == 4 ~ 0,
+                                              .default = sex))
 
-?kinship2::pedigree # note this does not work!
-F0BF1O.ped <- kinship2::pedigree(id  = (x  %>% arrange(id))$id,
-                      dadid = (x  %>% arrange(id))$dam,
-                      momid = (x  %>% arrange(id))$sire,
-                      sex = (x  %>% arrange(id))$sex
-                        )
+F1BF2O.pedigree.low
+# ped
+F0BF1O.pedform <- pedtools::ped(id = F0BF1O.pedigree$id,
+                                        fid = F0BF1O.pedigree$dam,
+                                        mid = F0BF1O.pedigree$sire,
+                                        sex = F0BF1O.pedigree$sex)
 
-write.csv(as.data.frame(F0BF1O.ped$`_comp1`),
+# wrtie ped data and kinship
+write.csv(F0BF1O.pedform,
           paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_ped.csv"),
           row.names=FALSE)
 ```
 
-F0BF1J_numeric_reference <- as.data.frame(
-                                          rbind(F0.Broodstock_ped, F1O_pedigree) %>%  
-                                            dplyr::select(id)  %>% # 127 ids, convert to numeric
-                                            dplyr::mutate(num = as.numeric(row_number(id))) %>% 
-                                            arrange(num) %>% 
-                                            dplyr::mutate(dadid = id,
-                                                          momid = id)
-                                        )
+```{r F1 broodstock and F2 offspring from LOW OA pedtools::ped}
+# bind the F0 pedigree (all unknown) with the known F1 offpsring pedigree (from sequoia)
+# and merge with the lifehistory data to obtain sex
+# sex == 4 was assigned for all offspring, whereas 1 or 2 was assigned for parents that solely contributed sperm and egg
+# pedtools::ped only recognizes sex 0,1, and 2 where 0 is unknown
+F1BF2O.pedigree.sex <- merge(
+                          F1BF2O.pedigree.low, # bind F1 offspring and F0 broodstokc pedigree
+                          (All.LifeHistData.2 %>% select(id, sex)), # merge with lifehistory to get sex
+                        by = 'id'
+                        ) %>% 
+                    #dplyr::mutate(sex == 0) # try this as well, just assign all as unknown since they are hermaphrodites
+                    dplyr::mutate(sex =  # format sex so that all occurances of '4' are ow 0 for pedtools
+                                    case_when(sex == 4 ~ 0,
+                                              .default = sex))
 
+# ped
+F1BF2O_low.pedform <- pedtools::ped(id = F1BF2O.pedigree.sex$id,
+                                        fid = F1BF2O.pedigree.sex$dam,
+                                        mid = F1BF2O.pedigree.sex$sire,
+                                        sex = F1BF2O.pedigree.sex$sex)
 
-F0BF1J_pedigree <- rbind(F1O_pedigree, F0.Broodstock_pedigree)
-F1O_pedigree_numeric <- F0BF1J_pedigree %>%
-                          # id convert to numeric
-                          left_join(
-                            (F0BF1J_numeric_reference %>% 
-                               select(id, num)), 
-                            by = "id") %>%
-                          mutate(id = as.numeric(num)) %>% 
-                          select(-num) %>% 
-                          # dadid convert to numeric
-                          left_join(
-                                    (F0BF1J_numeric_reference %>% 
-                                       select(dadid, num) %>% 
-                                       filter(dadid %in% F0BF1J_pedigree$dadid)), 
-                                    by = "dadid") %>%
-                          mutate(dadid = as.numeric(num)) %>% 
-                          select(-num) %>% 
-                          # momid convert to numeric
-                             left_join(
-                                    (F0BF1J_numeric_reference %>% 
-                                       select(momid, num) %>% 
-                                       filter(momid %in% F0BF1J_pedigree$momid)), 
-                                    by = "momid") %>% 
-                          mutate(momid = as.numeric(num)) %>% 
-                          select(-num) 
-
-
-# write out the file
-# write.csv(F1O_kingship, "RAnalysis/Output/Popgen/pedigree_sequoia/F0BF1O/F0BF1O_kinship.csv")
+# wrtie ped data and kinship
+write.csv(F0BF1O.pedform,
+          paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_ped.csv"),
+          row.names=FALSE)
 ```
 
-```{r kinship matrix for the final F0BF1J}
-
-F0B_pedigree <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F1_parentage.csv"), 
-                         sep = ',', head = T) %>% 
-                  dplyr::select(vcf_ID_raw,Ped) %>% 
-                  dplyr::rename(id = vcf_ID_raw) %>% 
-                  dplyr::mutate(dadid = NA,
-                                momid = NA,
-                                sex = case_when(Ped %in% c('Both', 'Sire') ~ 2,
-                                                TRUE ~ 1)) %>% 
-                  dplyr::select(!Ped)
-
-
-F1O_pedigree <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F0BF1O/F0BF1O_final.csv") %>% 
-                      select(id, dam, sire) %>% 
-                      rename(dadid = dam,
-                             momid = sire) %>% 
-                      mutate(sex = 1) # although simultaneous hermaphrodites, assign all juv progeny as 1 (male)
-
-F0BF1O_pedigree     <- rbind(F0B_pedigree, F1O_pedigree)
-F0BF1O_pedigree$sex <- as.numeric(F0BF1O_pedigree$sex)
-F0BF1O_pedigree$sex <- NA 
-
-F0BF1O_kinship <- kinship2::kinship(F0BF1O_pedigree$id, 
-                                    F0BF1O_pedigree$dadid, 
-                                    F0BF1O_pedigree$momid, 
-                                    F0BF1O_pedigree$sex, 
-                                    chrtype="autosome")
-
-View(F0BF1O_kinship)
-```
-
-```{r kinship matrix for the final F0BF1J}
-
-# F2 Offspring (juvneiles) from low pCO2 
-F2OLow_pedigree <- read.csv("RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Low/F1BF2O_Low_final.csv") %>% 
-                      select(id, dam, sire) %>% 
-                      rename(dadid = dam,
-                             momid = sire) %>% 
-                      mutate(sex = 3) # == unknown
-library(sequoia)
-?CalcRped
-
-View(F2OLow_pedigree)
-CalcRped(F2OLow_pedigree, OUT = "DF")
-
-# fixParents, the pedigree above only has the parents of the F2 offspring, whereas the parents do not have 
-# their corresponding F0 broodstock tie, we need to run a grandparent sequoia() for these data
-F2OLow_fixParents <- kinship2::fixParents(
-                     F2OLow_pedigree$id, 
-                     F2OLow_pedigree$dadid, 
-                     F2OLow_pedigree$momid, 
-                     F2OLow_pedigree$sex, 
-                     missid = 0) %>% 
-                     mutate(dadid = case_when(dadid == 0 ~ NA, 
-                                              TRUE ~ dadid),
-                            momid = case_when(momid == 0 ~ NA, 
-                                              TRUE ~ momid))
-
-F2OLow_kinship <-  kinship2::kinship(F2OLow_fixParents$id, 
-                                    F2OLow_fixParents$dadid, 
-                                    F2OLow_fixParents$momid, 
-                                    F2OLow_fixParents$sex, 
-                                    chrtype="autosome")
-
-pedigree(F1O_pedigree_numeric %>%  na.omit())
-F0BF1J_pedigree_NA <- F0BF1J_pedigree %>% na.omit()
-F1O_pedigree_numeric$sex <- 3
-pedigree(id = F1O_pedigree_numeric$id,
-         dadid = F1O_pedigree_numeric$dadid,
-         momid = F1O_pedigree_numeric$momid,
-         sex = F1O_pedigree_numeric$sex)
-
-
-# Create a pedigree with hermaphrodites
-ped <- pedigree(id = c(1, 2, 3, 4),
-                dadid = c(0, 0, 1, 1),
-                momid = c(0, 0, 2, 2),
-                sex = c(1, 2, 3, 3))  # 3 represents hermaphrodites
-
-# Calculate kinship matrix
-kin_matrix <- kinship(ped)
-
-
-```
-
-
-
-F0BF1O_pedigree     <- rbind(F0B_pedigree, F1O_pedigree)
-F0BF1O_pedigree$sex <- as.numeric(F0BF1O_pedigree$sex)
-F0BF1O_pedigree$sex <- NA 
-
-F0BF1O_kinship <- kinship2::kinship(F0BF1O_pedigree$id, 
-                                    F0BF1O_pedigree$dadid, 
-                                    F0BF1O_pedigree$momid, 
-                                    F0BF1O_pedigree$sex, 
-                                    chrtype="autosome")
-
-View(F0BF1O_kinship)
-```
-
-
-* run BootPed for F1BF2J (each treatment)
-
-inputs:
-  - GenoM = F1BF2O_<treatment>.GenoM_final
-  - LifeHistData = F1BF2O_<treatment>.LifeHistData
-  - n.SNP = 50
-  - n.bootstrap = 100
-
-output: 
-  - Low
-    <insert here>
-  - Moderate
-    <insert here>
-  - High
-    <insert here>
-  
-```{r BootPed run F1BF2J for each treatment}
-
-# F1 AND F2 OFFPSRING (treatment specific)   :::::::::::::::::::::::::
-
-# low
-F1BF2O_LOW.sequoia <- BootPed(
-                              F1BF2O_LOW.GenoM_final, # GenoM
-                              F1BF2O_LOW.LifeHistData, # LifeHistData
-                              -2,# threshold.LLR
-                              0.1,# min.LLR
-                              40, # n.SNP
-                              100 # n.bootstrap
-                              )
-# run on 1/11/2025
-# [1] "Predigree summary: 32/32 offspring with pedigree assignment; 11/32 TRUE fertilized pairs"
-# [1] "Proceed, all offspring have at least 1 pedigree assignment"
-
-# data files
-F1BF2O_LOW.pedigree.raw       <- as.data.frame(F1BF2O_LOW.sequoia$raw)
-rownames(F1BF2O_LOW.pedigree.raw) <- NULL # renomve rownames
-
-F1BF2O_LOW.pedigree.summary   <- as.data.frame(F1BF2O_LOW.sequoia$summary)
-rownames(F1BF2O_LOW.pedigree.summary) <- NULL # renomve rownames
-F1BF2O_LOW.pedigree.summary <- apply(F1BF2O_LOW.pedigree.summary,2,as.character) # need to do this to output the list of batches!
-
-F1BF2O_LOW.pedigree.final     <- as.data.frame(F1BF2O_LOW.sequoia$final)
-rownames(F1BF2O_LOW.pedigree.final) <- NULL # renomve rownames
-
-F1BF2O_LOW.pedigree.final_fertTRUE <- as.data.frame(F1BF2O_LOW.pedigree.summary) %>% 
-                            group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
-                            filter(Fertilization_pairs %in% 'TRUE') %>% 
-                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
-                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
-rownames(F1BF2O_LOW.pedigree.final_fertTRUE) <- NULL # renomve rownames
-
-
-# output
-write.csv(F1BF2O_LOW.pedigree.raw, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Low/F1BF2O_Low_raw.csv")
-write.csv(F1BF2O_LOW.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Low/F1BF2O_Low_summary.csv")
-write.csv(F1BF2O_LOW.pedigree.final_fertTRUE, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Low/F1BF2O_Low_final.csv")
-
-
-
-
-
-# moderate
-F1BF2O_MOD.sequoia <- BootPed(
-                              F1BF2O_MOD.GenoM_final, 
-                              F1BF2O_MOD.LifeHistData, # LifeHistData
-                              -2,# threshold.LLR
-                              0.1,# min.LLR
-                              35, # n.SNP
-                              100 # n.bootstrap
-                              )
-# run on 1/11/2025
-# [1] "Predigree summary: 46/46 offspring with pedigree assignment; 19/46 TRUE fertilized pairs"
-# [1] "Proceed, all offspring have at least 1 pedigree assignment"
-
-# data files
-F1BF2O_MOD.pedigree.raw       <- as.data.frame(F1BF2O_MOD.sequoia$raw)
-rownames(F1BF2O_MOD.pedigree.raw) <- NULL # renomve rownames
-
-F1BF2O_MOD.pedigree.summary   <- as.data.frame(F1BF2O_MOD.sequoia$summary)
-rownames(F1BF2O_MOD.pedigree.summary) <- NULL # renomve rownames
-F1BF2O_MOD.pedigree.summary <- apply(F1BF2O_MOD.pedigree.summary,2,as.character) # need to do this to output the list of batches!
-
-F1BF2O_MOD.pedigree.final     <- as.data.frame(F1BF2O_MOD.sequoia$final)
-rownames(F1BF2O_MOD.pedigree.final) <- NULL # renomve rownames
-
-F1BF2O_MOD.pedigree.final_fertTRUE <- as.data.frame(F1BF2O_MOD.pedigree.summary) %>% 
-                            group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
-                            filter(Fertilization_pairs %in% 'TRUE') %>% 
-                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
-                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
-rownames(F1BF2O_MOD.pedigree.final_fertTRUE) <- NULL # renomve rownames
-F1BF2O_MOD.pedigree.final_fertTRUE$dam.batch <- unlist(F1BF2O_MOD.pedigree.final_fertTRUE$dam.batch)
-F1BF2O_MOD.pedigree.final_fertTRUE$sire.batch <- unlist(F1BF2O_MOD.pedigree.final_fertTRUE$sire.batch)
-
-# output
-write.csv(F1BF2O_MOD.pedigree.raw, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Moderate/F1BF2O_Mod_raw.csv")
-write.csv(F1BF2O_MOD.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Moderate/F1BF2O_Mod_summary.csv")
-write.csv(F1BF2O_MOD.pedigree.final_fertTRUE, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/Moderate/F1BF2O_Mod_final.csv")
-
-
-
-
-
-
-# high
-F1BF2O_HIGH.sequoia <- BootPed(
-                              F1BF2O_HIGH.GenoM_final, 
-                              F1BF2O_HIGH.LifeHistData,# LifeHistData
-                              -2,# threshold.LLR
-                              0.1,# min.LLR
-                              35, # n.SNP
-                              100 # n.bootstrap
-                              )
-# run on 1/11/2025
-# [1] "Predigree summary: 33/33 offspring with pedigree assignment; 13/33 TRUE fertilized pairs"
-# [1] "Proceed, all offspring have at least 1 pedigree assignment"
-
-# data files
-F1BF2O_HIGH.pedigree.raw       <- as.data.frame(F1BF2O_HIGH.sequoia$raw)
-rownames(F1BF2O_HIGH.pedigree.raw) <- NULL # renomve rownames
-
-F1BF2O_HIGH.pedigree.summary   <- as.data.frame(F1BF2O_HIGH.sequoia$summary)
-rownames(F1BF2O_HIGH.pedigree.summary) <- NULL # renomve rownames
-F1BF2O_HIGH.pedigree.summary <- apply(F1BF2O_HIGH.pedigree.summary,2,as.character) # need to do this to output the list of batches!
-
-F1BF2O_HIGH.pedigree.final     <- as.data.frame(F1BF2O_HIGH.sequoia$final)
-rownames(F1BF2O_HIGH.pedigree.final) <- NULL # renomve rownames
-
-F1BF2O_HIGH.pedigree.final_fertTRUE <- as.data.frame(F1BF2O_HIGH.pedigree.summary) %>% 
-                            group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
-                            filter(Fertilization_pairs %in% 'TRUE') %>% 
-                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
-                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
-rownames(F1BF2O_HIGH.pedigree.final_fertTRUE) <- NULL # renomve rownames
-
-
-# output
-write.csv(F1BF2O_HIGH.pedigree.raw, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/High/F1BF2O_High_raw.csv")
-write.csv(F1BF2O_HIGH.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/High/F1BF2O_High_summary.csv")
-write.csv(F1BF2O_HIGH.pedigree.final_fertTRUE, "RAnalysis/Output/Popgen/pedigree_sequoia/F1BF2O/High/F1BF2O_High_final.csv")
-```
-
-
-* run BootPed for F2BF3J (each treatment)
-
-inputs:
-  - GenoM = F2BF3O_<treatment>.GenoM_final
-  - LifeHistData = F2BF3O_<treatment>.LifeHistData
-  - n.SNP = 50
-  - n.bootstrap = 100
-
-output: 
-  - Low
-    <insert here>
-  - Moderate
-    <insert here>
-  - High
-    <insert here>
-  
-```{r BootPed run F2BF3J for each treatment}
-
-# F2 AND F3 OFFPSRING (treatment specific)   :::::::::::::::::::::::::
-
-# low
-F2BF3O_LOW.sequoia <- BootPed(
-                              F2BF3O_LOW.GenoM_final, 
-                              F2BF3O_LOW.LifeHistData,# LifeHistData
-                              -2,# threshold.LLR
-                              0.1,# min.LLR
-                              50, # n.SNP
-                              10)# n.bootstrap
-# run on 12/21/2024
-# [1] "Predigree summary: 27/46 offspring with pedigree assignment; 12/27true fertilized pairs"
-# [1] "Edit the n.SNP or n.bootstrap call for better pedigree"
-
-# data files
-F2BF3O_LOW.pedigree.raw       <- as.data.frame(F2BF3O_LOW.sequoia$raw)
-rownames(F2BF3O_LOW.pedigree.raw) <- NULL # renomve rownames
-
-F2BF3O_LOW.pedigree.summary   <- as.data.frame(F2BF3O_LOW.sequoia$summary)
-rownames(F2BF3O_LOW.pedigree.summary) <- NULL # renomve rownames
-F2BF3O_LOW.pedigree.summary <- apply(F2BF3O_LOW.pedigree.summary,2,as.character) # need to do this to output the list of batches!
-
-F2BF3O_LOW.pedigree.final     <- as.data.frame(F2BF3O_LOW.sequoia$final)
-rownames(F2BF3O_LOW.pedigree.final) <- NULL # renomve rownames
-
-# output
-write.csv(F2BF3O_LOW.pedigree.raw, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Low/F2BF3O_Low_raw.csv")
-write.csv(F2BF3O_LOW.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Low/F2BF3O_Low_summary.csv")
-write.csv(F2BF3O_LOW.pedigree.final, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Low/F2BF3O_Low_final.csv")
-
-
-
-
-
-# moderate
-F2BF3O_MOD.sequoia <- BootPed(
-                              F2BF3O_MOD.GenoM_final, 
-                              F2BF3O_MOD.LifeHistData,# LifeHistData
-                              -2,# threshold.LLR
-                              0.1,# min.LLR
-                              50, # n.SNP
-                              5)# n.bootstrap
-# run on 12/21/2024
-# [1] "Predigree summary: 46/46 offspring with pedigree assignment; 21/47 TRUE fertilized pairs"
-# [1] "Proceed, all offspring have at least 1 pedigree assignment"
-
-# data files
-F2BF3O_MOD.pedigree.raw       <- as.data.frame(F2BF3O_MOD.sequoia$raw)
-rownames(F2BF3O_MOD.pedigree.raw) <- NULL # renomve rownames
-
-F2BF3O_MOD.pedigree.summary   <- as.data.frame(F2BF3O_MOD.sequoia$summary)
-rownames(F2BF3O_MOD.pedigree.summary) <- NULL # renomve rownames
-F2BF3O_MOD.pedigree.summary <- apply(F2BF3O_MOD.pedigree.summary,2,as.character) # need to do this to output the list of batches!
-
-F2BF3O_MOD.pedigree.final     <- as.data.frame(F2BF3O_MOD.sequoia$final)
-rownames(F2BF3O_MOD.pedigree.final) <- NULL # renomve rownames
-
-# output
-write.csv(F2BF3O_MOD.pedigree.raw, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Moderate/F2BF3O_Mod_raw.csv")
-write.csv(F2BF3O_MOD.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Moderate/F2BF3O_Mod_summary.csv")
-write.csv(F2BF3O_MOD.pedigree.final, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/Moderate/F2BF3O_Mod_final.csv")
-
-
-
-
-
-
-# high
-F2BF3O_HIGH.sequoia <- BootPed(
-                              F2BF3O_HIGH.GenoM_final, 
-                              F2BF3O_HIGH.LifeHistData,# LifeHistData
-                              -2,# threshold.LLR
-                              0.1,# min.LLR
-                              50, # n.SNP
-                              50)# n.bootstrap
-# run on 12/21/2024
-# [1] "Predigree summary: 33/33 offspring with pedigree assignment; 18/33 TRUE fertilized pairs"
-# [1] "Proceed, all offspring have at least 1 pedigree assignment"
-
-# data files
-F2BF3O_HIGH.pedigree.raw       <- as.data.frame(F2BF3O_HIGH.sequoia$raw)
-rownames(F2BF3O_HIGH.pedigree.raw) <- NULL # renomve rownames
-
-F2BF3O_HIGH.pedigree.summary   <- as.data.frame(F2BF3O_HIGH.sequoia$summary)
-rownames(F2BF3O_HIGH.pedigree.summary) <- NULL # renomve rownames
-F2BF3O_HIGH.pedigree.summary <- apply(F2BF3O_HIGH.pedigree.summary,2,as.character) # need to do this to output the list of batches!
-
-F2BF3O_HIGH.pedigree.final     <- as.data.frame(F2BF3O_HIGH.sequoia$final)
-rownames(F2BF3O_HIGH.pedigree.final) <- NULL # renomve rownames
-
-# output
-write.csv(F2BF3O_HIGH.pedigree.raw, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/High/F2BF3O_High_raw.csv")
-write.csv(F2BF3O_HIGH.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/High/F2BF3O_High_summary.csv")
-write.csv(F2BF3O_HIGH.pedigree.final, "RAnalysis/Output/Popgen/pedigree_sequoia/F2BF3O/High/F2BF3O_High_final.csv")
-```
-
-## `CalcPairLL`
-
-```{r read about pairwise relationship liklihoods}
-?CalcPairLL #pairwise relationship liklihoods
-```
-
-pairwise relationship likelihoods
-
-**Objectve**: for each specified pair of individuals calculate the log 10-liklihood of being PO, FS, HS, GP, FA, HA, U
-
--   PO - parent - offspring
--   FS - full siblings
--   HS - half siblings
--   GP - grandparent
--   FA - full avuncular
--   HA - Half avuncular and other 3rd degree relationships
--   U - Unrelated
--   2nd - unclear which type of 2nd degree rel (HS, GP, or FA)
--   ?? - Unclear which type of 1st, 2nd or 3rd degree relatives
-
-### Preliminary (simple) test, F0 and F1 offspring
-
-Data:
-
--   Loci: F0BF1J.vcf, F0BF1J.gen, F0BF1J.matrix
-
--   Parentage: F1_Parentage
-
-```{r CalcPairLL F0 broodstock and F1 offspring}
-
-#  PREPARE NECESSARY INPUTS! 
-
-# Pairs - dataframe with columns ID1 and ID2 containing all possible combinations 
-F0BF1J.Pairs_raw  <- data.frame(F0BF1J.ListIDs) %>% 
-                        dplyr::rename(ID1 = F0BF1J.ListIDs) %>% # rename
-                        dplyr::mutate(ID2 = ID1) %>% # duplicate
-                        tidyr::expand(ID1, ID2) %>% # get all possible ocmbinations 
-                        dplyr::mutate(AgeDif = case_when(
-                          # ID1 and ID2 are F0 broodstock
-                          (grepl("F0", ID1, ignore.case = TRUE) &
-                            grepl("F0", ID2, ignore.case = TRUE)) ~ 0,
-                          # ID1 and ID2 are F1 Juveniles
-                          (!grepl("F0", ID1, ignore.case = TRUE) &
-                            !grepl("F0", ID2, ignore.case = TRUE)) ~ 0,
-                          # ID1  is F1 juvenile and ID2 is F0 broodstock
-                          (!grepl("F0", ID1, ignore.case = TRUE) &
-                            grepl("F0", ID2, ignore.case = TRUE)) ~ 1,
-                          # IF1 is F0 broodstock and ID2 is F1 juvenile
-                          (grepl("F0", ID1, ignore.case = TRUE) &
-                            !grepl("F0", ID2, ignore.case = TRUE)) ~ -1,
-                        ))
-F0BF1J.Pairs      <- F0BF1J.Pairs_raw[F0BF1J.Pairs_raw$ID1 != F0BF1J.Pairs_raw$ID2,]
-# View(F0BF1J.Pairs)
-
-
-# GenoM
-F0BF1J.matrix # for GenoM
-
-# Run UT! 
-# WITH JUST THE PAIRS AND GENOM
-F0BF1J.CalcPairLL <- CalcPairLL(Pairs = F0BF1J.Pairs,
-                                GenoM = F0BF1J.matrix, 
-                                Err = 1e-04,
-                                Herm = "A",
-                                Plot=FALSE)
-
-View(F0BF1J.CalcPairLL)
-
-
-# add pedigree data note that we have the info for males and gemles (eggs and sperm 
-# contributed by F0 broodstock to batch fertilization. 
-
-# Pedigree
-F0BF1J.IDs   <- as.data.frame(table(F0BF1J.ListIDs, dnn = list("id"))) %>% select(id)
-F0B.Pedigree <- pivot_wider(
-                              data = (F1.Parentage %>% 
-                                      select(vcf_ID_raw, Ped) %>%  # call data
-                                      rename(id = vcf_ID_raw)),
-                              values_from = Ped,
-                              names_from = Ped) %>% # widen it with pivot
-                   dplyr::filter_at(.vars = vars(Both, Dam, Sire), # omit rows that are NA for all!
-                                   .vars_predicate = any_vars(!is.na(.))) %>% 
-                   dplyr::mutate(sire = case_when(Both %in% 'Both' ~ 1,
-                                                  Sire %in% 'Sire' ~ 1,
-                                                  Dam  %in% 'Dam'  ~ 0),
-                                 dam =  case_when(Both %in% 'Both' ~ 1,
-                                                  Dam  %in% 'Dam'  ~ 1,
-                                                  Sire == 1 ~ 0)) %>% 
-                   dplyr::select(!c('Both', 'Sire', 'Dam', 'NA'))
-                                 
-F0BF1J.Pedigree <- merge(F0B.Pedigree, F0BF1J.IDs, all= T)
-PedPolish(F0BF1J.Pedigree)# check
-View(F0BF1J.Pedigree)
-# LifeHistDate
-
-LifeHistData_scallop <- 
-
-#AgePrior
-AgePrior_scallop <- 
-  
-
-CalcPairLL(Pairs = F0BF1J.Pairs,
-           GenoM = F0BF1J.matrix, 
-           Err = 1e-04, 
-           Plot=FALSE)
-
-tail(SeqOUT_griffin$PedigreePar, n=3)
-#  RUN IT!
-
-
-CalcPairLL(
-            Pairs = F0BF1J.Pairs,
-            GenoM = F0BF1J.matrix,
-            Pedigree = as.data.frame(F0BF1J.pedigree),
-            LifeHistData = F0BF1J.LifeHistData.editted, # working on it
-            AgePrior = TRUE, # working on it
-            SeqList = NULL,
-            Complex = "full",
-            Herm = "A", # "A" (distinguish between dam and sire role, default if at least 1 individual with sex=4), or "B" (no distinction between dam and sire role).
-            Err = 1e-04,
-            ErrFlavour = "version2.9",
-            Tassign = 0.5,
-            Tfilter = -2,
-            quiet = FALSE,
-            Plot = TRUE
-)
-```
-
--   fubd kujet rekatuve pairs '**GetMaybeRel**'
-
-```{r read about pairwise relationship liklihoods}
-?GetMaybeRel #pairwise relationship liklihoods
-```
-
-## Load and edit datasets to run *GetMaybeRel* in `sequoia`
-
-```{r read parentage csv files}
-
-F1.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F1_parentage.csv"), 
-                         sep = ',', 
-                         head = T)
-
-F2.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F2_parentage.csv"), 
-                         sep = ',', 
-                         head = T)
-
-F3.Parentage <- read.csv(paste0(getwd(),"/RAnalysis/Data/Popgen/Parentages/F3_parentage.csv"), 
-                         sep = ',', 
-                         head = T)
-```
-
--   'F1.Parentage.vcf' subset F0+F1 offspring
-
-```{r subset 'F1.Parentage.vcf'}
-vcf # 391 samples, 2,947 variants
-
-# F0 are 2:26
-colnames(All.vcf@gt[,2:26])
-# F1 juveniles are 63:139
-colnames(All.vcf@gt[,63:139])
-
-# subset for F10 and F1 juveniles
-# retaincolumn 1 'Format' 
-F1.Parentage.vcf <- vcf[,c(1:26,63:139)]
-
-```
-
--   'F2.Parentage.vcf' subset F1+F2 offspring
-
-```{r subset 'F2.Parentage.vcf'}
-vcf # 391 samples, 2,947 variants
-colnames(All.vcf@gt)
-
-# F1 broodstock are 27:62
-colnames(All.vcf@gt[,27:62])
-# F2 juveniles are 178:250
-colnames(All.vcf@gt[178:250])
-
-# subset for F10 and F1 juveniles
-# retaincolumn 1 'Format' 
-F2.Parentage.vcf <- vcf[,c(1,27:62,178:250)]
-
-```
-
--   'F3.Parentage.vcf' subset F0+F1 offspring
-
-```{r subset 'F3.Parentage.vcf'}
-vcf # 391 samples, 2,947 variants
-colnames(All.vcf@gt)
-
-
-# F1 broodstock are 140:176
-colnames(All.vcf@gt[,140:176])
-# F2 juveniles are 251:392
-colnames(All.vcf@gt[251:392])
-
-# subset for F10 and F1 juveniles
-# retaincolumn 1 'Format' 
-F3.Parentage.vcf <- vcf[,c(1,140:176,251:392)]
-
-```
-
-**dna**
-
--   read refernce genome, rename chromosome accession ids to match
-
-```{r read ref genome and rename chromose accesion ids}
-
-dna        <- ape::read.dna("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_Ai_NY_genomic.fna", 
-                            format = "fasta")
-dna_chroms <- (dna)[1:16]
-names(dna_chroms) <- c('CM084264.1', 'CM084265.1', 'CM084266.1', 'CM084267.1',
-                       'CM084268.1', 'CM084269.1', 'CM084270.1', 'CM084271.1', 
-                       'CM084272.1', 'CM084273.1', 'CM084274.1', 'CM084275.1', 
-                       'CM084276.1', 'CM084277.1', 'CM084278.1', 'CM084279.1')
-
-```
-
-**gff**
-
--   read refernce gene function file (gff), rename chromosome accession ids to match
-
-```{r read reference gff file and rename accession ids to match}
-
-# gff <- read.table("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff", sep="\t", quote="")
-gff <- ape::read.gff("C:/Users/samjg/Documents/Bioinformatics/refs/Airradians/GCF_041381155.1_genomic.gff") %>% 
-            dplyr::filter(type %in% 'exon') %>%  # to mimix the example 
-            dplyr::filter(!grepl("NW_",seqid)) %>% 
-            dplyr::mutate(attributes = paste0('NAME=',(gsub('.*;product=', '', attributes))),
-                          seqid = case_when(seqid %in% 'NC_091134.1' ~ 'CM084264.1',
-                                            seqid %in% 'NC_091135.1' ~ 'CM084265.1',
-                                            seqid %in% 'NC_091136.1' ~ 'CM084266.1',
-                                            seqid %in% 'NC_091137.1' ~ 'CM084267.1',
-                                            seqid %in% 'NC_091138.1' ~ 'CM084268.1',
-                                            seqid %in% 'NC_091139.1' ~ 'CM084269.1',
-                                            seqid %in% 'NC_091140.1' ~ 'CM084270.1',
-                                            seqid %in% 'NC_091141.1' ~ 'CM084271.1',
-                                            seqid %in% 'NC_091142.1' ~ 'CM084272.1',
-                                            seqid %in% 'NC_091143.1' ~ 'CM084273.1',
-                                            seqid %in% 'NC_091144.1' ~ 'CM084274.1',
-                                            seqid %in% 'NC_091145.1' ~ 'CM084275.1',
-                                            seqid %in% 'NC_091146.1' ~ 'CM084276.1',
-                                            seqid %in% 'NC_091147.1' ~ 'CM084277.1',
-                                            seqid %in% 'NC_091148.1' ~ 'CM084278.1',
-                                            seqid %in% 'NC_091149.1' ~ 'CM084279.1')) 
-unique(gff$seqid) # good, the 16 chromosomes
-
-```
-
-```{r}
-
-
-
-All.vcf@meta[11]
-
-chrom <- create.chromR(name="CM084265.1", vcf=All.vcf, seq=dna_chroms, ann=gff, verbose=FALSE)
-chrom@vcf
-# mock data for create.chromR
-data(vcfR_example)
-dna
-vcf@gt
-gff
-chrom <- create.chromR('sc50', seq=dna, vcf=vcf, ann=gff)
-head(chrom)
-chrom
-plot(chrom)
-
-chrom <- masker(chrom, min_QUAL = 1, min_DP = 300, max_DP = 700, min_MQ = 59, max_MQ = 61)
-chrom <- proc.chromR(chrom, win.size=1000)
-
-plot(chrom)
-chromoqc(chrom)
-
-```
-
-```{r create genind of subset}
-# genind
-vcf_F0B.F1J.gen <- vcf_F0B.F1J %>% vcfR2genind()
-```
-
-```{r format genind to as.matrix}
-F0B.F1J_matrix <- as.matrix(vcf_F0B.F1J.gen)
-rownames(F0B.F1J_matrix)
-
-?MakeAgePrior 
-?GetMaybeRel
-
-GetMaybeRel(
-  GenoM = F0B.F1J_matrix,
-  SeqList = NULL,
-  Pedigree = NULL,
-  LifeHistData = NULL, # we can add this
-  AgePrior = NULL,
-  Module = "ped",
-  #ParSib = "sib",
-  MaxPairs = 7 * nrow(F0B.F1J_matrix)
-)
-
-```
-
-First import the unphased SNP data and pop metadata
-
-```{r}
-
-# Read in the filtered SNP VCF file (non-phased) to a genind object
-gen <- read.vcfR(here::here(getwd(),
-                            "RAnalysis", 
-                            "Data", 
-                            "Popgen", 
-                            "03_prune", 
-                            "out.7.phased.vcf.gz"), verbose = FALSE) %>%
-        vcfR2genind()
-
-indNames(gen) <- case_when(
-  
-  grepl("F0-B", indNames(gen)) ~ "F0",
-  
-  grepl("F1-B.*pH8", indNames(gen))  ~ "F1_broodstock_Low",
-  grepl("F1-B.*pH75", indNames(gen)) ~ "F1_broodstock_Moderate",
-  
-  grepl("F2-B.*pH8", indNames(gen))  ~ "F2_broodstock_Low",
-  grepl("F2-B.*pH75", indNames(gen)) ~ "F2_broodstock_Moderate",
-  grepl("F2-B.*pH7.", indNames(gen)) ~ "F2_broodstock_High",
-
-  grepl("F1-J.*pH8", indNames(gen)) ~ "F1_juvenile_Low",
-  grepl(c("[.]101[.]|[.]103[.]|[.]104[.]|[.]153[.]|[.]154[.]|[.]155[.]|[.]53[.]|[.]54[.]|[.]55[.]|[.]3[.]|[.]4[.]|[.]5[.]"), indNames(gen)) ~ "F1_juvenile_Low",
-  grepl("F1-J.*pH75", indNames(gen)) ~ "F1_juvenile_Moderate",
-  grepl("[.]201[.]|[.]203[.]|[.]204[.]|[.]251[.]|[.]253[.]|[.]254[.]|[.]301[.]|[.]303[.]|[.]304[.]|[.]351[.]|[.]352[.]|[.]353[.]|[.]354[.]", indNames(gen)) ~ "F1_juvenile_Moderate",
-  
-  grepl("F2-J.*pH8", indNames(gen))  ~ "F2_juvenile_Low",
-  grepl("F2-J.*pH75", indNames(gen)) ~ "F2_juvenile_Moderate",
-  grepl("F2-J.*pH7.", indNames(gen)) ~ "F2_juvenile_High",
-
-  grepl("F3-J.*pH8", indNames(gen))  ~ "F3_juvenile_Low",
-  grepl("F3-J.*pH75", indNames(gen)) ~ "F3_juvenile_Moderate",
-  grepl("F3-J.*pH7.", indNames(gen)) ~ "F3_juvenile_High"
-)
-
-# Assign populations to the genind
-popnames <- tibble(id = indNames(gen)) %>%
-   dplyr::mutate(Individual = gsub('*./','',id),
-                         Type = dplyr::case_when(grepl("-B", Individual) ~ "broodstock", TRUE ~ 'juvenile'),
-                         Gen = dplyr::case_when(grepl("F0", Individual) ~ "F0",
-                                                             grepl("F1", Individual) ~ "F1",
-                                                             grepl("F2", Individual) ~ "F2",
-                                                             grepl("F3", Individual) ~ "F3",
-                                                             TRUE ~ "F1"),
-                         Treatment = dplyr::case_when(
-                                        grepl("F0", Individual) ~ "none",
-                                        grepl("pH7\\.",Individual) ~ "High",
-                                        grepl(c("pH75\\.|.201.|.203.|.204.|.251.|.253.|.254.|.301.|.303.|.304.|.351.|.352.|.353.|.354."), 
-                                              Individual) ~ "Moderate",
-                                        grepl(c("pH8|.101.|.103.|.104.|.153.|.154.|.155.|.3.|.4.|.5."), 
-                                              Individual) ~  "Low")) %>% 
-   dplyr::mutate(pop = dplyr::case_when(Gen == "F0" ~ "F0",
-                                        Gen %in% c("F1","F2","F3") ~ paste0(Gen,'_',Type,'_',Treatment))) %>% 
-   pull(pop)
-
-pop(gen) <- indNames(gen)
-
-indNames(gen) == popnames$pop
-
-```
-
-# **Sequoia**
-
-[link here](https://jiscah.github.io/reference/figures/flowchart.svg)
-
-a comprehensive R package for muligenerational pedigree reconstruction emplpys a fast heuristic hill-climbing algorithm to explore the liklihood surface using SNP data and input sinply the birthyear of your genotyped individuals
-
-key features include:
-
--   parentage assignment
--   sibship clustering
--   grandparent assignment
--   andles any proportion of genotyped parents
--   accounts for genotyping errors
--   does not require predefined lists of candidate parents
-
-## (1) Run GetMaybeRel
-
--   **Objective** Identify pairs of individuals likely to be related, but not assigned as such in the provided pedigree.
-
-    -   I think this is most suitable for our objective, to assign parent pairs
-
-```{r learn about the call in sequoia}
-?GetMaybeRel
-```
-
--   'GenoM' = numeric matrix with genotype data: One row per individual, one column per SNP, coded as 0, 1, 2, missing values as a negative number or NA. You can reformat data with GenoConvert, or use other packages to get it into a genlight object and then use as.matrix.
-
-```{r format genind to as.matrix}
-gen_matrix <- as.matrix(gen)
-```
-
--   first test, subset for F0 and F1
-
-```{r truncate matrix for just F0 and F1 juvenile}
-nrow(gen_matrix) # 391
-
-gen_matrix_F0F1 <- gen_matrix[,]
-
-rownames(gen_matrix) <- "F0"
-
-
-nrow(gen_matrix_F0F1)              
-```
-
--   'SeqList'
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
+* assemble a kinship matrix
+
+```{r F0 broodstock F1 offspring pedtools::kinship}
+F0BF1O.kinship <- kinship(F0BF1O.pedform)
+
+# wrtie the kinship matrix
+write.csv(F0BF1O.kinship,
+          paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_kinship.csv"),
+          row.names=FALSE)
 ```
