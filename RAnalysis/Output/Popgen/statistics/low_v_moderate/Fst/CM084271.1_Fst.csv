@@ -1,0 +1,16 @@
+"","Site1","Site2","Fst"
+"1","F1_Moderate","F1_Low",0.002
+"2","F2_Low","F1_Low",0.004
+"3","F2_Low","F1_Moderate",0.004
+"4","F2_Moderate","F1_Low",0.005
+"5","F2_Moderate","F1_Moderate",0.004
+"6","F2_Moderate","F2_Low",0.004
+"7","F3_Low","F1_Low",0.008
+"8","F3_Low","F1_Moderate",0.007
+"9","F3_Low","F2_Low",0.005
+"10","F3_Low","F2_Moderate",0.005
+"11","F3_Moderate","F1_Low",0.008
+"12","F3_Moderate","F1_Moderate",0.007
+"13","F3_Moderate","F2_Low",0.007
+"14","F3_Moderate","F2_Moderate",0.004
+"15","F3_Moderate","F3_Low",0.006

@@ -7,19 +7,17 @@ author: "Samuel Gurr"
 
 * the goal of this script it to compute Fst, Ho, etc between our treatment groups (generations and OA condition) using the R packages ```adagenet``` and ```heirfstat```. TO this end, the final vcf finals must be subset to the desired matrices to build a geneind object. Further, we must subset out master metadat for the indi indivuals present in the matrix before running 
 
-* Fst: 
-
-  - our interest here is to *understand the genetic distance across generations both WITHIN and BETWEEN OA treatments*
-
 * steps: 
   
   (1) subset master vcf file (with all individuals) to those desired for each test
   
   (2) build geneind object from the matrices in #1
   
-  (3) subset the metadata 
+  (3) subset the metadata (complete several checks - **note** none alter our vcf file because we complete these with plink)
   
-  (4) run 
+  (4) run basic stats (Fis, Het, Fst)
+  
+  (5) build a function to execute all the above parsed by chromosome 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -105,198 +103,6 @@ All.metadata <- as.data.frame(matrix(ncol = 1,
 F1F2F3_LOW_MOD.metadata <- All.metadata %>% dplyr::filter(id %in%
                                                             colnames(F1F2F3_LOW_MOD.vcf@gt[,2:length(colnames(F1F2F3_LOW_MOD.vcf@gt))]))
 
-```
-
-
-```{r BasicStats_chromsplit}
-
-chrom_ID     <- c('CM084264.1', 'CM084265.1', 'CM084266.1', 'CM084267.1', 
-                  'CM084268.1', 'CM084269.1', 'CM084270.1', 'CM084271.1', 
-                  'CM084272.1', 'CM084273.1', 'CM084274.1', 'CM084275.1',
-                  'CM084276.1', 'CM084277.1', 'CM084278.1', 'CM084279.1')
-
-chrom_number <- c(1,2,3,4,
-                  5,6,7,8,
-                  9,10,11,12,
-                  13,14,15,16)
-  
-chrom_DF     <- data.frame(chrom_ID, chrom_number)
-
-# Custom theme for ggplot2
-custom_theme = theme(
-                      axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, face = "bold"),
-                      axis.text.y = element_text(size = 10),
-                      axis.title.y = element_text(size = 12),
-                      axis.title.x = element_blank(),
-                      axis.line.y = element_line(size = 0.5),
-                      legend.title = element_blank(),
-                      legend.text = element_text(size = 12),
-                      panel.grid = element_blank(),
-                      panel.background = element_blank(),
-                      plot.title = element_text(hjust = 0.5, size = 15, face="bold")
-                      )
-
-# run function
-BasicStats_chromsplit <- function(chrom_num) {
-  
-   chrom_id       <- (chrom_DF %>% dplyr::filter(chrom_number == chrom_num))$chrom_ID 
-   chrom.vcf      <- F1F2F3_LOW_MOD.vcf[F1F2F3_LOW_MOD.vcf@fix[, "CHROM"] %in% chrom_id, ] # 300 variants 
-   chrom.metadata <- All.metadata %>% dplyr::filter(id %in% colnames(chrom.vcf@gt[,2:length(colnames(chrom.vcf@gt))]))
-   
-   # prep genind
-   ind      = as.character(chrom.metadata$id) # individual ID
-   gen_pCO2 = as.character(chrom.metadata$gen_treatment) # our metadata to calc pairwise fst
-   strata_df <- data.frame(ID = ind,  Population = gen_pCO2) 
-   
-   # create genind
-   chrom_gen <- vcfR::vcfR2genind(chrom.vcf, sep = "[|/]", pop = strata_df$Population, strata = strata_df)
-   
-   # mean allelic richness per site across all loci
-   AR_df <- as.data.frame(allelic.richness(genind2hierfstat(chrom_gen))$Ar %>%
-                          apply(MARGIN = 2, FUN = mean) %>% 
-                          round(digits = 3)) %>% dplyr::rename(allelicrichness = names(.)[1])
-   
-   # heirfstat basic stats
-   basic_chrom = basic.stats(chrom_gen, diploid = TRUE)
-   
- 
-   # mean observed heterozygosity per site
-   Ho_chrom = apply(basic_chrom$Ho, 
-                     MARGIN = 2, 
-                     FUN = mean, 
-                     na.rm = TRUE) %>%
-               round(digits = 2)
-  
-   # Mean expected heterozygosity per site
-   He_chrom = apply(basic_chrom$Hs, 
-                     MARGIN = 2, 
-                     FUN = mean, 
-                     na.rm = TRUE) %>%
-               round(digits = 2)
-  # Visualize heterozygosity barplot
-  # Create a data.frame of site names, Ho and He and then convert to long format
-  Het_chrom_df = data.frame(Site = names(Ho_chrom), Ho = Ho_chrom, He = He_chrom) %>% melt(id.vars = "Site")
-  hetlab.o = expression(italic("H")[o]) # Italic label
-  hetlab.e = expression(italic("H")[e])# Italic label
-  het_barplot <- ggplot(data = Het_chrom_df, aes(x = Site, y = value, fill = variable))+
-                            geom_bar(stat = "identity", position = position_dodge(width = 0.6), colour = "black")+
-                            scale_y_continuous(expand = c(0,0), limits = c(0,0.50))+
-                            scale_fill_manual(values = c("royalblue", "#bdbdbd"), labels = c(hetlab.o, hetlab.e))+
-                            ylab("Heterozygosity")+
-                            ggtitle(paste0("Chromosome # ",chrom_num, ": Low v Mod multigenerational")) +
-                            custom_theme
-
-
-   # inbreeding coefficient Fis across all loci
-   InbCoeff_df <- as.data.frame(apply(basic_chrom$Fis, 
-                                MARGIN = 2, 
-                                FUN = mean, 
-                                na.rm = TRUE) %>%
-                            round(digits = 3)) %>% dplyr::rename(Fis_inbreeding_coeff = names(.)[1])
-   
-   # calculate Fst
-   chrom_fst = genet.dist(chrom_gen, method = "WC84") %>% round(digits = 3)
-   Fst_df <- as.data.frame(chrom_fst)
-    # visualize Fst
-   lab_order = c('F1_Low', 'F1_Moderate', 'F2_Low', 'F2_Moderate', 'F3_Low', 'F3_Moderate') # Desired order of labels
-   # Change order of rows and cols
-   fst.mat = as.matrix(LowvMod_gen_fst)
-   fst.mat1 = fst.mat[lab_order, ]
-   fst.mat2 = fst.mat1[, lab_order]
-   # Create a data.frame
-   ind = which(upper.tri(fst.mat2), arr.ind = TRUE)
-   fst.df = data.frame(Site1 = dimnames(fst.mat2)[[2]][ind[,2]],
-                      Site2 = dimnames(fst.mat2)[[1]][ind[,1]],
-                      Fst = fst.mat2[ ind ])
-   # Keep the order of the levels in the data.frame for plotting 
-   fst.df$Site1 = factor(fst.df$Site1, levels = unique(fst.df$Site1))
-   fst.df$Site2 = factor(fst.df$Site2, levels = unique(fst.df$Site2))
-   # Convert minus values to zero
-   fst.df$Fst[fst.df$Fst < 0] = 0
-   # Fst italic label
-   fst.label = expression(italic("F")[ST])
-   # Extract middle Fst value for gradient argument
-   mid = max(fst.df$Fst) / 2
-   # Plot heatmap
-   Fst_heatmap <-  ggplot(data = fst.df, 
-                           aes(x = Site1, 
-                               y = Site2, 
-                               fill = Fst))+
-                      geom_tile(colour = "black")+
-                      geom_text(aes(label = Fst), 
-                                color="black", 
-                                size = 3)+
-                      scale_fill_gradient2(low = "blue", 
-                                           mid = "pink", 
-                                           high = "red", 
-                                           midpoint = mid, 
-                                           name = fst.label, 
-                                           limits = c(0, max(fst.df$Fst)), 
-                                           breaks = c(0, 0.05, 0.10, 0.15))+
-                      scale_x_discrete(expand = c(0,0))+
-                      scale_y_discrete(expand = c(0,0), position = "right")+
-                      ggtitle(paste0("Chromosome # ",chrom_num, ": Low v Mod multigenerational")) +
-                      theme(axis.text = element_text(colour = "black", size = 10, face = "bold"),
-                            axis.title = element_blank(),
-                            panel.grid = element_blank(),
-                            panel.background = element_blank(),
-                            legend.position = "right",
-                            legend.title = element_text(size = 14, face = "bold"),
-                            legend.text = element_text(size = 10)
-                            )
-
-
-   
-    # perform DAPC 
-   
-    # Perform cross validation to find the optimal number of PCs to retain in DAPC
-    set.seed(123)
-    x        = tab(chrom_gen, NA.method = "mean")
-    crossval = xvalDapc(x, chrom_gen$pop, result = "groupMean", xval.plot = TRUE) # this takes a LOONG TIME
-    numPCs   = as.numeric(crossval$`Number of PCs Achieving Lowest MSE`)
-    # Run a DAPC using site IDs as priors
-    dapc1 = dapc(chrom_gen, chrom_gen$pop, n.pca = numPCs, n.da = 3)
-    # Analyse how much percent of genetic variance is explained by each axis
-    percent = dapc1$eig/sum(dapc1$eig)*100  
-   
-    # visualize DAPC results
-    
-    ind_coords = as.data.frame(dapc1$ind.coord)
-    colnames(ind_coords) = c("Axis1","Axis2","Axis3") # Rename columns of dataframe
-    ind_coords$Ind = indNames(LowvMod_gen) # Add a column containing individuals
-    ind_coords$Site = LowvMod_gen$pop # Add a column with the site IDs
-    centroid = aggregate(cbind(Axis1, Axis2, Axis3) ~ Site, data = ind_coords, FUN = mean) # Calculate centroid (average) position for each population
-    ind_coords = left_join(ind_coords, centroid, by = "Site", suffix = c("",".cen")) # Add centroid coordinates to ind_coords dataframe
-    cols = brewer.pal(nPop(LowvMod_gen), "Set2") # Define colour palette
-    xlab = paste("Axis 1 (", format(round(percent[1], 1), nsmall=1)," %)", sep="") # Custom x and y labels
-    ylab = paste("Axis 2 (", format(round(percent[2], 1), nsmall=1)," %)", sep="") # Custom x and y labels
-    
-    # Scatter plot axis 1 vs. 2
-    DAPC_plot <- ggplot(data = ind_coords, aes(x = Axis1, y = Axis2))+
-                        geom_hline(yintercept = 0)+
-                        geom_vline(xintercept = 0)+
-                        geom_segment(aes(xend = Axis1.cen, yend = Axis2.cen, colour = Site), show.legend = FALSE)+
-                        geom_point(aes(fill = Site), shape = 21, size = 3, show.legend = FALSE)+
-                        geom_label(data = centroid, aes(label = Site, fill = Site), size = 4, show.legend = FALSE)+
-                        scale_fill_manual(values = cols)+
-                        scale_colour_manual(values = cols)+
-                        labs(x = xlab, y = ylab)+
-                        ggtitle(paste0("Chromosome # ",chrom_num, ": DAPC Low v Mod multigenerational")) +
-                        ggtheme    
-    
-   # return
-   return(list(het_barplot = het_barplot,
-               Fst_heatmap = Fst_heatmap,
-               Allelic_Richness = AR_df,
-               Fis = InbCoeff_df,
-               Fst = Fst_df,
-               DAPC = DAPC_plot))
- 
- 
- }
-
-chrom_1_basic_stats <- BasicStats_chromsplit(1)
-chrom_1_basic_stats$DAPC
 ```
 
 
@@ -782,6 +588,241 @@ path_out <- "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradi
 ggsave(
   paste0(path_out, "/Low_v_Mod_DAPC.png"), 
          width = 8, height = 8, dpi = 600)
+```
 
+
+## Basic stats for each chromosome (build and execute custom function)
+
+* Build bunction to run all the above split by chromosome!
+
+* execute a for loop to run the function and export all output dataframes and figures
+
+```{r build BasicStats_chromsplit}
+
+chrom_ID     <- c('CM084264.1', 'CM084265.1', 'CM084266.1', 'CM084267.1', 
+                  'CM084268.1', 'CM084269.1', 'CM084270.1', 'CM084271.1', 
+                  'CM084272.1', 'CM084273.1', 'CM084274.1', 'CM084275.1',
+                  'CM084276.1', 'CM084277.1', 'CM084278.1', 'CM084279.1')
+
+chrom_number <- c(1,2,3,4,
+                  5,6,7,8,
+                  9,10,11,12,
+                  13,14,15,16)
+  
+chrom_DF     <- data.frame(chrom_ID, chrom_number)
+
+# Custom theme for ggplot2
+custom_theme = theme(
+                      axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, face = "bold"),
+                      axis.text.y = element_text(size = 10),
+                      axis.title.y = element_text(size = 12),
+                      axis.title.x = element_blank(),
+                      axis.line.y = element_line(size = 0.5),
+                      legend.title = element_blank(),
+                      legend.text = element_text(size = 12),
+                      panel.grid = element_blank(),
+                      panel.background = element_blank(),
+                      plot.title = element_text(hjust = 0.5, size = 15, face="bold")
+                      )
+
+# run function
+BasicStats_chromsplit <- function(chrom_num) {
+  
+   chrom_id       <- (chrom_DF %>% dplyr::filter(chrom_number == chrom_num))$chrom_ID 
+   chrom.vcf      <- F1F2F3_LOW_MOD.vcf[F1F2F3_LOW_MOD.vcf@fix[, "CHROM"] %in% chrom_id, ] # 300 variants 
+   chrom.metadata <- All.metadata %>% dplyr::filter(id %in% colnames(chrom.vcf@gt[,2:length(colnames(chrom.vcf@gt))]))
+   
+   # prep genind
+   ind      = as.character(chrom.metadata$id) # individual ID
+   gen_pCO2 = as.character(chrom.metadata$gen_treatment) # our metadata to calc pairwise fst
+   strata_df <- data.frame(ID = ind,  Population = gen_pCO2) 
+   
+   # create genind
+   chrom_gen <- vcfR::vcfR2genind(chrom.vcf, sep = "[|/]", pop = strata_df$Population, strata = strata_df)
+   
+   # mean allelic richness per site across all loci
+   AR_df <- as.data.frame(allelic.richness(genind2hierfstat(chrom_gen))$Ar %>%
+                          apply(MARGIN = 2, FUN = mean) %>% 
+                          round(digits = 3)) %>% dplyr::rename(allelicrichness = names(.)[1])
+   
+   # heirfstat basic stats
+   basic_chrom = basic.stats(chrom_gen, diploid = TRUE)
+   
+ 
+   # mean observed heterozygosity per site
+   Ho_chrom = apply(basic_chrom$Ho, 
+                     MARGIN = 2, 
+                     FUN = mean, 
+                     na.rm = TRUE) %>%
+               round(digits = 2)
+  
+   # Mean expected heterozygosity per site
+   He_chrom = apply(basic_chrom$Hs, 
+                     MARGIN = 2, 
+                     FUN = mean, 
+                     na.rm = TRUE) %>%
+               round(digits = 2)
+  # Visualize heterozygosity barplot
+  # Create a data.frame of site names, Ho and He and then convert to long format
+  Het_chrom_df = data.frame(Site = names(Ho_chrom), Ho = Ho_chrom, He = He_chrom) %>% melt(id.vars = "Site")
+  hetlab.o = expression(italic("H")[o]) # Italic label
+  hetlab.e = expression(italic("H")[e])# Italic label
+  het_barplot <- ggplot(data = Het_chrom_df, aes(x = Site, y = value, fill = variable))+
+                            geom_bar(stat = "identity", position = position_dodge(width = 0.6), colour = "black")+
+                            scale_y_continuous(expand = c(0,0), limits = c(0,0.50))+
+                            scale_fill_manual(values = c("royalblue", "#bdbdbd"), labels = c(hetlab.o, hetlab.e))+
+                            ylab("Heterozygosity")+
+                            ggtitle(paste0("Chromosome # ",chrom_num, ": Low v Mod multigenerational")) +
+                            custom_theme
+
+
+   # inbreeding coefficient Fis across all loci
+   InbCoeff_df <- as.data.frame(apply(basic_chrom$Fis, 
+                                MARGIN = 2, 
+                                FUN = mean, 
+                                na.rm = TRUE) %>%
+                            round(digits = 3)) %>% dplyr::rename(Fis_inbreeding_coeff = names(.)[1])
+   
+   # calculate Fst
+   chrom_fst = genet.dist(chrom_gen, method = "WC84") %>% round(digits = 3)
+    # visualize Fst
+   lab_order = c('F1_Low', 'F1_Moderate', 'F2_Low', 'F2_Moderate', 'F3_Low', 'F3_Moderate') # Desired order of labels
+   # Change order of rows and cols
+   fst.mat = as.matrix(LowvMod_gen_fst)
+   fst.mat1 = fst.mat[lab_order, ]
+   fst.mat2 = fst.mat1[, lab_order]
+   # Create a data.frame
+   ind = which(upper.tri(fst.mat2), arr.ind = TRUE)
+   fst.df = data.frame(Site1 = dimnames(fst.mat2)[[2]][ind[,2]],
+                      Site2 = dimnames(fst.mat2)[[1]][ind[,1]],
+                      Fst = fst.mat2[ ind ])
+   # Keep the order of the levels in the data.frame for plotting 
+   fst.df$Site1 = factor(fst.df$Site1, levels = unique(fst.df$Site1))
+   fst.df$Site2 = factor(fst.df$Site2, levels = unique(fst.df$Site2))
+   # Convert minus values to zero
+   fst.df$Fst[fst.df$Fst < 0] = 0
+   # Fst italic label
+   fst.label = expression(italic("F")[ST])
+   # Extract middle Fst value for gradient argument
+   mid = max(fst.df$Fst) / 2
+   # Plot heatmap
+   Fst_heatmap <-  ggplot(data = fst.df, 
+                           aes(x = Site1, 
+                               y = Site2, 
+                               fill = Fst))+
+                      geom_tile(colour = "black")+
+                      geom_text(aes(label = Fst), 
+                                color="black", 
+                                size = 3)+
+                      scale_fill_gradient2(low = "blue", 
+                                           mid = "pink", 
+                                           high = "red", 
+                                           midpoint = mid, 
+                                           name = fst.label, 
+                                           limits = c(0, max(fst.df$Fst)), 
+                                           breaks = c(0, 0.05, 0.10, 0.15))+
+                      scale_x_discrete(expand = c(0,0))+
+                      scale_y_discrete(expand = c(0,0), position = "right")+
+                      ggtitle(paste0("Chromosome # ",chrom_num, ": Low v Mod multigenerational")) +
+                      theme(axis.text = element_text(colour = "black", size = 10, face = "bold"),
+                            axis.title = element_blank(),
+                            panel.grid = element_blank(),
+                            panel.background = element_blank(),
+                            legend.position = "right",
+                            legend.title = element_text(size = 14, face = "bold"),
+                            legend.text = element_text(size = 10)
+                            )
+
+
+   
+    # perform DAPC 
+   
+    # Perform cross validation to find the optimal number of PCs to retain in DAPC
+    set.seed(123)
+    x        = tab(chrom_gen, NA.method = "mean")
+    crossval = xvalDapc(x, chrom_gen$pop, result = "groupMean", xval.plot = TRUE) # this takes a LOONG TIME
+    numPCs   = as.numeric(crossval$`Number of PCs Achieving Lowest MSE`)
+    # Run a DAPC using site IDs as priors
+    dapc1 = dapc(chrom_gen, chrom_gen$pop, n.pca = numPCs, n.da = 3)
+    # Analyse how much percent of genetic variance is explained by each axis
+    percent = dapc1$eig/sum(dapc1$eig)*100  
+   
+    # visualize DAPC results
+    
+    ind_coords = as.data.frame(dapc1$ind.coord)
+    colnames(ind_coords) = c("Axis1","Axis2","Axis3") # Rename columns of dataframe
+    ind_coords$Ind = indNames(LowvMod_gen) # Add a column containing individuals
+    ind_coords$Site = LowvMod_gen$pop # Add a column with the site IDs
+    centroid = aggregate(cbind(Axis1, Axis2, Axis3) ~ Site, data = ind_coords, FUN = mean) # Calculate centroid (average) position for each population
+    ind_coords = left_join(ind_coords, centroid, by = "Site", suffix = c("",".cen")) # Add centroid coordinates to ind_coords dataframe
+    cols = brewer.pal(nPop(LowvMod_gen), "Set2") # Define colour palette
+    xlab = paste("Axis 1 (", format(round(percent[1], 1), nsmall=1)," %)", sep="") # Custom x and y labels
+    ylab = paste("Axis 2 (", format(round(percent[2], 1), nsmall=1)," %)", sep="") # Custom x and y labels
+    
+    # Scatter plot axis 1 vs. 2
+    DAPC_plot <- ggplot(data = ind_coords, aes(x = Axis1, y = Axis2))+
+                        geom_hline(yintercept = 0)+
+                        geom_vline(xintercept = 0)+
+                        geom_segment(aes(xend = Axis1.cen, yend = Axis2.cen, colour = Site), show.legend = FALSE)+
+                        geom_point(aes(fill = Site), shape = 21, size = 3, show.legend = FALSE)+
+                        geom_label(data = centroid, aes(label = Site, fill = Site), size = 4, show.legend = FALSE)+
+                        scale_fill_manual(values = cols)+
+                        scale_colour_manual(values = cols)+
+                        labs(x = xlab, y = ylab)+
+                        ggtitle(paste0("Chromosome # ",chrom_num, ": DAPC Low v Mod multigenerational")) +
+                        ggtheme    
+    
+   # return
+   return(list(het_barplot = het_barplot,
+               Fst_heatmap = Fst_heatmap,
+               Allelic_Richness = AR_df,
+               Fis = InbCoeff_df,
+               Fst = fst.df,
+               DAPC = DAPC_plot))
+ }
+
+```
+
+
+```{r run BasicStats_chromsplit}
+
+# path
+path_out <- "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/RAnalysis/Output/Popgen/"
+
+# for loop each chromosome, output to existing subfolders by chromsome id
+for (i in 1:nrow(chrom_DF)) {
+  # run
+  chrom_basic_stats <- BasicStats_chromsplit(chrom_DF[i,2])
+  
+  # export results
+  
+  # allelic richness dataframe
+  write.csv(chrom_basic_stats$Allelic_Richness, 
+            paste0(path_out, "statistics/low_v_moderate/Allelic_richness/",chrom_DF[i,1], "_AR.csv"))
+  
+  # fis dataframe 
+  write.csv(chrom_basic_stats$Fis, 
+            paste0(path_out, "statistics/low_v_moderate/Fis/",chrom_DF[i,1], "_Fis.csv"))
+  
+  # fst dataframe
+  write.csv(chrom_basic_stats$Fst, 
+            paste0(path_out, "statistics/low_v_moderate/Fst/",chrom_DF[i,1], "_Fst.csv"))
+  
+  # heterzygosity data and barplot 
+  pdf(paste0(path_out, "statistics/low_v_moderate/Het/",chrom_DF[i,1], "_Ho_He_barplot.pdf"), width = 6, height = 5)
+  print(chrom_basic_stats$het_barplot)
+  dev.off()
+  
+  # fst heatmap
+  pdf(paste0(path_out, "statistics/low_v_moderate/Fst/",chrom_DF[i,1], "_Fst_heatmap.pdf"), width = 6, height = 5)
+  print(chrom_basic_stats$Fst_heatmap)
+  dev.off()
+  
+  # DAPC plot
+  pdf(paste0(path_out, "statistics/low_v_moderate/DAPC/",chrom_DF[i,1], "_DAPC.pdf"), width = 6, height = 5)
+  print(chrom_basic_stats$DAPC)
+  dev.off()  
+}
+  
 
 ```
