@@ -20,8 +20,8 @@ author: "Samuel Gurr"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # SET WORKING DIRECTORY 
-#knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
-knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+#knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
 ```
 
 ### load libraries
@@ -284,16 +284,16 @@ CalcRped(F1BF2O.pedigree.high, OUT = "DF") # Id not male, but is a father: adapt
 # sex == 4 was assigned for all offspring, whereas 1 or 2 was assigned for parents that solely contributed sperm and egg
 # pedtools::ped only recognizes sex 0,1, and 2 where 0 is unknown
 F0BF1O.pedigree <- merge(
-                          rbind(F1O.pedigree,F0B.pedigree), # bind F1 offspring and F0 broodstokc pedigree
+                          rbind(F1O.pedigree, F0B.pedigree), # bind F1 offspring and F0 broodstokc pedigree
                           (F0BF1O.LifeHistData %>% select(id, sex)), # merge with lifehistory to get sex
                         by = 'id'
                         ) %>% 
                     #dplyr::mutate(sex == 0) # try this as well, just assign all as unknown since they are hermaphrodites
                     dplyr::mutate(sex =  # format sex so that all occurances of '4' are ow 0 for pedtools
                                     case_when(sex == 4 ~ 0,
+                                              sex %in% NA ~ 0,
                                               .default = sex))
 
-F1BF2O.pedigree.low
 # ped
 F0BF1O.pedform <- pedtools::ped(id = F0BF1O.pedigree$id,
                                         fid = F0BF1O.pedigree$dam,
@@ -301,7 +301,7 @@ F0BF1O.pedform <- pedtools::ped(id = F0BF1O.pedigree$id,
                                         sex = F0BF1O.pedigree$sex)
 
 # wrtie ped data and kinship
-write.csv(F0BF1O.pedform,
+write.csv(as.matrix(F0BF1O.pedform$`_comp1`),
           paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_ped.csv"),
           row.names=FALSE)
 ```
@@ -339,7 +339,7 @@ write.csv(F0BF1O.pedform,
 F0BF1O.kinship <- kinship(F0BF1O.pedform)
 
 # wrtie the kinship matrix
-write.csv(F0BF1O.kinship,
+write.csv(as.matrix(F0BF1O.kinship),
           paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_kinship.csv"),
-          row.names=FALSE)
+          row.names=TRUE)
 ```

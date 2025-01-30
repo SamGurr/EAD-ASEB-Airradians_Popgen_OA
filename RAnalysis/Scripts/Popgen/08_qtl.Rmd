@@ -14,8 +14,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # SET WORKING DIRECTORY 
-#knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
-knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+knitr::opts_knit$set(root.dir = "C:/Users/samjg/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
+#knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositories/EAD-ASEB-Airradians_Popgen_OA/") # Sam's
 ```
 
 
@@ -25,10 +25,130 @@ knitr::opts_knit$set(root.dir = "C:/Users/samuel.gurr/Documents/Github_repositor
 library(tidyverse)
 library(lme4qtl)
 library(devtools)
-devtools::install_github("variani/lme4qtl")
+library(vcfR)
 ```
-# wrtie the kinship matrix
-write.csv(F0BF1O.kinship,
-          paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_kinship.csv"),
-          row.names=FALSE)
+
+### load data
+
+* vcf file
+* kinship matrices (as the covnarinace matrix in lme4qtl)
+
+
+```{r load and prep loci matrices}
+All.vcf <- vcfR::read.vcfR(here::here(getwd(),
+                            "RAnalysis", 
+                            "Data", 
+                            "Popgen", 
+                            "03_prune", 
+                            "out.7.phased.vcf.gz"), verbose = FALSE)
+
+
+#sibset for desired ids
+F0BF1O.vcf <- All.vcf[,c(1:26,63:139, 27:62)] # 138 samples, 2,947 variants, 16 chromosomes
+
+# genlight objects
+All.gen    <- All.vcf %>% vcfR::vcfR2genind() 
+F0BF1O.gen <- F0BF1O.vcf %>% vcfR::vcfR2genind() 
+
+# as matrix
+All.GenoM    <- as.matrix(All.gen)
+F0BF1O.GenoM <- as.matrix(F0BF1O.gen)
+View(F0BF1O.GenoM)
 ```
+
+```{r load kinsip matrices}
+
+F0BF1O_kinship.df <- data.frame(
+                               read.csv(paste0(getwd(),
+                                               "/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_kinship.csv")),
+                                         row.names=TRUE) 
+rownames(F0BF1O_kinship.df) <- gsub("\\-", ".", rownames(F0BF1O_kinship.df))
+
+
+F0BF1O_kinship.mx           <- as.matrix(F0BF1O_kinship.df)# convert to a matrix
+
+```
+
+```{r OA treatment data}
+
+# list ids for all individuals int he vcf file
+All.ListIDs  <- colnames(All.vcf@gt[,2:length(colnames(All.vcf@gt))])
+
+# final metadata
+All.metadata <- as.data.frame(matrix(ncol = 1,
+                                     nrow = length(All.ListIDs))) %>% 
+                          mutate(id = All.ListIDs,
+                                 type = dplyr::case_when(grepl("-B", id) ~ "broodstock", TRUE ~ 'juvenile'),
+                                 gen = dplyr::case_when(grepl("F0", id) ~ "F0",
+                                                             grepl("F1", id) ~ "F1",
+                                                             grepl("F2", id) ~ "F2",
+                                                             grepl("F3", id) ~ "F3",
+                                                             TRUE ~ "F1"),
+                                 treatment = dplyr::case_when(
+                                        grepl("F0", id) ~ "none",
+                                        grepl("pH7\\.",id) ~ "High",
+                                        grepl(c("pH75\\.|.201.|.203.|.204.|.251.|.253.|.254.|.301.|.303.|.304.|.351.|.352.|.353.|.354."), id) ~
+                                        "Moderate",
+                                        grepl(c("pH8|.101.|.103.|.104.|.153.|.154.|.155.|.3.|.4.|.5."), id) ~ 
+                                        "Low")) %>% 
+                                dplyr::mutate(gen_treatment = 
+                                                dplyr::case_when(gen == "F0" ~ "F0",
+                                                                 gen %in% c("F1","F2","F3") ~ paste0(gen,'_',treatment))) %>% 
+                                select(-V1) %>% 
+                                dplyr::mutate(id = gsub("\\-", ".", id))
+
+```
+
+
+### run lme4qtl 
+
+```{r F0BF1O run QTL}
+
+data(dat40, package = "lme4qtl")
+
+dim(dat40)
+kin2[1:5, 1:5]
+
+View(F0BF1O_kinship.mx.2)
+# subset the metadata for ids in the covariance matrix
+F0BF1O.metadata      <- All.metadata %>% dplyr::filter(id %in% rownames(F0BF1O_kinship.mx))
+F0BF1O_kinship.mx.2  <- subset(F0BF1O_kinship.mx, 
+                               colnames(F0BF1O_kinship.mx) %in% F0BF1O.metadata$id, 
+                               rownames(F0BF1O_kinship.mx) %in% F0BF1O.metadata$id)
+F0BF1O.metadata.2    <- F0BF1O.metadata %>% dplyr::filter(id %in% rownames(F0BF1O_kinship.mx.2))
+rownames(F0BF1O.GenoM) <- gsub("\\-", ".", rownames(F0BF1O.GenoM))
+F0BF1O.GenoM.2  <- as.data.frame(
+  subset(F0BF1O.GenoM, rownames(F0BF1O.GenoM) %in% rownames(F0BF1O_kinship.mx.2))
+) %>% tibble::rownames_to_column(., "id")
+
+# sanity check so covarinace matrix matches the metadata
+length(rownames(F0BF1O.GenoM.2)) == nrow(F0BF1O.metadata.2)
+length(rownames(F0BF1O.GenoM.2)) == length(rownames(F0BF1O_kinship.mx.2))
+
+
+m <- Matrix(F0BF1O_kinship.mx.2, sparse = TRUE)
+dim(m )
+# run lme4qtl
+
+F0BF1O_master <- merge(F0BF1O.metadata.2, F0BF1O.GenoM.2, by = 'id')
+dim(F0BF1O_master) # has the have the same number of rows and columns!
+
+m1 <- lme4qtl::relmatLmer(CM084264_1_39013.0 ~ gen_treatment + (1|id), 
+                    F0BF1O_master, 
+                    relmat=list(id = m))
+
+
+m1 <- lme4qtl::relmatGlmer(CM084264_1_39013.1 ~ 
+                             # gen + 
+                             # treatment +
+                             gen_treatment +
+                             (1|id), 
+                    F0BF1O_master, 
+                    relmat=list(id = m),
+                    family = binomial(link = "probit"))
+
+anova(m1) # get the p value
+
+```
+
+

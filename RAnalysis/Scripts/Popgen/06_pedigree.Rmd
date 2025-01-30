@@ -223,7 +223,7 @@ Remember that our experiment ran fir three generations! Here is a best foot forw
 F0BF1O.vcf <- All.vcf[,c(1:26,63:139, 27:62)] # 138 samples, 2,947 variants, 16 chromosomes
 
 # F1 broodstock and F2 offspring (treatment specific!)
-F1BF2O_LOW.vcf  <- All.vcf[,c(1, 27:45, 198:218, 152:163)] # ??? samples, 2,947 variants, 16 chromosomes
+F1BF2O_LOW.vcf  <- All.vcf[,c(1, 27:45, 198:218, 153:163)] # ??? samples, 2,947 variants, 16 chromosomes
 F1BF2O_MOD.vcf  <- All.vcf[,c(1, 46:62, 219:250, 164:177)] # ??? samples, 2,947 variants, 16 chromosomes
 F1BF2O_HIGH.vcf <- All.vcf[,c(1, 27:45, 178:197, 140:152)] # ??? samples, 2,947 variants, 16 chromosomes
 
@@ -232,6 +232,12 @@ F2BF3O_LOW.vcf  <- All.vcf[,c(1, 152:163, 295:343)] # ??? samples, 2,947 variant
 F2BF3O_MOD.vcf  <- All.vcf[,c(1, 164:177, 344:392)] # ??? samples, 2,947 variants, 16 chromosomes
 F2BF3O_HIGH.vcf <- All.vcf[,c(1, 140:152, 251:294)] # ??? samples, 2,947 variants, 16 chromosomes
 
+# F0 thorugh F3 low and moderate only!
+All_LOW_MOD.vcf <- All.vcf[,c(1:139, # F0 and all F1 offspring
+                              153:163, 198:218, # F2 offspring from low OA
+                              164:177, 219:250, # F2 offspring from moderate OA
+                              295:343, # F3 offspring from low OA
+                              344:392)] # F3 offspring from moderate OA
 ```
 
 
@@ -264,6 +270,11 @@ F2BF3O_LOW.gen   <- F2BF3O_LOW.vcf %>% vcfR2genind()
 F2BF3O_MOD.gen   <- F2BF3O_MOD.vcf %>% vcfR2genind() 
 # HIGH F2 parents and their F3 offspring
 F2BF3O_HIGH.gen  <- F2BF3O_HIGH.vcf %>% vcfR2genind() 
+
+
+
+# F0 thorugh F3 low and moderate only! :::::::::::::::::::::::::::::::
+All_LOW_MOD.gen  <- All_LOW_MOD.vcf %>% vcfR2genind() 
 
 ```
 
@@ -349,6 +360,9 @@ F2BF3O_LOW.ListIDs    <- colnames(F2BF3O_LOW.vcf@gt[,2:length(colnames(F2BF3O_LO
 F2BF3O_MOD.ListIDs    <- colnames(F2BF3O_MOD.vcf@gt[,2:length(colnames(F2BF3O_MOD.vcf@gt))])
 F2BF3O_HIGH.ListIDs   <- colnames(F2BF3O_HIGH.vcf@gt[,2:length(colnames(F2BF3O_HIGH.vcf@gt))])
 
+# F0 through F3 low and moderate only! :::::::::::::::::::::::::::::::
+All_LOW_MOD.ListIDs  <- colnames(All_LOW_MOD.vcf@gt[,2:length(colnames(All_LOW_MOD.vcf@gt))]) 
+
 ```
 
 * GenoM 
@@ -369,6 +383,9 @@ F1BF2O_HIGH.GenoM  <- as.matrix(F1BF2O_HIGH.gen)
 F2BF3O_LOW.GenoM   <- as.matrix(F2BF3O_LOW.gen)
 F2BF3O_MOD.GenoM   <- as.matrix(F2BF3O_MOD.gen)
 F2BF3O_HIGH.GenoM  <- as.matrix(F2BF3O_HIGH.gen)
+
+# F0 through F3 low and moderate only! :::::::::::::::::::::::::::::::
+All_LOW_MOD.GenoM  <- as.matrix(All_LOW_MOD.gen)
 ```
 
 * LifeHistData 
@@ -503,6 +520,12 @@ F2BF3O                   <- dplyr::filter(All.LifeHistData, grepl(c("F2-B|F3"), 
 F2BF3O_LOW.LifeHistData  <- dplyr::filter(F2BF3O, grepl("pH8", ID))
 F2BF3O_MOD.LifeHistData  <- dplyr::filter(F2BF3O, grepl("pH75", ID))
 F2BF3O_HIGH.LifeHistData <-  dplyr::filter(F2BF3O, grepl("pH7\\.", ID)) 
+
+
+# F0 through F3 low and moderate only! :::::::::::::::::::::::::::::::
+All_LOW_MOD.LifeHistData <- dplyr::filter(All.LifeHistData, !grepl("pH7\\.", ID)) # all but pH7 data
+
+
 ```
 
 * Pedigree
@@ -686,6 +709,13 @@ return(list(raw     = pedigree.raw,
 
 # FIRST SANITY CHECK THAT GENOM HAS ALL IDS OF LIFEHISTDATA
 
+
+# F0 thorugh F3 LOW and MODERATE only!!
+sort(rownames(All_LOW_MOD.GenoM)) == sort(All_LOW_MOD.LifeHistData$ID) # falses here
+All_LOW_MOD.GenoM_final <-  All_LOW_MOD.GenoM[row.names(All_LOW_MOD.GenoM)  %in% All_LOW_MOD.LifeHistData$ID, ] # force it
+sort(rownames(All_LOW_MOD.GenoM_final)) == sort(All_LOW_MOD.LifeHistData$ID) # now true
+
+
 # F0 AND F1 OFFPSRING ALL   ::::::::::::::::::::::::::::::::::::::::::
 sort(rownames(F0BF1O.GenoM)) == sort(F0BF1O.LifeHistData$ID) # falses here
 F0BF1O.GenoM_final <-  F0BF1O.GenoM[row.names(F0BF1O.GenoM)  %in% F0BF1O.LifeHistData$ID, ] # force it
@@ -731,6 +761,51 @@ F1BF2O_MOD.GenoM_final <-  F1BF2O_MOD.GenoM[row.names(F1BF2O_MOD.GenoM)  %in% F1
 sort(rownames(F1BF2O_MOD.GenoM_final)) == sort(F1BF2O_MOD.LifeHistData$ID)
 
 ```
+
+* run BootPed for all low and moderate animals F0 through F3
+
+inputs:
+  - GenoM = All_LOW_MOD.GenoM_final
+  - LifeHistData = All_LOW_MOD.LifeHistData
+  - threshold.LLR = -2
+  - min.LLR = 0.1
+  - n.SNP = 50
+  - n.bootstrap = 20
+
+output: 
+
+
+```{r BootPed run all low and moderate individuals}
+
+# F0 AND F1 OFFPSRING ALL   ::::::::::::::::::::::::::::::::::::::::::
+All_Low_Mod.sequoia <- BootPed(
+                         All_LOW_MOD.GenoM_final, # GenoM
+                         All_LOW_MOD.LifeHistData, # LifeHistData
+                         -2,# threshold.LLR
+                         0.1,# min.LLR
+                         50, # n.SNP
+                         150 # n.bootstrap
+                        )
+
+# data files
+All_Low_Mod.pedigree.raw       <- as.data.frame(All_Low_Mod.sequoia$raw)
+rownames(All_Low_Mod.pedigree.raw) <- NULL # renomve rownames
+
+All_Low_Mod.pedigree.summary   <- as.data.frame(All_Low_Mod.sequoia$summary)
+rownames(All_Low_Mod.pedigree.summary) <- NULL # renomve rownames
+
+All_Low_Mod.pedigree.summary <- apply(All_Low_Mod.pedigree.summary,2,as.character) # need to do this to output the list of batches!
+
+All_Low_Mod.pedigree.final <- as.data.frame(All_Low_Mod.pedigree.summary) %>% 
+                            group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
+                            filter(Fertilization_pairs %in% 'TRUE') %>% 
+                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
+                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
+rownames(All_Low_Mod.pedigree.final) <- NULL # renomve rownames
+write.csv(All_Low_Mod.pedigree.final, "RAnalysis/Output/Popgen/pedigree/All_Low_v_Moderate_final.csv")
+
+```
+
 
 * run BootPed for F0BF1J
 
