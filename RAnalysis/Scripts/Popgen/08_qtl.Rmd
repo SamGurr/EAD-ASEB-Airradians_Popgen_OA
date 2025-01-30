@@ -69,7 +69,7 @@ F0BF1O_kinship.mx           <- as.matrix(F0BF1O_kinship.df)# convert to a matrix
 
 ```
 
-```{r OA treatment data}
+```{r strata metadata}
 
 # list ids for all individuals int he vcf file
 All.ListIDs  <- colnames(All.vcf@gt[,2:length(colnames(All.vcf@gt))])
