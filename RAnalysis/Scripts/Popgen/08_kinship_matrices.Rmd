@@ -40,9 +40,12 @@ library(sequoia)
 ```{r load output pedigrees}
 
 # pedigree :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# F1 Offspring (includes low and moderate with F0 dams and sires, no F0 pedigree known)
 F1O.pedigree <- read.csv("RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_final.csv") %>% 
                       select(id, dam, sire) 
 
+# F2 offspring (includes the juveniles and broodstock F2s, no F1 broodstock pedigree included)
 F1BF2O.pedigree.low  <- read.csv("RAnalysis/Output/Popgen/pedigree/F1BF2O/Low/F1BF2O_Low_final.csv") %>% 
                                 select(id, dam, sire) 
 F1BF2O.pedigree.mod  <- read.csv("RAnalysis/Output/Popgen/pedigree/F1BF2O/Moderate/F1BF2O_Mod_final.csv") %>% 
@@ -58,20 +61,25 @@ F1BF2O.pedigree.high <- read.csv("RAnalysis/Output/Popgen/pedigree/F1BF2O/High/F
 # F2BF3O.pedigree.high <- read.csv("RAnalysis/Output/Popgen/pedigree/F2BF3O/High/F2BF3O_High_final.csv") %>% 
 #                                 select(id, dam, sire) 
 
+# F2 offspring (includes the juveniles and broodstock F2s, no F1 broodstock pedigree included)
 
+
+# F1, F2, and F3 low v high pedigree, note no F0 pedigree known or included in here
+LowvMod.pedigree <- read.csv("RAnalysis/Output/Popgen/pedigree/All_Low_v_Moderate_final.csv") %>% 
+                                select(id, dam, sire) 
 
 ```
 
 ### load life history data and subset as appropriate for pedigrees
 
-* load the vcf file to otpain all IDs
-* assign birthyear and year last based on F0, F1, F2, and F3 in the id names
+
+* load the vcf file to otbain a list of all IDs
+* assign birthyear and yearlast based on generation F0, F1, F2, and F3 in the id names
 * load the parentage data of the F1 F2 and F3 offspring, these contain the broodstock "assignments" 
-  * **note** assignmetns as female if only egg and male if only sperm, given unknown for hermaphorditic contributions to batch fertilizations, this may be inappropriate for these data and solely assign all animals as unknown for consistancy 
+  * **note** assignments as female if only egg and male if only sperm was used fir batch fertilizations, otherwise given unknown for hermaphroditic contributions to batch fertilization, this may be inappropriate for these data and solely assign all animals as unknown for consistency - repeat this to test whether results change 
 * subset All.LifeHistData.2 based on ids in the pedigree
 
-```{r lifehistory data subset for pedigrees above}
-# LifeHistData :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+```{r list all IDs in the master vcf}
 
 # call th vcf file with all ids for the project 
 All.vcf <- vcfR::read.vcfR(here::here(getwd(),
@@ -81,6 +89,11 @@ All.vcf <- vcfR::read.vcfR(here::here(getwd(),
                             "03_prune", 
                             "out.7.phased.vcf.gz"), verbose = FALSE)
 All.ListIDs           <- colnames(All.vcf@gt[,2:length(colnames(All.vcf@gt))])
+
+```
+
+
+```{r lifehistory and sex}
 
 # use ids to creat ethe lifehostyr reference data
 
@@ -100,7 +113,7 @@ All.ListIDs           <- colnames(All.vcf@gt[,2:length(colnames(All.vcf@gt))])
 
 
 # OBJECTIVE:
-# * below we (1) manually create a lifehist data frame assignming sex as '4' hermaphordites
+# * below we (1) manually create a lifehist data frame assigning sex as '4' hermaphordites
 # (2) merge all parentage broodstock data where we known whether eggs, sperm, or both were used and thus 1,2 or 4 for sex assignment
 # (3) lastly merge the first manual lifehist dataframe with the adult broodstock sex assignment for a final 'editted' data
 
@@ -199,27 +212,6 @@ All.LifeHistData.2   <-  merge(
                                                                  grepl("F2", id) ~ 4,
                                                                  grepl("F3", id) ~ 5)
                                  )
-
-# subset lifeshitory datasets apprrporate to the pedigree data 
-F0BF1O.LifeHistData <- rbind(All.LifeHistData.2 %>% 
-                            filter(id %in% unique(c(F0BF1O.pedigree$id, 
-                                                  F0BF1O.pedigree$dam, 
-                                                  F0BF1O.pedigree$sire))))
-
-F1BF2O.low.LifeHistData <- rbind(All.LifeHistData.2 %>% 
-                            filter(id %in% unique(c(F1BF2O.pedigree.low$id, 
-                                                  F1BF2O.pedigree.low$dam, 
-                                                  F1BF2O.pedigree.low$sire))))
-
-F1BF2O.mod.LifeHistData <- rbind(All.LifeHistData.2 %>% 
-                            filter(id %in% unique(c(F1BF2O.pedigree.mod$id, 
-                                                  F1BF2O.pedigree.mod$dam, 
-                                                  F1BF2O.pedigree.mod$sire))))
-
-F1BF2O.high.LifeHistData <- rbind(All.LifeHistData.2 %>% 
-                            filter(id %in% unique(c(F1BF2O.pedigree.high$id, 
-                                                  F1BF2O.pedigree.high$dam, 
-                                                  F1BF2O.pedigree.high$sire))))
 ```
 
 
@@ -285,7 +277,7 @@ CalcRped(F1BF2O.pedigree.high, OUT = "DF") # Id not male, but is a father: adapt
 # pedtools::ped only recognizes sex 0,1, and 2 where 0 is unknown
 F0BF1O.pedigree <- merge(
                           rbind(F1O.pedigree, F0B.pedigree), # bind F1 offspring and F0 broodstokc pedigree
-                          (F0BF1O.LifeHistData %>% select(id, sex)), # merge with lifehistory to get sex
+                          (All.LifeHistData.2 %>% select(id, sex)), # merge with lifehistory to get sex
                         by = 'id'
                         ) %>% 
                     #dplyr::mutate(sex == 0) # try this as well, just assign all as unknown since they are hermaphrodites
@@ -299,6 +291,7 @@ F0BF1O.pedform <- pedtools::ped(id = F0BF1O.pedigree$id,
                                         fid = F0BF1O.pedigree$dam,
                                         mid = F0BF1O.pedigree$sire,
                                         sex = F0BF1O.pedigree$sex)
+nrow(as.data.frame(F0BF1O.pedform$`_comp1`))
 
 # wrtie ped data and kinship
 write.csv(as.matrix(F0BF1O.pedform$`_comp1`),
@@ -326,6 +319,37 @@ F1BF2O_low.pedform <- pedtools::ped(id = F1BF2O.pedigree.sex$id,
                                         fid = F1BF2O.pedigree.sex$dam,
                                         mid = F1BF2O.pedigree.sex$sire,
                                         sex = F1BF2O.pedigree.sex$sex)
+
+# wrtie ped data and kinship
+write.csv(F0BF1O.pedform,
+          paste0(getwd(),"/RAnalysis/Output/Popgen/pedigree/F0BF1O/F0BF1O_ped.csv"),
+          row.names=FALSE)
+```
+
+
+```{r all offspring from low and moderate OA pedtools::ped}
+# bind the F0 pedigree (all unknown) with the known F1 offpsring pedigree (from sequoia)
+# and merge with the lifehistory data to obtain sex
+# sex == 4 was assigned for all offspring, whereas 1 or 2 was assigned for parents that solely contributed sperm and egg
+# pedtools::ped only recognizes sex 0,1, and 2 where 0 is unknown
+
+# LowvMod.pedigree <- LowvMod.pedigree[-13,] # we have a duplicate F1-B25 id, need to address this in the pedigree script
+LowvModerate.pedigree.sex <- merge(
+                          rbind(LowvMod.pedigree, F0B.pedigree), # bind F1 offspring and F0 broodstokc pedigree
+                          (All.LifeHistData.2 %>% select(id, sex)), # merge with lifehistory to get sex
+                        by = 'id'
+                        ) %>% 
+                    #dplyr::mutate(sex == 0) # try this as well, just assign all as unknown since they are hermaphrodites
+                    dplyr::mutate(sex =  # format sex so that all occurances of '4' are ow 0 for pedtools
+                                    case_when(sex == 4 ~ 0,
+                                              .default = sex))
+
+View(LowvMod.pedigree)
+# ped
+LowvModerate.pedform <- pedtools::ped(id = LowvModerate.pedigree.sex$id,
+                                        fid = LowvModerate.pedigree.sex$dam,
+                                        mid = LowvModerate.pedigree.sex$sire,
+                                        sex = LowvModerate.pedigree.sex$sex)
 
 # wrtie ped data and kinship
 write.csv(F0BF1O.pedform,

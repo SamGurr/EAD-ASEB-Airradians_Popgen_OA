@@ -232,7 +232,7 @@ F2BF3O_LOW.vcf  <- All.vcf[,c(1, 152:163, 295:343)] # ??? samples, 2,947 variant
 F2BF3O_MOD.vcf  <- All.vcf[,c(1, 164:177, 344:392)] # ??? samples, 2,947 variants, 16 chromosomes
 F2BF3O_HIGH.vcf <- All.vcf[,c(1, 140:152, 251:294)] # ??? samples, 2,947 variants, 16 chromosomes
 
-# F0 thorugh F3 low and moderate only!
+# F0 through F3 low and moderate only!
 All_LOW_MOD.vcf <- All.vcf[,c(1:139, # F0 and all F1 offspring
                               153:163, 198:218, # F2 offspring from low OA
                               164:177, 219:250, # F2 offspring from moderate OA
@@ -524,8 +524,6 @@ F2BF3O_HIGH.LifeHistData <-  dplyr::filter(F2BF3O, grepl("pH7\\.", ID))
 
 # F0 through F3 low and moderate only! :::::::::::::::::::::::::::::::
 All_LOW_MOD.LifeHistData <- dplyr::filter(All.LifeHistData, !grepl("pH7\\.", ID)) # all but pH7 data
-
-
 ```
 
 * Pedigree
@@ -580,8 +578,8 @@ based on the number of SNPs and number of iterations.
 
 BootPed <- function(GenoM, LifeHistData, threshold.LLR, min.LLR, n.SNPs, n.bootstrap) {
   
-  pedigree.raw           <- data.frame(matrix(ncol = 7)) # create dataframe to save cumunalitively during for loop
-  colnames(pedigree.raw) <- c('id', 'loci', 'n.loci', 'dam', 'LLRdam', 'sire' , 'LLRsire') # names for comuns in the for loop
+  pedigree.raw           <- data.frame(matrix(ncol = 8)) # create dataframe to save cumunalitively during for loop
+  colnames(pedigree.raw) <- c('id', 'loci', 'n.loci', 'LLRpair', 'dam', 'LLRdam', 'sire' , 'LLRsire') # names for comuns in the for loop
 
   for (i in 1:n.bootstrap) { # n.bootstrap, number of times the for loop is iterated
                     # call n.SNPs from the matrix
@@ -596,8 +594,8 @@ BootPed <- function(GenoM, LifeHistData, threshold.LLR, min.LLR, n.SNPs, n.boots
                                                 LifeHistData = LifeHistData, 
                                                 SeqList = NULL,
                                                 # most comp intensive, run everything
-                                                Module = "par", 
-                                                Err = 1e-04,
+                                                Module = "par", # just parent offspring assignment
+                                                Err = 0.005, #1e-04,
                                                 # threshold for log 10 likelihood (LLR) between a proposed relationship versus unrelated
                                                 Tfilter = threshold.LLR, 
                                                 # minimum LLR required for acceptance of proposed relationship relative to the next most likely
@@ -606,22 +604,25 @@ BootPed <- function(GenoM, LifeHistData, threshold.LLR, min.LLR, n.SNPs, n.boots
                                                 # breeding system complexity
                                                 Complex = "full",
                                                 Herm = "A",
-                                                UseAge = "extra",
+                                                UseAge = "yes",
+                                                ErrFlavour = "version2.9",
                                                 quiet = TRUE,
                                                 CalcLLR = TRUE
                                                 ) 
                   # add results from sequoia to cumulative table 
                    df_loop      <- data.frame(bootstrap.sequoia$PedigreePar %>% 
-                                           select(id, dam, LLRdam, sire, LLRsire) %>%  
+                                           select(id, dam, sire, LLRpair, LLRdam, LLRsire) %>%  
                                            na.omit()) %>% 
                                    mutate(loci   = SNP_IDs,
                                      n.loci = ncol(bootstrap_GenoM))
                    pedigree.raw <- rbind(pedigree.raw, df_loop) %>% na.omit() #bind to a cumulative list dataframe
                    } # end for loop                   
 # OUTSIDE FOR LOOP
-# pedigree.raw  - contains the SNPs called for each assignment and the absolute value for the sum of dam and sire assignment
-pedigree.raw$absLLRtotal  <- abs(pedigree.raw$LLRdam) + abs(pedigree.raw$LLRsire)
+# pedigree.raw  - contains the SNPs called for each assignment LLRdam and LLRsire (log10 liklihood ratio of 
+# the female being mother and male being father) and LLRpair for the parental pair verusthe next most likley # configuration between the three individuals (offspring dam and)
 
+
+# filter the raw file so that only actal parents can be dams and sires
 # pedigree.summary - insert a TRUE FALSE column 'Fertilization_pairs' for those dam and sire
 # assignments that are true batch pairs TRUE or that were not manually fertilized FALSE
 # objective is to achieve all TRUE values
@@ -647,9 +648,9 @@ pedigree.summary <- pedigree.merge.dams.sires %>%
 # truncates the 'raw' file above for just a single id per row, as that with the GREATEST absLLRtotal
 pedigree.final    <- pedigree.summary %>% 
                             group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
-                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
-                            dplyr::select(id, dam, sire, absLLRtotal, Fertilization_pairs, loci) # select the target columns for next sequoia run
- 
+                            dplyr::top_n(1, LLRpair) %>%  # take the best hit essential, highest LLR total
+                            dplyr::select(id, dam, sire, LLRpair, Fertilization_pairs, loci) %>% # select the target columns for next sequoia run
+                            distinct(id, .keep_all = TRUE) # there are cases at which there are duplicates with the same absLLR, here delete the dplicate taking one
 # Now we want to ensure we have pedigree results for all target offspring 
 # to do this, obtian an integer for the number of samples that are offspring 
 # lets leverage BirthYear of the LifeHist dataset - here our LOWEST birthyear ALWAYS (check this!)
@@ -659,24 +660,24 @@ pedigree.final    <- pedigree.summary %>%
 offspring.n <- nrow(LifeHistData %>% filter(!BirthYear %in% min(BirthYear)))
 
 
-if ( length(unique(pedigree.raw$id)) < offspring.n) {# TRUE = not enough bootstrap runs 
+if ( length(unique(pedigree.summary$id)) < offspring.n) {# TRUE = not enough bootstrap runs 
     
     print(paste0("Predigree summary: ",
-                 length(unique(pedigree.raw$id)), 
+                 length(unique(pedigree.summary$id)), 
                  "/", 
                  offspring.n, 
                  " offspring with pedigree assignment; ",
                  nrow(pedigree.final %>% filter(Fertilization_pairs %in% 'TRUE')),
                  "/",
                  nrow(pedigree.final),
-                 " true fertilized pairs"))
+                 " pedigree assignments with highest abs LLR are TRUE fertilized pairs"))
   
     print(paste0("Edit the n.SNP or n.bootstrap call for better pedigree"))
     
   } else {
     
     print(paste0("Predigree summary: ",
-                 length(unique(pedigree.raw$id)), 
+                 length(unique(pedigree.summary$id)), 
                  "/", 
                  offspring.n, 
                  " offspring with pedigree assignment; ",
@@ -773,6 +774,8 @@ inputs:
   - n.bootstrap = 20
 
 output: 
+[1] "Predigree summary: 265/278 offspring with pedigree assignment; 131/265 pedigree assignments with highest abs LLR are TRUE fertilized pairs"
+[1] "Edit the n.SNP or n.bootstrap call for better pedigree"
 
 
 ```{r BootPed run all low and moderate individuals}
@@ -781,13 +784,19 @@ output:
 All_Low_Mod.sequoia <- BootPed(
                          All_LOW_MOD.GenoM_final, # GenoM
                          All_LOW_MOD.LifeHistData, # LifeHistData
-                         -2,# threshold.LLR
-                         0.1,# min.LLR
+                         -2,# Tfilter threshold.LLR between prop relationshup versus unrelated
+                         0.2,# Tassign min.LLR for accept of proposed rel. relative to next most likely
                          50, # n.SNP
                          150 # n.bootstrap
                         )
 
 # data files
+# View(All_Low_Mod.pedigree.raw)
+nrow(All_LOW_MOD.LifeHistData) # 303 individuals to start, includes F0 broodstock that will not have pedigree
+nrow(All_LOW_MOD.LifeHistData %>% filter(BirthYear == 1)) # 25 F0 broodstock (303 - 25 == 278 individuals that can have pedigree!)
+length(unique(All_Low_Mod.sequoia$raw$id)) # 278 - the raw file shows that pedigree was achieved for each individual, but...
+length(unique(All_Low_Mod.sequoia$summary$id)) # 265 - the summary file filters for "real" data meaning actual  putative parents
+
 All_Low_Mod.pedigree.raw       <- as.data.frame(All_Low_Mod.sequoia$raw)
 rownames(All_Low_Mod.pedigree.raw) <- NULL # renomve rownames
 
@@ -796,12 +805,16 @@ rownames(All_Low_Mod.pedigree.summary) <- NULL # renomve rownames
 
 All_Low_Mod.pedigree.summary <- apply(All_Low_Mod.pedigree.summary,2,as.character) # need to do this to output the list of batches!
 
+
 All_Low_Mod.pedigree.final <- as.data.frame(All_Low_Mod.pedigree.summary) %>% 
                             group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
-                            filter(Fertilization_pairs %in% 'TRUE') %>% 
+                            # filter(Fertilization_pairs %in% 'TRUE') %>% 
                             dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
-                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
+                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) %>% # select the target columns for next sequoia run
+                            distinct(id, .keep_all = TRUE) # there are cases at which there are duplicates with the same absLLR, here delete the dplicate taking one
+
 rownames(All_Low_Mod.pedigree.final) <- NULL # renomve rownames
+nrow(All_Low_Mod.pedigree.final) # 265
 write.csv(All_Low_Mod.pedigree.final, "RAnalysis/Output/Popgen/pedigree/All_Low_v_Moderate_final.csv")
 
 ```
@@ -813,7 +826,7 @@ inputs:
   - GenoM = F0BF1O.GenoM_final
   - LifeHistData = F0BF1O.LifeHistData
   - threshold.LLR = -2
-  - min.LLR = 0.1
+  - min.LLR = 0.5
   - n.SNP = 50
   - n.bootstrap = 100
 
@@ -828,9 +841,9 @@ F0BF1O.sequoia <- BootPed(
                          F0BF1O.GenoM_final, # GenoM
                          F0BF1O.LifeHistData, # LifeHistData
                          -2,# threshold.LLR
-                         0.1,# min.LLR
-                         70, # n.SNP
-                         1 # n.bootstrap
+                         0.5,# min.LLR
+                         50, # n.SNP
+                         100 # n.bootstrap
                         )
 
 # data files
@@ -853,11 +866,55 @@ write.csv(F0BF1O.pedigree.summary, "RAnalysis/Output/Popgen/pedigree_sequoia/F0B
 F0BF1O.pedigree.final <- as.data.frame(F0BF1O.pedigree.summary) %>% 
                             group_by(id) %>% # group by id - there are mutliple occurances of pedigree assign for ids!
                             filter(Fertilization_pairs %in% 'TRUE') %>% 
-                            dplyr::top_n(1, absLLRtotal) %>%  # take the best hit essential, highest LLR total
-                            dplyr::select(id, dam, sire, absLLRtotal, dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
+                            dplyr::top_n(1, LLRpair ) %>%  # take the best hit essential, highest LLR total
+                            dplyr::select(id, dam, sire, LLRpair , dam.batch, sire.batch, Fertilization_pairs, loci) # select the target columns for next sequoia run
 rownames(F0BF1O.pedigree.final) <- NULL # renomve rownames
-write.csv(F0BF1O.pedigree.final, "RAnalysis/Output/Popgen/pedigree_sequoia/F0BF1O/F0BF1O_final.csv")
+write.csv
 
+
+# GetMaybeRel
+?GetMaybeRel
+?sequoia
+F0BF1O.sequoia <- sequoia(
+                                  GenoM = F0BF1O.GenoM_final[,1:50],
+                                  SeqList = NULL,
+                                  LifeHistData = F0BF1O.LifeHistData,
+                                  # AgePrior = NULL,
+                                  Module = "par",
+                                  Complex = "full",
+                                  Herm = "A",
+                                  Err = 1e-04,
+                                  ErrFlavour = "version2.9",
+                                  Tassign = 0.5,
+                                  Tfilter = -2,
+                                  # Complex = "full",
+                                  #MaxPairs = 7 * nrow(GenoM),
+                                  quiet = TRUE,
+                                  # ParSib = NULL,
+                                  MaxMismatch = NA
+                                )
+F0BF1O.sequoia$PedigreePar
+F0BF1O.GetMaybeRel <- GetMaybeRel(
+                                  GenoM = F0BF1O.GenoM_final[,1:50],
+                                  SeqList = NULL,
+                                  Pedigree = as.data.frame(F0BF1O.pedigree.final %>% 
+                                                             select(id, dam, sire)),
+                                  LifeHistData = F0BF1O.LifeHistData,
+                                  AgePrior = NULL,
+                                  Module = "par",
+                                  Complex = "full",
+                                  Herm = "A",
+                                  Err = 1e-04,
+                                  ErrFlavour = "version2.9",
+                                  Tassign = 0.5,
+                                  Tfilter = -2,
+                                  # Complex = "full",
+                                  #MaxPairs = 7 * nrow(GenoM),
+                                  quiet = TRUE,
+                                  ParSib = NULL,
+                                  MaxMismatch = NA
+                                )
+F0BF1O.GetMaybeRel$MaybeTrio %>% group_by(id) %>% top_n(1, LLRpair)
 ```
 
 * run BootPed for F1BF2J (each treatment)
@@ -1021,15 +1078,16 @@ output:
   
 ```{r BootPed run F2BF3J for each treatment}
 
+                    
 # F2 AND F3 OFFPSRING (treatment specific)   :::::::::::::::::::::::::
-
+?sequoia
 # low
 F2BF3O_LOW.sequoia <- BootPed(
                               F2BF3O_LOW.GenoM_final, 
                               F2BF3O_LOW.LifeHistData,# LifeHistData
                               -2,# threshold.LLR
-                              0.1,# min.LLR
-                              50, # n.SNP
+                              0.2,# min.LLR
+                              30, # n.SNP
                               10)# n.bootstrap
 # run on 12/21/2024
 # [1] "Predigree summary: 27/46 offspring with pedigree assignment; 12/27true fertilized pairs"
@@ -1038,7 +1096,7 @@ F2BF3O_LOW.sequoia <- BootPed(
 # data files
 F2BF3O_LOW.pedigree.raw       <- as.data.frame(F2BF3O_LOW.sequoia$raw)
 rownames(F2BF3O_LOW.pedigree.raw) <- NULL # renomve rownames
-
+View(F2BF3O_LOW.pedigree.raw)
 F2BF3O_LOW.pedigree.summary   <- as.data.frame(F2BF3O_LOW.sequoia$summary)
 rownames(F2BF3O_LOW.pedigree.summary) <- NULL # renomve rownames
 F2BF3O_LOW.pedigree.summary <- apply(F2BF3O_LOW.pedigree.summary,2,as.character) # need to do this to output the list of batches!

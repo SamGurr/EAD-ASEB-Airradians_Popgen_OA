@@ -33,7 +33,6 @@ library(vcfR)
 * vcf file
 * kinship matrices (as the covnarinace matrix in lme4qtl)
 
-
 ```{r load and prep loci matrices}
 All.vcf <- vcfR::read.vcfR(here::here(getwd(),
                             "RAnalysis", 
@@ -41,7 +40,6 @@ All.vcf <- vcfR::read.vcfR(here::here(getwd(),
                             "Popgen", 
                             "03_prune", 
                             "out.7.phased.vcf.gz"), verbose = FALSE)
-
 
 #sibset for desired ids
 F0BF1O.vcf <- All.vcf[,c(1:26,63:139, 27:62)] # 138 samples, 2,947 variants, 16 chromosomes

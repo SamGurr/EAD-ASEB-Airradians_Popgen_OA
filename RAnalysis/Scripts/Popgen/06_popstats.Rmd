@@ -18,6 +18,9 @@ author: "Samuel Gurr"
   (4) run basic stats (Fis, Het, Fst)
   
   (5) build a function to execute all the above parsed by chromosome 
+  
+  (6) Use OutFLANK to detect outlier loci (via FST) that may be due to spatially heterogeneous selection
+   - cite OutFLANK: Whitlock, M. C., and K. E. Lotterhos. Reliable detection of loci responsible for local adaptation: Inference of a neutral model through trimming the distribution of FST. Accepted at The American Naturalist.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -38,6 +41,8 @@ library(reshape2)
 library(ggplot2)
 library(RColorBrewer)
 library(scales)
+library(OutFLANK) #if (!("OutFLANK" %in% installed.packages())){install_github("whitlock/OutFLANK")}
+
 ```
 
 ## load vcf files
@@ -825,4 +830,130 @@ for (i in 1:nrow(chrom_DF)) {
 }
   
 
+```
+
+
+## OutFLANK
+
+**Objective** detect outlier loci that may be due to spatially heterogeneous selection.
+
+**About** OutFLANK finds outliers for FST, but it needs to use estimates of FST that have not been corrected for sample size adjustments. 
+
+View details for ```OutFLANK``` copied/pasted below [here](https://rpubs.com/lotterhos/outflank)
+
+* Inputs
+
+- Appropriate dataframe for OutFLANK is assembled with MakeDiploidFSTMat(SNPmat,locusNames,popNames)
+
+  - SNPmat: is an array with a row for each individual in the data set and a column for each locus. This function assumes biallelic (i.e. SNP) data, and the value in each column is either 0, 1 or 2, showing the number of the focal alleles that the individual carries at that locus.
+  
+  - locusNames: a character vector that gives a list of identifying names for each locus. (The length of the locusNames vector should be the same as the number of columns in SNPmat.)
+  
+  - popNames: a character vector that has an entry for each individual, in the same order as the rows in SNPmat, which gives the population that that individual came from. OutFLANK assumes that the individuals are grouped into relatively discrete populations, so there must be multiple individuals per population for the function to work properly.
+  
+* Outputs
+
+
+### Assemble SNPmat, locusNames, and popNames for ```MakeDiploidFSTMat```
+
+```{r data for MakeDiploidFSTMat}
+
+# SNPmat for OutFLANK
+## load compressed vcf file
+## then convert VCF format to SNP data format required by OutFLANK (Note that this is slow)
+All.vcf <- vcfR::read.vcfR(here::here(getwd(),
+                            "RAnalysis", 
+                            "Data", 
+                            "Popgen", 
+                            "03_prune", 
+                            "out.7.phased.vcf.gz"), verbose = FALSE)
+F1F2F3_LOW_MOD.vcf <- All.vcf[,c(1,27:139, 
+                              153:177, 198:250, 
+                              295:392)] 
+ convertVCFtoCount3 <- function(string){
+    # This function assumes 0 for reference
+    # and 1 for alternate allele
+    a <- as.numeric(unlist(strsplit(string, split = c("[|///]"))))
+    odd = seq(1, length(a), by=2)
+    a[odd] + a[odd+1]
+ }
+LowvMod.vcf.gen <- F1F2F3_LOW_MOD.vcf@gt[,-1]
+system.time(LowvMod.gen_table <- matrix(convertVCFtoCount3(LowvMod.vcf.gen), ncol=ncol(LowvMod.vcf.gen)))
+# user  system elapsed 
+# 0.57    0.00    1.38
+
+# locusNames
+LowvMod_locinames <- paste(F1F2F3_LOW_MOD.vcf@fix[,"CHROM"], 
+                           F1F2F3_LOW_MOD.vcf@fix[,"POS"], sep="_")
+length(LowvMod_locinames) == ncol(LowvMod_matrix)
+
+# popNames - genlight object was created in line 157 from F1F2F3_LOW_MOD.vcf 
+LowvMod_gen@strata # grab population from here, first make sure its the same order as the matrix above
+LowvMod_gen@strata$ID == rownames(LowvMod_matrix) # all MUST BE TRUE! good to go
+table(LowvMod_gen@strata$Population) # call LowvMod_gen@strata$Population in ```MakeDiploidFSTMat```
+```
+
+### Run ```MakeDiploidFSTMat```
+
+```{r run MakeDiploidFSTMat}
+# INPUTS
+# SNPmat
+LowvMod.SNPdata <- t(LowvMod.gen_table) # transpose, gen_table has columns as indivs, rows as loci, switch
+# locusNames
+LowvMod.locinames
+# popNames
+LowvMod_gen@strata$Population
+
+# RUN it output as 'LowvMod.OutFLANK.Fst'
+LowvMod.FSTMat <- OutFLANK::MakeDiploidFSTMat(LowvMod.SNPdata, 
+                            LowvMod_locinames, 
+                            LowvMod_gen@strata$Population)# MakeDiploidFSTMat(SNPmat,locusNames,popNames)
+
+LowvMod.FSTMat
+```
+
+
+```{r}
+
+plot(LowvMod.FSTMat$FST, LowvMod.FSTMat$FSTNoCorr, 
+     xlim=c(-0.01,0.3), ylim=c(-0.01,0.3),
+     pch=20)
+abline(0,1)
+
+
+
+plot(LowvMod.FSTMat$He, LowvMod.FSTMat$FSTNoCorr, pch=20, col="grey")
+
+
+# Note the large FST values for loci with low heterozygosity (He < 0.1)
+hist(LowvMod.FSTMat$FSTNoCorr, breaks=seq(0,0.3, by=0.001))
+# Note how, when all loci are included, this doesn't look chi-square distributed 
+hist(LowvMod.FSTMat$FSTNoCorr[LowvMod.FSTMat$He>0.05], breaks=seq(0,0.3, by=0.001))
+# Removing low Heterozygosity variants results in a more chi-square looking FST distribution
+hist(LowvMod.FSTMat$FSTNoCorr[LowvMod.FSTMat$He>0.1], breaks=seq(0,0.3, by=0.001))                                      
+# Run outflank
+# NumberOfSamples is the number of populations sampled. This is the only other argument without a default, aside from the data frame.
+out1 <- OutFLANK(LowvMod.FSTMat, NumberOfSamples=6) # populayion groups
+
+# Visualize results
+ OutFLANKResultsPlotter(out1, withOutliers = TRUE,
+NoCorr = TRUE, Hmin = 0.1, binwidth = 0.001, Zoom =
+FALSE, RightZoomFraction = 0.05, titletext = NULL)
+ 
+ 
+outlier = OutFLANK(LowvMod.FSTMat,NumberOfSamples = 6, 
+                     RightTrimFraction = 0.01, LeftTrimFraction = 0.05,
+                     # RightTrimFraction = 0.06, LeftTrimFraction = 0.35,
+                     qthreshold = 0.05, Hmin = 0.1)
+# increasing the Right Trim Fraction doesn't help, but increasing the left trim fraction enables a better fit
+  
+OutFLANKResultsPlotter(outlier, withOutliers = TRUE,
+NoCorr = TRUE, Hmin = 0.1, binwidth = 0.001, Zoom =
+FALSE, RightZoomFraction = 0.05, titletext = NULL)
+
+# hist(outlier$results$pvaluesRightTail)
+# str(outlier)
+sum(outlier$results$qvalues<0.01, na.rm=TRUE)
+plot(outlier$results$He, outlier$results$FST, pch=20, col="grey")
+    points(outlier$results$He[outlier$results$qvalues<0.01], outlier$results$FST[outlier$results$qvalues<0.01], pch=21, col="blue")
 ```
